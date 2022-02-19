@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Total de membros ativos: {{totalMembros}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h2 *ngIf="totalMembros == 0"> Não há membros ativos.</h2>
+  <ion-searchbar
+  *ngIf="totalMembros > 0"
+  (ionChange)="pesquisarAtivos($event)"
+    placeholder="Digite o nome do membro"
+    color="tertiary"
+  ></ion-searchbar>
+  <ion-grid>
+    <ion-row align-items-center justify-content-center>
+      <ion-col>
+        <ion-list>
+          <ion-item-sliding *ngFor="let membro of membrosAtivosFiltrados">
+            <ion-item text-wrap class="item-text-wrap">
+              <ion-label class="informacao-membro" text-wrap>
+                <h1 class="content-title">{{membro.nomeCompleto}}</h1>
+                Data de nascimento: {{formatarDataDeNascimento(membro.dataNascimento)}} <br />
+                {{membro.whatsapp? 'Whatsapp: '.concat(membro.whatsapp) : '' }}
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="start">
+              <button
+                ion-button
+                (click)="editarMembro(membro)"
+                class="bt-editar"
+              >
+                <ion-icon class="icones" name="create"></ion-icon>
+              </button>
+              <button (click)="confirmarInativacao(membro)" ion-button class="bt-inativar">
+                <ion-icon class="icones" name="person-remove"></ion-icon>
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

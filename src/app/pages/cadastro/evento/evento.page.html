@@ -1,0 +1,130 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="inicio"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Cadastro de evento</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="formulario">
+        <ion-grid>
+            <h2>Informações do Evento</h2>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Nome <span>*</span></ion-label>
+                        <ion-input mode="md" formControlName="nome" minlength="3" type="text" maxlength="100"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item>
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Data <span>*</span></ion-label>
+                        <ion-input mode="md" placeholder="dd/mm/yyyy" formControlName="data" [brmasker]="{mask:'00/00/0000', len:10}"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <h2>Local e Horário</h2>
+            <ion-row>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">CEP <span>*</span></ion-label>
+                        <ion-input mode="md" (ionBlur)="buscarEndereco($event)" formControlName="cep" maxlength="9" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Logradouro <span>*</span></ion-label>
+                        <ion-input mode="md" formControlName="logradouro" maxlength="100" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Número <span>*</span></ion-label>
+                        <ion-input mode="md" [min]="0" [max]="99999" formControlName="numero" type="number"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Complemento</ion-label>
+                        <ion-input mode="md" formControlName="complemento" maxlength="100" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Bairro <span>*</span></ion-label>
+                        <ion-input mode="md" formControlName="bairro" maxlength="100" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Cidade <span>*</span></ion-label>
+                        <ion-input mode="md" formControlName="cidade" maxlength="100" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label class="titulo-dado" position="stacked">Estado <span>*</span></ion-label>
+                        <ion-input formControlName="estado" maxlength="100" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <ion-label mode="md" class="titulo-dado-select-acesso" position="stacked">Horário inicial <span>*</span></ion-label>
+                    <ion-select [(ngModel)]="evento.horarioInicio" formControlName="horarioInicio" class="horario" placeholder="Selecione um horário" multiple="false" interface="popover">
+                        <ion-select-option *ngFor="let item of horarios" [value]="item">
+                            {{item}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-col>
+                <ion-col>
+                    <ion-label mode="md" class="titulo-dado-select-acesso" position="stacked">Horário final <span>*</span></ion-label>
+                    <ion-select [(ngModel)]="evento.horarioFim" formControlName="horarioFim" class="horario" placeholder="Selecione um horário" multiple="false" interface="popover">
+                        <ion-select-option *ngFor="let item of horarios" [value]="item">
+                            {{item}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-col>
+            </ion-row>
+
+            <h2>Informações Gerais</h2>
+            <ion-row>
+                <ion-col>
+                    <ion-label mode="md" class="titulo-dado-select-acesso" position="stacked">Membro responsável<span>*</span></ion-label>
+                    <ion-select formControlName="responsavel" class="horario" placeholder="Selecione um membro" multiple="false" interface="popover">
+                        <ion-select-option *ngFor="let item of membrosAtivos" [value]="item.nomeCompleto">
+                            {{item.nomeCompleto}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-col>
+                <ion-col>
+                    <ion-item>
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Observações</ion-label>
+                        <ion-textarea mode="md" formControlName="observacoes" maxlength="100" type="text"></ion-textarea>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>
+
+
+
+<ion-footer class="ion-no-border">
+    <ion-toolbar no-padding id="rodape">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-button mode="md" (click)="cadastrar()" [disabled]="formulario.invalid" type="submit" fill="solid" expand="full">
+                        Cadastrar</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>

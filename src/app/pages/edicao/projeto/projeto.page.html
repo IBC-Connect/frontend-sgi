@@ -1,0 +1,188 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="inicio"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Editar projeto </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <h2>Informações do Projeto</h2>
+        <ion-row>
+            <ion-col>
+                <ion-item class="row-item">
+                    <ion-label mode="md" class="titulo-dado" position="stacked">Nome<span>*</span></ion-label>
+                    <ion-input mode="md" [(ngModel)]="projeto.nome" type="text" maxlength="100"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item class="row-item">
+                    <ion-label mode="md" class="titulo-dado" position="stacked">Data de início <span>*</span></ion-label>
+                    <ion-input mode="md" placeholder="dd/mm/yyyy" [(ngModel)]="projeto.dataInicio" maxlength="10" [brmasker]="{mask:'00/00/0000', len:10}"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-item>
+            <ion-label mode="md" class="titulo-dado" position="stacked">Descrição <span>*</span></ion-label>
+            <ion-textarea mode="md" [(ngModel)]="projeto.descricao"></ion-textarea>
+        </ion-item>
+
+        <h2>Dias e horários das atividades</h2>
+
+        <ion-row>
+            <ion-col>
+                <ion-label mode="md" class="dia-da-semana">Segunda-feira</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="projeto.diasEncontro[0].horarioInicial" class="horario" placeholder="Selecione o horário inicial" multiple="false" interface="popover">
+                    <ion-select-option selected="item == projeto.diasEncontro[0].horarioInicial" *ngFor="let item of horarios" [value]="item">
+                        {{item}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="projeto.diasEncontro[0].horarioFinal" class="horario" placeholder="Selecione o horário final" multiple="false" interface="popover">
+                    <ion-select-option *ngFor="let item of horarios" [value]="item">
+                        {{item}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-label mode="md" class="dia-da-semana">Terça-feira</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="projeto.diasEncontro[1].horarioInicial" class="horario" placeholder="Selecione o horário inicial" multiple="false" interface="popover">
+                    <ion-select-option *ngFor="let item of horarios" [value]="item">
+                        {{item}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="projeto.diasEncontro[1].horarioFinal" class="horario" placeholder="Selecione o horário final" multiple="false" interface="popover">
+                    <ion-select-option *ngFor="let item of horarios" [value]="item">
+                        {{item}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-label mode="md" class="dia-da-semana">Quarta-feira</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="projeto.diasEncontro[2].horarioInicial" class="horario" placeholder="Selecione o horário inicial" multiple="false" interface="popover">
+                    <ion-select-option *ngFor="let item of horarios" [value]="item">
+                        {{item}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="projeto.diasEncontro[2].horarioFinal" class="horario" placeholder="Selecione o horário final" multiple="false" interface="popover">
+                    <ion-select-option *ngFor="let item of horarios" [value]="item">
+                        {{item}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-label mode="md" class="dia-da-semana">Quinta-feira</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="projeto.diasEncontro[3].horarioInicial" class="horario" placeholder="Selecione o horário inicial" multiple="false" interface="popover">
+                    <ion-select-option *ngFor="let item of horarios" [value]="item">
+                        {{item}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="projeto.diasEncontro[3].horarioFinal" class="horario" placeholder="Selecione o horário final" multiple="false" interface="popover">
+                    <ion-select-option *ngFor="let item of horarios" [value]="item">
+                        {{item}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-label mode="md" class="dia-da-semana">Sexta-feira</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="projeto.diasEncontro[4].horarioInicial" class="horario" placeholder="Selecione o horário inicial" multiple="false" interface="popover">
+                    <ion-select-option *ngFor="let item of horarios" [value]="item">
+                        {{item}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="projeto.diasEncontro[4].horarioFinal" class="horario" placeholder="Selecione o horário final" multiple="false" interface="popover">
+                    <ion-select-option *ngFor="let item of horarios" [value]="item">
+                        {{item}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-label mode="md" class="dia-da-semana">Sábado</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="projeto.diasEncontro[5].horarioInicial" class="horario" placeholder="Selecione o horário inicial" multiple="false" interface="popover">
+                    <ion-select-option *ngFor="let item of horarios" [value]="item">
+                        {{item}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="projeto.diasEncontro[5].horarioFinal" class="horario" placeholder="Selecione o horário final" multiple="false" interface="popover">
+                    <ion-select-option *ngFor="let item of horarios" [value]="item">
+                        {{item}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-label mode="md" class="dia-da-semana">Domingo</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="projeto.diasEncontro[6].horarioInicial" class="horario" placeholder="Selecione o horário inicial" multiple="false" interface="popover">
+                    <ion-select-option *ngFor="let item of horarios" [value]="item">
+                        {{item}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="projeto.diasEncontro[6].horarioFinal" class="horario" placeholder="Selecione o horário final" multiple="false" interface="popover">
+                    <ion-select-option *ngFor="let item of horarios" [value]="item">
+                        {{item}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <ion-toolbar no-padding id="rodape">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-button mode="md" [disabled]="disabledBotaoEditar()" color="primary" (click)="editar()" type="submit" fill="solid" expand="full">
+                        Editar</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>

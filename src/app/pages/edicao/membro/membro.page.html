@@ -1,0 +1,171 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="inicio"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Editar membro</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="formulario">
+        <ion-grid>
+            <h2>Informações Pessoais</h2>
+            <ion-item class="row-item">
+                <ion-label mode="md" class="titulo-dado" position="stacked">Nome Completo <span>*</span></ion-label>
+                <ion-input mode="md" formControlName="nomeCompleto" type="text" maxlength="100"></ion-input>
+            </ion-item>
+
+            <ion-row>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Data de nascimento <span>*</span></ion-label>
+                        <ion-input mode="md" (ionBlur)="validarDataNascimento($event)" formControlName="dataNascimento" [brmasker]="{mask:'00/00/0000', len:10}">
+                        </ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Telefone <span>*</span></ion-label>
+                        <ion-input mode="md" formControlName="telefone" [brmasker]="{phone: true}" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Whatsapp </ion-label>
+                        <ion-input mode="md" formControlName="whatsapp" [brmasker]="{phone: true}" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">E-mail </ion-label>
+                        <ion-input [disabled]="true" mode="md" id="email" (keyup)="retirarEspacamentoEmail()" (ionBlur)="validarEmail($event)" formControlName="email" maxlength="100" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <br />
+            <ion-row>
+                <ion-col>
+                    <ion-label mode="md" class="titulo-dado-select" position="stacked">Estado Civil<span>*</span></ion-label>
+                    <ion-select placeholder="Selecione uma opção" formControlName="estadoCivil" multiple="false" interface="action-sheet">
+                        <ion-select-option *ngFor="let item of estadoCivil" [value]="item.id">
+                            {{item.valor}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-col>
+
+                <ion-col>
+                    <ion-label mode="md" class="titulo-dado-select" position="stacked">Escolaridade<span>*</span></ion-label>
+                    <ion-select placeholder="Selecione uma opção" formControlName="escolaridade" multiple="false" interface="popover" [interfaceOptions]="{'cssClass': 'mycomponent-wider-popover'}">
+                        <ion-select-option *ngFor="let item of escolaridade" [value]="item.id">
+                            {{item.valor}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-col>
+
+                <ion-col>
+                    <ion-label mode="md" class="titulo-dado-select" position="stacked">Trabalhando atualmente <span>*</span></ion-label>
+                    <ion-select placeholder="Selecione uma opção" interface="action-sheet" formControlName="trabalhandoAtualmente">
+                        <ion-select-option value="true">Sim</ion-select-option>
+                        <ion-select-option value="false">Não</ion-select-option>
+                    </ion-select>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Profissão <span>*</span></ion-label>
+                        <ion-input mode="md" formControlName="profissao" maxlength="100" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Data do batismo </ion-label>
+                        <ion-input mode="md" formControlName="dataBatismo" maxlength="10" [brmasker]="{mask:'00/00/0000', len:10}"></ion-input>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Membro desde </ion-label>
+                        <ion-input mode="md" formControlName="membroDesde" maxlength="10" [brmasker]="{mask:'00/00/0000', len:10}"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <h2>Endereço</h2>
+            <ion-row>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">CEP <span>*</span></ion-label>
+                        <ion-input mode="md" (ionBlur)="buscarEndereco($event)" formControlName="cep" maxlength="9" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Logradouro <span>*</span></ion-label>
+                        <ion-input mode="md" formControlName="logradouro" maxlength="100" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Número <span>*</span></ion-label>
+                        <ion-input mode="md" [min]="0" [max]="99999" formControlName="numero" type="number"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Complemento</ion-label>
+                        <ion-input mode="md" formControlName="complemento" maxlength="100" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Bairro <span>*</span></ion-label>
+                        <ion-input mode="md" formControlName="bairro" maxlength="100" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Cidade <span>*</span></ion-label>
+                        <ion-input mode="md" formControlName="cidade" maxlength="100" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Estado <span>*</span></ion-label>
+                        <ion-input mode="md" formControlName="estado" maxlength="100" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <h2>Informações de Acesso </h2>
+            <ion-row>
+                <ion-col>
+                    <ion-label mode="md" class="titulo-dado-select-acesso" position="stacked">Perfil<span>*</span></ion-label>
+                    <ion-select placeholder="Selecione uma opção" interface="action-sheet" formControlName="perfil">
+                        <ion-select-option value="ADMIN">Administrador</ion-select-option>
+                        <ion-select-option value="FIN">Financeiro</ion-select-option>
+                        <ion-select-option value="MEM">Membro</ion-select-option>
+                        <ion-select-option value="SEC">Secretariado</ion-select-option>
+                    </ion-select>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>
+
+
+<ion-footer class="ion-no-border">
+    <ion-toolbar no-padding id="rodape">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-button mode="md" (click)="editar()" [disabled]="formulario.invalid" type="submit" fill="solid" expand="full"> Atualizar</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>

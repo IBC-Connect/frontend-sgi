@@ -1,0 +1,48 @@
+ion-content, 
+ion-item{
+    --background: #e6e6e6;
+}
+
+ion-title,h2{
+    --color: #fff;
+    font-family: 'Lexend', sans-serif;
+}
+
+ion-content,  
+ion-item, 
+ion-input,
+ion-textarea, 
+ion-select,
+.titulo-dado {
+   font-family: 'Rubik', sans-serif;
+}
+
+ion-input, ion-textarea{
+    text-transform: uppercase;
+    font-size: 11pt;
+}
+
+ion-input,
+ion-textarea, 
+.titulo-dado,
+h2{
+    color:#2e2e3c;
+} 
+
+#rodape{
+    --background: #e6e6e6; 
+}
+
+span {
+    color: #eb445a;
+}
+
+h2 {
+    font-size:13pt;
+    font-weight: bolder;
+    margin-left:1%;
+}
+
+.titulo-dado{
+    font-size: 13pt;
+}

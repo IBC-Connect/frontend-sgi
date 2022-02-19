@@ -1,0 +1,7 @@
+{
+  "name": "sig-ibc",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

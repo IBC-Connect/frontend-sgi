@@ -1,2 +1,2 @@
-# frontend-sgi
-Projeto de Frontend do SGI IBC
+# sgi-ibc
+Sistema de Gerenciamento Interno

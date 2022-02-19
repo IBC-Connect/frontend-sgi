@@ -1,0 +1,29 @@
+<ion-content [fullscreen]="true">
+    <div>
+        <div id="container">
+            <img src="../../assets/img/logomarcaIbc.png">
+        </div>
+        <div id="container2">
+            <h3 id="area-restrita">Área restrita</h3><br />
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-icon id="icone-user" name="person-outline"></ion-icon>
+                            <ion-input mode="md" id="email" [(ngModel)]="usuario.email" placeholder="E-mail"></ion-input>
+                        </ion-item>
+                        <br />
+                        <ion-item>
+                            <ion-icon id="icone-cadeado" name="lock-closed-outline"></ion-icon>
+                            <ion-input mode="md" [type]="passwordType" id="senha" [(ngModel)]="usuario.senha" placeholder="Senha"></ion-input>
+                            <ion-icon id="icone-olho" name="eye" (click)="visualizarSenha()"></ion-icon>
+                        </ion-item>
+                        <br />
+                        <ion-button mode="md" (click)="logar(usuario)" color="secondary" type="submit" fill="solid" expand="full">ENTRAR</ion-button>
+                        <h2 id="esqueci-senha">Esqueci minha senha</h2>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+</ion-content>

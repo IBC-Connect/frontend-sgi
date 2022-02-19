@@ -1,0 +1,62 @@
+ion-content,  
+ion-item, 
+ion-input, 
+ion-select,
+ion-textarea,
+.titulo-dado,
+.titulo-dado-select-acesso{
+       font-family: 'Rubik', sans-serif;
+}
+
+ion-content, 
+ion-item,
+#rodape {
+    --background: #e6e6e6;
+}
+
+ion-select,
+ion-input,
+ion-textarea,
+.titulo-dado,
+.titulo-dado-select-acesso,
+h2 {
+    color:#2e2e3c;
+} 
+
+ion-title, h2{
+    font-family: 'Lexend', sans-serif;
+}
+
+ion-input, ion-textarea{
+    text-transform: uppercase;
+    font-size: 11pt;
+ }
+
+ion-select{
+    font-size: 10pt;
+}
+   
+.titulo-dado{
+    font-size: 13pt;
+ }
+
+ .titulo-dado-select-acesso{
+    font-size: 10pt;
+    margin-left: 2.5%;  
+ }
+
+h2 {
+    font-size:13pt;
+    font-weight: bolder;
+    margin-left:1%;
+}
+
+span {
+    color: #eb445a;
+}
+
+::ng-deep .mycomponent-wider-popover
+{
+  --width: 95%;
+  --max-width: 600px;
+}

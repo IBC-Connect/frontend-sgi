@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Total de projetos inativos: {{numTotalProjetos}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h2 *ngIf="numTotalProjetos == 0"> Não há projetos inativos.</h2>
+  <ion-searchbar *ngIf="numTotalProjetos != 0"
+  (ionChange)="pesquisarProjetos($event)"
+    placeholder="Digite o nome do projeto"
+    color="tertiary"
+  ></ion-searchbar>
+  <ion-grid>
+    <ion-row align-items-center justify-content-center>
+      <ion-col>
+        <ion-list>
+          <ion-item-sliding *ngFor="let projeto of projetosInativosFiltrados" >
+            <ion-item text-wrap class="item-text-wrap">
+              <ion-label class="informacao-membro" text-wrap>
+                <h1 class="content-title">{{projeto.nome}}</h1>
+                {{projeto.responsavel? 'Responsável: '.concat(projeto.responsavel) : '' }} 
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="start">
+              <button (click)="confirmarAtivacao(projeto)" ion-button class="bt-ativar">
+                <ion-icon  class="icones" name="person-add"></ion-icon>
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

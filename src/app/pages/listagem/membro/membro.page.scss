@@ -1,0 +1,17 @@
+
+.inativo, .ativo{
+    font-size: 30px;
+}
+
+.ativo, #tabAtivos{
+    color: #20c043;
+}
+
+.inativo, #tabInativos{
+    color: #eb445a;
+}
+
+.tituloTab{
+    font-size: 18px;
+    font-family: 'Lexend', sans-serif;
+}

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Total de cargos cadastrados: {{numTotalCargos}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar
+  (ionChange)="onSearchTerm($event)"
+    placeholder="Digite o nome do membro"
+    color="tertiary"
+  ></ion-searchbar>
+  <ion-grid>
+    <ion-row align-items-center justify-content-center>
+      <ion-col>
+        <ion-list>
+          <ion-item-sliding *ngFor="let cargo of listaCargosFiltrados" >
+            <ion-item text-wrap class="item-text-wrap">
+              <ion-label class="informacao-membro" text-wrap>
+                <h1 class="content-title">{{cargo.nome}}</h1>
+                {{cargo.responsavel? 'Responsável: '.concat(cargo.responsavel) : '' }}
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="start">
+              <button
+                ion-button
+                (click)="editarCargo(cargo)"
+                class="bt-editar"
+              >
+                <ion-icon class="icones" name="create"></ion-icon>
+              </button>
+              <button
+                ion-button
+                (click)="associarCargo(cargo)"
+                routerDirection="forward"
+                class="bt-associar"
+              >
+                <ion-icon class="icones" name="git-compare"></ion-icon>
+              </button>
+              <button (click)="confirmarExclusao(cargo)" ion-button class="bt-deletar">
+                <ion-icon class="icones" name="trash"></ion-icon>
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

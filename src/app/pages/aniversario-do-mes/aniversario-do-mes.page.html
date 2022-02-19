@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Aniversários do mês</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content center text-center>
+   <ion-grid class="ion-text-center">
+    <img src="/assets/img/parabens.gif"> 
+    <h1> Celebrar o aniversário é agradecer a Deus o milagre da vida.</h1> <br/><br/>
+     <ion-row *ngFor="let membro of membrosAtivos">
+        <ion-col size-md="1"   text-wrap>
+         <h2> {{formatarDataDeNascimento(membro.dataNascimento).substring(0,5)}}</h2>
+        </ion-col>
+        <ion-col text-wrap>
+        <h2>{{membro.nomeCompleto}}</h2>
+        </ion-col>
+        <ion-col size-md="6" text-wrap>
+        <h2 id="whatsapp" *ngIf="membro.whatsapp">Envie uma mensagem. Clique <a  target="_blank" [href]="formatarNumeroWhatsapp(membro.whatsapp)">aqui</a>.</h2>
+        </ion-col>
+    </ion-row>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="lista/projeto/ativos"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Associar projeto</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="formulario">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Projeto</ion-label>
+                        <ion-input mode="md" [disabled]="true" formControlName="nome" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-label mode="md" class="titulo-dado-select" position="stacked">Responsável</ion-label>
+                    <ion-select [selectedText]="formulario.get('responsavel').value" placeholder="Selecione uma opção" formControlName="responsavel" multiple="false" interface="popover">
+                        <ion-select-option *ngFor="let item of membrosAtivos" [value]="item.nomeCompleto">
+                            {{item.nomeCompleto}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Data de Início</ion-label>
+                        <ion-input mode="md" formControlName="dataInicio" maxlength="10" [brmasker]="{mask:'00/00/0000', len:10}"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Data Fim</ion-label>
+                        <ion-input mode="md" formControlName="dataFim" maxlength="10" [brmasker]="{mask:'00/00/0000', len:10}"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <ion-toolbar no-padding id="rodape">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-button mode="md" (click)="associar()" [disabled]="formulario.invalid" type="submit" fill="solid" expand="full"> Associar</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>
