@@ -56,7 +56,7 @@
 
         <br />
 
-        <button ion-button (click)="mensagemDeConstrucao()" class="ion-text-wrap">
+        <button ion-button (click)="mensagemDeConstrucao()" class="ion-text-wrap" *ngIf='permissao("ADMIN")'>
       <ion-icon class="icone" name="cash-outline"></ion-icon><br />
       <label> Sistema Financeiro </label>
     </button>

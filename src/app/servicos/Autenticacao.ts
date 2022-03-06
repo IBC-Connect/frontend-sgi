@@ -1,82 +1,38 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import * as express from "express";
+import { environment } from '../../environments/environment';
 //Firebase
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
 import { Membro } from '../modelo/Membro';
 import { Usuario } from '../modelo/Usuario';
-import { MembroService } from './Membro';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class AutenticacaoService {
-  public userData$: Observable<any>;
-  public listaMembros: Membro[];
-  
-
   constructor(
-    public afAuth: AngularFireAuth,
-    private membroService: MembroService
-  ) {
-    //Dados Firebase
-    this.afAuth.setPersistence('none');
-    this.afAuth.updateCurrentUser;
-    this.userData$ = this.afAuth.authState;
-    this.listaMembros = this.membroService.carregaListaMembros();
-  }
+    private httpClient: HttpClient,
+    private router: Router
+  ) { }
 
   public async login(usuario: Usuario) {
-    this.afAuth
-    return await this.afAuth.signInWithEmailAndPassword(
-      usuario.email.trim(),
-      usuario.senha.trim()
-    );
+    return this.httpClient.post(environment.apiUrl.concat("login"), usuario).toPromise();
+  }
+
+  public async dadosLogin(email : string) {
+    return this.httpClient.get(environment.apiUrl.concat(`login/${email}/dados`)).toPromise();
   }
 
   public async criarUsuario(membro: Membro) {
-    let novoUsuario: any;
-    await this.afAuth
-      .createUserWithEmailAndPassword(membro.email.trim(), membro.senha.trim())
-      .then(
-        (sucesso) => {
-          console.log(sucesso)
-          novoUsuario = sucesso;
-        },
-        (erro) => {
-          novoUsuario = null;
-        }
-      );
-    return novoUsuario;
   }
 
   public async resetarSenha(email: string) {
-    return await this.afAuth.sendPasswordResetEmail(email);
   }
 
   public async sair() {
-    await this.afAuth.signOut().then(
-      function () {
-        localStorage.clear();
-      },
-      function (erro) {
-        console.log(erro.message);
-      }
-    );
-  }
-
-  public dadosMembro(email): Membro {
-    let membroRetorno: Membro;
-
-    this.listaMembros.find((membro) => {
-      if (membro.email === email) {
-        membroRetorno = membro;
-      }
-    });
-
-    return membroRetorno;
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 
   public salvaUsuario(email): void {
@@ -84,18 +40,6 @@ export class AutenticacaoService {
     membro.email = email;
 
     this.salvarDadosLocalmente(membro);
-  }
-
-  public verificaUsuarioExistente(membroCadastrar: Membro): boolean {
-    let resultado: boolean = false;
-
-    this.listaMembros.find((membro) => {
-      if (membro.cpf === membroCadastrar.cpf) {
-        resultado = true;
-      }
-    });
-
-    return resultado;
   }
 
   private salvarDadosLocalmente(membro: Membro): void {

@@ -20,7 +20,6 @@ export class ResetarSenhaPage {
   constructor(private membroService: MembroService, private autenticacao: AutenticacaoService, private aviso: ToastController) {
     this.usuario = this.autenticacao.pegarDadosLocalmente() ? this.autenticacao.pegarDadosLocalmente() : new Usuario();
     this.mensagens = new MensagensUtil(this.aviso);
-    this.membro = this.autenticacao.dadosMembro(this.usuario.email);;
   }
 
   private resertarSenha(membroAlterado: Membro): void {
