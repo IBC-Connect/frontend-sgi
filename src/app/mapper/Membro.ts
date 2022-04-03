@@ -15,6 +15,7 @@ export class MembroMapper {
     membro.membroDesde = form.membroDesde ? form.membroDesde : '';
     membro.profissao = form.profissao.toUpperCase();
     membro.situacao = 'Ativo';
+    membro.classificacao = form.classificacao;
     membro.whatsapp = form.whatsapp;
     membro.telefone = form.telefone;
     membro.trabalhandoAtualmente = form.trabalhandoAtualmente;

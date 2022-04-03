@@ -68,6 +68,21 @@ const routes: Routes = [
     loadChildren: () => import('./pages/listagem/projeto/projeto.module').then((m) => m.ProjetoPageModule),
     canActivateChild: [AutenticacaoGuard],
   },
+  
+  {
+    path: 'lista/assistido',
+    loadChildren: () => import('./pages/listagem/assistido/assistido.module').then( m => m.AssistidoPageModule)
+  },
+
+  {
+    path: 'lista/membro/congregados',
+    loadChildren: () => import('./pages/listagem/membro/congregado/congregado.module').then( m => m.CongregadoPageModule)
+  },
+
+  {
+    path: 'lista/membro/voluntarios',
+    loadChildren: () => import('./pages/listagem/membro/voluntario/voluntario.module').then( m => m.VoluntarioPageModule)
+  },
 
   {
     path: 'resetar-senha',
@@ -121,7 +136,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/edicao/evento/evento.module').then( m => m.EventoPageModule),
     canActivateChild: [AutenticacaoGuard],
   },
-
+  {
+    path: 'editar/assistido',
+    loadChildren: () => import('./pages/edicao/assistido/assistido.module').then( m => m.AssistidoPageModule)
+  },
   {
     path: 'aniversarios',
     loadChildren: () => import('./pages/aniversario-do-mes/aniversario-do-mes.module').then( m => m.AniversarioDoMesPageModule),
@@ -144,8 +162,7 @@ const routes: Routes = [
     path: 'cadastro/assistido',
     loadChildren: () => import('./pages/cadastro/assistido/assistido.module').then( m => m.AssistidoPageModule),
     canActivateChild: [AutenticacaoGuard],
-  },
-
+  }
 
 ];
 

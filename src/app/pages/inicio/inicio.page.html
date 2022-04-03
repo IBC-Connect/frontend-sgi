@@ -8,7 +8,7 @@
     <div class="content">
         <button ion-button routerLink="/cadastro/membro" routerDirection="forward" class="ion-text-wrap" *ngIf='permissao("ADMIN")'>
       <ion-icon class="icone" name="accessibility-outline"></ion-icon> <br />
-      <label>Cadastro de Membro</label>
+      <label>Cadastro na IBC</label>
     </button>
 
         <button ion-button routerLink="/cadastro/projeto" routerDirection="forward" class="ion-text-wrap" *ngIf='permissao("ADMIN")'>
@@ -54,9 +54,14 @@
       <label>Lista de &nbsp; Eventos</label>
     </button>
 
+    <button ion-button routerLink="/lista/assistido" routerDirection="forward" class="ion-text-wrap" *ngIf='permissao("ADMIN;MEM")'>
+      <ion-icon class="icone" name="list-outline"></ion-icon> <br />
+      <label>Lista de &nbsp; Assistidos</label>
+    </button>
+
         <br />
 
-        <button ion-button (click)="mensagemDeConstrucao()" class="ion-text-wrap" *ngIf='permissao("ADMIN")'>
+        <button ion-button (click)="mensagemDeConstrucao()" class="ion-text-wrap">
       <ion-icon class="icone" name="cash-outline"></ion-icon><br />
       <label> Sistema Financeiro </label>
     </button>

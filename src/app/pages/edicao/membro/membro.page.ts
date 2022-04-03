@@ -71,6 +71,10 @@ export class MembroPage {
         this.membro.trabalhandoAtualmente,
         Validators.required,
       ],
+      classificacao: [
+        this.membro.classificacao,
+        Validators.required,
+      ],
       dataBatismo: [this.membro.dataBatismo],
       membroDesde: [this.membro.membroDesde],
       cep: [this.membro.endereco.cep, Validators.required],

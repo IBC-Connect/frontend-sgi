@@ -11,6 +11,7 @@ export class Membro {
     escolaridade : number;
     profissao : string;
     trabalhandoAtualmente : boolean;
+    classificacao : string;
     telefone : string;
     whatsapp : string;
     endereco : Endereco;

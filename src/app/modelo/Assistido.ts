@@ -14,5 +14,5 @@ export class Assistido {
     whatsapp : string;
     endereco : Endereco;
     situacao : string; /*Ativo ou Inativo */
-    observacoes;
+    observacoes : string;
 }

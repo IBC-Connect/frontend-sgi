@@ -23,6 +23,20 @@ const routes: Routes = [
           ).then((m) => m.MembroInativoPageModule),
       },
       {
+        path: 'congregados',
+        loadChildren: () =>
+          import(
+            './congregado/congregado.module'
+          ).then((m) => m.CongregadoPageModule),
+      },
+      {
+        path: 'voluntarios',
+        loadChildren: () =>
+          import(
+            './voluntario/voluntario.module'
+          ).then((m) => m.VoluntarioPageModule),
+      },
+      {
         path: '',
         redirectTo: '/lista/membro/ativos',
         pathMatch: 'full',

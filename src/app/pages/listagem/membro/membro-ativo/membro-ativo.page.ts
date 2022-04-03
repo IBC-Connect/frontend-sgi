@@ -37,12 +37,8 @@ export class MembroAtivoPage {
     this.listaMembrosObservable.subscribe((response) => {
       this.membrosAtivos = response;
       this.membrosAtivosFiltrados = response;
-      this.membrosAtivos = this.membrosAtivos.filter(
-        (m) => m.situacao === 'Ativo'
-      );
-      this.membrosAtivosFiltrados = this.membrosAtivosFiltrados.filter(
-        (m) => m.situacao === 'Ativo'
-      );
+      this.membrosAtivos = this.membrosAtivos.filter((m) => this.filtrarMembro(m));
+      this.membrosAtivosFiltrados = this.membrosAtivosFiltrados.filter((m) => this.filtrarMembro(m));
       this.totalMembros = this.membrosAtivos.length;
       this.membrosAtivosFiltrados.sort((a, b) =>
         a.nomeCompleto > b.nomeCompleto
@@ -54,6 +50,10 @@ export class MembroAtivoPage {
       this.membrosAtivos.map((m) => (m.escolaridade = Number(m.escolaridade)));
       this.membrosAtivos.map((m) => (m.estadoCivil = Number(m.estadoCivil)));
     });
+  }
+
+  private filtrarMembro(membro) : boolean {
+    return membro.situacao === 'Ativo' && (membro.classificacao === undefined || membro.classificacao === "Membro");
   }
 
   public editarMembro(membro: Membro): void {

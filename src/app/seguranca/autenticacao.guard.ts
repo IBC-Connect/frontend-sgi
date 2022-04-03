@@ -17,11 +17,15 @@ export class AutenticacaoGuard implements CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.autenticaService.pegarDadosLocalmente()) {
-      return true;
-    } else {
-      this.router.navigate(['/login']);
-      return false;
-    }
+
+    return this.autenticaService.userData$.pipe(map(user => {
+        if (user) {
+          return true;
+        }
+        else   {
+          this.router.navigate(['/login']);
+          return false;  
+        }   
+      }));
   }
 }

@@ -3,11 +3,14 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Membro } from '../modelo/Membro';
+import { Usuario } from '../modelo/Usuario';
+import { AutenticacaoService } from './Autenticacao';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MembroService {
+  usuario : Usuario;
   membrosLista: Membro[];
   membro: Observable<any>;
   membros: Observable<any[]>;
@@ -16,6 +19,7 @@ export class MembroService {
 
   constructor(private db: AngularFireDatabase) {
     this.membrosLista = new Array<Membro>();
+    this.usuario = JSON.parse(localStorage.getItem('usuario'));
     this.membroRef = this.db.list(this.path);
   }
 

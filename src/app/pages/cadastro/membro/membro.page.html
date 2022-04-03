@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
             <ion-back-button defaultHref="inicio"></ion-back-button>
         </ion-buttons>
-        <ion-title>Cadastro de membro</ion-title>
+        <ion-title>Cadastro IBC</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -80,6 +80,16 @@
                 </ion-col>
             </ion-row>
             <ion-row>
+                
+                <ion-col>
+                    <ion-label mode="md" class="titulo-dado-select" position="stacked">Classificação <span>*</span></ion-label>
+                    <ion-select placeholder="Selecione uma opção" interface="action-sheet" formControlName="classificacao">
+                        <ion-select-option value="Membro">Membro</ion-select-option>
+                        <ion-select-option value="Congregado">Congregado</ion-select-option>
+                        <ion-select-option value="Voluntario">Voluntário</ion-select-option>
+                    </ion-select>
+                </ion-col>
+
                 <ion-col>
                     <ion-item class="row-item">
                         <ion-label mode="md" class="titulo-dado" position="stacked">Data do batismo </ion-label>

@@ -1,8 +1,9 @@
 export class Usuario {
 
-    email: string;
-    nome: string;
-    perfil: string;
-    senha: string;
-
+    email : string;
+    nome : string;
+    uid : string;
+    perfil : string;
+    senha : string;
+    
 }

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Total de congregados: {{totalCongregados}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h2 *ngIf="totalCongregados == 0"> Não há congregados.</h2>
+  <ion-searchbar
+  *ngIf="totalCongregados > 0"
+  (ionChange)="pesquisarCongregados($event)"
+    placeholder="Digite o nome do congregado"
+    color="tertiary"
+  ></ion-searchbar>
+  <ion-grid>
+    <ion-row align-items-center justify-content-center>
+      <ion-col>
+        <ion-list>
+          <ion-item-sliding *ngFor="let congregado of membrosCongregadosFiltrados">
+            <ion-item text-wrap class="item-text-wrap">
+              <ion-label class="informacao-membro" text-wrap>
+                <h1 class="content-title">{{congregado.nomeCompleto}}</h1>
+                Data de nascimento: {{formatarDataDeNascimento(congregado.dataNascimento)}} <br />
+                {{congregado.whatsapp? 'Whatsapp: '.concat(congregado.whatsapp) : '' }}
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="start">
+              <button
+                ion-button
+                (click)="editarCongregado(congregado)"
+                class="bt-editar"
+              >
+                <ion-icon class="icones" name="create"></ion-icon>
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

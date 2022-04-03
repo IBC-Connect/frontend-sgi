@@ -45,7 +45,7 @@ export class AssistidoService {
     this.assistidoRef.remove();
   }
 
-  public carregaListaMembros(): Assistido[] {
+  public carregaListaAssistidos(): Assistido[] {
     this.listar()
       .toPromise()
       .then(

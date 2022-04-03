@@ -34,13 +34,17 @@ export class MembroInativoPage   {
     
       this.membrosInativos = response;
       this.membrosInativosFiltrados = response;
-      this.membrosInativos = this.membrosInativos.filter((m) => m.situacao === 'Inativo');
-      this.membrosInativosFiltrados = this.membrosInativosFiltrados.filter((m) => m.situacao === 'Inativo');
+      this.membrosInativos = this.membrosInativos.filter((m) => this.filtrarMembro(m));
+      this.membrosInativosFiltrados = this.membrosInativosFiltrados.filter((m) => this.filtrarMembro(m));
       this.totalMembros= this.membrosInativos.length;
       this.membrosInativosFiltrados.sort((a, b) =>  a.nomeCompleto > b.nomeCompleto ? 1 : b.nomeCompleto > a.nomeCompleto ? -1 : 0);
       this.membrosInativos.map((m) => (m.escolaridade = Number(m.escolaridade)));
       this.membrosInativos.map((m) => (m.estadoCivil = Number(m.estadoCivil)));
     });
+  }
+
+  private filtrarMembro(membro) : boolean {
+    return membro.situacao === 'Inativo' && (membro.classificacao === undefined || membro.classificacao === "Membro");
   }
 
   public formatarDataDeNascimento(data: any): any {

@@ -36,7 +36,7 @@ export class LoginPage {
 
     this.autenticacao.login(usuario).then(
       (sucesso) => {
-        this.autenticacao.salvaUsuario(usuario.email);
+        this.autenticacao.salvaUsuario(usuario, sucesso);
         this.redirecionador.redicionarPara("inicio");
       },
       (error) => {

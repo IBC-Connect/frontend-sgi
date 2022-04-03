@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Total de assistidos cadastrados: {{numTotalAssistidos}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar
+  (ionChange)="onSearchTerm($event)"
+    placeholder="Digite o nome do membro"
+    color="tertiary"
+  ></ion-searchbar>
+  <ion-grid>
+    <ion-row align-items-center justify-content-center>
+      <ion-col>
+        <ion-list>
+          <ion-item-sliding *ngFor="let assistido of listaAssistidosFiltrados" >
+            <ion-item text-wrap class="item-text-wrap">
+              <ion-label class="informacao-membro" text-wrap>
+                <h1 class="content-title">{{assistido.nomeCompleto}}</h1>
+                Data de nascimento: {{formatarDataDeNascimento(assistido.dataNascimento)}} 
+                <br />
+                {{assistido.whatsapp? 'Whatsapp: '.concat(assistido.whatsapp) : '' }}
+                <br />
+                {{assistido.observacoes? 'Observações: '.concat(assistido.observacoes) : '' }}
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="start">
+              <button
+                ion-button
+                (click)="editarAssistido(assistido)"
+                class="bt-editar"
+              >
+                <ion-icon class="icones" name="create"></ion-icon>
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
