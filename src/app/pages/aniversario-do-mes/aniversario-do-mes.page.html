@@ -3,24 +3,40 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="inicio"></ion-back-button>
     </ion-buttons>
-    <ion-title>Aniversários do mês</ion-title>
+    <ion-title
+      >Total de aniversiantes do mês: {{totalAniversariantes}}</ion-title
+    >
   </ion-toolbar>
 </ion-header>
 
-<ion-content center text-center>
-   <ion-grid class="ion-text-center">
-    <img src="/assets/img/parabens.gif"> 
-    <h1> Celebrar o aniversário é agradecer a Deus o milagre da vida.</h1> <br/><br/>
-     <ion-row *ngFor="let membro of membrosAtivos">
-        <ion-col size-md="1"   text-wrap>
-         <h2> {{formatarDataDeNascimento(membro.dataNascimento).substring(0,5)}}</h2>
-        </ion-col>
-        <ion-col text-wrap>
-        <h2>{{membro.nomeCompleto}}</h2>
-        </ion-col>
-        <ion-col size-md="6" text-wrap>
-        <h2 id="whatsapp" *ngIf="membro.whatsapp">Envie uma mensagem. Clique <a  target="_blank" [href]="formatarNumeroWhatsapp(membro.whatsapp)">aqui</a>.</h2>
-        </ion-col>
+<ion-content padding>
+  <ion-searchbar
+    (ionChange)="pesquisarMembros($event)"
+    placeholder="Digite o nome do aniversiante."
+    color="tertiary"
+  ></ion-searchbar>
+  <ion-grid>
+    <ion-row align-items-center justify-content-center>
+      <ion-col>
+        <ion-list>
+          <ion-item-sliding *ngFor="let membro of membrosFiltrados">
+            <ion-item text-wrap class="item-text-wrap">
+              <ion-label class="informacao-membro" text-wrap>
+                <h1 class="content-title">{{membro.nomeCompleto}}</h1>
+                Data de nascimento:
+                {{formatarDataDeNascimento(membro.dataNascimento)}}
+                <br />
+                <b>Idade nesse ano: {{idadeAtual(membro)}} anos</b>
+                <br />
+                <div *ngIf="membro.whatsapp">
+                  {{membro.whatsapp? 'Whatsapp: '.concat(membro.whatsapp) : '' }}
+                <a target="_blank" [href]="formatarNumeroWhatsapp(membro.whatsapp)"><ion-icon name="send-outline"></ion-icon></a>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
     </ion-row>
-    </ion-grid>
+  </ion-grid>
 </ion-content>

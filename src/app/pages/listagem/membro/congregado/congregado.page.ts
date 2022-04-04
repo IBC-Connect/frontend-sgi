@@ -62,7 +62,7 @@ export class CongregadoPage {
     return data.includes('/') ? data : DateUtil.dateFormatterBrazil(data);
   }
 
-  public pesquisarCongregados(ev: any) {
+  public pesquisarMembros(ev: any) {
     this.membrosCongregadosFiltrados = this.membrosCongregados;
     const val = ev.detail.value;
 
