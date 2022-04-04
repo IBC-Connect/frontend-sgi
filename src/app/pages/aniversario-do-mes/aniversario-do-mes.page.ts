@@ -60,6 +60,11 @@ export class AniversarioDoMesPage {
     return DateUtil.dateFormatterBrazil(data);
   }
 
+  public aniversarioMes(){
+    const monthNameLong = new Date(Date.now()).toLocaleString("pt-BR", { month: "long" });
+    return monthNameLong.toUpperCase();
+  }
+
   public formatarNumeroWhatsapp(whatsapp: any) {
     let numero = whatsapp.replace("(", "").replace(")", "").replace("-", "");
     return `https://api.whatsapp.com/send/?phone=55${numero}&text&app_absent=0`;

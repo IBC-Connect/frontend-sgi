@@ -8,9 +8,10 @@
 </ion-header>
 
 <ion-content padding>
+  <h2 *ngIf="numTotalAssistidos == 0"> Não há assistidos.</h2>
   <ion-searchbar
   (ionChange)="onSearchTerm($event)"
-    placeholder="Digite o nome do membro"
+    placeholder="Digite o nome do assistido"
     color="tertiary"
   ></ion-searchbar>
   <ion-grid>

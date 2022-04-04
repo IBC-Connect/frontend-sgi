@@ -4,15 +4,16 @@
       <ion-back-button defaultHref="inicio"></ion-back-button>
     </ion-buttons>
     <ion-title
-      >Total de aniversiantes do mês: {{totalAniversariantes}}</ion-title
+      >Aniversariantes do mês: {{aniversarioMes()}}</ion-title
     >
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <h2 *ngIf="totalAniversariantes == 0"> Não há aniversariantes esse mês.</h2>
   <ion-searchbar
     (ionChange)="pesquisarMembros($event)"
-    placeholder="Digite o nome do aniversiante."
+    placeholder="Digite o nome do aniversariante."
     color="tertiary"
   ></ion-searchbar>
   <ion-grid>

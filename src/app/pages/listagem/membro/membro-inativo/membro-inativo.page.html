@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <h2 *ngIf="totalMembros == 0"> Não há membros inativos.</h2>
-  <ion-searchbar  *ngIf="totalMembros > 0" (ionChange)="pesquisarInativos($event)"  placeholder="Digite o nome do membro" color="tertiary"></ion-searchbar>
+  <ion-searchbar  *ngIf="totalMembros > 0" (ionChange)="pesquisarInativos($event)"  placeholder="Digite o nome do membro." color="tertiary"></ion-searchbar>
   <ion-grid>
     <ion-row align-items-center justify-content-center>
       <ion-col>
