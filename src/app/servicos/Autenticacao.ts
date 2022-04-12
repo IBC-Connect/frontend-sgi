@@ -39,11 +39,10 @@ export class AutenticacaoService {
       .createUserWithEmailAndPassword(membro.email.trim(), membro.senha.trim())
       .then(
         (sucesso) => {
-          console.log(sucesso)
           novoUsuario = sucesso;
         },
         (erro) => {
-          novoUsuario = null;
+          novoUsuario = erro;
         }
       );
     return novoUsuario;

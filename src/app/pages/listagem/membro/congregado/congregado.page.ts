@@ -92,4 +92,32 @@ export class CongregadoPage {
       );
     }
   }
+
+  public async confirmarExclusao(membro: Membro) {
+    const alert = await this.alertController.create({
+      header: 'Confirmação de exclusão',
+      message: 'Tem certeza que deseja excluir o congregado selecionado?',
+      buttons: [
+        {
+          text: 'Não',
+          handler: () => {
+            this.alertController.dismiss();
+          },
+        },
+        {
+          text: 'Sim',
+          handler: () => {
+            this.excluirMembro(membro);
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
+
+  private excluirMembro(membro: Membro): void {
+    this.membroService.deletar(membro.key);
+    this.mensagens.mensagemSucesso('Congregado excluído com sucesso!');
+    this.inicializar();
+  }
 }

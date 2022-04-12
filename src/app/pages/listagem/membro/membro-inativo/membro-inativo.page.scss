@@ -1,33 +1,40 @@
-ion-searchbar{
-    margin-top:  15px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto; 
-    font-family: 'Rubik', sans-serif;
+ion-searchbar {
+  margin-top: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Rubik", sans-serif;
 }
 
-ion-title, h1, h2, .informacao-membro{
-    font-family: 'Lexend', sans-serif;
+ion-title,
+h1,
+h2,
+.informacao-membro {
+  font-family: "Lexend", sans-serif;
 }
 
-h1{
-    font-size: 20px;
+h1 {
+  font-size: 20px;
 }
 
 h2 {
-    color: #a57d51;
-    text-align: center;
-  }
-
-.bt-editar{
-background: #2e2e3c;
+  color: #a57d51;
+  text-align: center;
 }
 
-.bt-inativar{
-    background: #A57D51;
+.bt-editar {
+  background: #2e2e3c;
 }
 
-.icones{
-color: #fff;
-font-size: 20px;
+.bt-inativar {
+  background: #a57d51;
+}
+
+.bt-deletar {
+  background: #35291c;
+}
+
+.icones {
+  color: #fff;
+  font-size: 20px;
 }

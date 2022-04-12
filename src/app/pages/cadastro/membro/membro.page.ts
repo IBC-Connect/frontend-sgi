@@ -1,21 +1,22 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertController, ToastController } from '@ionic/angular';
-import { MembroMapper } from 'src/app/mapper/Membro';
-import { Endereco } from 'src/app/modelo/Endereco';
-import { Membro } from 'src/app/modelo/Membro';
-import { AutenticacaoService } from 'src/app/servicos/Autenticacao';
-import { ConsultaCEPService } from 'src/app/servicos/ConsultaCEP';
-import { MembroService } from 'src/app/servicos/Membro';
-import { DateUtil } from 'src/app/util/DateUtil';
-import { InformacoesPessoaisUtil } from 'src/app/util/InformacoesPessoaisUtil';
-import { MensagensUtil } from 'src/app/util/MensagensUtil';
-import { ValidadorInformacoesPessoais } from 'src/app/validador/ValidadorInformacoesPessoais';
+import { Component } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { AlertController, ToastController } from "@ionic/angular";
+import { MembroMapper } from "src/app/mapper/Membro";
+import { Endereco } from "src/app/modelo/Endereco";
+import { Membro } from "src/app/modelo/Membro";
+import { AutenticacaoService } from "src/app/servicos/Autenticacao";
+import { ConsultaCEPService } from "src/app/servicos/ConsultaCEP";
+import { MembroService } from "src/app/servicos/Membro";
+import { DateUtil } from "src/app/util/DateUtil";
+import { InformacoesPessoaisUtil } from "src/app/util/InformacoesPessoaisUtil";
+import { MensagensUtil } from "src/app/util/MensagensUtil";
+import { ValidadorInformacoesPessoais } from "src/app/validador/ValidadorInformacoesPessoais";
 
 @Component({
-  selector: 'app-membro',
-  templateUrl: './membro.page.html',
-  styleUrls: ['./membro.page.scss'],
+  selector: "app-membro",
+  templateUrl: "./membro.page.html",
+  styleUrls: ["./membro.page.scss"],
 })
 export class MembroPage {
   formulario: FormGroup;
@@ -31,7 +32,8 @@ export class MembroPage {
     private autenticacao: AutenticacaoService,
     private aviso: ToastController,
     private consultaCep: ConsultaCEPService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private route: Router
   ) {
     this.mensagens = new MensagensUtil(this.aviso);
     this.estadoCivil = InformacoesPessoaisUtil.estadoCivil();
@@ -61,10 +63,7 @@ export class MembroPage {
         this.membro.trabalhandoAtualmente,
         Validators.required,
       ],
-      classificacao: [
-        this.membro.classificacao,
-        Validators.required,
-      ],
+      classificacao: [this.membro.classificacao, Validators.required],
       dataBatismo: [this.membro.dataBatismo],
       membroDesde: [this.membro.membroDesde],
       cep: [this.membro.endereco.cep, Validators.required],
@@ -88,12 +87,12 @@ export class MembroPage {
           if (resultadoJson.erro) {
             this.erroAoBuscarCep();
           } else if (resultadoJson) {
-            this.formulario.controls['bairro'].setValue(resultadoJson.bairro);
-            this.formulario.controls['cidade'].setValue(
+            this.formulario.controls["bairro"].setValue(resultadoJson.bairro);
+            this.formulario.controls["cidade"].setValue(
               resultadoJson.localidade
             );
-            this.formulario.controls['estado'].setValue(resultadoJson.uf);
-            this.formulario.controls['logradouro'].setValue(
+            this.formulario.controls["estado"].setValue(resultadoJson.uf);
+            this.formulario.controls["logradouro"].setValue(
               resultadoJson.logradouro
             );
             this.disableEndereco(true);
@@ -112,21 +111,21 @@ export class MembroPage {
   public validarCpf(event): void {
     if (event.target.value)
       if (!ValidadorInformacoesPessoais.cpfCnpjIsValid(event.target.value)) {
-        this.mensagens.mensagemError('CPF inválido.');
-        this.formulario.controls['cpf'].setValue(null);
-        this.formulario.controls['senha'].setValue(null);
+        this.mensagens.mensagemError("CPF inválido.");
+        this.formulario.controls["cpf"].setValue(null);
+        this.formulario.controls["senha"].setValue(null);
         return;
       } else {
-        this.formulario.controls['senha'].setValue(
-          event.target.value.replace('.', '').replace('.', '').replace('-', '')
+        this.formulario.controls["senha"].setValue(
+          event.target.value.replace(".", "").replace(".", "").replace("-", "")
         );
       }
   }
 
   public validarEmail(event): void {
-    if (event.target.value && !event.target.value.includes('@')) {
-      this.mensagens.mensagemError('E-mail inválido.');
-      this.formulario.controls['email'].setValue(null);
+    if (event.target.value && !event.target.value.includes("@")) {
+      this.mensagens.mensagemError("E-mail inválido.");
+      this.formulario.controls["email"].setValue(null);
       return;
     }
   }
@@ -135,46 +134,46 @@ export class MembroPage {
     if (event.target.value)
       if (!DateUtil.isIdadeMaiorDozeAnos(event.target.value)) {
         this.mensagens.mensagemError(
-          'De acordo com estatuto da IBC, os novos membros deverão ter ao mínimo 12 anos de idade.'
+          "De acordo com estatuto da IBC, os novos membros deverão ter ao mínimo 12 anos de idade."
         );
-        this.formulario.controls['dataNascimento'].setValue(null);
+        this.formulario.controls["dataNascimento"].setValue(null);
         return;
       }
   }
 
   public retirarEspacamentoEmail(): void {
-    if (this.formulario.controls['email'].value)
-      this.formulario.controls['email'].setValue(
-        this.formulario.controls['email'].value.replace(/\s+/g, '')
+    if (this.formulario.controls["email"].value)
+      this.formulario.controls["email"].setValue(
+        this.formulario.controls["email"].value.replace(/\s+/g, "")
       );
   }
 
   private preencherComNullEndereco(): void {
-    this.formulario.controls['bairro'].setValue(null);
-    this.formulario.controls['cidade'].setValue(null);
-    this.formulario.controls['estado'].setValue(null);
-    this.formulario.controls['logradouro'].setValue(null);
+    this.formulario.controls["bairro"].setValue(null);
+    this.formulario.controls["cidade"].setValue(null);
+    this.formulario.controls["estado"].setValue(null);
+    this.formulario.controls["logradouro"].setValue(null);
   }
 
   private erroAoBuscarCep(): void {
     this.mensagens.mensagemAlerta(
-      'Cep não encontrado, por favor insira os dados manualmente.'
+      "Cep não encontrado, por favor insira os dados manualmente."
     );
     this.preencherComNullEndereco();
     this.disableEndereco(false);
   }
 
-  private disableEndereco (disable: boolean): void {
+  private disableEndereco(disable: boolean): void {
     if (disable) {
-      this.formulario.controls['bairro'].disable();
-      this.formulario.controls['cidade'].disable();
-      this.formulario.controls['estado'].disable();
-      this.formulario.controls['logradouro'].disable();
+      this.formulario.controls["bairro"].disable();
+      this.formulario.controls["cidade"].disable();
+      this.formulario.controls["estado"].disable();
+      this.formulario.controls["logradouro"].disable();
     } else {
-      this.formulario.controls['bairro'].enable();
-      this.formulario.controls['cidade'].enable();
-      this.formulario.controls['estado'].enable();
-      this.formulario.controls['logradouro'].enable();
+      this.formulario.controls["bairro"].enable();
+      this.formulario.controls["cidade"].enable();
+      this.formulario.controls["estado"].enable();
+      this.formulario.controls["logradouro"].enable();
     }
   }
 
@@ -201,31 +200,6 @@ export class MembroPage {
         this.mensagens.mensagemError(
           "A data informada no campo 'Data de nascimento' não é válida."
         );
-      } else if (
-        this.formulario.value.dataBatismo &&
-        this.formulario.value.membroDesde
-      ) {
-        if (
-          DateUtil.isDataFutura(this.formulario.value.dataBatismo) ||
-          DateUtil.isDataFutura(this.formulario.value.membroDesde)
-        ) {
-          this.mensagens.mensagemError(
-            "Não são permitidas datas futuras para o campo 'Data do Batismo' e o campo 'Membro desde.'"
-          );
-        } else if (
-          DateUtil.isDataDoisMaiorDataUm(
-            this.formulario.value.dataBatismo,
-            this.formulario.value.membroDesde
-          ) &&
-          !DateUtil.isDatasIguais(
-            this.formulario.value.dataBatismo,
-            this.formulario.value.membroDesde
-          )
-        ) {
-          this.mensagens.mensagemError(
-            "A data 'Membro desde' não pode ser maior que a 'Data do Batismo'."
-          );
-        }
       } else {
         this.disableEndereco(false);
         this.membro = MembroMapper.formularioToMembro(this.formulario.value);
@@ -234,11 +208,16 @@ export class MembroPage {
         );
 
         if (usuarioCriado) {
+
+          if(usuarioCriado.message){
+            return this.mensagens.mensagemError(
+              "E-mail já cadastrado na base de dados."
+            );
+          }
+
           this.membro.uId = usuarioCriado.user.uid;
           this.membroService.adicionarOuAtualizar(this.membro);
-          this.mensagens.mensagemSucesso('Cadastro realizado com sucesso!');
-          this.disableEndereco(true);
-          this.inicializar();
+          await this.verResultado();
         }
       }
     }
@@ -246,18 +225,18 @@ export class MembroPage {
 
   public async confirmarCadastro() {
     const alert = await this.alertController.create({
-      header: 'Confirmação de cadastro',
+      header: "Confirmação de cadastro",
       message:
-        'Tem certeza que deseja concluir o cadastro? Após isso, <b>não será possível alterar o e-mail cadastrado</b>.',
+        "Tem certeza que deseja concluir o cadastro? Após isso, <b>não será possível alterar o e-mail cadastrado</b>.",
       buttons: [
         {
-          text: 'Não',
+          text: "Não",
           handler: () => {
             this.alertController.dismiss();
           },
         },
         {
-          text: 'Sim',
+          text: "Sim",
           handler: () => {
             this.cadastrar();
           },
@@ -265,5 +244,34 @@ export class MembroPage {
       ],
     });
     await alert.present();
+  }
+
+  private async verResultado() {
+    const alert = await this.alertController.create({
+      header: "Confirmação de cadastro",
+      message: "O membro foi cadastrado com sucesso. O que deseja fazer?",
+      buttons: [
+        {
+          text: "Cadastrar Um Novo Membro",
+          handler: () => {
+            this.alertController.dismiss();
+            this.disableEndereco(true);
+            this.inicializar();
+          },
+        },
+        {
+          text: "Ver Membro Cadastrado",
+          handler: () => {
+            this.verMembroCadastrado();
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  private verMembroCadastrado() {
+    this.route.navigateByUrl("lista/membro");
   }
 }
