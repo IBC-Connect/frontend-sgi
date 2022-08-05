@@ -2,6 +2,7 @@ import { Component} from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Membro } from 'src/app/modelo/Membro';
+import { AutenticacaoService } from 'src/app/servicos/Autenticacao';
 import { MembroService } from 'src/app/servicos/Membro';
 import { DateUtil } from 'src/app/util/DateUtil';
 import { MensagensUtil } from 'src/app/util/MensagensUtil';
@@ -22,7 +23,8 @@ export class MembroInativoPage   {
   constructor(
     private membroService: MembroService,
     private aviso: ToastController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private autenticacaoService : AutenticacaoService
   ) {
     this.mensagens = new MensagensUtil(this.aviso);
     this.inicializar();
@@ -120,6 +122,7 @@ export class MembroInativoPage   {
 
   private excluirMembro(membro: Membro): void {
     this.membroService.deletar(membro.key);
+    this.autenticacaoService.deletarMembro(membro);
     this.mensagens.mensagemSucesso('Membro excluído com sucesso!');
     this.inicializar();
   }

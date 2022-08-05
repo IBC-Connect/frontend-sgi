@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormGroup } from '@angular/forms';
 import { NavController, ToastController, AlertController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Membro } from 'src/app/modelo/Membro';
+import { AutenticacaoService } from 'src/app/servicos/Autenticacao';
 import { MembroService } from 'src/app/servicos/Membro';
 import { DateUtil } from 'src/app/util/DateUtil';
 import { MensagensUtil } from 'src/app/util/MensagensUtil';
@@ -18,10 +20,13 @@ export class VoluntarioPage {
   mensagens: MensagensUtil;
   listaMembrosObservable: Observable<any[]>;
 
+  formArray : FormArray;
+
   constructor(
     private membroService: MembroService,
     public navCtrl: NavController,
     private aviso: ToastController,
+    private autenticacaoService : AutenticacaoService,
     public alertController: AlertController
   ) {
     this.mensagens = new MensagensUtil(this.aviso);
@@ -105,10 +110,13 @@ export class VoluntarioPage {
       ],
     });
     await alert.present();
+
+    this.formArray.clear();
   }
 
   private excluirMembro(membro: Membro): void {
     this.membroService.deletar(membro.key);
+    this.autenticacaoService.deletarMembro(membro);
     this.mensagens.mensagemSucesso('Voluntário excluído com sucesso!');
     this.inicializar();
   }

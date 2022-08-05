@@ -1,12 +1,9 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import * as express from "express";
 //Firebase
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { Membro } from '../modelo/Membro';
 import { Usuario } from '../modelo/Usuario';
-import { MembroService } from './Membro';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +12,6 @@ import { MembroService } from './Membro';
 export class AutenticacaoService {
   public userData$: Observable<any>;
   public listaMembros: Membro[];
-  
 
   constructor(
     public afAuth: AngularFireAuth
@@ -46,6 +42,13 @@ export class AutenticacaoService {
         }
       );
     return novoUsuario;
+  }
+
+  public async deletarMembro(membro : Membro){
+    return this.afAuth.signInWithEmailAndPassword(membro.email.trim(),
+    membro.senha.trim()).then((sucess) => {
+      sucess.user.delete();
+    })
   }
 
   public async resetarSenha(email: string) {

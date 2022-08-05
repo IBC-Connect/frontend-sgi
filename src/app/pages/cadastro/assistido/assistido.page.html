@@ -79,6 +79,21 @@
                     </ion-item>
                 </ion-col>
             </ion-row>
+            <br />
+            <ion-row>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">Cpf <span>*</span></ion-label>
+                        <ion-input mode="md" [brmasker]="{person: true}" (ionBlur)="validarCpf($event)" formControlName="cpf" maxlength="14" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="row-item">
+                        <ion-label mode="md" class="titulo-dado" position="stacked">RG <span>*</span></ion-label>
+                        <ion-input mode="md" formControlName="rg" maxlength="10" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
             <h2>Endereço</h2>
             <ion-row>
                 <ion-col>
@@ -132,6 +147,18 @@
                         <ion-label mode="md" class="titulo-dado" position="stacked">Observações</ion-label>
                         <ion-textarea mode="md" formControlName="observacoes" maxlength="1000" type="text"></ion-textarea>
                     </ion-item>
+                </ion-col>
+            </ion-row>
+            <h2>Projetos Que Ele Participa</h2>
+            <ion-row>
+                <ion-col>
+                    <ion-list>
+                        <ion-item>
+                          <ion-select mode="ios" placeholder="Selecione os projetos" [multiple]="true" formControlName="projetosAssistidos">
+                            <ion-select-option  *ngFor="let projeto of listaProjetosFiltrados" [value]="projeto.nome">{{projeto.nome}}</ion-select-option>
+                          </ion-select>
+                        </ion-item>
+                      </ion-list>
                 </ion-col>
             </ion-row>
 

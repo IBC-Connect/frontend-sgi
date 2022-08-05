@@ -18,6 +18,10 @@ export class AssistidoMapper {
     assistido.observacoes = form.observacoes;
     assistido.telefone = form.telefone;
     assistido.trabalhandoAtualmente = form.trabalhandoAtualmente;
+    assistido.projetos = form.projetosAssistidos;
+
+    assistido.cpf = form.cpf;
+    assistido.rg = form.rg;
 
     assistido.endereco = new Endereco();
     assistido.endereco.cep = form.cep;

@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 import { AssistidoMapper } from 'src/app/mapper/Assistido';
 import { Assistido } from 'src/app/modelo/Assistido';
 import { Endereco } from 'src/app/modelo/Endereco';
+import { Projeto } from 'src/app/modelo/Projeto';
 import { AssistidoService } from 'src/app/servicos/Assistido';
 import { ConsultaCEPService } from 'src/app/servicos/ConsultaCEP';
+import { ProjetoService } from 'src/app/servicos/Projeto';
 import { DateUtil } from 'src/app/util/DateUtil';
 import { InformacoesPessoaisUtil } from 'src/app/util/InformacoesPessoaisUtil';
 import { MensagensUtil } from 'src/app/util/MensagensUtil';
@@ -24,12 +27,19 @@ export class AssistidoPage implements OnInit {
   estadoCivil: Array<any> = [];
   escolaridade: Array<any> = [];
 
+  //Projetos
+  listaProjetos : Projeto[];
+  listaProjetosFiltrados: Projeto[];
+  numTotalProjetos: number;
+  listaProjetosObservable: Observable<any[]>;
+
   constructor(
     private formulador: FormBuilder,
     private aviso: ToastController,
     private consultaCep: ConsultaCEPService,
     private assistidoService: AssistidoService,
-    private router : Router
+    private router : Router,
+    private projetoService : ProjetoService
   ) {
     const nav = this.router.getCurrentNavigation();
     this.assistido = nav.extras.state.content;
@@ -37,6 +47,7 @@ export class AssistidoPage implements OnInit {
 
   ngOnInit() {
     this.inicializar();
+    this.inicializarProjetos();
   }
 
   private inicializar(): void {
@@ -44,6 +55,18 @@ export class AssistidoPage implements OnInit {
     this.estadoCivil = InformacoesPessoaisUtil.estadoCivil();
     this.escolaridade = InformacoesPessoaisUtil.escolaridade();
     this.criarFormulario();
+  }
+
+  private inicializarProjetos(){
+    this.listaProjetosObservable = this.projetoService.listar();
+    this.listaProjetosObservable.subscribe((response) => {
+    this.listaProjetos = response;
+    this.listaProjetosFiltrados = response;
+    this.listaProjetos = this.listaProjetos.filter((m) => m.situacao === 'Ativo');
+    this.listaProjetosFiltrados = this.listaProjetosFiltrados.filter((m) => m.situacao === 'Ativo');
+    this.numTotalProjetos = this.listaProjetos.length;
+    this.listaProjetosFiltrados.sort((a, b) => a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0 );
+    });
   }
 
   private criarFormulario(): void {
@@ -66,6 +89,9 @@ export class AssistidoPage implements OnInit {
       bairro: [this.assistido.endereco.bairro, Validators.required],
       cidade: [this.assistido.endereco.cidade, Validators.required],
       estado: [this.assistido.endereco.estado, Validators.required],
+      projetosAssistidos: [this.assistido.projetos],
+      cpf : [this.assistido.cpf, Validators.required],
+      rg : [this.assistido.rg, Validators.required]
     });
   }
 
@@ -170,7 +196,6 @@ export class AssistidoPage implements OnInit {
         this.assistido = AssistidoMapper.formularioToAssistido(
           this.formulario.value
         );
-        console.log(this.assistido);
         this.assistidoService.adicionarOuAtualizar(this.assistido);
         this.mensagens.mensagemSucesso('Atualização realizada com sucesso!');
         this.disableEndereco(true);

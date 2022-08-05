@@ -6,6 +6,7 @@ import {
 } from "@ionic/angular";
 import { Observable } from "rxjs";
 import { Membro } from "src/app/modelo/Membro";
+import { AutenticacaoService } from "src/app/servicos/Autenticacao";
 import { MembroService } from "src/app/servicos/Membro";
 import { DateUtil } from "src/app/util/DateUtil";
 import { MensagensUtil } from "src/app/util/MensagensUtil";
@@ -26,7 +27,8 @@ export class CongregadoPage {
     private membroService: MembroService,
     public navCtrl: NavController,
     private aviso: ToastController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private autenticacaoService : AutenticacaoService
   ) {
     this.mensagens = new MensagensUtil(this.aviso);
     this.inicializar();
@@ -117,6 +119,7 @@ export class CongregadoPage {
 
   private excluirMembro(membro: Membro): void {
     this.membroService.deletar(membro.key);
+    this.autenticacaoService.deletarMembro(membro);
     this.mensagens.mensagemSucesso('Congregado excluído com sucesso!');
     this.inicializar();
   }

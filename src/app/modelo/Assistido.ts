@@ -2,7 +2,8 @@ import { Endereco } from "./Endereco";
 
 export class Assistido {
     key : string;
-    cpf:string;
+    cpf : string;
+    rg: string;
     nomeCompleto : string;
     dataNascimento : string;
     email : string;
@@ -15,4 +16,5 @@ export class Assistido {
     endereco : Endereco;
     situacao : string; /*Ativo ou Inativo */
     observacoes : string;
+    projetos? : string[];
 }
