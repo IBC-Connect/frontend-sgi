@@ -46,7 +46,7 @@ export class AniversarioDoMesPage {
 
   public exibirAniversariantes(listaMembros) {
     return listaMembros.filter(
-      (m) => moment(m.dataNascimento).month() === moment(new Date()).month()
+      (m) => moment(this.formatarDataDeNascimento(m.dataNascimento)).month() === moment(new Date()).month()
     );
   }
 
