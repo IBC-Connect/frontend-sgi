@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Anotações</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-list style="margin-top: 20%">
+    <ion-item>
+      <ion-label>Nome do paciente</ion-label>
+      <ion-searchbar
+        (ionChange)="onSearchTerm($event)"
+        placeholder="Digite o nome do assistido"
+        color="tertiary"
+      ></ion-searchbar>
+    </ion-item>
+  </ion-list> -->
+  <ion-list>
+    <ion-searchbar
+      (ionChange)="onSearchTerm($event)"
+      placeholder="Digite o nome do paciente"
+      color="tertiary"
+      [(ngModel)]="termoPesquisa"
+    ></ion-searchbar>
+    <div style="width: 100%; height: auto;">
+      <ion-virtual-scroll [items]="listaMembrosFiltrados">
+        <ion-item *virtualItem="let item" (click)="membroSelecionado(item)">
+          {{ item.nomeCompleto }}
+        </ion-item>
+      </ion-virtual-scroll>
+    </div>
+  </ion-list>
+  <ion-item>
+    <ion-textarea
+      [(ngModel)]="diario.registro"
+      rows="10"
+      cols="20"
+      placeholder="Digite aqui o diario do paciente..."
+      maxlength="500"
+    ></ion-textarea>
+  </ion-item>
+  <br />
+  <div style="margin-left: 62.5%">
+    <ion-button (click)="enviarRegistro()">Enviar</ion-button>
+    <ion-button (click)="fecharModal()">Cancelar</ion-button>
+  </div>
+</ion-content>

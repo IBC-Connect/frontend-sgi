@@ -162,7 +162,21 @@ const routes: Routes = [
     path: 'cadastro/assistido',
     loadChildren: () => import('./pages/cadastro/assistido/assistido.module').then( m => m.AssistidoPageModule),
     canActivateChild: [AutenticacaoGuard],
+  },
+  {
+    path: 'consultorio',
+    loadChildren: () => import('./pages/consultorio/consultorio.module').then( m => m.ConsultorioPageModule)
+  },
+  {
+    path: 'registro-consultorio-modal',
+    loadChildren: () => import('./pages/componentes/registro-consultorio-modal/registro-consultorio-modal.module').then( m => m.RegistroConsultorioModalPageModule)
+  },
+  {
+    path: 'sistema-relatorio-modal',
+    loadChildren: () => import('./pages/componentes/sistema-relatorio-modal/sistema-relatorio-modal.module').then( m => m.SistemaRelatorioModalPageModule)
   }
+
+
 
 ];
 

@@ -1,25 +1,29 @@
-import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Assistido } from '../modelo/Assistido';
+import { ToastController } from "@ionic/angular";
+import { Injectable } from "@angular/core";
+import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { Assistido } from "../modelo/Assistido";
+import { MensagensUtil } from "../util/MensagensUtil";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class AssistidoService {
   assistidoLista: Assistido[];
   assistido: Observable<any>;
   assistidos: Observable<any[]>;
   assistidoRef: AngularFireList<any>;
-  private path = 'assistidos';
+  mensagens: MensagensUtil;
+  private path = "assistidos";
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private aviso: ToastController) {
     this.assistidoLista = new Array<Assistido>();
     this.assistidoRef = this.db.list(this.path);
+    this.mensagens = new MensagensUtil(aviso);
   }
 
-  public listar() : any {
+  public listar(): any {
     return (this.assistidos = this.assistidoRef
       .snapshotChanges()
       .pipe(
@@ -28,35 +32,36 @@ export class AssistidoService {
         )
       ));
   }
-  
- public adicionarOuAtualizar(assistido: Assistido) : void {
-    if (assistido.key) {
-      this.assistidoRef.update(assistido.key, assistido);
-    } else {
-      this.assistidoRef.push(assistido);
-    }
-  }
-   
-  public deletar(key: string) : void {
-    this.assistidoRef.remove(key);
-  }
- 
-  public deletarTudo() : void {
-    this.assistidoRef.remove();
-  }
 
-  public carregaListaAssistidos(): Assistido[] {
-    this.listar()
-      .toPromise()
-      .then(
+  public adicionarOuAtualizar(assistido: Assistido, mensagem: string): void {
+    if (assistido.key) {
+      this.assistidoRef.update(assistido.key, assistido).then(
         (sucess) => {
-          this.assistidoLista = sucess;
+          this.mensagens.mensagemSucesso(mensagem);
         },
         (error) => {
+          this.mensagens.mensagemError("Houve um erro ao cadastrar.");
           console.log(error);
         }
       );
+    } else {
+      this.assistidoRef.push(assistido).then(
+        (sucess) => {
+          this.mensagens.mensagemSucesso(mensagem);
+        },
+        (error) => {
+          this.mensagens.mensagemError("Houve um erro ao cadastrar.");
+          console.log(error);
+        }
+      );
+    }
+  }
 
-    return this.assistidoLista;
+  public deletar(key: string): void {
+    this.assistidoRef.remove(key);
+  }
+
+  public deletarTudo(): void {
+    this.assistidoRef.remove();
   }
 }

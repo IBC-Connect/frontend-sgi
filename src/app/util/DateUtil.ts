@@ -1,8 +1,8 @@
-import * as moment from 'moment';
- 
+import * as moment from "moment";
+
 export class DateUtil {
   constructor() {
-    moment.locale('pt-br');
+    moment.locale("pt-br");
   }
 
   public static isDataDoisMaiorDataUm(dataUm: any, dataDois: any): boolean {
@@ -24,11 +24,11 @@ export class DateUtil {
   }
 
   private static dateFormatterAmerica(data: any): any {
-    return data.split('/').reverse().join('-');
+    return data.split("/").reverse().join("-");
   }
 
   public static dateFormatterBrazil(data: string): any {
-    return moment(data).format('DD/MM/YYYY');
+    return moment(data).format("DD/MM/YYYY");
   }
 
   public static numeroDiasEntreDuasDatas(dataUm: any, dataDois: any) {
@@ -43,19 +43,27 @@ export class DateUtil {
     return dataValida.isValid();
   }
 
-  public static calcularData(data : any, dias:number) {
-    return moment(data).add(dias, 'year').subtract(1, 'days').format('YYYY-MM-DD');
+  public static calcularData(data: any, dias: number) {
+    return moment(data)
+      .add(dias, "year")
+      .subtract(1, "days")
+      .format("YYYY-MM-DD");
   }
 
-  public static verificarIntervaloHora(horaI:any, horaF:any) : boolean{
-    let horaInicial = Number(horaI.substring(0,2)) < 12 ? moment(horaI.concat('am') , 'hh:mma') : moment(horaI.concat('pm') , 'hh:mmp');
-    let horaFinal = Number(horaF.substring(0,2)) < 12 ? moment(horaF.concat('am') , 'hh:mma') : moment(horaF.concat('pm') , 'hh:mmp');
+  public static verificarIntervaloHora(horaI: any, horaF: any): boolean {
+    let horaInicial =
+      Number(horaI.substring(0, 2)) < 12
+        ? moment(horaI.concat("am"), "hh:mma")
+        : moment(horaI.concat("pm"), "hh:mmp");
+    let horaFinal =
+      Number(horaF.substring(0, 2)) < 12
+        ? moment(horaF.concat("am"), "hh:mma")
+        : moment(horaF.concat("pm"), "hh:mmp");
     return horaInicial.isBefore(horaFinal);
   }
 
   public static isIdadeMaiorDozeAnos(dataNasc: string): boolean {
-    let idade = moment().diff(this.dateFormatterAmerica(dataNasc), 'years');
-      return idade >= 12;
- }
-  
+    let idade = moment().diff(this.dateFormatterAmerica(dataNasc), "years");
+    return idade >= 12;
+  }
 }

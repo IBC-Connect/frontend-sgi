@@ -24,7 +24,8 @@
               <ion-label class="informacao-membro" text-wrap>
                 <h1 class="content-title">{{voluntario.nomeCompleto}}</h1>
                 Data de nascimento: {{formatarDataDeNascimento(voluntario.dataNascimento)}} <br />
-                {{voluntario.whatsapp? 'Whatsapp: '.concat(voluntario.whatsapp) : '' }}
+                {{voluntario.whatsapp? 'Whatsapp: '.concat(voluntario.whatsapp) : '' }}  <br />
+                Profissão: {{voluntario.profissao}}
               </ion-label>
             </ion-item>
             <ion-item-options side="start">

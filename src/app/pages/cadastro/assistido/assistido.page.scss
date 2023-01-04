@@ -6,13 +6,29 @@ ion-select,
 .titulo-dado-select,
 .titulo-dado-select-acesso,
 .titulo-dado-batismo {
-    font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 
 ion-content,
 ion-item,
 #rodape {
-    --background: #e6e6e6;
+  --background: #e6e6e6;
+}
+
+ion-item {
+  width: 100%;
+}
+
+ion-card {
+  width: 100%;
+}
+
+ion-button {
+  margin-left: 89%;
+}
+
+ion-card-content {
+  width: 100%;
 }
 
 ion-select,
@@ -21,69 +37,69 @@ ion-input,
 .titulo-dado-select-acesso,
 .titulo-dado-select,
 h2 {
-    color: #2e2e3c;
+  color: #2e2e3c;
 }
 
 ion-list {
-   background-color: #e6e6e6;
+  background-color: #e6e6e6;
 }
 
 ion-title,
 h2 {
-    font-family: 'Lexend', sans-serif;
+  font-family: "Lexend", sans-serif;
 }
 
 ion-input {
-    text-transform: uppercase;
-    font-size: 11pt;
+  text-transform: uppercase;
+  font-size: 11pt;
 }
 
 #email {
-    text-transform: lowercase;
+  text-transform: lowercase;
 }
 
 ion-select {
-    font-size: 10pt;
+  font-size: 10pt;
 }
 
 #cabecalho {
-    --background: #2e2e3c;
-    color: #fff;
+  --background: #2e2e3c;
+  color: #fff;
 }
 
 .titulo-dado {
-    font-size: 13pt;
+  font-size: 13pt;
 }
 
 .titulo-dado-select,
 .titulo-dado-select-acesso,
 .titulo-dado-batismo {
-    font-size: 10pt;
+  font-size: 10pt;
 }
 
 .titulo-dado-select {
-    margin-left: 5.3%;
+  margin-left: 5.3%;
 }
 
 .titulo-dado-select-acesso {
-    margin-left: 2.5%;
+  margin-left: 2.5%;
 }
 
 .titulo-dado-batismo {
-    margin-left: 4%;
+  margin-left: 4%;
 }
 
 h2 {
-    font-size: 13pt;
-    font-weight: bolder;
-    margin-left: 1%;
+  font-size: 13pt;
+  font-weight: bolder;
+  margin-left: 1%;
 }
 
 span {
-    color: #eb445a;
+  color: #eb445a;
 }
 
 ::ng-deep .mycomponent-wider-popover {
-    --width: 95%;
-    --max-width: 600px;
+  --width: 95%;
+  --max-width: 600px;
 }

@@ -8,27 +8,41 @@
 </ion-header>
 
 <ion-content padding>
-  <h2 *ngIf="totalMembros == 0"> Não há membros inativos.</h2>
-  <ion-searchbar  *ngIf="totalMembros > 0" (ionChange)="pesquisarInativos($event)"  placeholder="Digite o nome do membro." color="tertiary"></ion-searchbar>
+  <h2 *ngIf="totalMembros == 0">Não há membros inativos.</h2>
+  <ion-searchbar
+    *ngIf="totalMembros > 0"
+    (ionChange)="pesquisarInativos($event)"
+    placeholder="Digite o nome do membro."
+    color="tertiary"
+  ></ion-searchbar>
   <ion-grid>
     <ion-row align-items-center justify-content-center>
       <ion-col>
         <ion-list>
-          <ion-item-sliding *ngFor="let membro of membrosInativosFiltrados" >
+          <ion-item-sliding *ngFor="let membro of membrosInativosFiltrados">
             <ion-item text-wrap class="item-text-wrap">
               <ion-label class="informacao-membro" text-wrap>
-                <h1 class="content-title"> {{membro.nomeCompleto}}</h1>
-                Data de nascimento: {{formatarDataDeNascimento(membro.dataNascimento)}} <br/>
+                <h1 class="content-title">{{membro.nomeCompleto}}</h1>
+                Data de nascimento:
+                {{formatarDataDeNascimento(membro.dataNascimento)}} <br />
                 {{membro.whatsapp? 'Whatsapp: '.concat(membro.whatsapp) : '' }}
               </ion-label>
             </ion-item>
             <ion-item-options side="start">
-              <button (click)="confirmarAtivacao(membro)" ion-button class="bt-inativar">
-                <ion-icon  class="icones"   name="person-remove"></ion-icon>
+              <button
+                (click)="confirmarAtivacao(membro)"
+                ion-button
+                class="bt-inativar"
+              >
+                <ion-icon class="icones" name="person-add"></ion-icon>
               </button>
-              <button (click)="confirmarExclusao(membro)" ion-button class="bt-deletar">
+              <button
+                (click)="confirmarExclusao(membro)"
+                ion-button
+                class="bt-deletar"
+              >
                 <ion-icon class="icones" name="trash"></ion-icon>
-                </button>
+              </button>
             </ion-item-options>
           </ion-item-sliding>
         </ion-list>

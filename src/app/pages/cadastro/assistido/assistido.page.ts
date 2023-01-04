@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastController } from '@ionic/angular';
-import { Observable } from 'rxjs';
-import { AssistidoMapper } from 'src/app/mapper/Assistido';
-import { Assistido } from 'src/app/modelo/Assistido';
-import { Endereco } from 'src/app/modelo/Endereco';
-import { Projeto } from 'src/app/modelo/Projeto';
-import { AssistidoService } from 'src/app/servicos/Assistido';
-import { ConsultaCEPService } from 'src/app/servicos/ConsultaCEP';
-import { ProjetoService } from 'src/app/servicos/Projeto';
-import { DateUtil } from 'src/app/util/DateUtil';
-import { InformacoesPessoaisUtil } from 'src/app/util/InformacoesPessoaisUtil';
-import { MensagensUtil } from 'src/app/util/MensagensUtil';
-import { ValidadorInformacoesPessoais } from 'src/app/validador/ValidadorInformacoesPessoais';
+import { Component, OnInit } from "@angular/core";
+import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ToastController } from "@ionic/angular";
+import { Observable } from "rxjs";
+import { AssistidoMapper } from "src/app/mapper/Assistido";
+import { Assistido } from "src/app/modelo/Assistido";
+import { Endereco } from "src/app/modelo/Endereco";
+import { Projeto } from "src/app/modelo/Projeto";
+import { AssistidoService } from "src/app/servicos/Assistido";
+import { ConsultaCEPService } from "src/app/servicos/ConsultaCEP";
+import { ProjetoService } from "src/app/servicos/Projeto";
+import { DateUtil } from "src/app/util/DateUtil";
+import { InformacoesPessoaisUtil } from "src/app/util/InformacoesPessoaisUtil";
+import { MensagensUtil } from "src/app/util/MensagensUtil";
+import { ValidadorInformacoesPessoais } from "src/app/validador/ValidadorInformacoesPessoais";
+
+import { Familiar } from "./../../../modelo/Familiar";
 
 @Component({
-  selector: 'app-assistido',
-  templateUrl: './assistido.page.html',
-  styleUrls: ['./assistido.page.scss'],
+  selector: "app-assistido",
+  templateUrl: "./assistido.page.html",
+  styleUrls: ["./assistido.page.scss"],
 })
 export class AssistidoPage implements OnInit {
   formulario: FormGroup;
@@ -25,9 +27,10 @@ export class AssistidoPage implements OnInit {
   assistido: Assistido;
   estadoCivil: Array<any> = [];
   escolaridade: Array<any> = [];
+  familiar: Familiar;
 
   //Projetos
-  listaProjetos : Projeto[];
+  listaProjetos: Projeto[];
   listaProjetosFiltrados: Projeto[];
   numTotalProjetos: number;
   listaProjetosObservable: Observable<any[]>;
@@ -37,8 +40,35 @@ export class AssistidoPage implements OnInit {
     private aviso: ToastController,
     private consultaCep: ConsultaCEPService,
     private assistidoService: AssistidoService,
-    private projetoService : ProjetoService,
-  ) {}
+    private projetoService: ProjetoService
+  ) {
+    this.familiar = new Familiar();
+  }
+
+  get familiares(): FormArray {
+    return this.formulario.controls["familiares"] as FormArray;
+  }
+
+  adicionarFamiliar() {
+    this.familiares.push(this.novoFamiliarForm());
+  }
+
+  removerFamiliar(index: number) {
+    this.familiares.removeAt(index);
+  }
+
+  novoFamiliarForm(): FormGroup {
+    return this.formulador.group({
+      nome: [this.familiar.nome, Validators.required],
+      parentesco: [this.familiar.parentesco, Validators.required],
+      beneficiadoPelaIgreja: [
+        this.familiar.beneficiadoPelaIgreja,
+        Validators.required,
+      ],
+      descricaoBeneficios: [this.familiar.descricaoBeneficios],
+      precisaAjuda: [this.familiar.precisaAjuda],
+    });
+  }
 
   ngOnInit() {
     this.inicializar();
@@ -54,15 +84,17 @@ export class AssistidoPage implements OnInit {
     this.criarFormulario();
   }
 
-  private inicializarProjetos(){
+  private async inicializarProjetos() {
     this.listaProjetosObservable = this.projetoService.listar();
     this.listaProjetosObservable.subscribe((response) => {
-    this.listaProjetos = response;
-    this.listaProjetosFiltrados = response;
-    this.listaProjetos = this.listaProjetos.filter((m) => m.situacao === 'Ativo');
-    this.listaProjetosFiltrados = this.listaProjetosFiltrados.filter((m) => m.situacao === 'Ativo');
-    this.numTotalProjetos = this.listaProjetos.length;
-    this.listaProjetosFiltrados.sort((a, b) => a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0 );
+      this.listaProjetos = response.filter(
+        (projeto) => projeto.situacao === "Ativo"
+      );
+      this.listaProjetosFiltrados = this.listaProjetos;
+      this.numTotalProjetos = this.listaProjetos.length;
+      this.listaProjetosFiltrados.sort((a, b) =>
+        a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0
+      );
     });
   }
 
@@ -77,7 +109,10 @@ export class AssistidoPage implements OnInit {
       estadoCivil: [this.assistido.estadoCivil, Validators.required],
       escolaridade: [this.assistido.escolaridade, Validators.required],
       observacoes: [this.assistido.observacoes],
-      trabalhandoAtualmente: [this.assistido.trabalhandoAtualmente, Validators.required],
+      trabalhandoAtualmente: [
+        this.assistido.trabalhandoAtualmente,
+        Validators.required,
+      ],
       cep: [this.assistido.endereco.cep, Validators.required],
       logradouro: [this.assistido.endereco.logradouro, Validators.required],
       numero: [this.assistido.endereco.numero, Validators.required],
@@ -87,20 +122,21 @@ export class AssistidoPage implements OnInit {
       estado: [this.assistido.endereco.estado, Validators.required],
       projetosAssistidos: [this.assistido.projetos],
       cpf: [this.assistido.cpf, Validators.required],
-      rg: [this.assistido.rg, Validators.required]
+      rg: [this.assistido.rg, Validators.required],
+      familiares: this.formulador.array([]),
     });
   }
 
   public validarCpf(event): void {
     if (event.target.value)
       if (!ValidadorInformacoesPessoais.cpfCnpjIsValid(event.target.value)) {
-        this.mensagens.mensagemError('CPF inválido.');
-        this.formulario.controls['cpf'].setValue(null);
-        this.formulario.controls['senha'].setValue(null);
+        this.mensagens.mensagemError("CPF inválido.");
+        this.formulario.controls["cpf"].setValue(null);
+        this.formulario.controls["senha"].setValue(null);
         return;
       } else {
-        this.formulario.controls['senha'].setValue(
-          event.target.value.replace('.', '').replace('.', '').replace('-', '')
+        this.formulario.controls["senha"].setValue(
+          event.target.value.replace(".", "").replace(".", "").replace("-", "")
         );
       }
   }
@@ -113,12 +149,12 @@ export class AssistidoPage implements OnInit {
           if (resultadoJson.erro) {
             this.erroAoBuscarCep();
           } else if (resultadoJson) {
-            this.formulario.controls['bairro'].setValue(resultadoJson.bairro);
-            this.formulario.controls['cidade'].setValue(
+            this.formulario.controls["bairro"].setValue(resultadoJson.bairro);
+            this.formulario.controls["cidade"].setValue(
               resultadoJson.localidade
             );
-            this.formulario.controls['estado'].setValue(resultadoJson.uf);
-            this.formulario.controls['logradouro'].setValue(
+            this.formulario.controls["estado"].setValue(resultadoJson.uf);
+            this.formulario.controls["logradouro"].setValue(
               resultadoJson.logradouro
             );
             this.disableEndereco(true);
@@ -135,46 +171,46 @@ export class AssistidoPage implements OnInit {
   }
 
   public retirarEspacamentoEmail(): void {
-    if (this.formulario.controls['email'].value)
-      this.formulario.controls['email'].setValue(
-        this.formulario.controls['email'].value.replace(/\s+/g, '')
+    if (this.formulario.controls["email"].value)
+      this.formulario.controls["email"].setValue(
+        this.formulario.controls["email"].value.replace(/\s+/g, "")
       );
   }
 
   public validarEmail(event): void {
-    if (event.target.value && !event.target.value.includes('@')) {
-      this.mensagens.mensagemError('E-mail inválido.');
-      this.formulario.controls['email'].setValue(null);
+    if (event.target.value && !event.target.value.includes("@")) {
+      this.mensagens.mensagemError("E-mail inválido.");
+      this.formulario.controls["email"].setValue(null);
       return;
     }
   }
 
   private erroAoBuscarCep(): void {
     this.mensagens.mensagemAlerta(
-      'Cep não encontrado, por favor insira os dados manualmente.'
+      "Cep não encontrado, por favor insira os dados manualmente."
     );
     this.preencherComNullEndereco();
     this.disableEndereco(false);
   }
 
   private preencherComNullEndereco(): void {
-    this.formulario.controls['bairro'].setValue(null);
-    this.formulario.controls['cidade'].setValue(null);
-    this.formulario.controls['estado'].setValue(null);
-    this.formulario.controls['logradouro'].setValue(null);
+    this.formulario.controls["bairro"].setValue(null);
+    this.formulario.controls["cidade"].setValue(null);
+    this.formulario.controls["estado"].setValue(null);
+    this.formulario.controls["logradouro"].setValue(null);
   }
 
   private disableEndereco(disable: boolean): void {
     if (disable) {
-      this.formulario.controls['bairro'].disable();
-      this.formulario.controls['cidade'].disable();
-      this.formulario.controls['estado'].disable();
-      this.formulario.controls['logradouro'].disable();
+      this.formulario.controls["bairro"].disable();
+      this.formulario.controls["cidade"].disable();
+      this.formulario.controls["estado"].disable();
+      this.formulario.controls["logradouro"].disable();
     } else {
-      this.formulario.controls['bairro'].enable();
-      this.formulario.controls['cidade'].enable();
-      this.formulario.controls['estado'].enable();
-      this.formulario.controls['logradouro'].enable();
+      this.formulario.controls["bairro"].enable();
+      this.formulario.controls["cidade"].enable();
+      this.formulario.controls["estado"].enable();
+      this.formulario.controls["logradouro"].enable();
     }
   }
 
@@ -192,8 +228,12 @@ export class AssistidoPage implements OnInit {
         this.assistido = AssistidoMapper.formularioToAssistido(
           this.formulario.value
         );
-        this.assistidoService.adicionarOuAtualizar(this.assistido);
-        this.mensagens.mensagemSucesso('Cadastro realizado com sucesso!');
+
+        this.assistidoService.adicionarOuAtualizar(
+          this.assistido,
+          "Cadastro realizado com sucesso!"
+        );
+
         this.disableEndereco(true);
         this.inicializar();
       }

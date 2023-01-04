@@ -1,8 +1,7 @@
 import { ToastController } from "@ionic/angular";
 
 export class MensagensUtil {
-
-    constructor(private aviso: ToastController) { };
+    constructor(public aviso: ToastController) { };
 
     public async mensagemSucesso(message: string) {
         const exibirMensagem = this.aviso.create({id:'sucesso', position: 'top', message: message, duration: 3000, color: 'success' });

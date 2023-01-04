@@ -1,84 +1,182 @@
 <ion-header autoHide="false">
-    <ion-toolbar color="primary">
-        <ion-title>Igreja Batista do Caçote</ion-title>
-    </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-title>Igreja Batista do Caçote</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <div class="content">
-        <button ion-button routerLink="/cadastro/membro" routerDirection="forward" class="ion-text-wrap" *ngIf='permissao("ADMIN")'>
+  <div class="content">
+    <button
+      ion-button
+      routerLink="/cadastro/membro"
+      routerDirection="forward"
+      class="ion-text-wrap"
+      *ngIf="permissaoAdmin"
+    >
       <ion-icon class="icone" name="accessibility-outline"></ion-icon> <br />
       <label>Cadastro na IBC</label>
     </button>
 
-        <button ion-button routerLink="/cadastro/projeto" routerDirection="forward" class="ion-text-wrap" *ngIf='permissao("ADMIN")'>
+    <button
+      ion-button
+      routerLink="/cadastro/projeto"
+      routerDirection="forward"
+      class="ion-text-wrap"
+      *ngIf="permissaoAdmin"
+    >
       <ion-icon class="icone" name="create-outline"></ion-icon> <br />
       <label>Cadastro de Projeto</label>
     </button>
 
-        <button ion-button routerLink="/cadastro/cargo" routerDirection="forward" class="ion-text-wrap" *ngIf='permissao("ADMIN")'>
+    <button
+      ion-button
+      routerLink="/cadastro/cargo"
+      routerDirection="forward"
+      class="ion-text-wrap"
+      *ngIf="permissaoAdmin"
+    >
       <ion-icon class="icone" name="briefcase-outline"></ion-icon> <br />
       <label>Cadastro de Cargo</label>
     </button>
 
-        <button ion-button routerLink="/cadastro/evento" routerDirection="forward" class="ion-text-wrap" *ngIf='permissao("ADMIN")'>
+    <button
+      ion-button
+      routerLink="/cadastro/evento"
+      routerDirection="forward"
+      class="ion-text-wrap"
+      *ngIf="permissaoAdmin"
+    >
       <ion-icon class="icone" name="ticket-outline"></ion-icon> <br />
       <label>Cadastro de Evento</label>
     </button>
 
-        <button ion-button routerLink="/cadastro/assistido" routerDirection="forward" class="ion-text-wrap" *ngIf='permissao("ADMIN")'>
-    <ion-icon class="icone" name="bag-add-outline"></ion-icon> <br />
-    <label>Cadastro de Assistido</label>
-  </button>
+    <button
+      ion-button
+      routerLink="/cadastro/assistido"
+      routerDirection="forward"
+      class="ion-text-wrap"
+      *ngIf="permissaoAdmin"
+    >
+      <ion-icon class="icone" name="bag-add-outline"></ion-icon> <br />
+      <label>Cadastro de Assistido</label>
+    </button>
 
-        <br />
+    <br />
 
-        <button ion-button routerLink="/lista/membro" routerDirection="forward" class="ion-text-wrap" *ngIf='permissao("ADMIN")'>
+    <button
+      ion-button
+      routerLink="/lista/membro"
+      routerDirection="forward"
+      class="ion-text-wrap"
+      *ngIf="permissaoAdmin"
+    >
       <ion-icon class="icone" name="people-outline"></ion-icon> <br />
       <label>Lista de Membros</label>
     </button>
 
-        <button ion-button routerLink="/lista/projeto" routerDirection="forward" class="ion-text-wrap" *ngIf='permissao("ADMIN")'>
+    <button
+      ion-button
+      routerLink="/lista/projeto"
+      routerDirection="forward"
+      class="ion-text-wrap"
+      *ngIf="permissaoAdmin"
+    >
       <ion-icon class="icone" name="receipt-outline"></ion-icon> <br />
       <label>Lista de Projetos</label>
     </button>
 
-        <button ion-button routerLink="/lista/cargo" routerDirection="forward" class="ion-text-wrap" *ngIf='permissao("ADMIN")'>
+    <button
+      ion-button
+      routerLink="/lista/cargo"
+      routerDirection="forward"
+      class="ion-text-wrap"
+      *ngIf="permissaoAdmin"
+    >
       <ion-icon class="icone" name="file-tray-stacked-outline"></ion-icon>
       <br />
       <label>Lista de &nbsp; Cargos</label>
     </button>
 
-        <button ion-button routerLink="/lista/evento" routerDirection="forward" class="ion-text-wrap" *ngIf='permissao("ADMIN;MEM")'>
+    <button
+      ion-button
+      routerLink="/lista/evento"
+      routerDirection="forward"
+      class="ion-text-wrap"
+      *ngIf="permissaoGeral"
+    >
       <ion-icon class="icone" name="layers-outline"></ion-icon> <br />
       <label>Lista de &nbsp; Eventos</label>
     </button>
 
-    <button ion-button routerLink="/lista/assistido" routerDirection="forward" class="ion-text-wrap" *ngIf='permissao("ADMIN;MEM")'>
+    <button
+      ion-button
+      routerLink="/lista/assistido"
+      routerDirection="forward"
+      class="ion-text-wrap"
+      *ngIf="permissaoAdmin"
+    >
       <ion-icon class="icone" name="list-outline"></ion-icon> <br />
       <label>Lista de &nbsp; Assistidos</label>
     </button>
 
-        <br />
+    <br />
 
-        <button ion-button (click)="mensagemDeConstrucao()" class="ion-text-wrap">
+    <button
+      ion-button
+      routerLink="/consultorio"
+      class="ion-text-wrap"
+      *ngIf="permissaoAdmin || permissaoPsicologo"
+    >
+      <ion-icon class="icone" name="book-outline"></ion-icon><br />
+      <label> Diário do Psicologo </label>
+    </button>
+
+    <button
+      ion-button
+      (click)="mensagemDeConstrucao()"
+      class="ion-text-wrap"
+      *ngIf="permissaoAdmin || permissaoFinancas"
+    >
       <ion-icon class="icone" name="cash-outline"></ion-icon><br />
       <label> Sistema Financeiro </label>
     </button>
 
-        <button ion-button routerLink="/aniversarios" routerDirection="forward"class="ion-text-wrap">
+    <button
+      ion-button
+      routerLink="/aniversarios"
+      routerDirection="forward"
+      class="ion-text-wrap"
+    >
       <ion-icon class="icone" name="calendar-number-outline"></ion-icon><br />
       <label>Aniversário do mês</label>
     </button>
 
-        <button ion-button (click)="mensagemDeConstrucao()" class="ion-text-wrap">
-      <ion-icon class="icone" name="person-outline"></ion-icon><br />
-      <label>Informações  Gerais</label>
+    <button
+      ion-button
+      routerLink="/sistema-relatorio-modal"
+      class="ion-text-wrap"
+      *ngIf="permissaoAdmin"
+    >
+      <ion-icon class="icone" name="albums-outline"></ion-icon><br />
+      <label>Sistema Relatorios</label>
     </button>
 
-        <button ion-button routerLink="/login" routerDirection="forward" class="ion-text-wrap" (click)='deslogar()'>
+    <button ion-button (click)="mensagemDeConstrucao()" class="ion-text-wrap">
+      <ion-icon class="icone" name="megaphone-outline"></ion-icon><br />
+      <label>Novidades da IBC</label>
+    </button>
+
+    <br />
+
+    <button
+      ion-button
+      routerLink="/login"
+      routerDirection="forward"
+      class="ion-text-wrap"
+      (click)="deslogar()"
+    >
       <ion-icon class="icone" name="exit-outline"></ion-icon><br />
       <label> &nbsp; &nbsp; Encerrar &nbsp; &nbsp; Sessão </label>
     </button>
-    </div>
+  </div>
 </ion-content>

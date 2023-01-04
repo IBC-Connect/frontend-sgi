@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ToastController, NavController, AlertController } from '@ionic/angular';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Assistido } from 'src/app/modelo/Assistido';
 import { AssistidoService } from 'src/app/servicos/Assistido';
@@ -8,9 +8,9 @@ import { MensagensUtil } from 'src/app/util/MensagensUtil';
 import { RedirecionadorUtil } from 'src/app/util/RedirecionadorUtil';
 
 @Component({
-  selector: 'app-assistido',
-  templateUrl: './assistido.page.html',
-  styleUrls: ['./assistido.page.scss'],
+  selector: "app-assistido",
+  templateUrl: "./assistido.page.html",
+  styleUrls: ["./assistido.page.scss"],
 })
 export class AssistidoPage {
   listaAssistidos: Assistido[];
@@ -48,24 +48,28 @@ export class AssistidoPage {
   }
 
   public editarAssistido(assistido: Assistido): void {
-    this.navCtrl.navigateForward('/editar/assistido', {
+    this.navCtrl.navigateForward("/editar/assistido", {
       state: { content: assistido },
     });
   }
 
   public formatarDataDeNascimento(data: any): any {
-    return data.includes('/') ? data : DateUtil.dateFormatterBrazil(data);
+    return data.includes("/") ? data : DateUtil.dateFormatterBrazil(data);
   }
 
   public onSearchTerm(ev: any) {
     this.listaAssistidosFiltrados = this.listaAssistidos;
     const val = ev.detail.value;
 
-    if (val && val.trim() !== '') {
-      this.listaAssistidosFiltrados = this.listaAssistidosFiltrados.filter((term) => {
-        return term.nomeCompleto.toUpperCase().indexOf(val.trim().toUpperCase()) > -1;
-      });
+    if (val && val.trim() !== "") {
+      this.listaAssistidosFiltrados = this.listaAssistidosFiltrados.filter(
+        (term) => {
+          return (
+            term.nomeCompleto.toUpperCase().indexOf(val.trim().toUpperCase()) >
+            -1
+          );
+        }
+      );
     }
   }
-
 }

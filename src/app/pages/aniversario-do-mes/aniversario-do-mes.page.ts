@@ -1,10 +1,10 @@
+import { DateUtil } from "src/app/util/DateUtil";
 import { Component } from "@angular/core";
 import { NavController } from "@ionic/angular";
+import * as moment from "moment";
 import { Observable } from "rxjs";
 import { Membro } from "src/app/modelo/Membro";
 import { MembroService } from "src/app/servicos/Membro";
-import * as moment from "moment";
-import { DateUtil } from "src/app/util/DateUtil";
 import { MensagensUtil } from "src/app/util/MensagensUtil";
 
 @Component({
@@ -16,6 +16,7 @@ export class AniversarioDoMesPage {
   totalAniversariantes: Number;
   membros: Membro[];
   membrosFiltrados: Membro[];
+  membrosEditaveis: Membro[];
   mensagens: MensagensUtil;
   listaMembrosObservable: Observable<any[]>;
 
@@ -31,38 +32,46 @@ export class AniversarioDoMesPage {
     this.listaMembrosObservable = this.membroService.listar();
     this.listaMembrosObservable.subscribe((response) => {
       this.membros = response;
-      this.membrosFiltrados = response;
-      this.membros = this.exibirAniversariantes(response);
-      this.membrosFiltrados = this.exibirAniversariantes(response);
+      this.membros = this.filtrarMembrosAtivos(response);
+      this.membros = this.exibirAniversariantes(this.membros);
+      this.membrosFiltrados = this.membros;
       this.totalAniversariantes = this.membros.length;
-
-      this.membrosFiltrados.sort((a, b) => {
-        let newA = moment(a.dataNascimento).format('DDMM');
-        let newB = moment(b.dataNascimento).format('DDMM');
-        return moment(newA).diff(newB);
-      });
     });
+  }
+
+  private filtrarMembrosAtivos(membrosFiltrados): Membro[] {
+    return membrosFiltrados.filter(
+      (m) =>
+        m.situacao === "Ativo" &&
+        (m.classificacao === undefined || m.classificacao === "Membro")
+    );
   }
 
   public exibirAniversariantes(listaMembros) {
     return listaMembros.filter(
-      (m) => moment(this.formatarDataDeNascimento(m.dataNascimento)).month() === moment(new Date()).month()
+      (m) => new Date(m.dataNascimento).getDate() === new Date().getMonth() + 1
     );
   }
 
-  public idadeAtual(membro){
-    let anoAtual = moment().toDate();
-    let anoMembro = moment(membro.dataNascimento).toDate();
-    return anoAtual.getFullYear() - anoMembro.getFullYear();
+  public idadeAtual(membro) {
+    let anoAtual = moment();
+    let anoMembro = moment(membro.dataNascimento);
+    return anoAtual.year() - anoMembro.year();
   }
 
-  public formatarDataDeNascimento(data: any): any {
-    return DateUtil.dateFormatterBrazil(data);
-  }
-
-  public aniversarioMes(){
-    const monthNameLong = new Date(Date.now()).toLocaleString("pt-BR", { month: "long" });
+  public aniversarioMes() {
+    const monthNameLong = new Date(Date.now()).toLocaleString("pt-BR", {
+      month: "long",
+    });
     return monthNameLong.toUpperCase();
+  }
+
+  formatarDataNascimento(dataNascimento: string) {
+    if (dataNascimento.includes("-")) {
+      return DateUtil.dateFormatterBrazil(dataNascimento);
+    } else {
+      return dataNascimento;
+    }
   }
 
   public formatarNumeroWhatsapp(whatsapp: any) {
@@ -75,13 +84,11 @@ export class AniversarioDoMesPage {
     const val = ev.detail.value;
 
     if (val && val.trim() !== "") {
-      this.membrosFiltrados =
-        this.membrosFiltrados.filter((term) => {
-          return (
-            term.nomeCompleto.toUpperCase().indexOf(val.trim().toUpperCase()) >
-            -1
-          );
-        });
+      this.membrosFiltrados = this.membrosFiltrados.filter((term) => {
+        return (
+          term.nomeCompleto.toUpperCase().indexOf(val.trim().toUpperCase()) > -1
+        );
+      });
     }
   }
 }

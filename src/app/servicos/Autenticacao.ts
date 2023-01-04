@@ -56,6 +56,7 @@ export class AutenticacaoService {
   }
 
   public async sair() {
+
     await this.afAuth.signOut().then(
       function () {
         localStorage.clear();

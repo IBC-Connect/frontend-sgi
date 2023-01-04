@@ -1,39 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
-import { Observable } from 'rxjs';
-import { MembroDTO } from 'src/app/dto/membrosDTO';
-import { Membro } from 'src/app/modelo/Membro';
-import { Usuario } from 'src/app/modelo/Usuario';
-import { AutenticacaoService } from 'src/app/servicos/Autenticacao';
-import { MembroService } from 'src/app/servicos/Membro';
-import { MensagensUtil } from 'src/app/util/MensagensUtil';
+import { Component, OnInit } from "@angular/core";
+import { ModalController, ToastController } from "@ionic/angular";
+import { Observable } from "rxjs";
+import { Membro } from "src/app/modelo/Membro";
+import { Usuario } from "src/app/modelo/Usuario";
+import { AutenticacaoService } from "src/app/servicos/Autenticacao";
+import { MembroService } from "src/app/servicos/Membro";
+import { MensagensUtil } from "src/app/util/MensagensUtil";
+
+import { SistemaRelatorioModalPage } from "../componentes/sistema-relatorio-modal/sistema-relatorio-modal.page";
+import { DadosUsuarioUtil } from "./../../util/DadosUsuarioUtil";
 
 @Component({
-  selector: 'app-inicio',
-  templateUrl: './inicio.page.html',
-  styleUrls: ['./inicio.page.scss'],
+  selector: "app-inicio",
+  templateUrl: "./inicio.page.html",
+  styleUrls: ["./inicio.page.scss"],
 })
-
 export class InicioPage implements OnInit {
-
   mensagens: MensagensUtil;
   usuario: Usuario;
   membro: Membro;
-  membroLista: Membro[];
   totalMembros: number;
+  listaMembros: Membro[];
+  listaMembrosFiltrados: Membro[];
   listaMembrosObservable: Observable<any[]>;
 
-  constructor(private autenticacao: AutenticacaoService, private aviso: ToastController, private membroService: MembroService) {
-    this.membro = new Membro();
-    this.membroLista = new Array<Membro>();
+  //Permissoes
+  permissaoAdmin: boolean = false;
+  permissaoGeral: boolean = true;
+  permissaoPsicologo: boolean = false;
+  permissaoFinancas: boolean = false;
+
+  constructor(
+    private autenticacao: AutenticacaoService,
+    private aviso: ToastController,
+    private membroService: MembroService,
+    private modalController: ModalController
+  ) {
     this.mensagens = new MensagensUtil(this.aviso);
-    this.usuario = autenticacao.pegarDadosLocalmente() ? autenticacao.pegarDadosLocalmente() : new Usuario();
+    this.usuario = DadosUsuarioUtil.dadosUsuarioLogado();
   }
 
   async ngOnInit() {
-    this.usuario.email = 'joaopedro.ts16@gmail.com'
     await this.inicializar();
-    this.membro = this.verificaMembroPorEmail(this.usuario.email);
   }
 
   public deslogar() {
@@ -41,39 +49,46 @@ export class InicioPage implements OnInit {
     this.mensagens.mensagemSucesso("Você foi desconectado com sucesso!");
   }
 
-  public mensagemDeConstrucao() :void {
-    this.mensagens.mensagemAlerta("O menu selecionado está em fase de construção.");
+  public mensagemDeConstrucao(): void {
+    this.mensagens.mensagemAlerta(
+      "O menu selecionado está em fase de construção."
+    );
   }
 
-  public permissao(perfisPermitidos: string): boolean {
+  private async inicializar() {
+    this.listaMembrosObservable = this.membroService.listar();
+    this.listaMembrosObservable.subscribe(response => {
+      this.listaMembros = response;
+      this.totalMembros = this.listaMembros.length;
+      this.listaMembrosFiltrados = this.listaMembros.sort((a, b) => (a.nomeCompleto > b.nomeCompleto ? 1 : b.nomeCompleto > a.nomeCompleto ? -1 : 0));
+      this.verificarTelasUsuario(response);
+    });
+  }
 
-    let visibilidade: boolean = false;
-    this.usuario.perfil = 'ADMIN';
-    const perfis = perfisPermitidos.split(';');
-
-    /*
-    perfis.forEach(perfil => {
-      if (perfil === this.usuario.perfil) {
-        visibilidade = true;
+  verificarTelasUsuario(membros) {
+    const membroEncontrado = membros.find(m => m.email === this.usuario.email);
+  
+    if (membroEncontrado) {
+      switch (membroEncontrado.perfil) {
+        case 'ADMIN':
+        case 'SEC':
+          this.permissaoAdmin = true;
+          break;
+        case 'FIN':
+          this.permissaoFinancas = true;
+          break;
+        case 'PSI':
+          this.permissaoPsicologo = true;
+          break;
       }
-    });
-    return visibilidade; */
-
-    return true;
+    }
   }
 
-
-  private async inicializar() : Promise<Membro[]> {
-    return this.membroService.listar().subscribe(async (response: Membro[]) => {
+  async abriModalSistema() {
+    const modal = await this.modalController.create({
+      component: SistemaRelatorioModalPage,
+      cssClass: "my-custom-class",
     });
+    return await modal.present();
   }
-
-  public verificaMembroPorEmail(email) : any {
-    this.membroLista.find(membro => {
-      if (email === membro.email.toLowerCase()) {
-        return membro;
-      }
-    });
-  }
-
 }
