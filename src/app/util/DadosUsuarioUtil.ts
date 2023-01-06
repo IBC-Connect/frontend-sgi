@@ -1,8 +1,18 @@
-import { Usuario } from "./../modelo/Usuario";
+import { Usuario } from './../modelo/Usuario';
+import { CriptografiaUtil } from './CriptografiaUtil';
+
 export class DadosUsuarioUtil {
   constructor() {}
 
   public static dadosUsuarioLogado(): Usuario {
-    return JSON.parse(localStorage.getItem("usuario"));
+    let usuario : any = localStorage.getItem("usuario");
+
+    if (usuario != null) {
+      usuario = CriptografiaUtil.descriptografiaDadosComObjeto(usuario);
+    } else {
+      usuario = new Usuario();
+    }
+
+    return usuario;
   }
 }

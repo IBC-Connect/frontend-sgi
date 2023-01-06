@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content class=\"ion-padding\">\n  <ion-tabs>\n    <ion-tab-bar slot=\"bottom\">\n      <ion-tab-button tab=\"ativos\">\n        <ion-icon name=\"person-add\"></ion-icon>\n        <ion-label>Ativos</ion-label>\n      </ion-tab-button>\n      <ion-tab-button tab=\"inativos\">\n        <ion-icon name=\"person-remove\"></ion-icon>\n        <ion-label>Inativos</ion-label>\n      </ion-tab-button>\n      <ion-tab-button tab=\"congregados\">\n        <ion-icon name=\"people-circle-outline\"></ion-icon>\n        <ion-label>Congregados</ion-label>\n      </ion-tab-button>\n      <ion-tab-button tab=\"voluntarios\">\n        <ion-icon name=\"person-outline\"></ion-icon>\n        <ion-label>Voluntaríos</ion-label>\n      </ion-tab-button>\n    </ion-tab-bar>\n  </ion-tabs>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content class=\"ion-padding\">\r\n  <ion-tabs>\r\n    <ion-tab-bar slot=\"bottom\">\r\n      <ion-tab-button tab=\"ativos\">\r\n        <ion-icon name=\"person-add\"></ion-icon>\r\n        <ion-label>Ativos</ion-label>\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"inativos\">\r\n        <ion-icon name=\"person-remove\"></ion-icon>\r\n        <ion-label>Inativos</ion-label>\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"congregados\">\r\n        <ion-icon name=\"people-circle-outline\"></ion-icon>\r\n        <ion-label>Congregados</ion-label>\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"voluntarios\">\r\n        <ion-icon name=\"person-outline\"></ion-icon>\r\n        <ion-label>Voluntaríos</ion-label>\r\n      </ion-tab-button>\r\n    </ion-tab-bar>\r\n  </ion-tabs>\r\n</ion-content>\r\n");
 
 /***/ }),
 
@@ -73,19 +73,19 @@ const routes = [
         children: [
             {
                 path: 'ativos',
-                loadChildren: () => Promise.all(/*! import() | membro-ativo-membro-ativo-module */[__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("membro-ativo-membro-ativo-module")]).then(__webpack_require__.bind(null, /*! ./membro-ativo/membro-ativo.module */ "Ab4i")).then((m) => m.MembroAtivoPageModule),
+                loadChildren: () => Promise.all(/*! import() | membro-ativo-membro-ativo-module */[__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("membro-ativo-membro-ativo-module")]).then(__webpack_require__.bind(null, /*! ./membro-ativo/membro-ativo.module */ "Ab4i")).then((m) => m.MembroAtivoPageModule),
             },
             {
                 path: 'inativos',
-                loadChildren: () => Promise.all(/*! import() | membro-inativo-membro-inativo-module */[__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("membro-inativo-membro-inativo-module")]).then(__webpack_require__.bind(null, /*! ./membro-inativo/membro-inativo.module */ "qzYq")).then((m) => m.MembroInativoPageModule),
+                loadChildren: () => Promise.all(/*! import() | membro-inativo-membro-inativo-module */[__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("membro-inativo-membro-inativo-module")]).then(__webpack_require__.bind(null, /*! ./membro-inativo/membro-inativo.module */ "qzYq")).then((m) => m.MembroInativoPageModule),
             },
             {
                 path: 'congregados',
-                loadChildren: () => Promise.all(/*! import() | congregado-congregado-module */[__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("congregado-congregado-module")]).then(__webpack_require__.bind(null, /*! ./congregado/congregado.module */ "Ewl5")).then((m) => m.CongregadoPageModule),
+                loadChildren: () => Promise.all(/*! import() | congregado-congregado-module */[__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("congregado-congregado-module")]).then(__webpack_require__.bind(null, /*! ./congregado/congregado.module */ "Ewl5")).then((m) => m.CongregadoPageModule),
             },
             {
                 path: 'voluntarios',
-                loadChildren: () => Promise.all(/*! import() | voluntario-voluntario-module */[__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("voluntario-voluntario-module")]).then(__webpack_require__.bind(null, /*! ./voluntario/voluntario.module */ "5T/8")).then((m) => m.VoluntarioPageModule),
+                loadChildren: () => Promise.all(/*! import() | voluntario-voluntario-module */[__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("voluntario-voluntario-module")]).then(__webpack_require__.bind(null, /*! ./voluntario/voluntario.module */ "5T/8")).then((m) => m.VoluntarioPageModule),
             },
             {
                 path: '',
@@ -159,7 +159,7 @@ MembroPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".inativo, .ativo {\n  font-size: 30px;\n}\n\n.ativo, #tabAtivos {\n  color: #20c043;\n}\n\n.inativo, #tabInativos {\n  color: #eb445a;\n}\n\n.tituloTab {\n  font-size: 18px;\n  font-family: \"Lexend\", sans-serif;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL21lbWJyby5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDSSxlQUFBO0FBQUo7O0FBR0E7RUFDSSxjQUFBO0FBQUo7O0FBR0E7RUFDSSxjQUFBO0FBQUo7O0FBR0E7RUFDSSxlQUFBO0VBQ0EsaUNBQUE7QUFBSiIsImZpbGUiOiJtZW1icm8ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4uaW5hdGl2bywgLmF0aXZve1xuICAgIGZvbnQtc2l6ZTogMzBweDtcbn1cblxuLmF0aXZvLCAjdGFiQXRpdm9ze1xuICAgIGNvbG9yOiAjMjBjMDQzO1xufVxuXG4uaW5hdGl2bywgI3RhYkluYXRpdm9ze1xuICAgIGNvbG9yOiAjZWI0NDVhO1xufVxuXG4udGl0dWxvVGFie1xuICAgIGZvbnQtc2l6ZTogMThweDtcbiAgICBmb250LWZhbWlseTogJ0xleGVuZCcsIHNhbnMtc2VyaWY7XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".inativo, .ativo {\n  font-size: 30px;\n}\n\n.ativo, #tabAtivos {\n  color: #20c043;\n}\n\n.inativo, #tabInativos {\n  color: #eb445a;\n}\n\n.tituloTab {\n  font-size: 18px;\n  font-family: \"Lexend\", sans-serif;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFwuLlxcbWVtYnJvLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNJLGVBQUE7QUFBSjs7QUFHQTtFQUNJLGNBQUE7QUFBSjs7QUFHQTtFQUNJLGNBQUE7QUFBSjs7QUFHQTtFQUNJLGVBQUE7RUFDQSxpQ0FBQTtBQUFKIiwiZmlsZSI6Im1lbWJyby5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuLmluYXRpdm8sIC5hdGl2b3tcclxuICAgIGZvbnQtc2l6ZTogMzBweDtcclxufVxyXG5cclxuLmF0aXZvLCAjdGFiQXRpdm9ze1xyXG4gICAgY29sb3I6ICMyMGMwNDM7XHJcbn1cclxuXHJcbi5pbmF0aXZvLCAjdGFiSW5hdGl2b3N7XHJcbiAgICBjb2xvcjogI2ViNDQ1YTtcclxufVxyXG5cclxuLnRpdHVsb1RhYntcclxuICAgIGZvbnQtc2l6ZTogMThweDtcclxuICAgIGZvbnQtZmFtaWx5OiAnTGV4ZW5kJywgc2Fucy1zZXJpZjtcclxufSJdfQ== */");
 
 /***/ })
 

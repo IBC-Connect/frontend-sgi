@@ -384,6 +384,319 @@
     },
 
     /***/
+    "IChF":
+    /*!************************************!*\
+      !*** ./src/app/servicos/Diario.ts ***!
+      \************************************/
+
+    /*! exports provided: DiarioService */
+
+    /***/
+    function IChF(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "DiarioService", function () {
+        return DiarioService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "fXoL");
+      /* harmony import */
+
+
+      var _angular_fire_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @angular/fire/database */
+      "sSZD");
+      /* harmony import */
+
+
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! rxjs/operators */
+      "kU1M");
+
+      var DiarioService = /*#__PURE__*/function () {
+        function DiarioService(db) {
+          _classCallCheck(this, DiarioService);
+
+          this.db = db;
+          this.path = "diarios";
+          this.diarioLista = new Array();
+          this.diarioRef = this.db.list(this.path);
+        }
+
+        _createClass(DiarioService, [{
+          key: "listar",
+          value: function listar() {
+            return this.diarios = this.diarioRef.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (changes) {
+              return changes.map(function (c) {
+                return Object.assign({
+                  key: c.payload.key
+                }, c.payload.val());
+              });
+            }));
+          }
+        }, {
+          key: "adicionarOuAtualizar",
+          value: function adicionarOuAtualizar(diario) {
+            if (diario.key) {
+              this.diarioRef.update(diario.key, diario);
+            } else {
+              this.diarioRef.push(diario);
+            }
+          }
+        }, {
+          key: "deletar",
+          value: function deletar(key) {
+            this.diarioRef.remove(key);
+          }
+        }, {
+          key: "deletarTudo",
+          value: function deletarTudo() {
+            this.diarioRef.remove();
+          }
+        }]);
+
+        return DiarioService;
+      }();
+
+      DiarioService.ctorParameters = function () {
+        return [{
+          type: _angular_fire_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"]
+        }];
+      };
+
+      DiarioService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: "root"
+      })], DiarioService);
+      /***/
+    },
+
+    /***/
+    "JGwh":
+    /*!*************************************************************************************************!*\
+      !*** ./src/app/pages/componentes/registro-consultorio-modal/registro-consultorio-modal.page.ts ***!
+      \*************************************************************************************************/
+
+    /*! exports provided: RegistroConsultorioModalPage */
+
+    /***/
+    function JGwh(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "RegistroConsultorioModalPage", function () {
+        return RegistroConsultorioModalPage;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _raw_loader_registro_consultorio_modal_page_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! raw-loader!./registro-consultorio-modal.page.html */
+      "mka3");
+      /* harmony import */
+
+
+      var _registro_consultorio_modal_page_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./registro-consultorio-modal.page.scss */
+      "lZj5");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/core */
+      "fXoL");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @ionic/angular */
+      "TEn/");
+      /* harmony import */
+
+
+      var src_app_modelo_Membro__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! src/app/modelo/Membro */
+      "Xsc5");
+      /* harmony import */
+
+
+      var src_app_servicos_Autenticacao__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! src/app/servicos/Autenticacao */
+      "tTKV");
+      /* harmony import */
+
+
+      var src_app_servicos_Membro__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! src/app/servicos/Membro */
+      "fX5e");
+      /* harmony import */
+
+
+      var src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! src/app/util/DateUtil */
+      "JM5f");
+      /* harmony import */
+
+
+      var _modelo_Diario__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! ./../../../modelo/Diario */
+      "vujH");
+      /* harmony import */
+
+
+      var _servicos_Diario__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! ./../../../servicos/Diario */
+      "IChF");
+
+      var RegistroConsultorioModalPage = /*#__PURE__*/function () {
+        function RegistroConsultorioModalPage(membroService, modalController, diarioService, autenticacaoService) {
+          _classCallCheck(this, RegistroConsultorioModalPage);
+
+          this.membroService = membroService;
+          this.modalController = modalController;
+          this.diarioService = diarioService;
+          this.autenticacaoService = autenticacaoService;
+          this.apareceListaMembros = true;
+          this.diario = new _modelo_Diario__WEBPACK_IMPORTED_MODULE_9__["Diario"]();
+          this.membro = new src_app_modelo_Membro__WEBPACK_IMPORTED_MODULE_5__["Membro"]();
+          this.inicializar();
+        }
+
+        _createClass(RegistroConsultorioModalPage, [{
+          key: "inicializar",
+          value: function inicializar() {
+            var _this = this;
+
+            this.listaMembrosObservable = this.membroService.listar();
+            this.listaMembrosObservable.subscribe(function (response) {
+              _this.listaMembros = response;
+              _this.listaMembrosFiltrados = response;
+              _this.listaMembros = _this.listaMembros.filter(function (m) {
+                return _this.filtrarMembro(m);
+              });
+              _this.listaMembrosFiltrados = _this.listaMembrosFiltrados.filter(function (m) {
+                return _this.filtrarMembro(m);
+              });
+              _this.totalMembros = _this.listaMembros.length;
+
+              _this.listaMembrosFiltrados.sort(function (a, b) {
+                return a.nomeCompleto > b.nomeCompleto ? 1 : b.nomeCompleto > a.nomeCompleto ? -1 : 0;
+              });
+            });
+          }
+        }, {
+          key: "membroSelecionado",
+          value: function membroSelecionado(item) {
+            this.termoPesquisa = item.nomeCompleto;
+          }
+        }, {
+          key: "filtrarMembro",
+          value: function filtrarMembro(membro) {
+            return membro.situacao === "Ativo" && (membro.classificacao === undefined || membro.classificacao === "Membro");
+          }
+        }, {
+          key: "informacoesPsicologo",
+          value: function informacoesPsicologo() {
+            var _this2 = this;
+
+            this.usuario = this.autenticacaoService.pegarDadosLocalmente();
+            var usuarioEncontrado = this.listaMembros.filter(function (membros) {
+              return membros.email === _this2.usuario.email;
+            }); //Preencher infos diario
+
+            this.diario.nomePsicologo = usuarioEncontrado.length > 0 ? usuarioEncontrado[0].nomeCompleto : "Psicologo Não Cadastrado";
+            this.diario.uIdPsicologo = this.usuario.uid;
+          }
+        }, {
+          key: "ngOnInit",
+          value: function ngOnInit() {}
+        }, {
+          key: "fecharModal",
+          value: function fecharModal() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+              return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                while (1) {
+                  switch (_context3.prev = _context3.next) {
+                    case 0:
+                      this.modalController.dismiss();
+
+                    case 1:
+                    case "end":
+                      return _context3.stop();
+                  }
+                }
+              }, _callee3, this);
+            }));
+          }
+        }, {
+          key: "enviarRegistro",
+          value: function enviarRegistro() {
+            this.informacoesPsicologo();
+            this.diario.nomePaciente = this.termoPesquisa;
+            this.diario.dataRegistro = src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_8__["DateUtil"].dateFormatterBrazil(new Date().toISOString());
+            this.diarioService.adicionarOuAtualizar(this.diario);
+            this.fecharModal();
+          }
+        }, {
+          key: "onSearchTerm",
+          value: function onSearchTerm(ev) {
+            this.listaMembrosFiltrados = this.listaMembros;
+            var val = ev.detail.value;
+
+            if (val && val.trim() !== "") {
+              this.listaMembrosFiltrados = this.listaMembrosFiltrados.filter(function (term) {
+                return term.nomeCompleto.toUpperCase().indexOf(val.trim().toUpperCase()) > -1;
+              });
+            }
+          }
+        }]);
+
+        return RegistroConsultorioModalPage;
+      }();
+
+      RegistroConsultorioModalPage.ctorParameters = function () {
+        return [{
+          type: src_app_servicos_Membro__WEBPACK_IMPORTED_MODULE_7__["MembroService"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
+        }, {
+          type: _servicos_Diario__WEBPACK_IMPORTED_MODULE_10__["DiarioService"]
+        }, {
+          type: src_app_servicos_Autenticacao__WEBPACK_IMPORTED_MODULE_6__["AutenticacaoService"]
+        }];
+      };
+
+      RegistroConsultorioModalPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+        selector: "app-registro-consultorio-modal",
+        template: _raw_loader_registro_consultorio_modal_page_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        styles: [_registro_consultorio_modal_page_scss__WEBPACK_IMPORTED_MODULE_2__["default"]]
+      })], RegistroConsultorioModalPage);
+      /***/
+    },
+
+    /***/
     "JpJ2":
     /*!**********************************!*\
       !*** ./src/app/mapper/Membro.ts ***!
@@ -522,6 +835,7 @@
             assistido.endereco.numero = form.numero;
             assistido.endereco.complemento = form.complemento ? form.complemento.toUpperCase() : '';
             assistido.endereco.estado = form.estado.toUpperCase();
+            assistido.familiares = form.familiares.length > 0 ? form.familiares : '';
             if (form.key) assistido.key = form.key;
             return assistido;
           }
@@ -558,6 +872,26 @@
       };
       /***/
 
+    },
+
+    /***/
+    "NHGS":
+    /*!*********************************************************************************************!*\
+      !*** ./src/app/pages/componentes/sistema-relatorio-modal/sistema-relatorio-modal.page.scss ***!
+      \*********************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function NHGS(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "iframe {\n  width: 100%;\n  height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFwuLlxcc2lzdGVtYS1yZWxhdG9yaW8tbW9kYWwucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksV0FBQTtFQUNBLFlBQUE7QUFDSiIsImZpbGUiOiJzaXN0ZW1hLXJlbGF0b3Jpby1tb2RhbC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpZnJhbWUge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbn0iXX0= */";
+      /***/
     },
 
     /***/
@@ -621,6 +955,156 @@
         }]);
 
         return EncontroUtil;
+      }();
+      /***/
+
+    },
+
+    /***/
+    "T+3M":
+    /*!*******************************************************************************************!*\
+      !*** ./src/app/pages/componentes/sistema-relatorio-modal/sistema-relatorio-modal.page.ts ***!
+      \*******************************************************************************************/
+
+    /*! exports provided: SistemaRelatorioModalPage */
+
+    /***/
+    function T3M(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "SistemaRelatorioModalPage", function () {
+        return SistemaRelatorioModalPage;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _raw_loader_sistema_relatorio_modal_page_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! raw-loader!./sistema-relatorio-modal.page.html */
+      "rCGp");
+      /* harmony import */
+
+
+      var _sistema_relatorio_modal_page_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./sistema-relatorio-modal.page.scss */
+      "NHGS");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @ionic/angular */
+      "TEn/");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/core */
+      "fXoL");
+      /* harmony import */
+
+
+      var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @angular/platform-browser */
+      "jhN1");
+
+      var SistemaRelatorioModalPage = /*#__PURE__*/function () {
+        function SistemaRelatorioModalPage(modalController, sanitizer) {
+          _classCallCheck(this, SistemaRelatorioModalPage);
+
+          this.modalController = modalController;
+          this.sanitizer = sanitizer;
+          this.url = "http://vps.iconsultweb.com:9099/";
+        }
+
+        _createClass(SistemaRelatorioModalPage, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {}
+        }, {
+          key: "fecharModal",
+          value: function fecharModal() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+              return regeneratorRuntime.wrap(function _callee4$(_context4) {
+                while (1) {
+                  switch (_context4.prev = _context4.next) {
+                    case 0:
+                      this.modalController.dismiss();
+
+                    case 1:
+                    case "end":
+                      return _context4.stop();
+                  }
+                }
+              }, _callee4, this);
+            }));
+          }
+        }, {
+          key: "openRelatorio",
+          value: function openRelatorio() {
+            return this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+          }
+        }]);
+
+        return SistemaRelatorioModalPage;
+      }();
+
+      SistemaRelatorioModalPage.ctorParameters = function () {
+        return [{
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
+        }, {
+          type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__["DomSanitizer"]
+        }];
+      };
+
+      SistemaRelatorioModalPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Component"])({
+        selector: "app-sistema-relatorio-modal",
+        template: _raw_loader_sistema_relatorio_modal_page_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        styles: [_sistema_relatorio_modal_page_scss__WEBPACK_IMPORTED_MODULE_2__["default"]]
+      })], SistemaRelatorioModalPage);
+      /***/
+    },
+
+    /***/
+    "TR/9":
+    /*!******************************************!*\
+      !*** ./src/app/util/DadosUsuarioUtil.ts ***!
+      \******************************************/
+
+    /*! exports provided: DadosUsuarioUtil */
+
+    /***/
+    function TR9(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "DadosUsuarioUtil", function () {
+        return DadosUsuarioUtil;
+      });
+
+      var DadosUsuarioUtil = /*#__PURE__*/function () {
+        function DadosUsuarioUtil() {
+          _classCallCheck(this, DadosUsuarioUtil);
+        }
+
+        _createClass(DadosUsuarioUtil, null, [{
+          key: "dadosUsuarioLogado",
+          value: function dadosUsuarioLogado() {
+            return JSON.parse(localStorage.getItem("usuario"));
+          }
+        }]);
+
+        return DadosUsuarioUtil;
       }();
       /***/
 
@@ -897,36 +1381,50 @@
       /* harmony import */
 
 
-      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @ionic/angular */
+      "TEn/");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @angular/core */
       "fXoL");
       /* harmony import */
 
 
-      var _angular_fire_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      var _angular_fire_database__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @angular/fire/database */
       "sSZD");
       /* harmony import */
 
 
-      var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! rxjs/operators */
       "kU1M");
+      /* harmony import */
+
+
+      var _util_MensagensUtil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! ../util/MensagensUtil */
+      "sZxV");
 
       var AssistidoService = /*#__PURE__*/function () {
-        function AssistidoService(db) {
+        function AssistidoService(db, aviso) {
           _classCallCheck(this, AssistidoService);
 
           this.db = db;
-          this.path = 'assistidos';
+          this.aviso = aviso;
+          this.path = "assistidos";
           this.assistidoLista = new Array();
           this.assistidoRef = this.db.list(this.path);
+          this.mensagens = new _util_MensagensUtil__WEBPACK_IMPORTED_MODULE_5__["MensagensUtil"](aviso);
         }
 
         _createClass(AssistidoService, [{
           key: "listar",
           value: function listar() {
-            return this.assistidos = this.assistidoRef.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (changes) {
+            return this.assistidos = this.assistidoRef.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (changes) {
               return changes.map(function (c) {
                 return Object.assign({
                   key: c.payload.key
@@ -936,11 +1434,25 @@
           }
         }, {
           key: "adicionarOuAtualizar",
-          value: function adicionarOuAtualizar(assistido) {
+          value: function adicionarOuAtualizar(assistido, mensagem) {
+            var _this3 = this;
+
             if (assistido.key) {
-              this.assistidoRef.update(assistido.key, assistido);
+              this.assistidoRef.update(assistido.key, assistido).then(function (sucess) {
+                _this3.mensagens.mensagemSucesso(mensagem);
+              }, function (error) {
+                _this3.mensagens.mensagemError("Houve um erro ao cadastrar.");
+
+                console.log(error);
+              });
             } else {
-              this.assistidoRef.push(assistido);
+              this.assistidoRef.push(assistido).then(function (sucess) {
+                _this3.mensagens.mensagemSucesso(mensagem);
+              }, function (error) {
+                _this3.mensagens.mensagemError("Houve um erro ao cadastrar.");
+
+                console.log(error);
+              });
             }
           }
         }, {
@@ -953,18 +1465,6 @@
           value: function deletarTudo() {
             this.assistidoRef.remove();
           }
-        }, {
-          key: "carregaListaAssistidos",
-          value: function carregaListaAssistidos() {
-            var _this = this;
-
-            this.listar().toPromise().then(function (sucess) {
-              _this.assistidoLista = sucess;
-            }, function (error) {
-              console.log(error);
-            });
-            return this.assistidoLista;
-          }
         }]);
 
         return AssistidoService;
@@ -972,12 +1472,14 @@
 
       AssistidoService.ctorParameters = function () {
         return [{
-          type: _angular_fire_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"]
+          type: _angular_fire_database__WEBPACK_IMPORTED_MODULE_3__["AngularFireDatabase"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ToastController"]
         }];
       };
 
-      AssistidoService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
+      AssistidoService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
+        providedIn: "root"
       })], AssistidoService);
       /***/
     },
@@ -1175,6 +1677,46 @@
       }();
       /***/
 
+    },
+
+    /***/
+    "lZj5":
+    /*!***************************************************************************************************!*\
+      !*** ./src/app/pages/componentes/registro-consultorio-modal/registro-consultorio-modal.page.scss ***!
+      \***************************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function lZj5(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJyZWdpc3Ryby1jb25zdWx0b3Jpby1tb2RhbC5wYWdlLnNjc3MifQ== */";
+      /***/
+    },
+
+    /***/
+    "mka3":
+    /*!*****************************************************************************************************************************************!*\
+      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/componentes/registro-consultorio-modal/registro-consultorio-modal.page.html ***!
+      \*****************************************************************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function mka3(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Anotações</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <ion-list style=\"margin-top: 20%\">\n    <ion-item>\n      <ion-label>Nome do paciente</ion-label>\n      <ion-searchbar\n        (ionChange)=\"onSearchTerm($event)\"\n        placeholder=\"Digite o nome do assistido\"\n        color=\"tertiary\"\n      ></ion-searchbar>\n    </ion-item>\n  </ion-list> -->\n  <ion-list>\n    <ion-searchbar\n      (ionChange)=\"onSearchTerm($event)\"\n      placeholder=\"Digite o nome do paciente\"\n      color=\"tertiary\"\n      [(ngModel)]=\"termoPesquisa\"\n    ></ion-searchbar>\n    <div style=\"width: 100%; height: auto;\">\n      <ion-virtual-scroll [items]=\"listaMembrosFiltrados\">\n        <ion-item *virtualItem=\"let item\" (click)=\"membroSelecionado(item)\">\n          {{ item.nomeCompleto }}\n        </ion-item>\n      </ion-virtual-scroll>\n    </div>\n  </ion-list>\n  <ion-item>\n    <ion-textarea\n      [(ngModel)]=\"diario.registro\"\n      rows=\"10\"\n      cols=\"20\"\n      placeholder=\"Digite aqui o diario do paciente...\"\n      maxlength=\"500\"\n    ></ion-textarea>\n  </ion-item>\n  <br />\n  <div style=\"margin-left: 62.5%\">\n    <ion-button (click)=\"enviarRegistro()\">Enviar</ion-button>\n    <ion-button (click)=\"fecharModal()\">Cancelar</ion-button>\n  </div>\n</ion-content>\n";
+      /***/
     },
 
     /***/
@@ -1474,6 +2016,26 @@
     },
 
     /***/
+    "rCGp":
+    /*!***********************************************************************************************************************************!*\
+      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/componentes/sistema-relatorio-modal/sistema-relatorio-modal.page.html ***!
+      \***********************************************************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function rCGp(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"inicio\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <iframe [src]=\"openRelatorio()\" frameborder=\"0\"></iframe>\n</ion-content>";
+      /***/
+    },
+
+    /***/
     "tHhQ":
     /*!**********************************!*\
       !*** ./src/app/mapper/Evento.ts ***!
@@ -1572,6 +2134,33 @@
 
         return ValidadorCamposObrigatorios;
       }();
+      /***/
+
+    },
+
+    /***/
+    "vujH":
+    /*!**********************************!*\
+      !*** ./src/app/modelo/Diario.ts ***!
+      \**********************************/
+
+    /*! exports provided: Diario */
+
+    /***/
+    function vujH(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "Diario", function () {
+        return Diario;
+      });
+
+      var Diario = function Diario() {
+        _classCallCheck(this, Diario);
+      };
       /***/
 
     }

@@ -1,14 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { ModalController, ToastController } from "@ionic/angular";
-import { Observable } from "rxjs";
-import { Membro } from "src/app/modelo/Membro";
-import { Usuario } from "src/app/modelo/Usuario";
-import { AutenticacaoService } from "src/app/servicos/Autenticacao";
-import { MembroService } from "src/app/servicos/Membro";
-import { MensagensUtil } from "src/app/util/MensagensUtil";
+import { Component, OnInit } from '@angular/core';
+import { ModalController, NavController, ToastController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { Membro } from 'src/app/modelo/Membro';
+import { Usuario } from 'src/app/modelo/Usuario';
+import { AutenticacaoService } from 'src/app/servicos/Autenticacao';
+import { MembroService } from 'src/app/servicos/Membro';
+import { MensagensUtil } from 'src/app/util/MensagensUtil';
 
-import { SistemaRelatorioModalPage } from "../componentes/sistema-relatorio-modal/sistema-relatorio-modal.page";
-import { DadosUsuarioUtil } from "./../../util/DadosUsuarioUtil";
+import { SistemaRelatorioModalPage } from '../componentes/sistema-relatorio-modal/sistema-relatorio-modal.page';
+import { DadosUsuarioUtil } from './../../util/DadosUsuarioUtil';
+import { RedirecionadorUtil } from './../../util/RedirecionadorUtil';
 
 @Component({
   selector: "app-inicio",
@@ -16,7 +17,10 @@ import { DadosUsuarioUtil } from "./../../util/DadosUsuarioUtil";
   styleUrls: ["./inicio.page.scss"],
 })
 export class InicioPage implements OnInit {
+  //Utils
   mensagens: MensagensUtil;
+  redirecionadorUtil: RedirecionadorUtil;
+
   usuario: Usuario;
   membro: Membro;
   totalMembros: number;
@@ -34,9 +38,11 @@ export class InicioPage implements OnInit {
     private autenticacao: AutenticacaoService,
     private aviso: ToastController,
     private membroService: MembroService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private navCtrl: NavController
   ) {
     this.mensagens = new MensagensUtil(this.aviso);
+    this.redirecionadorUtil = new RedirecionadorUtil(this.navCtrl);
     this.usuario = DadosUsuarioUtil.dadosUsuarioLogado();
   }
 
@@ -57,27 +63,35 @@ export class InicioPage implements OnInit {
 
   private async inicializar() {
     this.listaMembrosObservable = this.membroService.listar();
-    this.listaMembrosObservable.subscribe(response => {
+    this.listaMembrosObservable.subscribe((response) => {
       this.listaMembros = response;
       this.totalMembros = this.listaMembros.length;
-      this.listaMembrosFiltrados = this.listaMembros.sort((a, b) => (a.nomeCompleto > b.nomeCompleto ? 1 : b.nomeCompleto > a.nomeCompleto ? -1 : 0));
+      this.listaMembrosFiltrados = this.listaMembros.sort((a, b) =>
+        a.nomeCompleto > b.nomeCompleto
+          ? 1
+          : b.nomeCompleto > a.nomeCompleto
+          ? -1
+          : 0
+      );
       this.verificarTelasUsuario(response);
     });
   }
 
   verificarTelasUsuario(membros) {
-    const membroEncontrado = membros.find(m => m.email === this.usuario.email);
-  
+    const membroEncontrado = membros.find(
+      (m) => m.email === this.usuario.email
+    );
+
     if (membroEncontrado) {
       switch (membroEncontrado.perfil) {
-        case 'ADMIN':
-        case 'SEC':
+        case "ADMIN":
+        case "SEC":
           this.permissaoAdmin = true;
           break;
-        case 'FIN':
+        case "FIN":
           this.permissaoFinancas = true;
           break;
-        case 'PSI':
+        case "PSI":
           this.permissaoPsicologo = true;
           break;
       }

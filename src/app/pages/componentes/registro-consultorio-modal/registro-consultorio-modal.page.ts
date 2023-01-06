@@ -1,3 +1,4 @@
+import { DadosUsuarioUtil } from './../../../util/DadosUsuarioUtil';
 import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { Observable } from "rxjs/internal/Observable";
@@ -71,7 +72,7 @@ export class RegistroConsultorioModalPage implements OnInit {
   }
 
   private informacoesPsicologo() {
-    this.usuario = this.autenticacaoService.pegarDadosLocalmente();
+    this.usuario = DadosUsuarioUtil.dadosUsuarioLogado();
 
     const usuarioEncontrado = this.listaMembros.filter(
       (membros) => membros.email === this.usuario.email

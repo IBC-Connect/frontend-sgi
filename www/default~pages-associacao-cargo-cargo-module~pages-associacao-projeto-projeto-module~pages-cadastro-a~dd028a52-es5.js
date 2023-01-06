@@ -804,7 +804,7 @@
         function DateUtil() {
           _classCallCheck(this, DateUtil);
 
-          moment__WEBPACK_IMPORTED_MODULE_0__["locale"]('pt-br');
+          moment__WEBPACK_IMPORTED_MODULE_0__["locale"]("pt-br");
         }
 
         _createClass(DateUtil, null, [{
@@ -825,12 +825,12 @@
         }, {
           key: "dateFormatterAmerica",
           value: function dateFormatterAmerica(data) {
-            return data.split('/').reverse().join('-');
+            return data.split("/").reverse().join("-");
           }
         }, {
           key: "dateFormatterBrazil",
           value: function dateFormatterBrazil(data) {
-            return moment__WEBPACK_IMPORTED_MODULE_0__(data).format('DD/MM/YYYY');
+            return moment__WEBPACK_IMPORTED_MODULE_0__(data).format("DD/MM/YYYY");
           }
         }, {
           key: "numeroDiasEntreDuasDatas",
@@ -849,19 +849,19 @@
         }, {
           key: "calcularData",
           value: function calcularData(data, dias) {
-            return moment__WEBPACK_IMPORTED_MODULE_0__(data).add(dias, 'year').subtract(1, 'days').format('YYYY-MM-DD');
+            return moment__WEBPACK_IMPORTED_MODULE_0__(data).add(dias, "year").subtract(1, "days").format("YYYY-MM-DD");
           }
         }, {
           key: "verificarIntervaloHora",
           value: function verificarIntervaloHora(horaI, horaF) {
-            var horaInicial = Number(horaI.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat('am'), 'hh:mma') : moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat('pm'), 'hh:mmp');
-            var horaFinal = Number(horaF.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat('am'), 'hh:mma') : moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat('pm'), 'hh:mmp');
+            var horaInicial = Number(horaI.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat("am"), "hh:mma") : moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat("pm"), "hh:mmp");
+            var horaFinal = Number(horaF.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat("am"), "hh:mma") : moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat("pm"), "hh:mmp");
             return horaInicial.isBefore(horaFinal);
           }
         }, {
           key: "isIdadeMaiorDozeAnos",
           value: function isIdadeMaiorDozeAnos(dataNasc) {
-            var idade = moment__WEBPACK_IMPORTED_MODULE_0__().diff(this.dateFormatterAmerica(dataNasc), 'years');
+            var idade = moment__WEBPACK_IMPORTED_MODULE_0__().diff(this.dateFormatterAmerica(dataNasc), "years");
             return idade >= 12;
           }
         }]);
@@ -961,137 +961,6 @@
         return [];
       }; //# sourceMappingURL=app.module.js.map
 
-      /***/
-
-    },
-
-    /***/
-    "sZxV":
-    /*!***************************************!*\
-      !*** ./src/app/util/MensagensUtil.ts ***!
-      \***************************************/
-
-    /*! exports provided: MensagensUtil */
-
-    /***/
-    function sZxV(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "MensagensUtil", function () {
-        return MensagensUtil;
-      });
-      /* harmony import */
-
-
-      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! tslib */
-      "mrSG");
-
-      var MensagensUtil = /*#__PURE__*/function () {
-        function MensagensUtil(aviso) {
-          _classCallCheck(this, MensagensUtil);
-
-          this.aviso = aviso;
-        }
-
-        _createClass(MensagensUtil, [{
-          key: "mensagemSucesso",
-          value: function mensagemSucesso(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee$(_context) {
-                while (1) {
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'sucesso',
-                        position: 'top',
-                        message: message,
-                        duration: 3000,
-                        color: 'success'
-                      });
-                      _context.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context.stop();
-                  }
-                }
-              }, _callee, this);
-            }));
-          }
-        }, {
-          key: "mensagemError",
-          value: function mensagemError(error) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee2$(_context2) {
-                while (1) {
-                  switch (_context2.prev = _context2.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'error',
-                        position: 'top',
-                        message: error,
-                        duration: 3000,
-                        color: 'danger'
-                      });
-                      _context2.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context2.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context2.stop();
-                  }
-                }
-              }, _callee2, this);
-            }));
-          }
-        }, {
-          key: "mensagemAlerta",
-          value: function mensagemAlerta(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee3$(_context3) {
-                while (1) {
-                  switch (_context3.prev = _context3.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'alerta',
-                        position: 'top',
-                        message: message,
-                        duration: 3000,
-                        color: 'warning'
-                      });
-                      _context3.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context3.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context3.stop();
-                  }
-                }
-              }, _callee3, this);
-            }));
-          }
-        }]);
-
-        return MensagensUtil;
-      }();
       /***/
 
     }

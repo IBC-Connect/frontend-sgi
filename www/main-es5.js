@@ -17,7 +17,7 @@
     /***/
     function _(module, exports, __webpack_require__) {
       module.exports = __webpack_require__(
-      /*! /Users/joaopedrotavares/Documents/Dev/frontend-sgi/src/main.ts */
+      /*! C:\Users\joaop\Desenvolvimento\IBC\frontend-sgi\src\main.ts */
       "zUnb");
       /***/
     },
@@ -382,36 +382,50 @@
       /* harmony import */
 
 
-      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @ionic/angular */
+      "TEn/");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @angular/core */
       "fXoL");
       /* harmony import */
 
 
-      var _angular_fire_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      var _angular_fire_database__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @angular/fire/database */
       "sSZD");
       /* harmony import */
 
 
-      var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! rxjs/operators */
       "kU1M");
+      /* harmony import */
+
+
+      var _util_MensagensUtil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! ../util/MensagensUtil */
+      "sZxV");
 
       var ProjetoService = /*#__PURE__*/function () {
-        function ProjetoService(db) {
+        function ProjetoService(db, aviso) {
           _classCallCheck(this, ProjetoService);
 
           this.db = db;
-          this.path = 'projetos';
+          this.aviso = aviso;
+          this.path = "projetos";
           this.projetosLista = new Array();
           this.projetoRef = this.db.list(this.path);
+          this.mensagens = new _util_MensagensUtil__WEBPACK_IMPORTED_MODULE_5__["MensagensUtil"](this.aviso);
         }
 
         _createClass(ProjetoService, [{
           key: "listar",
           value: function listar() {
-            return this.projetos = this.projetoRef.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (changes) {
+            return this.projetos = this.projetoRef.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (changes) {
               return changes.map(function (c) {
                 return Object.assign({
                   key: c.payload.key
@@ -421,34 +435,46 @@
           }
         }, {
           key: "adicionarOuAtualizar",
-          value: function adicionarOuAtualizar(projeto) {
+          value: function adicionarOuAtualizar(projeto, mensagem) {
+            var _this2 = this;
+
             if (projeto.key) {
-              this.projetoRef.update(projeto.key, projeto);
+              this.projetoRef.update(projeto.key, projeto).then(function (sucess) {
+                _this2.mensagens.mensagemSucesso(mensagem);
+              }, function (error) {
+                _this2.mensagens.mensagemError("Houve um erro ao cadastrar.");
+
+                console.log(error);
+              });
             } else {
-              this.projetoRef.push(projeto);
+              this.projetoRef.push(projeto).then(function (sucess) {
+                _this2.mensagens.mensagemSucesso(mensagem);
+              }, function (error) {
+                _this2.mensagens.mensagemError("Houve um erro ao cadastrar.");
+
+                console.log(error);
+              });
+              ;
             }
           }
         }, {
           key: "deletar",
-          value: function deletar(key) {
-            this.projetoRef.remove(key);
+          value: function deletar(key, mensagem) {
+            var _this3 = this;
+
+            this.projetoRef.remove(key).then(function (sucess) {
+              _this3.mensagens.mensagemSucesso(mensagem);
+            }, function (error) {
+              _this3.mensagens.mensagemError("Houve um erro ao cadastrar.");
+
+              console.log(error);
+            });
+            ;
           }
         }, {
           key: "deletarTudo",
           value: function deletarTudo() {
             this.projetoRef.remove();
-          }
-        }, {
-          key: "carregaListaProjetos",
-          value: function carregaListaProjetos() {
-            var _this2 = this;
-
-            this.listar().toPromise().then(function (sucess) {
-              _this2.projetosLista = sucess;
-            }, function (error) {
-              console.log(error);
-            });
-            return this.projetosLista;
           }
         }]);
 
@@ -457,12 +483,14 @@
 
       ProjetoService.ctorParameters = function () {
         return [{
-          type: _angular_fire_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"]
+          type: _angular_fire_database__WEBPACK_IMPORTED_MODULE_3__["AngularFireDatabase"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ToastController"]
         }];
       };
 
-      ProjetoService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
+      ProjetoService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
+        providedIn: "root"
       })], ProjetoService);
       /***/
     },
@@ -543,7 +571,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n";
+      __webpack_exports__["default"] = "<ion-app>\r\n  <ion-router-outlet></ion-router-outlet>\r\n</ion-app>\r\n";
       /***/
     },
 
@@ -771,9 +799,9 @@
       /* harmony import */
 
 
-      var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! rxjs/operators */
-      "kU1M");
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @ionic/angular */
+      "TEn/");
       /* harmony import */
 
 
@@ -782,27 +810,70 @@
       "tTKV");
 
       var AutenticacaoGuard = /*#__PURE__*/function () {
-        function AutenticacaoGuard(autenticaService, router) {
+        function AutenticacaoGuard(autenticaService, router, alertController) {
           _classCallCheck(this, AutenticacaoGuard);
 
           this.autenticaService = autenticaService;
           this.router = router;
+          this.alertController = alertController;
         }
 
         _createClass(AutenticacaoGuard, [{
           key: "canActivateChild",
           value: function canActivateChild(route, state) {
-            var _this3 = this;
+            var _this4 = this;
 
-            return this.autenticaService.userData$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (user) {
-              if (user) {
-                return true;
-              } else {
-                _this3.router.navigate(['/login']);
+            var usuarioAutenticado = false;
+            this.autenticaService.afAuth.onAuthStateChanged(function (user) {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this4, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+                var _this5 = this;
 
-                return false;
-              }
-            }));
+                var alert;
+                return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                  while (1) {
+                    switch (_context2.prev = _context2.next) {
+                      case 0:
+                        if (!user) {
+                          _context2.next = 4;
+                          break;
+                        }
+
+                        // User is signed in, see docs for a list of available properties
+                        // https://firebase.google.com/docs/reference/js/firebase.User
+                        usuarioAutenticado = true;
+                        _context2.next = 9;
+                        break;
+
+                      case 4:
+                        _context2.next = 6;
+                        return this.alertController.create({
+                          header: "Aviso",
+                          message: "Você passou muito tempo sem acessar o site, você precisa fazer o login novamente.",
+                          backdropDismiss: false,
+                          buttons: [{
+                            text: "Ok",
+                            handler: function handler() {
+                              _this5.alertController.dismiss();
+
+                              _this5.router.navigate(["/login"]);
+                            }
+                          }]
+                        });
+
+                      case 6:
+                        alert = _context2.sent;
+                        _context2.next = 9;
+                        return alert.present();
+
+                      case 9:
+                      case "end":
+                        return _context2.stop();
+                    }
+                  }
+                }, _callee2, this);
+              }));
+            });
+            return !usuarioAutenticado;
           }
         }]);
 
@@ -814,11 +885,13 @@
           type: _servicos_Autenticacao__WEBPACK_IMPORTED_MODULE_4__["AutenticacaoService"]
         }, {
           type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]
         }];
       };
 
       AutenticacaoGuard = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
+        providedIn: "root"
       })], AutenticacaoGuard);
       /***/
     },
@@ -911,11 +984,11 @@
         }, {
           key: "carregaListaMembros",
           value: function carregaListaMembros() {
-            var _this4 = this;
+            var _this6 = this;
 
             this.listar().toPromise().then(function (sucess) {
               console.log(sucess);
-              _this4.membrosLista = sucess;
+              _this6.membrosLista = sucess;
             }, function (error) {
               console.log(error);
             });
@@ -1052,6 +1125,137 @@
     },
 
     /***/
+    "sZxV":
+    /*!***************************************!*\
+      !*** ./src/app/util/MensagensUtil.ts ***!
+      \***************************************/
+
+    /*! exports provided: MensagensUtil */
+
+    /***/
+    function sZxV(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "MensagensUtil", function () {
+        return MensagensUtil;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+
+      var MensagensUtil = /*#__PURE__*/function () {
+        function MensagensUtil(aviso) {
+          _classCallCheck(this, MensagensUtil);
+
+          this.aviso = aviso;
+        }
+
+        _createClass(MensagensUtil, [{
+          key: "mensagemSucesso",
+          value: function mensagemSucesso(message) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+              var exibirMensagem;
+              return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                while (1) {
+                  switch (_context3.prev = _context3.next) {
+                    case 0:
+                      exibirMensagem = this.aviso.create({
+                        id: 'sucesso',
+                        position: 'top',
+                        message: message,
+                        duration: 3000,
+                        color: 'success'
+                      });
+                      _context3.next = 3;
+                      return exibirMensagem;
+
+                    case 3:
+                      _context3.sent.present();
+
+                    case 4:
+                    case "end":
+                      return _context3.stop();
+                  }
+                }
+              }, _callee3, this);
+            }));
+          }
+        }, {
+          key: "mensagemError",
+          value: function mensagemError(error) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+              var exibirMensagem;
+              return regeneratorRuntime.wrap(function _callee4$(_context4) {
+                while (1) {
+                  switch (_context4.prev = _context4.next) {
+                    case 0:
+                      exibirMensagem = this.aviso.create({
+                        id: 'error',
+                        position: 'top',
+                        message: error,
+                        duration: 3000,
+                        color: 'danger'
+                      });
+                      _context4.next = 3;
+                      return exibirMensagem;
+
+                    case 3:
+                      _context4.sent.present();
+
+                    case 4:
+                    case "end":
+                      return _context4.stop();
+                  }
+                }
+              }, _callee4, this);
+            }));
+          }
+        }, {
+          key: "mensagemAlerta",
+          value: function mensagemAlerta(message) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+              var exibirMensagem;
+              return regeneratorRuntime.wrap(function _callee5$(_context5) {
+                while (1) {
+                  switch (_context5.prev = _context5.next) {
+                    case 0:
+                      exibirMensagem = this.aviso.create({
+                        id: 'alerta',
+                        position: 'top',
+                        message: message,
+                        duration: 3000,
+                        color: 'warning'
+                      });
+                      _context5.next = 3;
+                      return exibirMensagem;
+
+                    case 3:
+                      _context5.sent.present();
+
+                    case 4:
+                    case "end":
+                      return _context5.stop();
+                  }
+                }
+              }, _callee5, this);
+            }));
+          }
+        }]);
+
+        return MensagensUtil;
+      }();
+      /***/
+
+    },
+
+    /***/
     "tTKV":
     /*!******************************************!*\
       !*** ./src/app/servicos/Autenticacao.ts ***!
@@ -1110,35 +1314,35 @@
         _createClass(AutenticacaoService, [{
           key: "login",
           value: function login(usuario) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-              return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+              return regeneratorRuntime.wrap(function _callee6$(_context6) {
                 while (1) {
-                  switch (_context2.prev = _context2.next) {
+                  switch (_context6.prev = _context6.next) {
                     case 0:
-                      _context2.next = 2;
+                      _context6.next = 2;
                       return this.afAuth.signInWithEmailAndPassword(usuario.email.trim(), usuario.senha.trim());
 
                     case 2:
-                      return _context2.abrupt("return", _context2.sent);
+                      return _context6.abrupt("return", _context6.sent);
 
                     case 3:
                     case "end":
-                      return _context2.stop();
+                      return _context6.stop();
                   }
                 }
-              }, _callee2, this);
+              }, _callee6, this);
             }));
           }
         }, {
           key: "criarUsuario",
           value: function criarUsuario(membro) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
               var novoUsuario;
-              return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              return regeneratorRuntime.wrap(function _callee7$(_context7) {
                 while (1) {
-                  switch (_context3.prev = _context3.next) {
+                  switch (_context7.prev = _context7.next) {
                     case 0:
-                      _context3.next = 2;
+                      _context7.next = 2;
                       return this.afAuth.createUserWithEmailAndPassword(membro.email.trim(), membro.senha.trim()).then(function (sucesso) {
                         novoUsuario = sucesso;
                       }, function (erro) {
@@ -1146,67 +1350,67 @@
                       });
 
                     case 2:
-                      return _context3.abrupt("return", novoUsuario);
+                      return _context7.abrupt("return", novoUsuario);
 
                     case 3:
                     case "end":
-                      return _context3.stop();
+                      return _context7.stop();
                   }
                 }
-              }, _callee3, this);
+              }, _callee7, this);
             }));
           }
         }, {
           key: "deletarMembro",
           value: function deletarMembro(membro) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-              return regeneratorRuntime.wrap(function _callee4$(_context4) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+              return regeneratorRuntime.wrap(function _callee8$(_context8) {
                 while (1) {
-                  switch (_context4.prev = _context4.next) {
+                  switch (_context8.prev = _context8.next) {
                     case 0:
-                      return _context4.abrupt("return", this.afAuth.signInWithEmailAndPassword(membro.email.trim(), membro.senha.trim()).then(function (sucess) {
+                      return _context8.abrupt("return", this.afAuth.signInWithEmailAndPassword(membro.email.trim(), membro.senha.trim()).then(function (sucess) {
                         sucess.user["delete"]();
                       }));
 
                     case 1:
                     case "end":
-                      return _context4.stop();
+                      return _context8.stop();
                   }
                 }
-              }, _callee4, this);
+              }, _callee8, this);
             }));
           }
         }, {
           key: "resetarSenha",
           value: function resetarSenha(email) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
-              return regeneratorRuntime.wrap(function _callee5$(_context5) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+              return regeneratorRuntime.wrap(function _callee9$(_context9) {
                 while (1) {
-                  switch (_context5.prev = _context5.next) {
+                  switch (_context9.prev = _context9.next) {
                     case 0:
-                      _context5.next = 2;
+                      _context9.next = 2;
                       return this.afAuth.sendPasswordResetEmail(email);
 
                     case 2:
-                      return _context5.abrupt("return", _context5.sent);
+                      return _context9.abrupt("return", _context9.sent);
 
                     case 3:
                     case "end":
-                      return _context5.stop();
+                      return _context9.stop();
                   }
                 }
-              }, _callee5, this);
+              }, _callee9, this);
             }));
           }
         }, {
           key: "sair",
           value: function sair() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
-              return regeneratorRuntime.wrap(function _callee6$(_context6) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
+              return regeneratorRuntime.wrap(function _callee10$(_context10) {
                 while (1) {
-                  switch (_context6.prev = _context6.next) {
+                  switch (_context10.prev = _context10.next) {
                     case 0:
-                      _context6.next = 2;
+                      _context10.next = 2;
                       return this.afAuth.signOut().then(function () {
                         localStorage.clear();
                       }, function (erro) {
@@ -1215,10 +1419,10 @@
 
                     case 2:
                     case "end":
-                      return _context6.stop();
+                      return _context10.stop();
                   }
                 }
-              }, _callee6, this);
+              }, _callee10, this);
             }));
           }
         }, {
@@ -1359,7 +1563,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-cadastro-projeto-projeto-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-cadastro-projeto-projeto-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-cadastro-projeto-projeto-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/cadastro/projeto/projeto.module */
           "H+Lx")).then(function (m) {
             return m.ProjetoPageModule;
@@ -1371,7 +1575,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-cadastro-membro-membro-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-cadastro-membro-membro-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-cadastro-membro-membro-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/cadastro/membro/membro.module */
           "BOWJ")).then(function (m) {
             return m.MembroPageModule;
@@ -1383,7 +1587,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-cadastro-evento-evento-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-cadastro-evento-evento-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-cadastro-evento-evento-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/cadastro/evento/evento.module */
           "mGz3")).then(function (m) {
             return m.EventoPageModule;
@@ -1419,7 +1623,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-listagem-evento-evento-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("common"), __webpack_require__.e("pages-listagem-evento-evento-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("common"), __webpack_require__.e("pages-listagem-evento-evento-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/listagem/evento/evento.module */
           "oNin")).then(function (m) {
             return m.EventoPageModule;
@@ -1455,7 +1659,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-listagem-assistido-assistido-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("common"), __webpack_require__.e("pages-listagem-assistido-assistido-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("common"), __webpack_require__.e("pages-listagem-assistido-assistido-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/listagem/assistido/assistido.module */
           "N3wM")).then(function (m) {
             return m.AssistidoPageModule;
@@ -1466,7 +1670,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-listagem-membro-congregado-congregado-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("congregado-congregado-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("congregado-congregado-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/listagem/membro/congregado/congregado.module */
           "Ewl5")).then(function (m) {
             return m.CongregadoPageModule;
@@ -1477,7 +1681,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-listagem-membro-voluntario-voluntario-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("voluntario-voluntario-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("voluntario-voluntario-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/listagem/membro/voluntario/voluntario.module */
           "5T/8")).then(function (m) {
             return m.VoluntarioPageModule;
@@ -1499,7 +1703,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-edicao-membro-membro-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-edicao-membro-membro-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-edicao-membro-membro-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/edicao/membro/membro.module */
           "2r89")).then(function (m) {
             return m.MembroPageModule;
@@ -1523,7 +1727,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-associacao-cargo-cargo-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-associacao-cargo-cargo-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-associacao-cargo-cargo-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/associacao/cargo/cargo.module */
           "nPj0")).then(function (m) {
             return m.CargoPageModule;
@@ -1559,7 +1763,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-edicao-projeto-projeto-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-edicao-projeto-projeto-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-edicao-projeto-projeto-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/edicao/projeto/projeto.module */
           "EdWE")).then(function (m) {
             return m.ProjetoPageModule;
@@ -1571,7 +1775,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-associacao-projeto-projeto-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("pages-associacao-projeto-projeto-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("pages-associacao-projeto-projeto-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/associacao/projeto/projeto.module */
           "VT+I")).then(function (m) {
             return m.ProjetoPageModule;
@@ -1583,7 +1787,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-edicao-evento-evento-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-edicao-evento-evento-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-edicao-evento-evento-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/edicao/evento/evento.module */
           "+Msw")).then(function (m) {
             return m.EventoPageModule;
@@ -1595,7 +1799,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-edicao-assistido-assistido-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-edicao-assistido-assistido-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-edicao-assistido-assistido-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/edicao/assistido/assistido.module */
           "Ed6+")).then(function (m) {
             return m.AssistidoPageModule;
@@ -1606,7 +1810,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-aniversario-do-mes-aniversario-do-mes-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("pages-aniversario-do-mes-aniversario-do-mes-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("pages-aniversario-do-mes-aniversario-do-mes-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/aniversario-do-mes/aniversario-do-mes.module */
           "FRyj")).then(function (m) {
             return m.AniversarioDoMesPageModule;
@@ -1642,13 +1846,46 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-cadastro-assistido-assistido-module */
-          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~a31d8c78"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-cadastro-assistido-assistido-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("default~pages-associacao-cargo-cargo-module~pages-associacao-projeto-projeto-module~pages-cadastro-a~dd028a52"), __webpack_require__.e("common"), __webpack_require__.e("pages-cadastro-assistido-assistido-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/cadastro/assistido/assistido.module */
           "DElZ")).then(function (m) {
             return m.AssistidoPageModule;
           });
         },
         canActivateChild: [_app_seguranca_autenticacao_guard__WEBPACK_IMPORTED_MODULE_3__["AutenticacaoGuard"]]
+      }, {
+        path: 'consultorio',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | pages-consultorio-consultorio-module */
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("common"), __webpack_require__.e("pages-consultorio-consultorio-module")]).then(__webpack_require__.bind(null,
+          /*! ./pages/consultorio/consultorio.module */
+          "MbY4")).then(function (m) {
+            return m.ConsultorioPageModule;
+          });
+        }
+      }, {
+        path: 'registro-consultorio-modal',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | pages-componentes-registro-consultorio-modal-registro-consultorio-modal-module */
+          [__webpack_require__.e("default~congregado-congregado-module~membro-ativo-membro-ativo-module~membro-inativo-membro-inativo-~fb4509aa"), __webpack_require__.e("common"), __webpack_require__.e("pages-componentes-registro-consultorio-modal-registro-consultorio-modal-module")]).then(__webpack_require__.bind(null,
+          /*! ./pages/componentes/registro-consultorio-modal/registro-consultorio-modal.module */
+          "g5or")).then(function (m) {
+            return m.RegistroConsultorioModalPageModule;
+          });
+        }
+      }, {
+        path: 'sistema-relatorio-modal',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | pages-componentes-sistema-relatorio-modal-sistema-relatorio-modal-module */
+          [__webpack_require__.e("common"), __webpack_require__.e("pages-componentes-sistema-relatorio-modal-sistema-relatorio-modal-module")]).then(__webpack_require__.bind(null,
+          /*! ./pages/componentes/sistema-relatorio-modal/sistema-relatorio-modal.module */
+          "1iOX")).then(function (m) {
+            return m.SistemaRelatorioModalPageModule;
+          });
+        }
       }];
 
       var AppRoutingModule = function AppRoutingModule() {
@@ -1680,7 +1917,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "ion-content {\n  --background: #d9d9d9;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL2FwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLHFCQUFBO0FBQ0oiLCJmaWxlIjoiYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNvbnRlbnR7XG4gICAgLS1iYWNrZ3JvdW5kOiAjZDlkOWQ5O1xufSJdfQ== */";
+      __webpack_exports__["default"] = "ion-content {\n  --background: #d9d9d9;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0kscUJBQUE7QUFDSiIsImZpbGUiOiJhcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY29udGVudHtcclxuICAgIC0tYmFja2dyb3VuZDogI2Q5ZDlkOTtcclxufSJdfQ== */";
       /***/
     },
 

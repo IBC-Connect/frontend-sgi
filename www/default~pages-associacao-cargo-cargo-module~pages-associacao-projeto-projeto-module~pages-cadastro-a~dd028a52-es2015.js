@@ -576,7 +576,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class DateUtil {
     constructor() {
-        moment__WEBPACK_IMPORTED_MODULE_0__["locale"]('pt-br');
+        moment__WEBPACK_IMPORTED_MODULE_0__["locale"]("pt-br");
     }
     static isDataDoisMaiorDataUm(dataUm, dataDois) {
         return moment__WEBPACK_IMPORTED_MODULE_0__(this.dateFormatterAmerica(dataDois)).isBefore(this.dateFormatterAmerica(dataUm));
@@ -588,10 +588,10 @@ class DateUtil {
         return moment__WEBPACK_IMPORTED_MODULE_0__(this.dateFormatterAmerica(dataDois)).isSame(this.dateFormatterAmerica(dataUm));
     }
     static dateFormatterAmerica(data) {
-        return data.split('/').reverse().join('-');
+        return data.split("/").reverse().join("-");
     }
     static dateFormatterBrazil(data) {
-        return moment__WEBPACK_IMPORTED_MODULE_0__(data).format('DD/MM/YYYY');
+        return moment__WEBPACK_IMPORTED_MODULE_0__(data).format("DD/MM/YYYY");
     }
     static numeroDiasEntreDuasDatas(dataUm, dataDois) {
         const dataInicio = moment__WEBPACK_IMPORTED_MODULE_0__(dataUm);
@@ -604,15 +604,22 @@ class DateUtil {
         return dataValida.isValid();
     }
     static calcularData(data, dias) {
-        return moment__WEBPACK_IMPORTED_MODULE_0__(data).add(dias, 'year').subtract(1, 'days').format('YYYY-MM-DD');
+        return moment__WEBPACK_IMPORTED_MODULE_0__(data)
+            .add(dias, "year")
+            .subtract(1, "days")
+            .format("YYYY-MM-DD");
     }
     static verificarIntervaloHora(horaI, horaF) {
-        let horaInicial = Number(horaI.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat('am'), 'hh:mma') : moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat('pm'), 'hh:mmp');
-        let horaFinal = Number(horaF.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat('am'), 'hh:mma') : moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat('pm'), 'hh:mmp');
+        let horaInicial = Number(horaI.substring(0, 2)) < 12
+            ? moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat("am"), "hh:mma")
+            : moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat("pm"), "hh:mmp");
+        let horaFinal = Number(horaF.substring(0, 2)) < 12
+            ? moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat("am"), "hh:mma")
+            : moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat("pm"), "hh:mmp");
         return horaInicial.isBefore(horaFinal);
     }
     static isIdadeMaiorDozeAnos(dataNasc) {
-        let idade = moment__WEBPACK_IMPORTED_MODULE_0__().diff(this.dateFormatterAmerica(dataNasc), 'years');
+        let idade = moment__WEBPACK_IMPORTED_MODULE_0__().diff(this.dateFormatterAmerica(dataNasc), "years");
         return idade >= 12;
     }
 }
@@ -670,46 +677,6 @@ BrMaskerModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInj
 BrMaskerModule.ctorParameters = function () { return []; };
 
 //# sourceMappingURL=app.module.js.map
-
-/***/ }),
-
-/***/ "sZxV":
-/*!***************************************!*\
-  !*** ./src/app/util/MensagensUtil.ts ***!
-  \***************************************/
-/*! exports provided: MensagensUtil */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MensagensUtil", function() { return MensagensUtil; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
-
-class MensagensUtil {
-    constructor(aviso) {
-        this.aviso = aviso;
-    }
-    ;
-    mensagemSucesso(message) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const exibirMensagem = this.aviso.create({ id: 'sucesso', position: 'top', message: message, duration: 3000, color: 'success' });
-            (yield exibirMensagem).present();
-        });
-    }
-    mensagemError(error) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const exibirMensagem = this.aviso.create({ id: 'error', position: 'top', message: error, duration: 3000, color: 'danger' });
-            (yield exibirMensagem).present();
-        });
-    }
-    mensagemAlerta(message) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const exibirMensagem = this.aviso.create({ id: 'alerta', position: 'top', message: message, duration: 3000, color: 'warning' });
-            (yield exibirMensagem).present();
-        });
-    }
-}
-
 
 /***/ })
 

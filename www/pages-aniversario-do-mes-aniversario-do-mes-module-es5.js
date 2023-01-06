@@ -173,7 +173,7 @@
         function DateUtil() {
           _classCallCheck(this, DateUtil);
 
-          moment__WEBPACK_IMPORTED_MODULE_0__["locale"]('pt-br');
+          moment__WEBPACK_IMPORTED_MODULE_0__["locale"]("pt-br");
         }
 
         _createClass(DateUtil, null, [{
@@ -194,12 +194,12 @@
         }, {
           key: "dateFormatterAmerica",
           value: function dateFormatterAmerica(data) {
-            return data.split('/').reverse().join('-');
+            return data.split("/").reverse().join("-");
           }
         }, {
           key: "dateFormatterBrazil",
           value: function dateFormatterBrazil(data) {
-            return moment__WEBPACK_IMPORTED_MODULE_0__(data).format('DD/MM/YYYY');
+            return moment__WEBPACK_IMPORTED_MODULE_0__(data).format("DD/MM/YYYY");
           }
         }, {
           key: "numeroDiasEntreDuasDatas",
@@ -218,19 +218,19 @@
         }, {
           key: "calcularData",
           value: function calcularData(data, dias) {
-            return moment__WEBPACK_IMPORTED_MODULE_0__(data).add(dias, 'year').subtract(1, 'days').format('YYYY-MM-DD');
+            return moment__WEBPACK_IMPORTED_MODULE_0__(data).add(dias, "year").subtract(1, "days").format("YYYY-MM-DD");
           }
         }, {
           key: "verificarIntervaloHora",
           value: function verificarIntervaloHora(horaI, horaF) {
-            var horaInicial = Number(horaI.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat('am'), 'hh:mma') : moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat('pm'), 'hh:mmp');
-            var horaFinal = Number(horaF.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat('am'), 'hh:mma') : moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat('pm'), 'hh:mmp');
+            var horaInicial = Number(horaI.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat("am"), "hh:mma") : moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat("pm"), "hh:mmp");
+            var horaFinal = Number(horaF.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat("am"), "hh:mma") : moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat("pm"), "hh:mmp");
             return horaInicial.isBefore(horaFinal);
           }
         }, {
           key: "isIdadeMaiorDozeAnos",
           value: function isIdadeMaiorDozeAnos(dataNasc) {
-            var idade = moment__WEBPACK_IMPORTED_MODULE_0__().diff(this.dateFormatterAmerica(dataNasc), 'years');
+            var idade = moment__WEBPACK_IMPORTED_MODULE_0__().diff(this.dateFormatterAmerica(dataNasc), "years");
             return idade >= 12;
           }
         }]);
@@ -257,7 +257,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "h1 {\n  font-family: \"Lexend\", sans-serif;\n  text-align: center;\n  margin: 15px;\n  font-size: 16pt;\n  color: #2e2e3c;\n}\n\nh2 {\n  font-size: 12pt;\n  font-family: \"Lexend\", sans-serif;\n}\n\nh2 a {\n  color: #A57D51;\n}\n\nimg {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 20%;\n}\n\nion-grid {\n  margin: 15px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2FuaXZlcnNhcmlvLWRvLW1lcy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRyxpQ0FBQTtFQUNDLGtCQUFBO0VBQ0EsWUFBQTtFQUNBLGVBQUE7RUFFQSxjQUFBO0FBQUo7O0FBR0E7RUFDRSxlQUFBO0VBQ0EsaUNBQUE7QUFBRjs7QUFDRTtFQUNFLGNBQUE7QUFDSjs7QUFHQTtFQUNJLGNBQUE7RUFDQSxpQkFBQTtFQUNBLGtCQUFBO0VBQ0EsVUFBQTtBQUFKOztBQUdDO0VBQ0ksWUFBQTtBQUFMIiwiZmlsZSI6ImFuaXZlcnNhcmlvLWRvLW1lcy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJoMXtcbiAgIGZvbnQtZmFtaWx5OiAnTGV4ZW5kJywgc2Fucy1zZXJpZjtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgbWFyZ2luOiAxNXB4O1xuICAgIGZvbnQtc2l6ZTogMTZwdDtcbiBcbiAgICBjb2xvcjogIzJlMmUzYztcbn1cbiBcbmgye1xuICBmb250LXNpemU6IDEycHQ7XG4gIGZvbnQtZmFtaWx5OiAnTGV4ZW5kJywgc2Fucy1zZXJpZjtcbiAgYSB7XG4gICAgY29sb3I6ICNBNTdENTE7XG4gIH1cbn1cblxuaW1nIHtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgICBtYXJnaW4tbGVmdDogYXV0bztcbiAgICBtYXJnaW4tcmlnaHQ6IGF1dG87XG4gICAgd2lkdGg6MjAlXG59XG5cbiBpb24tZ3JpZHtcbiAgICAgbWFyZ2luOjE1cHhcbiB9XG5cbiJdfQ== */";
+      __webpack_exports__["default"] = "h1 {\n  font-family: \"Lexend\", sans-serif;\n  text-align: center;\n  margin: 15px;\n  font-size: 16pt;\n  color: #2e2e3c;\n}\n\nh2 {\n  font-size: 12pt;\n  font-family: \"Lexend\", sans-serif;\n}\n\nh2 a {\n  color: #A57D51;\n}\n\nimg {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 20%;\n}\n\nion-grid {\n  margin: 15px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxhbml2ZXJzYXJpby1kby1tZXMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0csaUNBQUE7RUFDQyxrQkFBQTtFQUNBLFlBQUE7RUFDQSxlQUFBO0VBRUEsY0FBQTtBQUFKOztBQUdBO0VBQ0UsZUFBQTtFQUNBLGlDQUFBO0FBQUY7O0FBQ0U7RUFDRSxjQUFBO0FBQ0o7O0FBR0E7RUFDSSxjQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTtFQUNBLFVBQUE7QUFBSjs7QUFHQztFQUNJLFlBQUE7QUFBTCIsImZpbGUiOiJhbml2ZXJzYXJpby1kby1tZXMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaDF7XHJcbiAgIGZvbnQtZmFtaWx5OiAnTGV4ZW5kJywgc2Fucy1zZXJpZjtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgIG1hcmdpbjogMTVweDtcclxuICAgIGZvbnQtc2l6ZTogMTZwdDtcclxuIFxyXG4gICAgY29sb3I6ICMyZTJlM2M7XHJcbn1cclxuIFxyXG5oMntcclxuICBmb250LXNpemU6IDEycHQ7XHJcbiAgZm9udC1mYW1pbHk6ICdMZXhlbmQnLCBzYW5zLXNlcmlmO1xyXG4gIGEge1xyXG4gICAgY29sb3I6ICNBNTdENTE7XHJcbiAgfVxyXG59XHJcblxyXG5pbWcge1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICBtYXJnaW4tbGVmdDogYXV0bztcclxuICAgIG1hcmdpbi1yaWdodDogYXV0bztcclxuICAgIHdpZHRoOjIwJVxyXG59XHJcblxyXG4gaW9uLWdyaWR7XHJcbiAgICAgbWFyZ2luOjE1cHhcclxuIH1cclxuXHJcbiJdfQ== */";
       /***/
     },
 
@@ -277,7 +277,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"inicio\"></ion-back-button>\n    </ion-buttons>\n    <ion-title\n      >Aniversariantes do mês: {{aniversarioMes()}}</ion-title\n    >\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <h2 *ngIf=\"totalAniversariantes == 0\"> Não há aniversariantes esse mês.</h2>\n  <ion-searchbar\n    (ionChange)=\"pesquisarMembros($event)\"\n    placeholder=\"Digite o nome do aniversariante.\"\n    color=\"tertiary\"\n  ></ion-searchbar>\n  <ion-grid>\n    <ion-row align-items-center justify-content-center>\n      <ion-col>\n        <ion-list>\n          <ion-item-sliding *ngFor=\"let membro of membrosFiltrados\">\n            <ion-item text-wrap class=\"item-text-wrap\">\n              <ion-label class=\"informacao-membro\" text-wrap>\n                <h1 class=\"content-title\">{{membro.nomeCompleto}}</h1>\n                Data de nascimento:\n                {{formatarDataDeNascimento(membro.dataNascimento)}}\n                <br />\n                <b>Idade nesse ano: {{idadeAtual(membro)}} anos</b>\n                <br />\n                <div *ngIf=\"membro.whatsapp\">\n                  {{membro.whatsapp? 'Whatsapp: '.concat(membro.whatsapp) : '' }}\n                <a target=\"_blank\" [href]=\"formatarNumeroWhatsapp(membro.whatsapp)\"><ion-icon name=\"send-outline\"></ion-icon></a>\n                </div>\n              </ion-label>\n            </ion-item>\n          </ion-item-sliding>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-buttons slot=\"start\">\r\n      <ion-back-button defaultHref=\"inicio\"></ion-back-button>\r\n    </ion-buttons>\r\n    <ion-title\r\n      >Aniversariantes do mês: {{aniversarioMes()}}</ion-title\r\n    >\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding>\r\n  <h2 *ngIf=\"totalAniversariantes == 0\"> Não há aniversariantes esse mês.</h2>\r\n  <ion-searchbar\r\n    (ionChange)=\"pesquisarMembros($event)\"\r\n    placeholder=\"Digite o nome do aniversariante.\"\r\n    color=\"tertiary\"\r\n  ></ion-searchbar>\r\n  <ion-grid>\r\n    <ion-row align-items-center justify-content-center>\r\n      <ion-col>\r\n        <ion-list>\r\n          <ion-item-sliding *ngFor=\"let membro of membrosFiltrados\">\r\n            <ion-item text-wrap class=\"item-text-wrap\">\r\n              <ion-label class=\"informacao-membro\" text-wrap>\r\n                <h1 class=\"content-title\">{{membro.nomeCompleto}}</h1>\r\n                Data de nascimento:\r\n                {{membro.dataNascimento}}\r\n                <br />\r\n                <b>Idade nesse ano: {{idadeAtual(membro)}} anos</b>\r\n                <br />\r\n                <div *ngIf=\"membro.whatsapp\">\r\n                  {{membro.whatsapp? 'Whatsapp: '.concat(membro.whatsapp) : '' }}\r\n                <a target=\"_blank\" [href]=\"formatarNumeroWhatsapp(membro.whatsapp)\"><ion-icon name=\"send-outline\"></ion-icon></a>\r\n                </div>\r\n              </ion-label>\r\n            </ion-item>\r\n          </ion-item-sliding>\r\n        </ion-list>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n</ion-content>\r\n";
       /***/
     },
 
@@ -321,21 +321,21 @@
       /* harmony import */
 
 
-      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! src/app/util/DateUtil */
+      "JM5f");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @angular/core */
       "fXoL");
       /* harmony import */
 
 
-      var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! @ionic/angular */
       "TEn/");
-      /* harmony import */
-
-
-      var src_app_servicos_Membro__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-      /*! src/app/servicos/Membro */
-      "fX5e");
       /* harmony import */
 
 
@@ -349,9 +349,9 @@
       /* harmony import */
 
 
-      var src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
-      /*! src/app/util/DateUtil */
-      "JM5f");
+      var src_app_servicos_Membro__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! src/app/servicos/Membro */
+      "fX5e");
 
       var AniversarioDoMesPage = /*#__PURE__*/function () {
         function AniversarioDoMesPage(membroService, navCtrl) {
@@ -371,36 +371,32 @@
             this.listaMembrosObservable = this.membroService.listar();
             this.listaMembrosObservable.subscribe(function (response) {
               _this.membros = response;
-              _this.membrosFiltrados = response;
-              _this.membros = _this.exibirAniversariantes(response);
-              _this.membrosFiltrados = _this.exibirAniversariantes(response);
+              _this.membros = _this.filtrarMembrosAtivos(response);
+              _this.membros = _this.exibirAniversariantes(_this.membros);
+              _this.membrosFiltrados = _this.membros;
               _this.totalAniversariantes = _this.membros.length;
-
-              _this.membrosFiltrados.sort(function (a, b) {
-                var newA = moment__WEBPACK_IMPORTED_MODULE_6__(a.dataNascimento).format('DDMM');
-                var newB = moment__WEBPACK_IMPORTED_MODULE_6__(b.dataNascimento).format('DDMM');
-                return moment__WEBPACK_IMPORTED_MODULE_6__(newA).diff(newB);
-              });
+            });
+          }
+        }, {
+          key: "filtrarMembrosAtivos",
+          value: function filtrarMembrosAtivos(membrosFiltrados) {
+            return membrosFiltrados.filter(function (m) {
+              return m.situacao === "Ativo" && (m.classificacao === undefined || m.classificacao === "Membro");
             });
           }
         }, {
           key: "exibirAniversariantes",
           value: function exibirAniversariantes(listaMembros) {
             return listaMembros.filter(function (m) {
-              return moment__WEBPACK_IMPORTED_MODULE_6__(m.dataNascimento).month() === moment__WEBPACK_IMPORTED_MODULE_6__(new Date()).month();
+              return new Date(m.dataNascimento).getDate() === new Date().getMonth() + 1;
             });
           }
         }, {
           key: "idadeAtual",
           value: function idadeAtual(membro) {
-            var anoAtual = moment__WEBPACK_IMPORTED_MODULE_6__().toDate();
-            var anoMembro = moment__WEBPACK_IMPORTED_MODULE_6__(membro.dataNascimento).toDate();
-            return anoAtual.getFullYear() - anoMembro.getFullYear();
-          }
-        }, {
-          key: "formatarDataDeNascimento",
-          value: function formatarDataDeNascimento(data) {
-            return src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_7__["DateUtil"].dateFormatterBrazil(data);
+            var anoAtual = moment__WEBPACK_IMPORTED_MODULE_6__();
+            var anoMembro = moment__WEBPACK_IMPORTED_MODULE_6__(membro.dataNascimento);
+            return anoAtual.year() - anoMembro.year();
           }
         }, {
           key: "aniversarioMes",
@@ -409,6 +405,15 @@
               month: "long"
             });
             return monthNameLong.toUpperCase();
+          }
+        }, {
+          key: "formatarDataNascimento",
+          value: function formatarDataNascimento(dataNascimento) {
+            if (dataNascimento.includes("-")) {
+              return src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_3__["DateUtil"].dateFormatterBrazil(dataNascimento);
+            } else {
+              return dataNascimento;
+            }
           }
         }, {
           key: "formatarNumeroWhatsapp",
@@ -435,13 +440,13 @@
 
       AniversarioDoMesPage.ctorParameters = function () {
         return [{
-          type: src_app_servicos_Membro__WEBPACK_IMPORTED_MODULE_5__["MembroService"]
+          type: src_app_servicos_Membro__WEBPACK_IMPORTED_MODULE_7__["MembroService"]
         }, {
-          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["NavController"]
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"]
         }];
       };
 
-      AniversarioDoMesPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+      AniversarioDoMesPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Component"])({
         selector: "app-aniversario-do-mes",
         template: _raw_loader_aniversario_do_mes_page_html__WEBPACK_IMPORTED_MODULE_1__["default"],
         styles: [_aniversario_do_mes_page_scss__WEBPACK_IMPORTED_MODULE_2__["default"]]

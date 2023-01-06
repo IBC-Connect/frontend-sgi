@@ -1,14 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import {
-  AlertController,
-  NavController,
-  ToastController
-} from "@ionic/angular";
-import { Observable } from "rxjs";
-import { Projeto } from "src/app/modelo/Projeto";
-import { ProjetoService } from "src/app/servicos/Projeto";
-import { MensagensUtil } from "src/app/util/MensagensUtil";
-import { RedirecionadorUtil } from "src/app/util/RedirecionadorUtil";
+import { Component, OnInit } from '@angular/core';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { Projeto } from 'src/app/modelo/Projeto';
+import { ProjetoService } from 'src/app/servicos/Projeto';
+import { MensagensUtil } from 'src/app/util/MensagensUtil';
+import { RedirecionadorUtil } from 'src/app/util/RedirecionadorUtil';
 
 @Component({
   selector: "app-projeto-ativo",
@@ -36,7 +32,6 @@ export class ProjetoAtivoPage implements OnInit {
 
   private inicializar(): void {
     this.mensagens = new MensagensUtil(this.aviso);
-    this.redirecionador = new RedirecionadorUtil(this.navegador);
     this.listaProjetosObservable = this.projetoService.listar();
     this.listaProjetosObservable.subscribe((response) => {
       this.listaProjetos = response;

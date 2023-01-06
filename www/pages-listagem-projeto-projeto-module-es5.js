@@ -238,7 +238,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-content class=\"ion-padding\">\n  <ion-tabs>\n    <ion-tab-bar slot=\"bottom\">\n      <ion-tab-button tab=\"ativos\">\n        <ion-icon name=\"person-add\"></ion-icon>\n        <ion-label>Ativos</ion-label>\n      </ion-tab-button>\n      <ion-tab-button tab=\"inativos\">\n        <ion-icon name=\"person-remove\"></ion-icon>\n        <ion-label>Inativos</ion-label>\n      </ion-tab-button>\n    </ion-tab-bar>\n  </ion-tabs>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-content class=\"ion-padding\">\r\n  <ion-tabs>\r\n    <ion-tab-bar slot=\"bottom\">\r\n      <ion-tab-button tab=\"ativos\">\r\n        <ion-icon name=\"person-add\"></ion-icon>\r\n        <ion-label>Ativos</ion-label>\r\n      </ion-tab-button>\r\n      <ion-tab-button tab=\"inativos\">\r\n        <ion-icon name=\"person-remove\"></ion-icon>\r\n        <ion-label>Inativos</ion-label>\r\n      </ion-tab-button>\r\n    </ion-tab-bar>\r\n  </ion-tabs>\r\n</ion-content>\r\n";
       /***/
     },
 
@@ -258,7 +258,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = ".inativo, .ativo {\n  font-size: 30px;\n}\n\n.ativo, #tabAtivos {\n  color: #20c043;\n}\n\n.inativo, #tabInativos {\n  color: #eb445a;\n}\n\n.tituloTab {\n  font-size: 18px;\n  font-family: \"Lexend\", sans-serif;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3Byb2pldG8ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0UsZUFBQTtBQUFGOztBQUdBO0VBQ0UsY0FBQTtBQUFGOztBQUdBO0VBQ0UsY0FBQTtBQUFGOztBQUdBO0VBQ0UsZUFBQTtFQUNBLGlDQUFBO0FBQUYiLCJmaWxlIjoicHJvamV0by5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbi5pbmF0aXZvLCAuYXRpdm97XG4gIGZvbnQtc2l6ZTogMzBweDtcbn1cblxuLmF0aXZvLCAjdGFiQXRpdm9ze1xuICBjb2xvcjogIzIwYzA0Mztcbn1cblxuLmluYXRpdm8sICN0YWJJbmF0aXZvc3tcbiAgY29sb3I6ICNlYjQ0NWE7XG59XG5cbi50aXR1bG9UYWJ7XG4gIGZvbnQtc2l6ZTogMThweDtcbiAgZm9udC1mYW1pbHk6ICdMZXhlbmQnLCBzYW5zLXNlcmlmO1xufSJdfQ== */";
+      __webpack_exports__["default"] = ".inativo, .ativo {\n  font-size: 30px;\n}\n\n.ativo, #tabAtivos {\n  color: #20c043;\n}\n\n.inativo, #tabInativos {\n  color: #eb445a;\n}\n\n.tituloTab {\n  font-size: 18px;\n  font-family: \"Lexend\", sans-serif;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFwuLlxccHJvamV0by5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDRSxlQUFBO0FBQUY7O0FBR0E7RUFDRSxjQUFBO0FBQUY7O0FBR0E7RUFDRSxjQUFBO0FBQUY7O0FBR0E7RUFDRSxlQUFBO0VBQ0EsaUNBQUE7QUFBRiIsImZpbGUiOiJwcm9qZXRvLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG4uaW5hdGl2bywgLmF0aXZve1xyXG4gIGZvbnQtc2l6ZTogMzBweDtcclxufVxyXG5cclxuLmF0aXZvLCAjdGFiQXRpdm9ze1xyXG4gIGNvbG9yOiAjMjBjMDQzO1xyXG59XHJcblxyXG4uaW5hdGl2bywgI3RhYkluYXRpdm9ze1xyXG4gIGNvbG9yOiAjZWI0NDVhO1xyXG59XHJcblxyXG4udGl0dWxvVGFie1xyXG4gIGZvbnQtc2l6ZTogMThweDtcclxuICBmb250LWZhbWlseTogJ0xleGVuZCcsIHNhbnMtc2VyaWY7XHJcbn0iXX0= */";
       /***/
     }
   }]);

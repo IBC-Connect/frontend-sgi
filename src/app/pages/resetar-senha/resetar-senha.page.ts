@@ -1,3 +1,4 @@
+import { DadosUsuarioUtil } from './../../util/DadosUsuarioUtil';
 import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Membro } from 'src/app/modelo/Membro';
@@ -18,7 +19,7 @@ export class ResetarSenhaPage {
   membro: Membro;
 
   constructor(private membroService: MembroService, private autenticacao: AutenticacaoService, private aviso: ToastController) {
-    this.usuario = this.autenticacao.pegarDadosLocalmente() ? this.autenticacao.pegarDadosLocalmente() : new Usuario();
+    this.usuario = DadosUsuarioUtil.dadosUsuarioLogado();
     this.mensagens = new MensagensUtil(this.aviso);
     this.membro = this.autenticacao.dadosMembro(this.usuario.email);;
   }

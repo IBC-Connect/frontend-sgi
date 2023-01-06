@@ -31,7 +31,6 @@ export class CargoPage {
 
   public inicializar(): void {
     this.mensagens = new MensagensUtil(this.aviso);
-    this.redirecionador = new RedirecionadorUtil(this.navCtrl);
     this.listaCargosObservable = this.cargoService.listar();
     this.listaCargosObservable.subscribe((response) => {
       this.listaCargos = response;

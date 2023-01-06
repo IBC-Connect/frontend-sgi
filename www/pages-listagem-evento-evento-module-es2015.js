@@ -130,7 +130,7 @@ EventoPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("ion-searchbar {\n  margin-top: 15px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  font-family: \"Rubik\", sans-serif;\n}\n\nion-title,\nh1,\n.informacao-membro,\nh2 {\n  font-family: \"Lexend\", sans-serif;\n}\n\nh2 {\n  color: #a57d51;\n  text-align: center;\n}\n\nh1 {\n  font-size: 20px;\n}\n\n.bt-editar {\n  background: #2e2e3c;\n}\n\n.bt-deletar {\n  background: #a57d51;\n}\n\n.icones {\n  color: #fff;\n  font-size: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL2V2ZW50by5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxnQkFBQTtFQUNBLGNBQUE7RUFDQSxpQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZ0NBQUE7QUFDSjs7QUFFQTs7OztFQUlJLGlDQUFBO0FBQ0o7O0FBRUE7RUFDSSxjQUFBO0VBQ0Esa0JBQUE7QUFDSjs7QUFFQTtFQUNJLGVBQUE7QUFDSjs7QUFFQTtFQUNJLG1CQUFBO0FBQ0o7O0FBRUE7RUFDSSxtQkFBQTtBQUNKOztBQUVBO0VBQ0ksV0FBQTtFQUNBLGVBQUE7QUFDSiIsImZpbGUiOiJldmVudG8ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLXNlYXJjaGJhciB7XG4gICAgbWFyZ2luLXRvcDogMTVweDtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgICBtYXJnaW4tbGVmdDogYXV0bztcbiAgICBtYXJnaW4tcmlnaHQ6IGF1dG87XG4gICAgZm9udC1mYW1pbHk6IFwiUnViaWtcIiwgc2Fucy1zZXJpZjtcbn1cblxuaW9uLXRpdGxlLFxuaDEsXG4uaW5mb3JtYWNhby1tZW1icm8sXG5oMiB7XG4gICAgZm9udC1mYW1pbHk6IFwiTGV4ZW5kXCIsIHNhbnMtc2VyaWY7XG59XG5cbmgyIHtcbiAgICBjb2xvcjogI2E1N2Q1MTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbmgxIHtcbiAgICBmb250LXNpemU6IDIwcHg7XG59XG5cbi5idC1lZGl0YXIge1xuICAgIGJhY2tncm91bmQ6ICMyZTJlM2M7XG59XG5cbi5idC1kZWxldGFyIHtcbiAgICBiYWNrZ3JvdW5kOiAjYTU3ZDUxO1xufVxuXG4uaWNvbmVzIHtcbiAgICBjb2xvcjogI2ZmZjtcbiAgICBmb250LXNpemU6IDIwcHg7XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("ion-searchbar {\n  margin-top: 15px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  font-family: \"Rubik\", sans-serif;\n}\n\nion-title,\nh1,\n.informacao-membro,\nh2 {\n  font-family: \"Lexend\", sans-serif;\n}\n\nh2 {\n  color: #a57d51;\n  text-align: center;\n}\n\nh1 {\n  font-size: 20px;\n}\n\n.bt-editar {\n  background: #2e2e3c;\n}\n\n.bt-deletar {\n  background: #a57d51;\n}\n\n.icones {\n  color: #fff;\n  font-size: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFwuLlxcZXZlbnRvLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGdCQUFBO0VBQ0EsY0FBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7RUFDQSxnQ0FBQTtBQUNKOztBQUVBOzs7O0VBSUksaUNBQUE7QUFDSjs7QUFFQTtFQUNJLGNBQUE7RUFDQSxrQkFBQTtBQUNKOztBQUVBO0VBQ0ksZUFBQTtBQUNKOztBQUVBO0VBQ0ksbUJBQUE7QUFDSjs7QUFFQTtFQUNJLG1CQUFBO0FBQ0o7O0FBRUE7RUFDSSxXQUFBO0VBQ0EsZUFBQTtBQUNKIiwiZmlsZSI6ImV2ZW50by5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tc2VhcmNoYmFyIHtcclxuICAgIG1hcmdpbi10b3A6IDE1cHg7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xyXG4gICAgbWFyZ2luLXJpZ2h0OiBhdXRvO1xyXG4gICAgZm9udC1mYW1pbHk6IFwiUnViaWtcIiwgc2Fucy1zZXJpZjtcclxufVxyXG5cclxuaW9uLXRpdGxlLFxyXG5oMSxcclxuLmluZm9ybWFjYW8tbWVtYnJvLFxyXG5oMiB7XHJcbiAgICBmb250LWZhbWlseTogXCJMZXhlbmRcIiwgc2Fucy1zZXJpZjtcclxufVxyXG5cclxuaDIge1xyXG4gICAgY29sb3I6ICNhNTdkNTE7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbmgxIHtcclxuICAgIGZvbnQtc2l6ZTogMjBweDtcclxufVxyXG5cclxuLmJ0LWVkaXRhciB7XHJcbiAgICBiYWNrZ3JvdW5kOiAjMmUyZTNjO1xyXG59XHJcblxyXG4uYnQtZGVsZXRhciB7XHJcbiAgICBiYWNrZ3JvdW5kOiAjYTU3ZDUxO1xyXG59XHJcblxyXG4uaWNvbmVzIHtcclxuICAgIGNvbG9yOiAjZmZmO1xyXG4gICAgZm9udC1zaXplOiAyMHB4O1xyXG59Il19 */");
 
 /***/ }),
 
@@ -143,7 +143,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar color=\"primary\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"inicio\"></ion-back-button>\n        </ion-buttons>\n        <ion-title>Total de eventos: {{numTotalEventos}}</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <h2 *ngIf=\"numTotalEventos == 0\"> Não há eventos cadastrados.</h2>\n\n    <ion-searchbar *ngIf=\"numTotalEventos > 0\" (ionChange)=\"pesquisarEvento($event)\" placeholder=\"Digite o nome do evento\" color=\"tertiary\"></ion-searchbar>\n    <ion-grid>\n        <ion-row align-items-center justify-content-center>\n            <ion-col>\n                <ion-list>\n                    <ion-item-sliding *ngFor=\"let evento of listaEventosFiltrados\">\n                        <ion-item text-wrap class=\"item-text-wrap\">\n                            <ion-label class=\"informacao-membro\" text-wrap>\n                                <h1 class=\"content-title\">{{evento.nome}}</h1>\n                                {{evento.responsavel? 'Responsável: '.concat(evento.responsavel) : '' }}\n                            </ion-label>\n                        </ion-item>\n                        <ion-item-options side=\"start\">\n                            <button ion-button (click)=\"editarEvento(evento)\" class=\"bt-editar\">\n                <ion-icon class=\"icones\" name=\"create\"></ion-icon>\n              </button>\n\n                            <button (click)=\"confirmarExclusao(evento)\" ion-button class=\"bt-deletar\">\n                <ion-icon class=\"icones\" name=\"trash\"></ion-icon>\n              </button>\n                        </ion-item-options>\n                    </ion-item-sliding>\n                </ion-list>\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\r\n    <ion-toolbar color=\"primary\">\r\n        <ion-buttons slot=\"start\">\r\n            <ion-back-button defaultHref=\"inicio\"></ion-back-button>\r\n        </ion-buttons>\r\n        <ion-title>Total de eventos: {{numTotalEventos}}</ion-title>\r\n    </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding>\r\n    <h2 *ngIf=\"numTotalEventos == 0\"> Não há eventos cadastrados.</h2>\r\n\r\n    <ion-searchbar *ngIf=\"numTotalEventos > 0\" (ionChange)=\"pesquisarEvento($event)\" placeholder=\"Digite o nome do evento\" color=\"tertiary\"></ion-searchbar>\r\n    <ion-grid>\r\n        <ion-row align-items-center justify-content-center>\r\n            <ion-col>\r\n                <ion-list>\r\n                    <ion-item-sliding *ngFor=\"let evento of listaEventosFiltrados\">\r\n                        <ion-item text-wrap class=\"item-text-wrap\">\r\n                            <ion-label class=\"informacao-membro\" text-wrap>\r\n                                <h1 class=\"content-title\">{{evento.nome}}</h1>\r\n                                {{evento.responsavel? 'Responsável: '.concat(evento.responsavel) : '' }}\r\n                            </ion-label>\r\n                        </ion-item>\r\n                        <ion-item-options side=\"start\">\r\n                            <button ion-button (click)=\"editarEvento(evento)\" class=\"bt-editar\">\r\n                <ion-icon class=\"icones\" name=\"create\"></ion-icon>\r\n              </button>\r\n\r\n                            <button (click)=\"confirmarExclusao(evento)\" ion-button class=\"bt-deletar\">\r\n                <ion-icon class=\"icones\" name=\"trash\"></ion-icon>\r\n              </button>\r\n                        </ion-item-options>\r\n                    </ion-item-sliding>\r\n                </ion-list>\r\n            </ion-col>\r\n        </ion-row>\r\n    </ion-grid>\r\n</ion-content>");
 
 /***/ }),
 
@@ -222,46 +222,6 @@ EventoPageRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"
     })
 ], EventoPageRoutingModule);
 
-
-
-/***/ }),
-
-/***/ "sZxV":
-/*!***************************************!*\
-  !*** ./src/app/util/MensagensUtil.ts ***!
-  \***************************************/
-/*! exports provided: MensagensUtil */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MensagensUtil", function() { return MensagensUtil; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
-
-class MensagensUtil {
-    constructor(aviso) {
-        this.aviso = aviso;
-    }
-    ;
-    mensagemSucesso(message) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const exibirMensagem = this.aviso.create({ id: 'sucesso', position: 'top', message: message, duration: 3000, color: 'success' });
-            (yield exibirMensagem).present();
-        });
-    }
-    mensagemError(error) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const exibirMensagem = this.aviso.create({ id: 'error', position: 'top', message: error, duration: 3000, color: 'danger' });
-            (yield exibirMensagem).present();
-        });
-    }
-    mensagemAlerta(message) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const exibirMensagem = this.aviso.create({ id: 'alerta', position: 'top', message: message, duration: 3000, color: 'warning' });
-            (yield exibirMensagem).present();
-        });
-    }
-}
 
 
 /***/ })

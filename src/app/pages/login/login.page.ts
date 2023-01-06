@@ -16,15 +16,14 @@ export class LoginPage {
   exibirSenha: boolean = false;
   passwordType: string = 'password';
   mensagens: MensagensUtil;
-  redirecionador: RedirecionadorUtil;
+  redirecionadorUtil : RedirecionadorUtil;
 
   constructor(private autenticacao: AutenticacaoService,
     private toast: ToastController,
-    private navegador: NavController) {
-
+    private navCtrl : NavController) {
     this.usuario = new Usuario();
     this.mensagens = new MensagensUtil(this.toast);
-    this.redirecionador = new RedirecionadorUtil(this.navegador);
+    this.redirecionadorUtil = new RedirecionadorUtil(this.navCtrl);
   }
 
   public visualizarSenha() {
@@ -37,7 +36,7 @@ export class LoginPage {
     this.autenticacao.login(usuario).then(
       (sucesso) => {
         this.autenticacao.salvaUsuario(usuario, sucesso);
-        this.redirecionador.redicionarPara("inicio");
+        this.redirecionadorUtil.redicionarPara("inicio");
       },
       (error) => {
         this.mensagens.mensagemError("E-mail ou senha inválido(a)!");

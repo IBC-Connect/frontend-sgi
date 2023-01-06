@@ -77,7 +77,7 @@ ProjetoPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar color=\"primary\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"lista/projeto/ativos\"></ion-back-button>\n        </ion-buttons>\n        <ion-title>Associar projeto</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <form [formGroup]=\"formulario\">\n        <ion-grid>\n            <ion-row>\n                <ion-col>\n                    <ion-item class=\"row-item\">\n                        <ion-label mode=\"md\" class=\"titulo-dado\" position=\"stacked\">Projeto</ion-label>\n                        <ion-input mode=\"md\" [disabled]=\"true\" formControlName=\"nome\" type=\"text\"></ion-input>\n                    </ion-item>\n                </ion-col>\n            </ion-row>\n            <ion-row>\n                <ion-col>\n                    <ion-label mode=\"md\" class=\"titulo-dado-select\" position=\"stacked\">Responsável</ion-label>\n                    <ion-select [selectedText]=\"formulario.get('responsavel').value\" placeholder=\"Selecione uma opção\" formControlName=\"responsavel\" multiple=\"false\" interface=\"popover\">\n                        <ion-select-option *ngFor=\"let item of membrosAtivos\" [value]=\"item.nomeCompleto\">\n                            {{item.nomeCompleto}}\n                        </ion-select-option>\n                    </ion-select>\n                </ion-col>\n            </ion-row>\n            <ion-row>\n                <ion-col>\n                    <ion-item class=\"row-item\">\n                        <ion-label mode=\"md\" class=\"titulo-dado\" position=\"stacked\">Data de Início</ion-label>\n                        <ion-input mode=\"md\" formControlName=\"dataInicio\" maxlength=\"10\" [brmasker]=\"{mask:'00/00/0000', len:10}\"></ion-input>\n                    </ion-item>\n                </ion-col>\n                <ion-col>\n                    <ion-item class=\"row-item\">\n                        <ion-label mode=\"md\" class=\"titulo-dado\" position=\"stacked\">Data Fim</ion-label>\n                        <ion-input mode=\"md\" formControlName=\"dataFim\" maxlength=\"10\" [brmasker]=\"{mask:'00/00/0000', len:10}\"></ion-input>\n                    </ion-item>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </form>\n</ion-content>\n\n<ion-footer class=\"ion-no-border\">\n    <ion-toolbar no-padding id=\"rodape\">\n        <ion-grid>\n            <ion-row>\n                <ion-col>\n                    <ion-button mode=\"md\" (click)=\"associar()\" [disabled]=\"formulario.invalid\" type=\"submit\" fill=\"solid\" expand=\"full\"> Associar</ion-button>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </ion-toolbar>\n</ion-footer>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\r\n    <ion-toolbar color=\"primary\">\r\n        <ion-buttons slot=\"start\">\r\n            <ion-back-button defaultHref=\"lista/projeto/ativos\"></ion-back-button>\r\n        </ion-buttons>\r\n        <ion-title>Associar projeto</ion-title>\r\n    </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding>\r\n    <form [formGroup]=\"formulario\">\r\n        <ion-grid>\r\n            <ion-row>\r\n                <ion-col>\r\n                    <ion-item class=\"row-item\">\r\n                        <ion-label mode=\"md\" class=\"titulo-dado\" position=\"stacked\">Projeto</ion-label>\r\n                        <ion-input mode=\"md\" [disabled]=\"true\" formControlName=\"nome\" type=\"text\"></ion-input>\r\n                    </ion-item>\r\n                </ion-col>\r\n            </ion-row>\r\n            <ion-row>\r\n                <ion-col>\r\n                    <ion-label mode=\"md\" class=\"titulo-dado-select\" position=\"stacked\">Responsável</ion-label>\r\n                    <ion-select [selectedText]=\"formulario.get('responsavel').value\" placeholder=\"Selecione uma opção\" formControlName=\"responsavel\" multiple=\"false\" interface=\"popover\">\r\n                        <ion-select-option *ngFor=\"let item of membrosAtivos\" [value]=\"item.nomeCompleto\">\r\n                            {{item.nomeCompleto}}\r\n                        </ion-select-option>\r\n                    </ion-select>\r\n                </ion-col>\r\n            </ion-row>\r\n            <ion-row>\r\n                <ion-col>\r\n                    <ion-item class=\"row-item\">\r\n                        <ion-label mode=\"md\" class=\"titulo-dado\" position=\"stacked\">Data de Início</ion-label>\r\n                        <ion-input mode=\"md\" formControlName=\"dataInicio\" maxlength=\"10\" [brmasker]=\"{mask:'00/00/0000', len:10}\"></ion-input>\r\n                    </ion-item>\r\n                </ion-col>\r\n                <ion-col>\r\n                    <ion-item class=\"row-item\">\r\n                        <ion-label mode=\"md\" class=\"titulo-dado\" position=\"stacked\">Data Fim</ion-label>\r\n                        <ion-input mode=\"md\" formControlName=\"dataFim\" maxlength=\"10\" [brmasker]=\"{mask:'00/00/0000', len:10}\"></ion-input>\r\n                    </ion-item>\r\n                </ion-col>\r\n            </ion-row>\r\n        </ion-grid>\r\n    </form>\r\n</ion-content>\r\n\r\n<ion-footer class=\"ion-no-border\">\r\n    <ion-toolbar no-padding id=\"rodape\">\r\n        <ion-grid>\r\n            <ion-row>\r\n                <ion-col>\r\n                    <ion-button mode=\"md\" (click)=\"associar()\" [disabled]=\"formulario.invalid\" type=\"submit\" fill=\"solid\" expand=\"full\"> Associar</ion-button>\r\n                </ion-col>\r\n            </ion-row>\r\n        </ion-grid>\r\n    </ion-toolbar>\r\n</ion-footer>");
 
 /***/ }),
 
@@ -90,7 +90,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("ion-content,\nion-item,\nion-input,\nion-select,\n.titulo-dado,\n.titulo-dado-select,\n.titulo-dado-select-acesso,\n.titulo-dado-batismo {\n  font-family: \"Rubik\", sans-serif;\n}\n\nion-content,\nion-item,\n#rodape {\n  --background: #e6e6e6;\n}\n\nion-select,\nion-input,\n.titulo-dado,\n.titulo-dado-select-acesso,\n.titulo-dado-select,\nh2 {\n  color: #2e2e3c;\n}\n\nion-title, h2 {\n  font-family: \"Lexend\", sans-serif;\n}\n\nion-input {\n  text-transform: uppercase;\n  font-size: 9pt;\n}\n\nion-select {\n  font-size: 10pt;\n}\n\n#cabecalho {\n  --background: #2e2e3c;\n  color: #fff;\n}\n\n.titulo-dado {\n  font-size: 11pt;\n}\n\n.titulo-dado-select,\n.titulo-dado-select-acesso,\n.titulo-dado-batismo {\n  font-size: 8.3pt;\n}\n\n.titulo-dado-select {\n  margin-left: 1%;\n}\n\n.titulo-dado-batismo {\n  margin-left: 4%;\n}\n\nh2 {\n  font-size: 13pt;\n  font-weight: bolder;\n  margin-left: 1%;\n}\n\nspan {\n  color: #eb445a;\n}\n\n::ng-deep .mycomponent-wider-popover {\n  --width: 95%;\n  --max-width: 600px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3Byb2pldG8ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7OztFQVFHLGdDQUFBO0FBQ0g7O0FBRUE7OztFQUdJLHFCQUFBO0FBQ0o7O0FBRUE7Ozs7OztFQU1JLGNBQUE7QUFDSjs7QUFFQTtFQUNJLGlDQUFBO0FBQ0o7O0FBRUE7RUFDSSx5QkFBQTtFQUNBLGNBQUE7QUFDSjs7QUFFQTtFQUNJLGVBQUE7QUFDSjs7QUFFQTtFQUNJLHFCQUFBO0VBQ0EsV0FBQTtBQUNKOztBQUVBO0VBQ0ksZUFBQTtBQUNKOztBQUVDOzs7RUFHRyxnQkFBQTtBQUNKOztBQUVBO0VBQ0ksZUFBQTtBQUNKOztBQUVBO0VBQ0ksZUFBQTtBQUNKOztBQUVBO0VBQ0ksZUFBQTtFQUNBLG1CQUFBO0VBQ0EsZUFBQTtBQUNKOztBQUVBO0VBQ0ksY0FBQTtBQUNKOztBQUVBO0VBRUUsWUFBQTtFQUNBLGtCQUFBO0FBQUYiLCJmaWxlIjoicHJvamV0by5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY29udGVudCwgIFxuaW9uLWl0ZW0sIFxuaW9uLWlucHV0LCBcbmlvbi1zZWxlY3QsXG4udGl0dWxvLWRhZG8sXG4udGl0dWxvLWRhZG8tc2VsZWN0LFxuLnRpdHVsby1kYWRvLXNlbGVjdC1hY2Vzc28sXG4udGl0dWxvLWRhZG8tYmF0aXNtbyB7XG4gICBmb250LWZhbWlseTogJ1J1YmlrJywgc2Fucy1zZXJpZjtcbn1cblxuaW9uLWNvbnRlbnQsIFxuaW9uLWl0ZW0sXG4jcm9kYXBlIHtcbiAgICAtLWJhY2tncm91bmQ6ICNlNmU2ZTY7XG59XG5cbmlvbi1zZWxlY3QsXG5pb24taW5wdXQsXG4udGl0dWxvLWRhZG8sXG4udGl0dWxvLWRhZG8tc2VsZWN0LWFjZXNzbyxcbi50aXR1bG8tZGFkby1zZWxlY3QsXG5oMiB7XG4gICAgY29sb3I6IzJlMmUzYztcbn0gXG5cbmlvbi10aXRsZSwgaDJ7XG4gICAgZm9udC1mYW1pbHk6ICdMZXhlbmQnLCBzYW5zLXNlcmlmO1xufVxuXG5pb24taW5wdXR7XG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgICBmb250LXNpemU6IDlwdDtcbiB9XG5cbmlvbi1zZWxlY3R7XG4gICAgZm9udC1zaXplOiAxMHB0O1xufVxuXG4jY2FiZWNhbGhve1xuICAgIC0tYmFja2dyb3VuZDogIzJlMmUzYzsgXG4gICAgY29sb3I6ICNmZmY7XG59XG4gICAgXG4udGl0dWxvLWRhZG97XG4gICAgZm9udC1zaXplOiAxMXB0O1xuIH1cblxuIC50aXR1bG8tZGFkby1zZWxlY3QsXG4gLnRpdHVsby1kYWRvLXNlbGVjdC1hY2Vzc28sXG4gLnRpdHVsby1kYWRvLWJhdGlzbW97XG4gICAgZm9udC1zaXplOiA4LjNwdDtcbiB9XG5cbi50aXR1bG8tZGFkby1zZWxlY3R7XG4gICAgbWFyZ2luLWxlZnQ6IDElOyAgXG59XG5cbi50aXR1bG8tZGFkby1iYXRpc21ve1xuICAgIG1hcmdpbi1sZWZ0OiA0JTsgIFxufVxuIFxuaDIge1xuICAgIGZvbnQtc2l6ZToxM3B0O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkZXI7XG4gICAgbWFyZ2luLWxlZnQ6MSU7XG59XG5cbnNwYW4ge1xuICAgIGNvbG9yOiAjZWI0NDVhO1xufVxuXG46Om5nLWRlZXAgLm15Y29tcG9uZW50LXdpZGVyLXBvcG92ZXJcbntcbiAgLS13aWR0aDogOTUlO1xuICAtLW1heC13aWR0aDogNjAwcHg7XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("ion-content,\nion-item,\nion-input,\nion-select,\n.titulo-dado,\n.titulo-dado-select,\n.titulo-dado-select-acesso,\n.titulo-dado-batismo {\n  font-family: \"Rubik\", sans-serif;\n}\n\nion-content,\nion-item,\n#rodape {\n  --background: #e6e6e6;\n}\n\nion-select,\nion-input,\n.titulo-dado,\n.titulo-dado-select-acesso,\n.titulo-dado-select,\nh2 {\n  color: #2e2e3c;\n}\n\nion-title, h2 {\n  font-family: \"Lexend\", sans-serif;\n}\n\nion-input {\n  text-transform: uppercase;\n  font-size: 9pt;\n}\n\nion-select {\n  font-size: 10pt;\n}\n\n#cabecalho {\n  --background: #2e2e3c;\n  color: #fff;\n}\n\n.titulo-dado {\n  font-size: 11pt;\n}\n\n.titulo-dado-select,\n.titulo-dado-select-acesso,\n.titulo-dado-batismo {\n  font-size: 8.3pt;\n}\n\n.titulo-dado-select {\n  margin-left: 1%;\n}\n\n.titulo-dado-batismo {\n  margin-left: 4%;\n}\n\nh2 {\n  font-size: 13pt;\n  font-weight: bolder;\n  margin-left: 1%;\n}\n\nspan {\n  color: #eb445a;\n}\n\n::ng-deep .mycomponent-wider-popover {\n  --width: 95%;\n  --max-width: 600px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFwuLlxccHJvamV0by5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7O0VBUUcsZ0NBQUE7QUFDSDs7QUFFQTs7O0VBR0kscUJBQUE7QUFDSjs7QUFFQTs7Ozs7O0VBTUksY0FBQTtBQUNKOztBQUVBO0VBQ0ksaUNBQUE7QUFDSjs7QUFFQTtFQUNJLHlCQUFBO0VBQ0EsY0FBQTtBQUNKOztBQUVBO0VBQ0ksZUFBQTtBQUNKOztBQUVBO0VBQ0kscUJBQUE7RUFDQSxXQUFBO0FBQ0o7O0FBRUE7RUFDSSxlQUFBO0FBQ0o7O0FBRUM7OztFQUdHLGdCQUFBO0FBQ0o7O0FBRUE7RUFDSSxlQUFBO0FBQ0o7O0FBRUE7RUFDSSxlQUFBO0FBQ0o7O0FBRUE7RUFDSSxlQUFBO0VBQ0EsbUJBQUE7RUFDQSxlQUFBO0FBQ0o7O0FBRUE7RUFDSSxjQUFBO0FBQ0o7O0FBRUE7RUFFRSxZQUFBO0VBQ0Esa0JBQUE7QUFBRiIsImZpbGUiOiJwcm9qZXRvLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jb250ZW50LCAgXHJcbmlvbi1pdGVtLCBcclxuaW9uLWlucHV0LCBcclxuaW9uLXNlbGVjdCxcclxuLnRpdHVsby1kYWRvLFxyXG4udGl0dWxvLWRhZG8tc2VsZWN0LFxyXG4udGl0dWxvLWRhZG8tc2VsZWN0LWFjZXNzbyxcclxuLnRpdHVsby1kYWRvLWJhdGlzbW8ge1xyXG4gICBmb250LWZhbWlseTogJ1J1YmlrJywgc2Fucy1zZXJpZjtcclxufVxyXG5cclxuaW9uLWNvbnRlbnQsIFxyXG5pb24taXRlbSxcclxuI3JvZGFwZSB7XHJcbiAgICAtLWJhY2tncm91bmQ6ICNlNmU2ZTY7XHJcbn1cclxuXHJcbmlvbi1zZWxlY3QsXHJcbmlvbi1pbnB1dCxcclxuLnRpdHVsby1kYWRvLFxyXG4udGl0dWxvLWRhZG8tc2VsZWN0LWFjZXNzbyxcclxuLnRpdHVsby1kYWRvLXNlbGVjdCxcclxuaDIge1xyXG4gICAgY29sb3I6IzJlMmUzYztcclxufSBcclxuXHJcbmlvbi10aXRsZSwgaDJ7XHJcbiAgICBmb250LWZhbWlseTogJ0xleGVuZCcsIHNhbnMtc2VyaWY7XHJcbn1cclxuXHJcbmlvbi1pbnB1dHtcclxuICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XHJcbiAgICBmb250LXNpemU6IDlwdDtcclxuIH1cclxuXHJcbmlvbi1zZWxlY3R7XHJcbiAgICBmb250LXNpemU6IDEwcHQ7XHJcbn1cclxuXHJcbiNjYWJlY2FsaG97XHJcbiAgICAtLWJhY2tncm91bmQ6ICMyZTJlM2M7IFxyXG4gICAgY29sb3I6ICNmZmY7XHJcbn1cclxuICAgIFxyXG4udGl0dWxvLWRhZG97XHJcbiAgICBmb250LXNpemU6IDExcHQ7XHJcbiB9XHJcblxyXG4gLnRpdHVsby1kYWRvLXNlbGVjdCxcclxuIC50aXR1bG8tZGFkby1zZWxlY3QtYWNlc3NvLFxyXG4gLnRpdHVsby1kYWRvLWJhdGlzbW97XHJcbiAgICBmb250LXNpemU6IDguM3B0O1xyXG4gfVxyXG5cclxuLnRpdHVsby1kYWRvLXNlbGVjdHtcclxuICAgIG1hcmdpbi1sZWZ0OiAxJTsgIFxyXG59XHJcblxyXG4udGl0dWxvLWRhZG8tYmF0aXNtb3tcclxuICAgIG1hcmdpbi1sZWZ0OiA0JTsgIFxyXG59XHJcbiBcclxuaDIge1xyXG4gICAgZm9udC1zaXplOjEzcHQ7XHJcbiAgICBmb250LXdlaWdodDogYm9sZGVyO1xyXG4gICAgbWFyZ2luLWxlZnQ6MSU7XHJcbn1cclxuXHJcbnNwYW4ge1xyXG4gICAgY29sb3I6ICNlYjQ0NWE7XHJcbn1cclxuXHJcbjo6bmctZGVlcCAubXljb21wb25lbnQtd2lkZXItcG9wb3ZlclxyXG57XHJcbiAgLS13aWR0aDogOTUlO1xyXG4gIC0tbWF4LXdpZHRoOiA2MDBweDtcclxufSJdfQ== */");
 
 /***/ }),
 
@@ -184,8 +184,12 @@ let ProjetoPage = class ProjetoPage {
         this.listaMembrosObservable = this.membroService.listar();
         this.listaMembrosObservable.subscribe((response) => {
             this.membrosAtivos = response;
-            this.membrosAtivos = this.membrosAtivos.filter((m) => m.situacao === 'Ativo');
-            this.membrosAtivos.sort((a, b) => a.nomeCompleto > b.nomeCompleto ? 1 : b.nomeCompleto > a.nomeCompleto ? -1 : 0);
+            this.membrosAtivos = this.membrosAtivos.filter((m) => m.situacao === "Ativo");
+            this.membrosAtivos.sort((a, b) => a.nomeCompleto > b.nomeCompleto
+                ? 1
+                : b.nomeCompleto > a.nomeCompleto
+                    ? -1
+                    : 0);
         });
         this.criarFormulario();
     }
@@ -200,35 +204,42 @@ let ProjetoPage = class ProjetoPage {
     }
     ajustarDatas() {
         if (this.projeto.dataInicioResponsavel)
-            this.projeto.dataInicioResponsavel = this.projeto.dataInicioResponsavel.includes('/') ? this.projeto.dataInicioResponsavel : src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].dateFormatterBrazil(this.projeto.dataInicioResponsavel);
+            this.projeto.dataInicioResponsavel =
+                this.projeto.dataInicioResponsavel.includes("/")
+                    ? this.projeto.dataInicioResponsavel
+                    : src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].dateFormatterBrazil(this.projeto.dataInicioResponsavel);
         if (this.projeto.dataFimResponsavel)
-            this.projeto.dataFimResponsavel = this.projeto.dataFimResponsavel.includes('/') ? this.projeto.dataFimResponsavel : src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].dateFormatterBrazil(this.projeto.dataFimResponsavel);
+            this.projeto.dataFimResponsavel =
+                this.projeto.dataFimResponsavel.includes("/")
+                    ? this.projeto.dataFimResponsavel
+                    : src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].dateFormatterBrazil(this.projeto.dataFimResponsavel);
     }
     associar() {
         if (this.formulario.value) {
-            if (this.formulario.value.dataFim && !src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].verificarIsDataValida(this.formulario.value.dataFim)) {
+            if (this.formulario.value.dataFim &&
+                !src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].verificarIsDataValida(this.formulario.value.dataFim)) {
                 this.mensagens.mensagemError("A data informada no campo 'Data Fim' não é válida.");
             }
-            else if (this.formulario.value.dataInicio && !src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].verificarIsDataValida(this.formulario.value.dataInicio)) {
+            else if (this.formulario.value.dataInicio &&
+                !src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].verificarIsDataValida(this.formulario.value.dataInicio)) {
                 this.mensagens.mensagemError("A data informada no campo 'Data Início' não é válida.");
             }
             else if (src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].isDataFutura(this.formulario.value.dataInicio)) {
                 this.mensagens.mensagemError("Não é permitido data futura para o campo 'Data Início'");
             }
-            else if (src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].isDataDoisMaiorDataUm(this.formulario.value.dataInicio, this.formulario.value.dataFim)
-                && !src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].isDatasIguais(this.formulario.value.dataFim, this.formulario.value.dataInicio)) {
+            else if (src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].isDataDoisMaiorDataUm(this.formulario.value.dataInicio, this.formulario.value.dataFim) &&
+                !src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].isDatasIguais(this.formulario.value.dataFim, this.formulario.value.dataInicio)) {
                 this.mensagens.mensagemError("A 'Data Início' não pode ser maior que a 'Data Fim'.");
             }
             else if (src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].isDatasIguais(this.formulario.value.dataInicio, this.formulario.value.dataFim)) {
                 this.mensagens.mensagemError("As datas 'Data Início' e 'Data Fim' não podem ser iguais.");
             }
             else if (src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_10__["DateUtil"].numeroDiasEntreDuasDatas(this.formulario.value.dataInicio, this.formulario.value.dataFim) >= 731) {
-                this.mensagens.mensagemError('O responsável pode assumir um cargo com duração máxima de dois anos.');
+                this.mensagens.mensagemError("O responsável pode assumir um cargo com duração máxima de dois anos.");
             }
             else {
                 this.projeto = src_app_mapper_Projeto__WEBPACK_IMPORTED_MODULE_7__["ProjetoMapper"].formularioToProjeto(this.formulario.value, this.projeto);
-                this.projetoService.adicionarOuAtualizar(this.projeto);
-                this.mensagens.mensagemSucesso('Associação realizada com sucesso!');
+                this.projetoService.adicionarOuAtualizar(this.projeto, "'Associação realizada com sucesso!");
             }
         }
     }
@@ -242,7 +253,7 @@ ProjetoPage.ctorParameters = () => [
 ];
 ProjetoPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
-        selector: 'app-projeto',
+        selector: "app-projeto",
         template: _raw_loader_projeto_page_html__WEBPACK_IMPORTED_MODULE_1__["default"],
         styles: [_projeto_page_scss__WEBPACK_IMPORTED_MODULE_2__["default"]]
     })

@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "ion-searchbar {\n  margin-top: 15px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  font-family: \"Rubik\", sans-serif;\n}\n\nion-title,\nh1,\n.informacao-membro {\n  font-family: \"Lexend\", sans-serif;\n}\n\nh1 {\n  font-size: 20px;\n}\n\n.bt-editar {\n  background: #a7a7aa;\n}\n\n.bt-associar {\n  background: #2e2e3c;\n}\n\n.bt-deletar {\n  background: #a57d51;\n}\n\n.icones {\n  color: #fff;\n  font-size: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL2Fzc2lzdGlkby5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxnQkFBQTtFQUNBLGNBQUE7RUFDQSxpQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZ0NBQUE7QUFDSjs7QUFFRTs7O0VBR0UsaUNBQUE7QUFDSjs7QUFFRTtFQUNFLGVBQUE7QUFDSjs7QUFFRTtFQUNFLG1CQUFBO0FBQ0o7O0FBRUU7RUFDRSxtQkFBQTtBQUNKOztBQUVFO0VBQ0UsbUJBQUE7QUFDSjs7QUFFRTtFQUNFLFdBQUE7RUFDQSxlQUFBO0FBQ0oiLCJmaWxlIjoiYXNzaXN0aWRvLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1zZWFyY2hiYXIge1xuICAgIG1hcmdpbi10b3A6IDE1cHg7XG4gICAgZGlzcGxheTogYmxvY2s7XG4gICAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gICAgbWFyZ2luLXJpZ2h0OiBhdXRvO1xuICAgIGZvbnQtZmFtaWx5OiBcIlJ1YmlrXCIsIHNhbnMtc2VyaWY7XG4gIH1cbiAgXG4gIGlvbi10aXRsZSxcbiAgaDEsXG4gIC5pbmZvcm1hY2FvLW1lbWJybyB7XG4gICAgZm9udC1mYW1pbHk6IFwiTGV4ZW5kXCIsIHNhbnMtc2VyaWY7XG4gIH1cbiAgXG4gIGgxIHtcbiAgICBmb250LXNpemU6IDIwcHg7XG4gIH1cbiAgXG4gIC5idC1lZGl0YXIge1xuICAgIGJhY2tncm91bmQ6ICNhN2E3YWE7XG4gIH1cbiAgXG4gIC5idC1hc3NvY2lhciB7XG4gICAgYmFja2dyb3VuZDogIzJlMmUzYztcbiAgfVxuICBcbiAgLmJ0LWRlbGV0YXIge1xuICAgIGJhY2tncm91bmQ6ICNhNTdkNTE7XG4gIH1cbiAgXG4gIC5pY29uZXMge1xuICAgIGNvbG9yOiAjZmZmO1xuICAgIGZvbnQtc2l6ZTogMjBweDtcbiAgfVxuICAiXX0= */";
+      __webpack_exports__["default"] = "ion-searchbar {\n  margin-top: 15px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  font-family: \"Rubik\", sans-serif;\n}\n\nion-title,\nh1,\n.informacao-membro {\n  font-family: \"Lexend\", sans-serif;\n}\n\nh1 {\n  font-size: 20px;\n}\n\n.bt-editar {\n  background: #a7a7aa;\n}\n\n.bt-associar {\n  background: #2e2e3c;\n}\n\n.bt-deletar {\n  background: #a57d51;\n}\n\n.icones {\n  color: #fff;\n  font-size: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFwuLlxcYXNzaXN0aWRvLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGdCQUFBO0VBQ0EsY0FBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7RUFDQSxnQ0FBQTtBQUNKOztBQUVFOzs7RUFHRSxpQ0FBQTtBQUNKOztBQUVFO0VBQ0UsZUFBQTtBQUNKOztBQUVFO0VBQ0UsbUJBQUE7QUFDSjs7QUFFRTtFQUNFLG1CQUFBO0FBQ0o7O0FBRUU7RUFDRSxtQkFBQTtBQUNKOztBQUVFO0VBQ0UsV0FBQTtFQUNBLGVBQUE7QUFDSiIsImZpbGUiOiJhc3Npc3RpZG8ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLXNlYXJjaGJhciB7XHJcbiAgICBtYXJnaW4tdG9wOiAxNXB4O1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICBtYXJnaW4tbGVmdDogYXV0bztcclxuICAgIG1hcmdpbi1yaWdodDogYXV0bztcclxuICAgIGZvbnQtZmFtaWx5OiBcIlJ1YmlrXCIsIHNhbnMtc2VyaWY7XHJcbiAgfVxyXG4gIFxyXG4gIGlvbi10aXRsZSxcclxuICBoMSxcclxuICAuaW5mb3JtYWNhby1tZW1icm8ge1xyXG4gICAgZm9udC1mYW1pbHk6IFwiTGV4ZW5kXCIsIHNhbnMtc2VyaWY7XHJcbiAgfVxyXG4gIFxyXG4gIGgxIHtcclxuICAgIGZvbnQtc2l6ZTogMjBweDtcclxuICB9XHJcbiAgXHJcbiAgLmJ0LWVkaXRhciB7XHJcbiAgICBiYWNrZ3JvdW5kOiAjYTdhN2FhO1xyXG4gIH1cclxuICBcclxuICAuYnQtYXNzb2NpYXIge1xyXG4gICAgYmFja2dyb3VuZDogIzJlMmUzYztcclxuICB9XHJcbiAgXHJcbiAgLmJ0LWRlbGV0YXIge1xyXG4gICAgYmFja2dyb3VuZDogI2E1N2Q1MTtcclxuICB9XHJcbiAgXHJcbiAgLmljb25lcyB7XHJcbiAgICBjb2xvcjogI2ZmZjtcclxuICAgIGZvbnQtc2l6ZTogMjBweDtcclxuICB9XHJcbiAgIl19 */";
       /***/
     },
 
@@ -60,7 +60,7 @@
         function DateUtil() {
           _classCallCheck(this, DateUtil);
 
-          moment__WEBPACK_IMPORTED_MODULE_0__["locale"]('pt-br');
+          moment__WEBPACK_IMPORTED_MODULE_0__["locale"]("pt-br");
         }
 
         _createClass(DateUtil, null, [{
@@ -81,12 +81,12 @@
         }, {
           key: "dateFormatterAmerica",
           value: function dateFormatterAmerica(data) {
-            return data.split('/').reverse().join('-');
+            return data.split("/").reverse().join("-");
           }
         }, {
           key: "dateFormatterBrazil",
           value: function dateFormatterBrazil(data) {
-            return moment__WEBPACK_IMPORTED_MODULE_0__(data).format('DD/MM/YYYY');
+            return moment__WEBPACK_IMPORTED_MODULE_0__(data).format("DD/MM/YYYY");
           }
         }, {
           key: "numeroDiasEntreDuasDatas",
@@ -105,19 +105,19 @@
         }, {
           key: "calcularData",
           value: function calcularData(data, dias) {
-            return moment__WEBPACK_IMPORTED_MODULE_0__(data).add(dias, 'year').subtract(1, 'days').format('YYYY-MM-DD');
+            return moment__WEBPACK_IMPORTED_MODULE_0__(data).add(dias, "year").subtract(1, "days").format("YYYY-MM-DD");
           }
         }, {
           key: "verificarIntervaloHora",
           value: function verificarIntervaloHora(horaI, horaF) {
-            var horaInicial = Number(horaI.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat('am'), 'hh:mma') : moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat('pm'), 'hh:mmp');
-            var horaFinal = Number(horaF.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat('am'), 'hh:mma') : moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat('pm'), 'hh:mmp');
+            var horaInicial = Number(horaI.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat("am"), "hh:mma") : moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat("pm"), "hh:mmp");
+            var horaFinal = Number(horaF.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat("am"), "hh:mma") : moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat("pm"), "hh:mmp");
             return horaInicial.isBefore(horaFinal);
           }
         }, {
           key: "isIdadeMaiorDozeAnos",
           value: function isIdadeMaiorDozeAnos(dataNasc) {
-            var idade = moment__WEBPACK_IMPORTED_MODULE_0__().diff(this.dateFormatterAmerica(dataNasc), 'years');
+            var idade = moment__WEBPACK_IMPORTED_MODULE_0__().diff(this.dateFormatterAmerica(dataNasc), "years");
             return idade >= 12;
           }
         }]);
@@ -217,7 +217,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"inicio\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Total de assistidos cadastrados: {{numTotalAssistidos}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <h2 *ngIf=\"numTotalAssistidos == 0\"> Não há assistidos.</h2>\n  <ion-searchbar\n  (ionChange)=\"onSearchTerm($event)\"\n    placeholder=\"Digite o nome do assistido\"\n    color=\"tertiary\"\n  ></ion-searchbar>\n  <ion-grid>\n    <ion-row align-items-center justify-content-center>\n      <ion-col>\n        <ion-list>\n          <ion-item-sliding *ngFor=\"let assistido of listaAssistidosFiltrados\" >\n            <ion-item text-wrap class=\"item-text-wrap\">\n              <ion-label class=\"informacao-membro\" text-wrap>\n                <h1 class=\"content-title\">{{assistido.nomeCompleto}}</h1>\n                Data de nascimento: {{formatarDataDeNascimento(assistido.dataNascimento)}} \n                <br />\n                {{assistido.whatsapp? 'Whatsapp: '.concat(assistido.whatsapp) : '' }}\n                <br />\n                {{assistido.projetos ? 'Projetos: '.concat(assistido.projetos) : ''}}\n                <br />\n                {{assistido.observacoes? 'Observações: '.concat(assistido.observacoes) : '' }}\n              </ion-label>\n            </ion-item>\n            <ion-item-options side=\"start\">\n              <button\n                ion-button\n                (click)=\"editarAssistido(assistido)\"\n                class=\"bt-editar\"\n              >\n                <ion-icon class=\"icones\" name=\"create\"></ion-icon>\n              </button>\n            </ion-item-options>\n          </ion-item-sliding>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-buttons slot=\"start\">\r\n      <ion-back-button defaultHref=\"inicio\"></ion-back-button>\r\n    </ion-buttons>\r\n    <ion-title>Total de assistidos cadastrados: {{numTotalAssistidos}}</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding>\r\n  <h2 *ngIf=\"numTotalAssistidos == 0\"> Não há assistidos.</h2>\r\n  <ion-searchbar\r\n  (ionChange)=\"onSearchTerm($event)\"\r\n    placeholder=\"Digite o nome do assistido\"\r\n    color=\"tertiary\"\r\n  ></ion-searchbar>\r\n  <ion-grid>\r\n    <ion-row align-items-center justify-content-center>\r\n      <ion-col>\r\n        <ion-list>\r\n          <ion-item-sliding *ngFor=\"let assistido of listaAssistidosFiltrados\" >\r\n            <ion-item text-wrap class=\"item-text-wrap\">\r\n              <ion-label class=\"informacao-membro\" text-wrap>\r\n                <h1 class=\"content-title\">{{assistido.nomeCompleto}}</h1>\r\n                Data de nascimento: {{formatarDataDeNascimento(assistido.dataNascimento)}} \r\n                <br />\r\n                {{assistido.whatsapp? 'Whatsapp: '.concat(assistido.whatsapp) : '' }}\r\n                <br />\r\n                {{assistido.projetos ? 'Projetos: '.concat(assistido.projetos[0]) : ''}}\r\n                <br />\r\n                {{assistido.observacoes? 'Observações: '.concat(assistido.observacoes) : '' }}\r\n              </ion-label>\r\n            </ion-item>\r\n            <ion-item-options side=\"start\">\r\n              <button\r\n                ion-button\r\n                (click)=\"editarAssistido(assistido)\"\r\n                class=\"bt-editar\"\r\n              >\r\n                <ion-icon class=\"icones\" name=\"create\"></ion-icon>\r\n              </button>\r\n            </ion-item-options>\r\n          </ion-item-sliding>\r\n        </ion-list>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n</ion-content>\r\n";
       /***/
     },
 
@@ -387,7 +387,7 @@
         }, {
           key: "editarAssistido",
           value: function editarAssistido(assistido) {
-            this.navCtrl.navigateForward('/editar/assistido', {
+            this.navCtrl.navigateForward("/editar/assistido", {
               state: {
                 content: assistido
               }
@@ -396,7 +396,7 @@
         }, {
           key: "formatarDataDeNascimento",
           value: function formatarDataDeNascimento(data) {
-            return data.includes('/') ? data : src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_6__["DateUtil"].dateFormatterBrazil(data);
+            return data.includes("/") ? data : src_app_util_DateUtil__WEBPACK_IMPORTED_MODULE_6__["DateUtil"].dateFormatterBrazil(data);
           }
         }, {
           key: "onSearchTerm",
@@ -404,7 +404,7 @@
             this.listaAssistidosFiltrados = this.listaAssistidos;
             var val = ev.detail.value;
 
-            if (val && val.trim() !== '') {
+            if (val && val.trim() !== "") {
               this.listaAssistidosFiltrados = this.listaAssistidosFiltrados.filter(function (term) {
                 return term.nomeCompleto.toUpperCase().indexOf(val.trim().toUpperCase()) > -1;
               });
@@ -428,142 +428,11 @@
       };
 
       AssistidoPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
-        selector: 'app-assistido',
+        selector: "app-assistido",
         template: _raw_loader_assistido_page_html__WEBPACK_IMPORTED_MODULE_1__["default"],
         styles: [_assistido_page_scss__WEBPACK_IMPORTED_MODULE_2__["default"]]
       })], AssistidoPage);
       /***/
-    },
-
-    /***/
-    "sZxV":
-    /*!***************************************!*\
-      !*** ./src/app/util/MensagensUtil.ts ***!
-      \***************************************/
-
-    /*! exports provided: MensagensUtil */
-
-    /***/
-    function sZxV(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "MensagensUtil", function () {
-        return MensagensUtil;
-      });
-      /* harmony import */
-
-
-      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! tslib */
-      "mrSG");
-
-      var MensagensUtil = /*#__PURE__*/function () {
-        function MensagensUtil(aviso) {
-          _classCallCheck(this, MensagensUtil);
-
-          this.aviso = aviso;
-        }
-
-        _createClass(MensagensUtil, [{
-          key: "mensagemSucesso",
-          value: function mensagemSucesso(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee$(_context) {
-                while (1) {
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'sucesso',
-                        position: 'top',
-                        message: message,
-                        duration: 3000,
-                        color: 'success'
-                      });
-                      _context.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context.stop();
-                  }
-                }
-              }, _callee, this);
-            }));
-          }
-        }, {
-          key: "mensagemError",
-          value: function mensagemError(error) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee2$(_context2) {
-                while (1) {
-                  switch (_context2.prev = _context2.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'error',
-                        position: 'top',
-                        message: error,
-                        duration: 3000,
-                        color: 'danger'
-                      });
-                      _context2.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context2.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context2.stop();
-                  }
-                }
-              }, _callee2, this);
-            }));
-          }
-        }, {
-          key: "mensagemAlerta",
-          value: function mensagemAlerta(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee3$(_context3) {
-                while (1) {
-                  switch (_context3.prev = _context3.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'alerta',
-                        position: 'top',
-                        message: message,
-                        duration: 3000,
-                        color: 'warning'
-                      });
-                      _context3.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context3.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context3.stop();
-                  }
-                }
-              }, _callee3, this);
-            }));
-          }
-        }]);
-
-        return MensagensUtil;
-      }();
-      /***/
-
     }
   }]);
 })();

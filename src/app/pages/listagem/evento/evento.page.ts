@@ -34,7 +34,6 @@ export class EventoPage {
 
   public inicializar(): void {
     this.mensagens = new MensagensUtil(this.aviso);
-    this.redirecionador = new RedirecionadorUtil(this.navCtrl);
     this.listaEventosObservable = this.eventoService.listar();
     this.listaEventosObservable.subscribe(async (response) => {
       this.listaEventos = await this.verificarEventosExpirados(response);

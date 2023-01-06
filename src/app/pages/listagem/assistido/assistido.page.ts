@@ -31,7 +31,6 @@ export class AssistidoPage {
 
   public inicializar(): void {
     this.mensagens = new MensagensUtil(this.aviso);
-    this.redirecionador = new RedirecionadorUtil(this.navCtrl);
     this.listaAssistidosObservable = this.assistidoService.listar();
     this.listaAssistidosObservable.subscribe((response) => {
       this.listaAssistidos = response;

@@ -155,7 +155,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>resetar-senha</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>resetar-senha</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n\r\n</ion-content>\r\n";
       /***/
     },
 
@@ -312,137 +312,6 @@
 
       __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJyZXNldGFyLXNlbmhhLnBhZ2Uuc2NzcyJ9 */";
       /***/
-    },
-
-    /***/
-    "sZxV":
-    /*!***************************************!*\
-      !*** ./src/app/util/MensagensUtil.ts ***!
-      \***************************************/
-
-    /*! exports provided: MensagensUtil */
-
-    /***/
-    function sZxV(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "MensagensUtil", function () {
-        return MensagensUtil;
-      });
-      /* harmony import */
-
-
-      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! tslib */
-      "mrSG");
-
-      var MensagensUtil = /*#__PURE__*/function () {
-        function MensagensUtil(aviso) {
-          _classCallCheck(this, MensagensUtil);
-
-          this.aviso = aviso;
-        }
-
-        _createClass(MensagensUtil, [{
-          key: "mensagemSucesso",
-          value: function mensagemSucesso(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee$(_context) {
-                while (1) {
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'sucesso',
-                        position: 'top',
-                        message: message,
-                        duration: 3000,
-                        color: 'success'
-                      });
-                      _context.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context.stop();
-                  }
-                }
-              }, _callee, this);
-            }));
-          }
-        }, {
-          key: "mensagemError",
-          value: function mensagemError(error) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee2$(_context2) {
-                while (1) {
-                  switch (_context2.prev = _context2.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'error',
-                        position: 'top',
-                        message: error,
-                        duration: 3000,
-                        color: 'danger'
-                      });
-                      _context2.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context2.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context2.stop();
-                  }
-                }
-              }, _callee2, this);
-            }));
-          }
-        }, {
-          key: "mensagemAlerta",
-          value: function mensagemAlerta(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee3$(_context3) {
-                while (1) {
-                  switch (_context3.prev = _context3.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'alerta',
-                        position: 'top',
-                        message: message,
-                        duration: 3000,
-                        color: 'warning'
-                      });
-                      _context3.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context3.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context3.stop();
-                  }
-                }
-              }, _callee3, this);
-            }));
-          }
-        }]);
-
-        return MensagensUtil;
-      }();
-      /***/
-
     }
   }]);
 })();

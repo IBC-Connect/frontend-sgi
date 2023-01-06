@@ -29,36 +29,63 @@ export class AutenticacaoGuard implements CanActivateChild {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    let usuarioAutenticado = false;
+    return new Promise((resolve) => {
+      const usuario = localStorage.getItem("usuario");
 
-    /*
-    this.autenticaService.afAuth.onAuthStateChanged(async (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        usuarioAutenticado = true;
-      } else {
-        const alert = await this.alertController.create({
-          header: "Aviso",
-          message:
-            "Você passou muito tempo sem acessar o site, você precisa fazer o login novamente.",
-          backdropDismiss: false,
-          buttons: [
-            {
-              text: "Ok",
-              handler: () => {
-                this.alertController.dismiss();
-                this.router.navigate(["/login"]);
-              },
-            },
-          ],
+      if (usuario) {
+        this.autenticaService.afAuth.onAuthStateChanged((user) => {
+          if (user) {
+            resolve(true);
+          } else {
+            resolve(false);
+            this.redirecionarPara("login");
+          }
         });
-        await alert.present();
+      } else {
+        this.mensagemAlertaPrecisaFazerLogin();
+        resolve(false);
       }
     });
-    
-    return !usuarioAutenticado;
-    */
-    return true;
+  }
+
+  private async mensagemAlertaInatividade() {
+    const alert = await this.alertController.create({
+      header: "Aviso",
+      message:
+        "Você passou muito tempo sem acessar o site, você precisa fazer o login novamente.",
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: "Ok",
+          handler: () => {
+            this.alertController.dismiss();
+            this.redirecionarPara("login");
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
+
+  private async mensagemAlertaPrecisaFazerLogin() {
+    const alert = await this.alertController.create({
+      header: "Aviso",
+      message: "Você precisa fazer o login para acessar a página.",
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: "Ok",
+          handler: () => {
+            this.alertController.dismiss();
+            this.redirecionarPara("login");
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
+
+  private redirecionarPara(nomePagina) {
+    this.router.navigate(["/" + nomePagina]);
   }
 }

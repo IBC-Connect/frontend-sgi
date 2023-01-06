@@ -113,7 +113,7 @@
         function DateUtil() {
           _classCallCheck(this, DateUtil);
 
-          moment__WEBPACK_IMPORTED_MODULE_0__["locale"]('pt-br');
+          moment__WEBPACK_IMPORTED_MODULE_0__["locale"]("pt-br");
         }
 
         _createClass(DateUtil, null, [{
@@ -134,12 +134,12 @@
         }, {
           key: "dateFormatterAmerica",
           value: function dateFormatterAmerica(data) {
-            return data.split('/').reverse().join('-');
+            return data.split("/").reverse().join("-");
           }
         }, {
           key: "dateFormatterBrazil",
           value: function dateFormatterBrazil(data) {
-            return moment__WEBPACK_IMPORTED_MODULE_0__(data).format('DD/MM/YYYY');
+            return moment__WEBPACK_IMPORTED_MODULE_0__(data).format("DD/MM/YYYY");
           }
         }, {
           key: "numeroDiasEntreDuasDatas",
@@ -158,19 +158,19 @@
         }, {
           key: "calcularData",
           value: function calcularData(data, dias) {
-            return moment__WEBPACK_IMPORTED_MODULE_0__(data).add(dias, 'year').subtract(1, 'days').format('YYYY-MM-DD');
+            return moment__WEBPACK_IMPORTED_MODULE_0__(data).add(dias, "year").subtract(1, "days").format("YYYY-MM-DD");
           }
         }, {
           key: "verificarIntervaloHora",
           value: function verificarIntervaloHora(horaI, horaF) {
-            var horaInicial = Number(horaI.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat('am'), 'hh:mma') : moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat('pm'), 'hh:mmp');
-            var horaFinal = Number(horaF.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat('am'), 'hh:mma') : moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat('pm'), 'hh:mmp');
+            var horaInicial = Number(horaI.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat("am"), "hh:mma") : moment__WEBPACK_IMPORTED_MODULE_0__(horaI.concat("pm"), "hh:mmp");
+            var horaFinal = Number(horaF.substring(0, 2)) < 12 ? moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat("am"), "hh:mma") : moment__WEBPACK_IMPORTED_MODULE_0__(horaF.concat("pm"), "hh:mmp");
             return horaInicial.isBefore(horaFinal);
           }
         }, {
           key: "isIdadeMaiorDozeAnos",
           value: function isIdadeMaiorDozeAnos(dataNasc) {
-            var idade = moment__WEBPACK_IMPORTED_MODULE_0__().diff(this.dateFormatterAmerica(dataNasc), 'years');
+            var idade = moment__WEBPACK_IMPORTED_MODULE_0__().diff(this.dateFormatterAmerica(dataNasc), "years");
             return idade >= 12;
           }
         }]);
@@ -197,7 +197,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"inicio\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Total de congregados: {{totalCongregados}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <h2 *ngIf=\"totalCongregados == 0\"> Não há congregados.</h2>\n  <ion-searchbar\n  *ngIf=\"totalCongregados > 0\"\n  (ionChange)=\"pesquisarCongregados($event)\"\n    placeholder=\"Digite o nome do congregado.\"\n    color=\"tertiary\"\n  ></ion-searchbar>\n  <ion-grid>\n    <ion-row align-items-center justify-content-center>\n      <ion-col>\n        <ion-list>\n          <ion-item-sliding *ngFor=\"let congregado of membrosCongregadosFiltrados\">\n            <ion-item text-wrap class=\"item-text-wrap\">\n              <ion-label class=\"informacao-membro\" text-wrap>\n                <h1 class=\"content-title\">{{congregado.nomeCompleto}}</h1>\n                Data de nascimento: {{formatarDataDeNascimento(congregado.dataNascimento)}} <br />\n                {{congregado.whatsapp? 'Whatsapp: '.concat(congregado.whatsapp) : '' }}\n              </ion-label>\n            </ion-item>\n            <ion-item-options side=\"start\">\n              <button\n                ion-button\n                (click)=\"editarCongregado(congregado)\"\n                class=\"bt-editar\"\n              >\n                <ion-icon class=\"icones\" name=\"create\"></ion-icon>\n              </button>\n              <button (click)=\"confirmarExclusao(congregado)\" ion-button class=\"bt-deletar\">\n                <ion-icon class=\"icones\" name=\"trash\"></ion-icon>\n                </button>\n            </ion-item-options>\n          </ion-item-sliding>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-buttons slot=\"start\">\r\n      <ion-back-button defaultHref=\"inicio\"></ion-back-button>\r\n    </ion-buttons>\r\n    <ion-title>Total de congregados: {{totalCongregados}}</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding>\r\n  <h2 *ngIf=\"totalCongregados == 0\"> Não há congregados.</h2>\r\n  <ion-searchbar\r\n  *ngIf=\"totalCongregados > 0\"\r\n  (ionChange)=\"pesquisarCongregados($event)\"\r\n    placeholder=\"Digite o nome do congregado.\"\r\n    color=\"tertiary\"\r\n  ></ion-searchbar>\r\n  <ion-grid>\r\n    <ion-row align-items-center justify-content-center>\r\n      <ion-col>\r\n        <ion-list>\r\n          <ion-item-sliding *ngFor=\"let congregado of membrosCongregadosFiltrados\">\r\n            <ion-item text-wrap class=\"item-text-wrap\">\r\n              <ion-label class=\"informacao-membro\" text-wrap>\r\n                <h1 class=\"content-title\">{{congregado.nomeCompleto}}</h1>\r\n                Data de nascimento: {{formatarDataDeNascimento(congregado.dataNascimento)}} <br />\r\n                {{congregado.whatsapp? 'Whatsapp: '.concat(congregado.whatsapp) : '' }}\r\n              </ion-label>\r\n            </ion-item>\r\n            <ion-item-options side=\"start\">\r\n              <button\r\n                ion-button\r\n                (click)=\"editarCongregado(congregado)\"\r\n                class=\"bt-editar\"\r\n              >\r\n                <ion-icon class=\"icones\" name=\"create\"></ion-icon>\r\n              </button>\r\n              <button (click)=\"confirmarExclusao(congregado)\" ion-button class=\"bt-deletar\">\r\n                <ion-icon class=\"icones\" name=\"trash\"></ion-icon>\r\n                </button>\r\n            </ion-item-options>\r\n          </ion-item-sliding>\r\n        </ion-list>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n</ion-content>\r\n";
       /***/
     },
 
@@ -439,139 +439,8 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "ion-searchbar {\n  margin-top: 15px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  font-family: \"Rubik\", sans-serif;\n}\n\nion-title,\nh1,\n.informacao-membro,\nh2 {\n  font-family: \"Lexend\", sans-serif;\n}\n\nh1 {\n  font-size: 20px;\n}\n\nh2 {\n  color: #a57d51;\n  text-align: center;\n}\n\n.bt-editar {\n  background: #2e2e3c;\n}\n\n.bt-inativar {\n  background: #a57d51;\n}\n\n.bt-deletar {\n  background: #35291c;\n}\n\n.icones {\n  color: #fff;\n  font-size: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL2NvbmdyZWdhZG8ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTtFQUNBLGdDQUFBO0FBQ0Y7O0FBRUE7Ozs7RUFJRSxpQ0FBQTtBQUNGOztBQUVBO0VBQ0UsZUFBQTtBQUNGOztBQUVBO0VBQ0UsY0FBQTtFQUNBLGtCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxtQkFBQTtBQUNGOztBQUVBO0VBQ0UsbUJBQUE7QUFDRjs7QUFFQTtFQUNFLG1CQUFBO0FBQ0Y7O0FBRUE7RUFDRSxXQUFBO0VBQ0EsZUFBQTtBQUNGIiwiZmlsZSI6ImNvbmdyZWdhZG8ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLXNlYXJjaGJhciB7XG4gIG1hcmdpbi10b3A6IDE1cHg7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBtYXJnaW4tbGVmdDogYXV0bztcbiAgbWFyZ2luLXJpZ2h0OiBhdXRvO1xuICBmb250LWZhbWlseTogXCJSdWJpa1wiLCBzYW5zLXNlcmlmO1xufVxuXG5pb24tdGl0bGUsXG5oMSxcbi5pbmZvcm1hY2FvLW1lbWJybyxcbmgyIHtcbiAgZm9udC1mYW1pbHk6IFwiTGV4ZW5kXCIsIHNhbnMtc2VyaWY7XG59XG5cbmgxIHtcbiAgZm9udC1zaXplOiAyMHB4O1xufVxuXG5oMiB7XG4gIGNvbG9yOiAjYTU3ZDUxO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5idC1lZGl0YXIge1xuICBiYWNrZ3JvdW5kOiAjMmUyZTNjO1xufVxuXG4uYnQtaW5hdGl2YXIge1xuICBiYWNrZ3JvdW5kOiAjYTU3ZDUxO1xufVxuXG4uYnQtZGVsZXRhciB7XG4gIGJhY2tncm91bmQ6ICMzNTI5MWM7XG59XG5cbi5pY29uZXMge1xuICBjb2xvcjogI2ZmZjtcbiAgZm9udC1zaXplOiAyMHB4O1xufVxuIl19 */";
+      __webpack_exports__["default"] = "ion-searchbar {\n  margin-top: 15px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  font-family: \"Rubik\", sans-serif;\n}\n\nion-title,\nh1,\n.informacao-membro,\nh2 {\n  font-family: \"Lexend\", sans-serif;\n}\n\nh1 {\n  font-size: 20px;\n}\n\nh2 {\n  color: #a57d51;\n  text-align: center;\n}\n\n.bt-editar {\n  background: #2e2e3c;\n}\n\n.bt-inativar {\n  background: #a57d51;\n}\n\n.bt-deletar {\n  background: #35291c;\n}\n\n.icones {\n  color: #fff;\n  font-size: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFwuLlxcLi5cXGNvbmdyZWdhZG8ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTtFQUNBLGdDQUFBO0FBQ0Y7O0FBRUE7Ozs7RUFJRSxpQ0FBQTtBQUNGOztBQUVBO0VBQ0UsZUFBQTtBQUNGOztBQUVBO0VBQ0UsY0FBQTtFQUNBLGtCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxtQkFBQTtBQUNGOztBQUVBO0VBQ0UsbUJBQUE7QUFDRjs7QUFFQTtFQUNFLG1CQUFBO0FBQ0Y7O0FBRUE7RUFDRSxXQUFBO0VBQ0EsZUFBQTtBQUNGIiwiZmlsZSI6ImNvbmdyZWdhZG8ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLXNlYXJjaGJhciB7XHJcbiAgbWFyZ2luLXRvcDogMTVweDtcclxuICBkaXNwbGF5OiBibG9jaztcclxuICBtYXJnaW4tbGVmdDogYXV0bztcclxuICBtYXJnaW4tcmlnaHQ6IGF1dG87XHJcbiAgZm9udC1mYW1pbHk6IFwiUnViaWtcIiwgc2Fucy1zZXJpZjtcclxufVxyXG5cclxuaW9uLXRpdGxlLFxyXG5oMSxcclxuLmluZm9ybWFjYW8tbWVtYnJvLFxyXG5oMiB7XHJcbiAgZm9udC1mYW1pbHk6IFwiTGV4ZW5kXCIsIHNhbnMtc2VyaWY7XHJcbn1cclxuXHJcbmgxIHtcclxuICBmb250LXNpemU6IDIwcHg7XHJcbn1cclxuXHJcbmgyIHtcclxuICBjb2xvcjogI2E1N2Q1MTtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5idC1lZGl0YXIge1xyXG4gIGJhY2tncm91bmQ6ICMyZTJlM2M7XHJcbn1cclxuXHJcbi5idC1pbmF0aXZhciB7XHJcbiAgYmFja2dyb3VuZDogI2E1N2Q1MTtcclxufVxyXG5cclxuLmJ0LWRlbGV0YXIge1xyXG4gIGJhY2tncm91bmQ6ICMzNTI5MWM7XHJcbn1cclxuXHJcbi5pY29uZXMge1xyXG4gIGNvbG9yOiAjZmZmO1xyXG4gIGZvbnQtc2l6ZTogMjBweDtcclxufVxyXG4iXX0= */";
       /***/
-    },
-
-    /***/
-    "sZxV":
-    /*!***************************************!*\
-      !*** ./src/app/util/MensagensUtil.ts ***!
-      \***************************************/
-
-    /*! exports provided: MensagensUtil */
-
-    /***/
-    function sZxV(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "MensagensUtil", function () {
-        return MensagensUtil;
-      });
-      /* harmony import */
-
-
-      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! tslib */
-      "mrSG");
-
-      var MensagensUtil = /*#__PURE__*/function () {
-        function MensagensUtil(aviso) {
-          _classCallCheck(this, MensagensUtil);
-
-          this.aviso = aviso;
-        }
-
-        _createClass(MensagensUtil, [{
-          key: "mensagemSucesso",
-          value: function mensagemSucesso(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee2$(_context2) {
-                while (1) {
-                  switch (_context2.prev = _context2.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'sucesso',
-                        position: 'top',
-                        message: message,
-                        duration: 3000,
-                        color: 'success'
-                      });
-                      _context2.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context2.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context2.stop();
-                  }
-                }
-              }, _callee2, this);
-            }));
-          }
-        }, {
-          key: "mensagemError",
-          value: function mensagemError(error) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee3$(_context3) {
-                while (1) {
-                  switch (_context3.prev = _context3.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'error',
-                        position: 'top',
-                        message: error,
-                        duration: 3000,
-                        color: 'danger'
-                      });
-                      _context3.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context3.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context3.stop();
-                  }
-                }
-              }, _callee3, this);
-            }));
-          }
-        }, {
-          key: "mensagemAlerta",
-          value: function mensagemAlerta(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee4$(_context4) {
-                while (1) {
-                  switch (_context4.prev = _context4.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'alerta',
-                        position: 'top',
-                        message: message,
-                        duration: 3000,
-                        color: 'warning'
-                      });
-                      _context4.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context4.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context4.stop();
-                  }
-                }
-              }, _callee4, this);
-            }));
-          }
-        }]);
-
-        return MensagensUtil;
-      }();
-      /***/
-
     },
 
     /***/

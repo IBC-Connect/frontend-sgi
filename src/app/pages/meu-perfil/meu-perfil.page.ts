@@ -1,3 +1,4 @@
+import { DadosUsuarioUtil } from './../../util/DadosUsuarioUtil';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Membro } from 'src/app/modelo/Membro';
@@ -19,7 +20,7 @@ export class MeuPerfilPage implements OnInit {
   membro : Membro;
 
   constructor(private autenticacao : AutenticacaoService, private membroService : MembroService) {
-    this.usuario = autenticacao.pegarDadosLocalmente() ? autenticacao.pegarDadosLocalmente() : new Usuario();
+    this.usuario = DadosUsuarioUtil.dadosUsuarioLogado();
     this.membro = new Membro();
   }
 

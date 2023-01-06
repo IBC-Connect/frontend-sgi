@@ -203,8 +203,8 @@ module.exports = function (it, TAG, STATIC) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/joaopedrotavares/Documents/Dev/frontend-sgi/src/polyfills.ts */"hN/g");
-module.exports = __webpack_require__(/*! /Users/joaopedrotavares/Documents/Dev/frontend-sgi/node_modules/@angular-devkit/build-angular/src/webpack/jit-polyfills.js */"rZy+");
+__webpack_require__(/*! C:\Users\joaop\Desenvolvimento\IBC\frontend-sgi\src\polyfills.ts */"hN/g");
+module.exports = __webpack_require__(/*! C:\Users\joaop\Desenvolvimento\IBC\frontend-sgi\node_modules\@angular-devkit\build-angular\src\webpack\jit-polyfills.js */"rZy+");
 
 
 /***/ }),

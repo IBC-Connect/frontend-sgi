@@ -137,7 +137,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "ion-content,\nion-item {\n  --background: #e6e6e6;\n}\n\nion-title, h2 {\n  --color: #fff;\n  font-family: \"Lexend\", sans-serif;\n}\n\nion-content,\nion-item,\nion-input,\nion-textarea,\nion-select,\n.titulo-dado {\n  font-family: \"Rubik\", sans-serif;\n}\n\nion-input, ion-textarea {\n  text-transform: uppercase;\n  font-size: 11pt;\n}\n\nion-input,\nion-textarea,\n.titulo-dado,\nh2 {\n  color: #2e2e3c;\n}\n\n#rodape {\n  --background: #e6e6e6;\n}\n\nspan {\n  color: #eb445a;\n}\n\nh2 {\n  font-size: 13pt;\n  font-weight: bolder;\n  margin-left: 1%;\n}\n\n.titulo-dado {\n  font-size: 13pt;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL2NhcmdvLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7RUFFSSxxQkFBQTtBQUNKOztBQUVBO0VBQ0ksYUFBQTtFQUNBLGlDQUFBO0FBQ0o7O0FBRUE7Ozs7OztFQU1HLGdDQUFBO0FBQ0g7O0FBRUE7RUFDSSx5QkFBQTtFQUNBLGVBQUE7QUFDSjs7QUFFQTs7OztFQUlJLGNBQUE7QUFDSjs7QUFFQTtFQUNJLHFCQUFBO0FBQ0o7O0FBRUE7RUFDSSxjQUFBO0FBQ0o7O0FBRUE7RUFDSSxlQUFBO0VBQ0EsbUJBQUE7RUFDQSxlQUFBO0FBQ0o7O0FBRUE7RUFDSSxlQUFBO0FBQ0oiLCJmaWxlIjoiY2FyZ28ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNvbnRlbnQsIFxuaW9uLWl0ZW17XG4gICAgLS1iYWNrZ3JvdW5kOiAjZTZlNmU2O1xufVxuXG5pb24tdGl0bGUsaDJ7XG4gICAgLS1jb2xvcjogI2ZmZjtcbiAgICBmb250LWZhbWlseTogJ0xleGVuZCcsIHNhbnMtc2VyaWY7XG59XG5cbmlvbi1jb250ZW50LCAgXG5pb24taXRlbSwgXG5pb24taW5wdXQsXG5pb24tdGV4dGFyZWEsIFxuaW9uLXNlbGVjdCxcbi50aXR1bG8tZGFkbyB7XG4gICBmb250LWZhbWlseTogJ1J1YmlrJywgc2Fucy1zZXJpZjtcbn1cblxuaW9uLWlucHV0LCBpb24tdGV4dGFyZWF7XG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgICBmb250LXNpemU6IDExcHQ7XG59XG5cbmlvbi1pbnB1dCxcbmlvbi10ZXh0YXJlYSwgXG4udGl0dWxvLWRhZG8sXG5oMntcbiAgICBjb2xvcjojMmUyZTNjO1xufSBcblxuI3JvZGFwZXtcbiAgICAtLWJhY2tncm91bmQ6ICNlNmU2ZTY7IFxufVxuXG5zcGFuIHtcbiAgICBjb2xvcjogI2ViNDQ1YTtcbn1cblxuaDIge1xuICAgIGZvbnQtc2l6ZToxM3B0O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkZXI7XG4gICAgbWFyZ2luLWxlZnQ6MSU7XG59XG5cbi50aXR1bG8tZGFkb3tcbiAgICBmb250LXNpemU6IDEzcHQ7XG59Il19 */";
+      __webpack_exports__["default"] = "ion-content,\nion-item {\n  --background: #e6e6e6;\n}\n\nion-title, h2 {\n  --color: #fff;\n  font-family: \"Lexend\", sans-serif;\n}\n\nion-content,\nion-item,\nion-input,\nion-textarea,\nion-select,\n.titulo-dado {\n  font-family: \"Rubik\", sans-serif;\n}\n\nion-input, ion-textarea {\n  text-transform: uppercase;\n  font-size: 11pt;\n}\n\nion-input,\nion-textarea,\n.titulo-dado,\nh2 {\n  color: #2e2e3c;\n}\n\n#rodape {\n  --background: #e6e6e6;\n}\n\nspan {\n  color: #eb445a;\n}\n\nh2 {\n  font-size: 13pt;\n  font-weight: bolder;\n  margin-left: 1%;\n}\n\n.titulo-dado {\n  font-size: 13pt;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFwuLlxcY2FyZ28ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztFQUVJLHFCQUFBO0FBQ0o7O0FBRUE7RUFDSSxhQUFBO0VBQ0EsaUNBQUE7QUFDSjs7QUFFQTs7Ozs7O0VBTUcsZ0NBQUE7QUFDSDs7QUFFQTtFQUNJLHlCQUFBO0VBQ0EsZUFBQTtBQUNKOztBQUVBOzs7O0VBSUksY0FBQTtBQUNKOztBQUVBO0VBQ0kscUJBQUE7QUFDSjs7QUFFQTtFQUNJLGNBQUE7QUFDSjs7QUFFQTtFQUNJLGVBQUE7RUFDQSxtQkFBQTtFQUNBLGVBQUE7QUFDSjs7QUFFQTtFQUNJLGVBQUE7QUFDSiIsImZpbGUiOiJjYXJnby5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY29udGVudCwgXHJcbmlvbi1pdGVte1xyXG4gICAgLS1iYWNrZ3JvdW5kOiAjZTZlNmU2O1xyXG59XHJcblxyXG5pb24tdGl0bGUsaDJ7XHJcbiAgICAtLWNvbG9yOiAjZmZmO1xyXG4gICAgZm9udC1mYW1pbHk6ICdMZXhlbmQnLCBzYW5zLXNlcmlmO1xyXG59XHJcblxyXG5pb24tY29udGVudCwgIFxyXG5pb24taXRlbSwgXHJcbmlvbi1pbnB1dCxcclxuaW9uLXRleHRhcmVhLCBcclxuaW9uLXNlbGVjdCxcclxuLnRpdHVsby1kYWRvIHtcclxuICAgZm9udC1mYW1pbHk6ICdSdWJpaycsIHNhbnMtc2VyaWY7XHJcbn1cclxuXHJcbmlvbi1pbnB1dCwgaW9uLXRleHRhcmVhe1xyXG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcclxuICAgIGZvbnQtc2l6ZTogMTFwdDtcclxufVxyXG5cclxuaW9uLWlucHV0LFxyXG5pb24tdGV4dGFyZWEsIFxyXG4udGl0dWxvLWRhZG8sXHJcbmgye1xyXG4gICAgY29sb3I6IzJlMmUzYztcclxufSBcclxuXHJcbiNyb2RhcGV7XHJcbiAgICAtLWJhY2tncm91bmQ6ICNlNmU2ZTY7IFxyXG59XHJcblxyXG5zcGFuIHtcclxuICAgIGNvbG9yOiAjZWI0NDVhO1xyXG59XHJcblxyXG5oMiB7XHJcbiAgICBmb250LXNpemU6MTNwdDtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkZXI7XHJcbiAgICBtYXJnaW4tbGVmdDoxJTtcclxufVxyXG5cclxuLnRpdHVsby1kYWRve1xyXG4gICAgZm9udC1zaXplOiAxM3B0O1xyXG59Il19 */";
       /***/
     },
 
@@ -157,7 +157,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar color=\"primary\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"inicio\"></ion-back-button>\n        </ion-buttons>\n        <ion-title>Cadastro de cargo</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <ion-grid>\n        <h2>Informações do Cargo</h2>\n\n        <ion-item class=\"row-item\">\n            <ion-label mode=\"md\" class=\"titulo-dado\" position=\"stacked\">Nome<span>*</span></ion-label>\n            <ion-input mode=\"md\" [(ngModel)]=\"cargo.nome\" type=\"text\" maxlength=\"100\"></ion-input>\n        </ion-item>\n\n        <ion-item class=\"row-item\">\n            <ion-label mode=\"md\" class=\"titulo-dado\" position=\"stacked\">Descrição <span>*</span></ion-label>\n            <ion-textarea mode=\"md\" [(ngModel)]=\"cargo.descricao\"></ion-textarea>\n        </ion-item>\n    </ion-grid>\n\n</ion-content>\n\n<ion-footer class=\"ion-no-border\">\n    <ion-toolbar no-padding id=\"rodape\">\n        <ion-grid>\n            <ion-row>\n                <ion-col>\n                    <ion-button mode=\"md\" color=\"primary\" (click)=\"cadastrar()\" [disabled]=\"disabledBotaoCadastrar()\" type=\"submit\" fill=\"solid\" expand=\"full\">\n                        Cadastrar</ion-button>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </ion-toolbar>\n</ion-footer>";
+      __webpack_exports__["default"] = "<ion-header>\r\n    <ion-toolbar color=\"primary\">\r\n        <ion-buttons slot=\"start\">\r\n            <ion-back-button defaultHref=\"inicio\"></ion-back-button>\r\n        </ion-buttons>\r\n        <ion-title>Cadastro de cargo</ion-title>\r\n    </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n    <ion-grid>\r\n        <h2>Informações do Cargo</h2>\r\n\r\n        <ion-item class=\"row-item\">\r\n            <ion-label mode=\"md\" class=\"titulo-dado\" position=\"stacked\">Nome<span>*</span></ion-label>\r\n            <ion-input mode=\"md\" [(ngModel)]=\"cargo.nome\" type=\"text\" maxlength=\"100\"></ion-input>\r\n        </ion-item>\r\n\r\n        <ion-item class=\"row-item\">\r\n            <ion-label mode=\"md\" class=\"titulo-dado\" position=\"stacked\">Descrição <span>*</span></ion-label>\r\n            <ion-textarea mode=\"md\" [(ngModel)]=\"cargo.descricao\"></ion-textarea>\r\n        </ion-item>\r\n    </ion-grid>\r\n\r\n</ion-content>\r\n\r\n<ion-footer class=\"ion-no-border\">\r\n    <ion-toolbar no-padding id=\"rodape\">\r\n        <ion-grid>\r\n            <ion-row>\r\n                <ion-col>\r\n                    <ion-button mode=\"md\" color=\"primary\" (click)=\"cadastrar()\" [disabled]=\"disabledBotaoCadastrar()\" type=\"submit\" fill=\"solid\" expand=\"full\">\r\n                        Cadastrar</ion-button>\r\n                </ion-col>\r\n            </ion-row>\r\n        </ion-grid>\r\n    </ion-toolbar>\r\n</ion-footer>";
       /***/
     },
 
@@ -232,137 +232,6 @@
         declarations: [_cargo_page__WEBPACK_IMPORTED_MODULE_6__["CargoPage"]]
       })], CargoPageModule);
       /***/
-    },
-
-    /***/
-    "sZxV":
-    /*!***************************************!*\
-      !*** ./src/app/util/MensagensUtil.ts ***!
-      \***************************************/
-
-    /*! exports provided: MensagensUtil */
-
-    /***/
-    function sZxV(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "MensagensUtil", function () {
-        return MensagensUtil;
-      });
-      /* harmony import */
-
-
-      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! tslib */
-      "mrSG");
-
-      var MensagensUtil = /*#__PURE__*/function () {
-        function MensagensUtil(aviso) {
-          _classCallCheck(this, MensagensUtil);
-
-          this.aviso = aviso;
-        }
-
-        _createClass(MensagensUtil, [{
-          key: "mensagemSucesso",
-          value: function mensagemSucesso(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee$(_context) {
-                while (1) {
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'sucesso',
-                        position: 'top',
-                        message: message,
-                        duration: 3000,
-                        color: 'success'
-                      });
-                      _context.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context.stop();
-                  }
-                }
-              }, _callee, this);
-            }));
-          }
-        }, {
-          key: "mensagemError",
-          value: function mensagemError(error) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee2$(_context2) {
-                while (1) {
-                  switch (_context2.prev = _context2.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'error',
-                        position: 'top',
-                        message: error,
-                        duration: 3000,
-                        color: 'danger'
-                      });
-                      _context2.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context2.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context2.stop();
-                  }
-                }
-              }, _callee2, this);
-            }));
-          }
-        }, {
-          key: "mensagemAlerta",
-          value: function mensagemAlerta(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-              var exibirMensagem;
-              return regeneratorRuntime.wrap(function _callee3$(_context3) {
-                while (1) {
-                  switch (_context3.prev = _context3.next) {
-                    case 0:
-                      exibirMensagem = this.aviso.create({
-                        id: 'alerta',
-                        position: 'top',
-                        message: message,
-                        duration: 3000,
-                        color: 'warning'
-                      });
-                      _context3.next = 3;
-                      return exibirMensagem;
-
-                    case 3:
-                      _context3.sent.present();
-
-                    case 4:
-                    case "end":
-                      return _context3.stop();
-                  }
-                }
-              }, _callee3, this);
-            }));
-          }
-        }]);
-
-        return MensagensUtil;
-      }();
-      /***/
-
     },
 
     /***/

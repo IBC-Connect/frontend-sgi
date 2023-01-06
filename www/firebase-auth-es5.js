@@ -254,7 +254,7 @@
 
           b.prototype.s = function (g) {
             var h = this.f();
-            g.Qa(h.resolve, h.reject);
+            g.Ra(h.resolve, h.reject);
           };
 
           b.prototype.u = function (g, h) {
@@ -284,7 +284,7 @@
               p = A;
               v = Q;
             });
-            this.Qa(m(g, p), m(h, v));
+            this.Ra(m(g, p), m(h, v));
             return B;
           };
 
@@ -292,7 +292,7 @@
             return this.then(void 0, g);
           };
 
-          b.prototype.Qa = function (g, h) {
+          b.prototype.Ra = function (g, h) {
             function m() {
               switch (p.b) {
                 case 1:
@@ -323,7 +323,7 @@
           b.race = function (g) {
             return new b(function (h, m) {
               for (var p = fa(g), v = p.next(); !v.done; v = p.next()) {
-                d(v.value).Qa(h, m);
+                d(v.value).Ra(h, m);
               }
             });
           };
@@ -344,7 +344,7 @@
                   Q = 0;
 
               do {
-                A.push(void 0), Q++, d(m.value).Qa(B(A.length - 1), v), m = h.next();
+                A.push(void 0), Q++, d(m.value).Ra(B(A.length - 1), v), m = h.next();
               } while (!m.done);
             });
           };
@@ -429,7 +429,7 @@
           function c() {}
 
           c.prototype = b.prototype;
-          a.ab = b.prototype;
+          a.bb = b.prototype;
           a.prototype = new c();
           a.prototype.constructor = a;
         }
@@ -440,7 +440,7 @@
 
         ;
         /*
-        Copyright 2017 Google Inc.
+        Copyright 2017 Google LLC
         Licensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
         You may obtain a copy of the License at
@@ -501,7 +501,7 @@
           "invalid-app-id": "The mobile app identifier is not registed for the current project.",
           "invalid-user-token": "This user's credential isn't valid for this project. This can happen if the user's token has been tampered with, or if the user isn't for the project associated with this API key.",
           "invalid-auth-event": "An internal error has occurred.",
-          "invalid-verification-code": "The SMS verification code used to create the phone auth credential is invalid. Please resend the verification code sms and be sure use the verification code provided by the user.",
+          "invalid-verification-code": "The SMS verification code used to create the phone auth credential is invalid. Please resend the verification code sms and be sure to use the verification code provided by the user.",
           "invalid-continue-uri": "The continue URL provided in the request is invalid.",
           "invalid-cordova-configuration": "The following Cordova plugins must be installed to enable OAuth sign-in: cordova-plugin-buildinfo, cordova-universal-links-plugin, cordova-plugin-browsertab, cordova-plugin-inappbrowser and cordova-plugin-customurlscheme.",
           "invalid-custom-token": "The custom token format is incorrect. Please check the documentation.",
@@ -572,42 +572,29 @@
           "weak-password": "The password must be 6 characters long or more.",
           "web-storage-unsupported": "This browser is not supported or 3rd party cookies and data may be disabled."
         };
-        /*
-        Copyright 2017 Google LLC
-        Licensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at
-        http://www.apache.org/licenses/LICENSE-2.0
-        Unless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License.
-        */
-
         var Ba = {
           ld: {
-            Ta: "https://staging-identitytoolkit.sandbox.googleapis.com/identitytoolkit/v3/relyingparty/",
-            Za: "https://staging-securetoken.sandbox.googleapis.com/v1/token",
-            Wa: "https://staging-identitytoolkit.sandbox.googleapis.com/v2/",
+            Ua: "https://staging-identitytoolkit.sandbox.googleapis.com/identitytoolkit/v3/relyingparty/",
+            $a: "https://staging-securetoken.sandbox.googleapis.com/v1/token",
+            Xa: "https://staging-identitytoolkit.sandbox.googleapis.com/v2/",
             id: "b"
           },
           sd: {
-            Ta: "https://www.googleapis.com/identitytoolkit/v3/relyingparty/",
-            Za: "https://securetoken.googleapis.com/v1/token",
-            Wa: "https://identitytoolkit.googleapis.com/v2/",
+            Ua: "https://www.googleapis.com/identitytoolkit/v3/relyingparty/",
+            $a: "https://securetoken.googleapis.com/v1/token",
+            Xa: "https://identitytoolkit.googleapis.com/v2/",
             id: "p"
           },
           ud: {
-            Ta: "https://staging-www.sandbox.googleapis.com/identitytoolkit/v3/relyingparty/",
-            Za: "https://staging-securetoken.sandbox.googleapis.com/v1/token",
-            Wa: "https://staging-identitytoolkit.sandbox.googleapis.com/v2/",
+            Ua: "https://staging-www.sandbox.googleapis.com/identitytoolkit/v3/relyingparty/",
+            $a: "https://staging-securetoken.sandbox.googleapis.com/v1/token",
+            Xa: "https://staging-identitytoolkit.sandbox.googleapis.com/v2/",
             id: "s"
           },
           vd: {
-            Ta: "https://www-googleapis-test.sandbox.google.com/identitytoolkit/v3/relyingparty/",
-            Za: "https://test-securetoken.sandbox.googleapis.com/v1/token",
-            Wa: "https://test-identitytoolkit.sandbox.googleapis.com/v2/",
+            Ua: "https://www-googleapis-test.sandbox.google.com/identitytoolkit/v3/relyingparty/",
+            $a: "https://test-securetoken.sandbox.googleapis.com/v1/token",
+            Xa: "https://test-identitytoolkit.sandbox.googleapis.com/v2/",
             id: "t"
           }
         };
@@ -615,9 +602,9 @@
         function Ca(a) {
           for (var b in Ba) {
             if (Ba[b].id === a) return a = Ba[b], {
-              firebaseEndpoint: a.Ta,
-              secureTokenEndpoint: a.Za,
-              identityPlatformEndpoint: a.Wa
+              firebaseEndpoint: a.Ua,
+              secureTokenEndpoint: a.$a,
+              identityPlatformEndpoint: a.Xa
             };
           }
 
@@ -963,9 +950,9 @@
           this.b = sb;
         }
 
-        qb.prototype.sa = !0;
+        qb.prototype.ta = !0;
 
-        qb.prototype.ra = function () {
+        qb.prototype.sa = function () {
           return this.a;
         };
 
@@ -1012,9 +999,9 @@
           this.a = b === xb ? a : "";
         }
 
-        wb.prototype.sa = !0;
+        wb.prototype.ta = !0;
 
-        wb.prototype.ra = function () {
+        wb.prototype.sa = function () {
           return this.a.toString();
         };
 
@@ -1055,9 +1042,9 @@
           this.a = b === Db ? a : "";
         }
 
-        C.prototype.sa = !0;
+        C.prototype.ta = !0;
 
-        C.prototype.ra = function () {
+        C.prototype.sa = function () {
           return this.a.toString();
         };
 
@@ -1077,7 +1064,7 @@
 
         function Ib(a) {
           if (a instanceof C) return a;
-          a = "object" == typeof a && a.sa ? a.ra() : String(a);
+          a = "object" == typeof a && a.ta ? a.sa() : String(a);
           if (Hb.test(a)) a = new C(a, Db);else {
             a = String(a);
             a = a.replace(/(%0A|%0D)/g, "");
@@ -1089,7 +1076,7 @@
 
         function Jb(a) {
           if (a instanceof C) return a;
-          a = "object" == typeof a && a.sa ? a.ra() : String(a);
+          a = "object" == typeof a && a.ta ? a.sa() : String(a);
           Hb.test(a) || (a = "about:invalid#zClosurez");
           return new C(a, Db);
         }
@@ -1101,9 +1088,9 @@
           this.a = c === Mb ? a : "";
         }
 
-        Lb.prototype.sa = !0;
+        Lb.prototype.ta = !0;
 
-        Lb.prototype.ra = function () {
+        Lb.prototype.sa = function () {
           return this.a.toString();
         };
 
@@ -1246,7 +1233,7 @@
 
         function lc(a, b) {
           lb(b, function (c, d) {
-            c && "object" == typeof c && c.sa && (c = c.ra());
+            c && "object" == typeof c && c.ta && (c = c.sa());
             "style" == d ? a.style.cssText = c : "class" == d ? a.className = c : "for" == d ? a.htmlFor = c : mc.hasOwnProperty(d) ? a.setAttribute(mc[d], c) : 0 == d.lastIndexOf("aria-", 0) || 0 == d.lastIndexOf("data-", 0) ? a.setAttribute(d, c) : a[d] = c;
           });
         }
@@ -1372,15 +1359,15 @@
             b.port1.onmessage = function () {
               if (void 0 !== c.next) {
                 c = c.next;
-                var e = c.Gb;
-                c.Gb = null;
+                var e = c.Hb;
+                c.Hb = null;
                 e();
               }
             };
 
             return function (e) {
               d.next = {
-                Gb: e
+                Hb: e
               };
               d = d.next;
               b.port2.postMessage(0);
@@ -1523,10 +1510,10 @@
             if (c) for (var e = function e(h, m, p) {
               c--;
               d[h] = m ? {
-                Pb: !0,
+                Qb: !0,
                 value: p
               } : {
-                Pb: !1,
+                Qb: !1,
                 reason: p
               };
               0 == c && b(d);
@@ -1707,16 +1694,16 @@
 
         function Uc() {
           0 != Vc && (Wc[pa(this)] = this);
-          this.xa = this.xa;
+          this.ya = this.ya;
           this.pa = this.pa;
         }
 
         var Vc = 0,
             Wc = {};
-        Uc.prototype.xa = !1;
+        Uc.prototype.ya = !1;
 
         function Xc(a) {
-          if (!a.xa && (a.xa = !0, a.Da(), 0 != Vc)) {
+          if (!a.ya && (a.ya = !0, a.Da(), 0 != Vc)) {
             var b = pa(a);
             if (0 != Vc && a.pa && 0 < a.pa.length) throw Error(a + " did not empty its onDisposeCallbacks queue. This probably means it overrode dispose() or disposeInternal() without calling the superclass' method.");
             delete Wc[b];
@@ -1816,7 +1803,7 @@
         });
 
         bd.prototype.preventDefault = function () {
-          bd.ab.preventDefault.call(this);
+          bd.bb.preventDefault.call(this);
           var a = this.a;
           if (a.preventDefault) a.preventDefault();else if (a.returnValue = !1, $c) try {
             if (a.ctrlKey || 112 <= a.keyCode && 123 >= a.keyCode) a.keyCode = -1;
@@ -1836,17 +1823,17 @@
           this.src = b;
           this.type = c;
           this.capture = !!d;
-          this.Va = e;
+          this.Wa = e;
           this.key = ++ed;
-          this.va = this.Pa = !1;
+          this.wa = this.Qa = !1;
         }
 
         function gd(a) {
-          a.va = !0;
+          a.wa = !0;
           a.listener = null;
           a.proxy = null;
           a.src = null;
-          a.Va = null;
+          a.Wa = null;
         }
 
         ;
@@ -1862,7 +1849,7 @@
           a = this.a[f];
           a || (a = this.a[f] = [], this.b++);
           var g = id(a, b, d, e);
-          -1 < g ? (b = a[g], c || (b.Pa = !1)) : (b = new fd(b, this.src, f, !!d, e), b.Pa = c, a.push(b));
+          -1 < g ? (b = a[g], c || (b.Qa = !1)) : (b = new fd(b, this.src, f, !!d, e), b.Qa = c, a.push(b));
           return b;
         };
 
@@ -1874,7 +1861,7 @@
         function id(a, b, c, d) {
           for (var e = 0; e < a.length; ++e) {
             var f = a[e];
-            if (!f.va && f.listener == b && f.capture == !!c && f.Va == d) return e;
+            if (!f.wa && f.listener == b && f.capture == !!c && f.Wa == d) return e;
           }
 
           return -1;
@@ -1932,7 +1919,7 @@
         }
 
         function yd(a) {
-          if ("number" !== typeof a && a && !a.va) {
+          if ("number" !== typeof a && a && !a.wa) {
             var b = a.src;
             if (b && b[dd]) jd(b.v, a);else {
               var c = a.type,
@@ -1952,20 +1939,20 @@
           var e = !0;
           if (a = sd(a)) if (b = a.a[b.toString()]) for (b = b.concat(), a = 0; a < b.length; a++) {
             var f = b[a];
-            f && f.capture == c && !f.va && (f = Bd(f, d), e = e && !1 !== f);
+            f && f.capture == c && !f.wa && (f = Bd(f, d), e = e && !1 !== f);
           }
           return e;
         }
 
         function Bd(a, b) {
           var c = a.listener,
-              d = a.Va || a.src;
-          a.Pa && yd(a);
+              d = a.Wa || a.src;
+          a.Qa && yd(a);
           return c.call(d, b);
         }
 
         function vd(a, b) {
-          if (a.va) return !0;
+          if (a.wa) return !0;
 
           if (!Zc) {
             if (!b) a: {
@@ -2041,8 +2028,8 @@
         function H() {
           Uc.call(this);
           this.v = new hd(this);
-          this.ac = this;
-          this.gb = null;
+          this.bc = this;
+          this.hb = null;
         }
 
         r(H, Uc);
@@ -2058,11 +2045,11 @@
 
         H.prototype.dispatchEvent = function (a) {
           var b,
-              c = this.gb;
-          if (c) for (b = []; c; c = c.gb) {
+              c = this.hb;
+          if (c) for (b = []; c; c = c.hb) {
             b.push(c);
           }
-          c = this.ac;
+          c = this.bc;
           var d = a.type || a;
           if ("string" === typeof a) a = new G(a, c);else if (a instanceof G) a.target = a.target || c;else {
             var e = a;
@@ -2084,7 +2071,7 @@
         };
 
         H.prototype.Da = function () {
-          H.ab.Da.call(this);
+          H.bb.Da.call(this);
 
           if (this.v) {
             var a = this.v,
@@ -2101,7 +2088,7 @@
             }
           }
 
-          this.gb = null;
+          this.hb = null;
         };
 
         function qd(a, b, c, d, e) {
@@ -2120,10 +2107,10 @@
           for (var e = !0, f = 0; f < b.length; ++f) {
             var g = b[f];
 
-            if (g && !g.va && g.capture == c) {
+            if (g && !g.wa && g.capture == c) {
               var h = g.listener,
-                  m = g.Va || g.src;
-              g.Pa && jd(a.v, g);
+                  m = g.Wa || g.src;
+              g.Qa && jd(a.v, g);
               e = !1 !== h.call(m, d) && e;
             }
           }
@@ -2154,7 +2141,7 @@
         ;
 
         function Gd(a) {
-          if (a.W && "function" == typeof a.W) return a.W();
+          if (a.X && "function" == typeof a.X) return a.X();
           if ("string" === typeof a) return a.split("");
 
           if (na(a)) {
@@ -2178,7 +2165,7 @@
         function Hd(a) {
           if (a.Y && "function" == typeof a.Y) return a.Y();
 
-          if (!a.W || "function" != typeof a.W) {
+          if (!a.X || "function" != typeof a.X) {
             if (na(a) || "string" === typeof a) {
               var b = [];
               a = a.length;
@@ -2230,7 +2217,7 @@
 
         k = Jd.prototype;
 
-        k.W = function () {
+        k.X = function () {
           Kd(this);
 
           for (var a = [], b = 0; b < this.a.length; b++) {
@@ -2494,7 +2481,7 @@
         k.Y = function () {
           ee(this);
 
-          for (var a = this.a.W(), b = this.a.Y(), c = [], d = 0; d < b.length; d++) {
+          for (var a = this.a.X(), b = this.a.Y(), c = [], d = 0; d < b.length; d++) {
             for (var e = a[d], f = 0; f < e.length; f++) {
               c.push(b[d]);
             }
@@ -2503,11 +2490,11 @@
           return c;
         };
 
-        k.W = function (a) {
+        k.X = function (a) {
           ee(this);
           var b = [];
           if ("string" === typeof a) je(this, a) && (b = Ya(b, this.a.get(he(this, a))));else {
-            a = this.a.W();
+            a = this.a.X();
 
             for (var c = 0; c < a.length; c++) {
               b = Ya(b, a[c]);
@@ -2528,7 +2515,7 @@
 
         k.get = function (a, b) {
           if (!a) return b;
-          a = this.W(a);
+          a = this.X(a);
           return 0 < a.length ? String(a[0]) : b;
         };
 
@@ -2544,7 +2531,7 @@
           for (var a = [], b = this.a.Y(), c = 0; c < b.length; c++) {
             var d = b[c],
                 e = encodeURIComponent(String(d));
-            d = this.W(d);
+            d = this.X(d);
 
             for (var f = 0; f < d.length; f++) {
               var g = e;
@@ -3040,6 +3027,19 @@
         }
 
         ;
+        /*
+        Copyright 2017 Google Inc.
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+        http://www.apache.org/licenses/LICENSE-2.0
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+        */
+
         var ff = {};
 
         function gf(a) {
@@ -3182,7 +3182,7 @@
         r(uf, of);
 
         uf.prototype.w = function () {
-          var a = uf.ab.w.call(this);
+          var a = uf.bb.w.call(this);
           a.phoneNumber = this.phoneNumber;
           return a;
         };
@@ -3455,38 +3455,38 @@
             mg = {
           nd: {
             Ja: "locale",
-            ua: 700,
-            ta: 600,
+            va: 700,
+            ua: 600,
             fa: "facebook.com",
-            Xa: lg
+            Ya: lg
           },
           pd: {
             Ja: null,
-            ua: 500,
-            ta: 750,
+            va: 500,
+            ua: 750,
             fa: "github.com",
-            Xa: lg
+            Ya: lg
           },
           qd: {
             Ja: "hl",
-            ua: 515,
-            ta: 680,
+            va: 515,
+            ua: 680,
             fa: "google.com",
-            Xa: lg
+            Ya: lg
           },
           wd: {
             Ja: "lang",
-            ua: 485,
-            ta: 705,
+            va: 485,
+            ua: 705,
             fa: "twitter.com",
-            Xa: kg
+            Ya: kg
           },
           kd: {
             Ja: "locale",
-            ua: 640,
-            ta: 600,
+            va: 640,
+            ua: 600,
             fa: "apple.com",
-            Xa: []
+            Ya: []
           }
         };
 
@@ -3751,13 +3751,13 @@
             providerId: a,
             isOAuthProvider: !0
           });
-          this.Ib = {};
-          this.pb = (ng(a) || {}).Ja || null;
-          this.ob = null;
+          this.Jb = {};
+          this.qb = (ng(a) || {}).Ja || null;
+          this.pb = null;
         }
 
         Ng.prototype.Ka = function (a) {
-          this.Ib = nb(a);
+          this.Jb = nb(a);
           return this;
         };
 
@@ -3780,7 +3780,7 @@
           return this;
         };
 
-        Pg.prototype.Qb = function () {
+        Pg.prototype.Rb = function () {
           return Za(this.a);
         };
 
@@ -3942,7 +3942,7 @@
         });
 
         function gh(a) {
-          if (!(a.eb && a.cb || a.La && a.ea)) throw new t("internal-error");
+          if (!(a.fb && a.eb || a.La && a.ea)) throw new t("internal-error");
           this.a = a;
           M(this, "providerId", "phone");
           this.fa = "phone";
@@ -3950,7 +3950,7 @@
         }
 
         gh.prototype.ka = function (a) {
-          return a.fb(hh(this));
+          return a.gb(hh(this));
         };
 
         gh.prototype.b = function (a, b) {
@@ -3970,8 +3970,8 @@
           var a = {
             providerId: "phone"
           };
-          this.a.eb && (a.verificationId = this.a.eb);
-          this.a.cb && (a.verificationCode = this.a.cb);
+          this.a.fb && (a.verificationId = this.a.fb);
+          this.a.eb && (a.verificationCode = this.a.eb);
           this.a.La && (a.temporaryProof = this.a.La);
           this.a.ea && (a.phoneNumber = this.a.ea);
           return a;
@@ -3994,8 +3994,8 @@
             temporaryProof: a.a.La,
             phoneNumber: a.a.ea
           } : {
-            sessionInfo: a.a.eb,
-            code: a.a.cb
+            sessionInfo: a.a.fb,
+            code: a.a.eb
           };
         }
 
@@ -4012,7 +4012,7 @@
           });
         }
 
-        lh.prototype.fb = function (a, b) {
+        lh.prototype.gb = function (a, b) {
           var c = this.a.a;
           return E(b.verify()).then(function (d) {
             if ("string" !== typeof d) throw new t("argument-error", "An implementation of firebase.auth.ApplicationVerifier.prototype.verify() must return a firebase.Promise that resolves with a string.");
@@ -4060,8 +4060,8 @@
           if (!a) throw new t("missing-verification-id");
           if (!b) throw new t("missing-verification-code");
           return new gh({
-            eb: a,
-            cb: b
+            fb: a,
+            eb: b
           });
         }
 
@@ -4214,10 +4214,10 @@
         function yh(a, b, c) {
           t.call(this, a, c);
           a = b || {};
-          a.Jb && M(this, "email", a.Jb);
+          a.Kb && M(this, "email", a.Kb);
           a.ea && M(this, "phoneNumber", a.ea);
           a.credential && M(this, "credential", a.credential);
-          a.Zb && M(this, "tenantId", a.Zb);
+          a.$b && M(this, "tenantId", a.$b);
         }
 
         r(yh, t);
@@ -4245,9 +4245,9 @@
             0 == b.indexOf(xa) && (b = b.substring(xa.length));
             var c = {
               credential: qh(a),
-              Zb: a.tenantId
+              $b: a.tenantId
             };
-            if (a.email) c.Jb = a.email;else if (a.phoneNumber) c.ea = a.phoneNumber;else if (!c.credential) return new t(b, a.message || void 0);
+            if (a.email) c.Kb = a.email;else if (a.phoneNumber) c.ea = a.phoneNumber;else if (!c.credential) return new t(b, a.message || void 0);
             return new yh(b, c, a.message);
           }
 
@@ -4323,7 +4323,7 @@
           this.status = -1;
           this.statusText = "";
           this.a.onload = q(this.qc, this);
-          this.a.onerror = q(this.Sb, this);
+          this.a.onerror = q(this.Tb, this);
           this.a.onprogress = q(this.rc, this);
           this.a.ontimeout = q(this.vc, this);
         }
@@ -4357,14 +4357,14 @@
           Hh(this, 4);
         };
 
-        k.Sb = function () {
+        k.Tb = function () {
           this.status = 500;
           this.response = this.responseText = "";
           Hh(this, 4);
         };
 
         k.vc = function () {
-          this.Sb();
+          this.Tb();
         };
 
         k.rc = function () {
@@ -4510,7 +4510,7 @@
             cache: void 0
           };
           a && (b.body = a);
-          this.u.fetch(new Request(this.f, b)).then(this.uc.bind(this), this.Ua.bind(this));
+          this.u.fetch(new Request(this.f, b)).then(this.uc.bind(this), this.Va.bind(this));
         };
 
         k.abort = function () {
@@ -4523,11 +4523,11 @@
         };
 
         k.uc = function (a) {
-          this.a && (this.g = a, this.b || (this.status = this.g.status, this.statusText = this.g.statusText, this.b = a.headers, this.readyState = 2, Yh(this)), this.a && (this.readyState = 3, Yh(this), this.a && ("arraybuffer" === this.responseType ? a.arrayBuffer().then(this.sc.bind(this), this.Ua.bind(this)) : "undefined" !== typeof l.ReadableStream && "body" in a ? (this.response = this.responseText = "", this.c = a.body.getReader(), this.m = new TextDecoder(), $h(this)) : a.text().then(this.tc.bind(this), this.Ua.bind(this)))));
+          this.a && (this.g = a, this.b || (this.status = this.g.status, this.statusText = this.g.statusText, this.b = a.headers, this.readyState = 2, Yh(this)), this.a && (this.readyState = 3, Yh(this), this.a && ("arraybuffer" === this.responseType ? a.arrayBuffer().then(this.sc.bind(this), this.Va.bind(this)) : "undefined" !== typeof l.ReadableStream && "body" in a ? (this.response = this.responseText = "", this.c = a.body.getReader(), this.m = new TextDecoder(), $h(this)) : a.text().then(this.tc.bind(this), this.Va.bind(this)))));
         };
 
         function $h(a) {
-          a.c.read().then(a.pc.bind(a))["catch"](a.Ua.bind(a));
+          a.c.read().then(a.pc.bind(a))["catch"](a.Va.bind(a));
         }
 
         k.pc = function (a) {
@@ -4549,7 +4549,7 @@
           this.a && (this.response = a, Zh(this));
         };
 
-        k.Ua = function (a) {
+        k.Va = function (a) {
           var b = this.i;
           b && b.log(Nh, "Failed to fetch url " + this.f, a instanceof Error ? a : Error(a));
           this.a && Zh(this);
@@ -4606,8 +4606,8 @@
           this.D = a || null;
           this.c = !1;
           this.C = this.a = null;
-          this.h = this.R = this.l = "";
-          this.f = this.O = this.i = this.J = !1;
+          this.h = this.P = this.l = "";
+          this.f = this.N = this.i = this.J = !1;
           this.g = 0;
           this.s = null;
           this.m = bi;
@@ -4625,15 +4625,15 @@
           c = c ? c.toUpperCase() : "GET";
           a.l = b;
           a.h = "";
-          a.R = c;
+          a.P = c;
           a.J = !1;
           a.c = !0;
           a.a = a.D ? a.D.a() : Ch.a();
           a.C = a.D ? Bh(a.D) : Bh(Ch);
-          a.a.onreadystatechange = q(a.Vb, a);
+          a.a.onreadystatechange = q(a.Wb, a);
 
           try {
-            Uh(a.b, fi(a, "Opening Xhr")), a.O = !0, a.a.open(c, String(b), !0), a.O = !1;
+            Uh(a.b, fi(a, "Opening Xhr")), a.N = !0, a.a.open(c, String(b), !0), a.N = !1;
           } catch (g) {
             Uh(a.b, fi(a, "Error opening Xhr: " + g.message));
             gi(a, g);
@@ -4693,11 +4693,11 @@
 
         k.Da = function () {
           this.a && (this.c && (this.c = !1, this.f = !0, this.a.abort(), this.f = !1), ki(this, !0));
-          ai.ab.Da.call(this);
+          ai.bb.Da.call(this);
         };
 
-        k.Vb = function () {
-          this.xa || (this.O || this.i || this.f ? li(this) : this.Jc());
+        k.Wb = function () {
+          this.ya || (this.N || this.i || this.f ? li(this) : this.Jc());
         };
 
         k.Jc = function () {
@@ -4705,7 +4705,7 @@
         };
 
         function li(a) {
-          if (a.c && "undefined" != typeof ha) if (a.C[1] && 4 == mi(a) && 2 == ni(a)) Uh(a.b, fi(a, "Local request error detected and ignored"));else if (a.i && 4 == mi(a)) Ed(a.Vb, 0, a);else if (a.dispatchEvent("readystatechange"), 4 == mi(a)) {
+          if (a.c && "undefined" != typeof ha) if (a.C[1] && 4 == mi(a) && 2 == ni(a)) Uh(a.b, fi(a, "Local request error detected and ignored"));else if (a.i && 4 == mi(a)) Ed(a.Wb, 0, a);else if (a.dispatchEvent("readystatechange"), 4 == mi(a)) {
             Uh(a.b, fi(a, "Request complete"));
             a.c = !1;
 
@@ -4827,7 +4827,7 @@
         };
 
         function fi(a, b) {
-          return b + " [" + a.R + " " + a.l + " " + ni(a) + "]";
+          return b + " [" + a.P + " " + a.l + " " + ni(a) + "]";
         }
 
         ;
@@ -4976,7 +4976,7 @@
               d = yb(a).toString(),
               e = oc(document, "SCRIPT"),
               f = {
-            Wb: e,
+            Xb: e,
             Ma: void 0
           },
               g = new pi(f),
@@ -5017,8 +5017,8 @@
         }
 
         function qi() {
-          if (this && this.Wb) {
-            var a = this.Wb;
+          if (this && this.Xb) {
+            var a = this.Xb;
             a && "SCRIPT" == a.tagName && Ci(a, !0, this.Ma);
           }
         }
@@ -5212,7 +5212,7 @@
         function Yi(a, b, c, d, e, f, g) {
           var h = J(b + c);
           I(h, "key", a.c);
-          g && I(h, "cb", va().toString());
+          g && I(h, "cb", Date.now().toString());
           var m = "GET" == d;
           if (m) for (var p in e) {
             e.hasOwnProperty(p) && I(h, p, e[p]);
@@ -5264,18 +5264,18 @@
           }
         }
 
-        Ii.prototype.zb = function () {
+        Ii.prototype.Ab = function () {
           return O(this, fj, {});
         };
 
-        Ii.prototype.Bb = function (a, b) {
+        Ii.prototype.Cb = function (a, b) {
           return O(this, gj, {
             idToken: a,
             email: b
           });
         };
 
-        Ii.prototype.Cb = function (a, b) {
+        Ii.prototype.Db = function (a, b) {
           return O(this, ch, {
             idToken: a,
             password: b
@@ -5288,7 +5288,7 @@
         };
         k = Ii.prototype;
 
-        k.Db = function (a, b) {
+        k.Eb = function (a, b) {
           var c = {
             idToken: a
           },
@@ -5301,7 +5301,7 @@
           return O(this, gj, c);
         };
 
-        k.vb = function (a, b) {
+        k.wb = function (a, b) {
           a = {
             requestType: "PASSWORD_RESET",
             email: a
@@ -5310,7 +5310,7 @@
           return O(this, ij, a);
         };
 
-        k.wb = function (a, b) {
+        k.xb = function (a, b) {
           a = {
             requestType: "EMAIL_SIGNIN",
             email: a
@@ -5319,7 +5319,7 @@
           return O(this, jj, a);
         };
 
-        k.ub = function (a, b) {
+        k.vb = function (a, b) {
           a = {
             requestType: "VERIFY_EMAIL",
             idToken: a
@@ -5328,7 +5328,7 @@
           return O(this, kj, a);
         };
 
-        k.Eb = function (a, b, c) {
+        k.Fb = function (a, b, c) {
           a = {
             requestType: "VERIFY_AND_CHANGE_EMAIL",
             idToken: a,
@@ -5342,7 +5342,7 @@
           return O(a, mj, b);
         }
 
-        k.fb = function (a) {
+        k.gb = function (a) {
           return O(this, nj, a);
         };
 
@@ -5407,20 +5407,20 @@
           if (!a.oobCode) throw new t("invalid-action-code");
         }
 
-        k.nb = function (a, b) {
+        k.ob = function (a, b) {
           return O(this, Bj, {
             oobCode: a,
             newPassword: b
           });
         };
 
-        k.Ra = function (a) {
+        k.Sa = function (a) {
           return O(this, Cj, {
             oobCode: a
           });
         };
 
-        k.jb = function (a) {
+        k.kb = function (a) {
           return O(this, Dj, {
             oobCode: a
           });
@@ -5457,18 +5457,18 @@
         },
             Fj = {
           endpoint: "deleteAccount",
-          N: ["idToken"]
+          O: ["idToken"]
         },
             sj = {
           endpoint: "setAccountInfo",
-          N: ["idToken", "deleteProvider"],
+          O: ["idToken", "deleteProvider"],
           A: function A(a) {
             if (!Array.isArray(a.deleteProvider)) throw new t("internal-error");
           }
         },
             $g = {
           endpoint: "emailLinkSignin",
-          N: ["email", "oobCode"],
+          O: ["email", "oobCode"],
           A: Zi,
           G: P,
           V: !0,
@@ -5476,14 +5476,14 @@
         },
             bh = {
           endpoint: "emailLinkSignin",
-          N: ["idToken", "email", "oobCode"],
+          O: ["idToken", "email", "oobCode"],
           A: Zi,
           G: P,
           V: !0
         },
             Gj = {
           endpoint: "accounts/mfaEnrollment:finalize",
-          N: ["idToken", "phoneVerificationInfo"],
+          O: ["idToken", "phoneVerificationInfo"],
           A: pj,
           G: P,
           B: !0,
@@ -5491,7 +5491,7 @@
         },
             Hj = {
           endpoint: "accounts/mfaSignIn:finalize",
-          N: ["mfaPendingCredential", "phoneVerificationInfo"],
+          O: ["mfaPendingCredential", "phoneVerificationInfo"],
           A: pj,
           G: P,
           B: !0,
@@ -5502,7 +5502,7 @@
         },
             jj = {
           endpoint: "getOobConfirmationCode",
-          N: ["requestType"],
+          O: ["requestType"],
           A: function A(a) {
             if ("EMAIL_SIGNIN" != a.requestType) throw new t("internal-error");
             Zi(a);
@@ -5512,7 +5512,7 @@
         },
             kj = {
           endpoint: "getOobConfirmationCode",
-          N: ["idToken", "requestType"],
+          O: ["idToken", "requestType"],
           A: function A(a) {
             if ("VERIFY_EMAIL" != a.requestType) throw new t("internal-error");
           },
@@ -5521,7 +5521,7 @@
         },
             lj = {
           endpoint: "getOobConfirmationCode",
-          N: ["idToken", "newEmail", "requestType"],
+          O: ["idToken", "newEmail", "requestType"],
           A: function A(a) {
             if ("VERIFY_AND_CHANGE_EMAIL" != a.requestType) throw new t("internal-error");
           },
@@ -5530,7 +5530,7 @@
         },
             ij = {
           endpoint: "getOobConfirmationCode",
-          N: ["requestType"],
+          O: ["requestType"],
           A: function A(a) {
             if ("PASSWORD_RESET" != a.requestType) throw new t("internal-error");
             Zi(a);
@@ -5539,14 +5539,14 @@
           B: !0
         },
             dj = {
-          lb: !0,
+          mb: !0,
           endpoint: "getProjectConfig",
-          Ub: "GET"
+          Vb: "GET"
         },
             Jj = {
-          lb: !0,
+          mb: !0,
           endpoint: "getRecaptchaParam",
-          Ub: "GET",
+          Vb: "GET",
           G: function G(a) {
             if (!a.recaptchaSiteKey) throw new t("internal-error");
           }
@@ -5559,19 +5559,19 @@
         },
             mj = {
           endpoint: "sendVerificationCode",
-          N: ["phoneNumber", "recaptchaToken"],
+          O: ["phoneNumber", "recaptchaToken"],
           Z: "sessionInfo",
           B: !0
         },
             gj = {
           endpoint: "setAccountInfo",
-          N: ["idToken"],
+          O: ["idToken"],
           A: $i,
           V: !0
         },
             ch = {
           endpoint: "setAccountInfo",
-          N: ["idToken"],
+          O: ["idToken"],
           A: function A(a) {
             $i(a);
             if (!a.password) throw new t("weak-password");
@@ -5587,7 +5587,7 @@
         },
             oj = {
           endpoint: "accounts/mfaEnrollment:start",
-          N: ["idToken", "phoneEnrollmentInfo"],
+          O: ["idToken", "phoneEnrollmentInfo"],
           A: function A(a) {
             if (!a.phoneEnrollmentInfo) throw new t("internal-error");
             if (!a.phoneEnrollmentInfo.phoneNumber) throw new t("missing-phone-number");
@@ -5601,7 +5601,7 @@
         },
             qj = {
           endpoint: "accounts/mfaSignIn:start",
-          N: ["mfaPendingCredential", "mfaEnrollmentId", "phoneSignInInfo"],
+          O: ["mfaPendingCredential", "mfaEnrollmentId", "phoneSignInInfo"],
           A: function A(a) {
             if (!a.phoneSignInInfo || !a.phoneSignInInfo.recaptchaToken) throw new t("missing-app-credential");
           },
@@ -5614,7 +5614,7 @@
             xj = {
           endpoint: "verifyAssertion",
           A: tj,
-          Ya: uj,
+          Za: uj,
           G: vj,
           V: !0,
           B: !0
@@ -5622,7 +5622,7 @@
             zj = {
           endpoint: "verifyAssertion",
           A: tj,
-          Ya: uj,
+          Za: uj,
           G: function G(a) {
             if (a.errorMessage && "USER_NOT_FOUND" == a.errorMessage) throw new t("user-not-found");
             if (a.errorMessage) throw wj(a.errorMessage);
@@ -5637,7 +5637,7 @@
             tj(a);
             if (!a.idToken) throw new t("internal-error");
           },
-          Ya: uj,
+          Za: uj,
           G: vj,
           V: !0
         },
@@ -5678,7 +5678,7 @@
           }
         },
             jh = {
-          Hb: {
+          Ib: {
             USER_NOT_FOUND: "user-not-found"
           },
           endpoint: "verifyPhoneNumber",
@@ -5688,7 +5688,7 @@
         },
             Lj = {
           endpoint: "accounts/mfaEnrollment:withdraw",
-          N: ["idToken", "mfaEnrollmentId"],
+          O: ["idToken", "mfaEnrollmentId"],
           G: function G(a) {
             if (!!a[Dg] ^ !!a.refreshToken) throw new t("internal-error");
           },
@@ -5697,17 +5697,17 @@
         };
 
         function O(a, b, c) {
-          if (!mf(c, b.N)) return F(new t("internal-error"));
+          if (!mf(c, b.O)) return F(new t("internal-error"));
           var d = !!b.Na,
-              e = b.Ub || "POST",
+              e = b.Vb || "POST",
               f;
           return E(c).then(b.A).then(function () {
             b.V && (c.returnSecureToken = !0);
             b.B && a.b && "undefined" === typeof c.tenantId && (c.tenantId = a.b);
-            return d ? Yi(a, a.i, b.endpoint, e, c, b.Hb, b.lb || !1) : Yi(a, a.h, b.endpoint, e, c, b.Hb, b.lb || !1);
+            return d ? Yi(a, a.i, b.endpoint, e, c, b.Ib, b.mb || !1) : Yi(a, a.h, b.endpoint, e, c, b.Ib, b.mb || !1);
           }).then(function (g) {
             f = g;
-            return b.Ya ? b.Ya(c, f) : f;
+            return b.Za ? b.Za(c, f) : f;
           }).then(b.G).then(function () {
             if (!b.Z) return f;
             if (!(b.Z in f)) throw new t("internal-error");
@@ -5821,7 +5821,7 @@
         function Mj(a) {
           this.b = a;
           this.a = null;
-          this.rb = Nj(this);
+          this.sb = Nj(this);
         }
 
         function Nj(a) {
@@ -5862,7 +5862,7 @@
         }
 
         function Qj(a, b) {
-          return a.rb.then(function () {
+          return a.sb.then(function () {
             return new D(function (c) {
               a.a.send(b.type, b, c, L("gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER"));
             });
@@ -5870,7 +5870,7 @@
         }
 
         function Rj(a, b) {
-          a.rb.then(function () {
+          a.sb.then(function () {
             a.a.register("authEvent", b, L("gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER"));
           });
         }
@@ -5948,7 +5948,7 @@
           this.h = this.f = null;
         }
 
-        Wj.prototype.yb = function (a) {
+        Wj.prototype.zb = function (a) {
           this.h = a;
           return this;
         };
@@ -5972,10 +5972,10 @@
               c = null;
             }
 
-            b.ob = c;
+            b.pb = c;
             I(a, "providerId", this.a.providerId);
             c = this.a;
-            b = Ve(c.Ib);
+            b = Ve(c.Jb);
 
             for (var d in b) {
               b[d] = b[d].toString();
@@ -5989,11 +5989,11 @@
               f in b && delete b[f];
             }
 
-            c.pb && c.ob && !b[c.pb] && (b[c.pb] = c.ob);
+            c.qb && c.pb && !b[c.qb] && (b[c.qb] = c.pb);
             mb(b) || I(a, "customParameters", Ue(b));
           }
 
-          "function" === typeof this.a.Qb && (c = this.a.Qb(), c.length && I(a, "scopes", c.join(",")));
+          "function" === typeof this.a.Rb && (c = this.a.Rb(), c.length && I(a, "scopes", c.join(",")));
           this.l ? I(a, "redirectUrl", this.l) : ie(a.b, "redirectUrl");
           this.g ? I(a, "eventId", this.g) : ie(a.b, "eventId");
           this.i ? I(a, "v", this.i) : ie(a.b, "v");
@@ -6076,7 +6076,7 @@
 
         k = Yj.prototype;
 
-        k.Ob = function (a, b, c) {
+        k.Pb = function (a, b, c) {
           var d = new t("popup-closed-by-user"),
               e = new t("web-storage-unsupported"),
               f = this,
@@ -6094,16 +6094,16 @@
           });
         };
 
-        k.Xb = function () {
+        k.Yb = function () {
           var a = K();
           return !Te(a) && !Xe(a);
         };
 
-        k.Tb = function () {
+        k.Ub = function () {
           return !1;
         };
 
-        k.Mb = function (a, b, c, d, e, f, g, h) {
+        k.Nb = function (a, b, c, d, e, f, g, h) {
           if (!a) return F(new t("popup-blocked"));
           if (g && !Te()) return this.ma().o(function (p) {
             ye(a);
@@ -6137,7 +6137,7 @@
           return a.l;
         }
 
-        k.Nb = function (a, b, c, d) {
+        k.Ob = function (a, b, c, d) {
           this.a || (this.a = Zj(dk(this)));
           var e = this;
           return this.a.then(function () {
@@ -6153,14 +6153,14 @@
         k.ma = function () {
           var a = this;
           return ak(this).then(function () {
-            return a.v.rb;
+            return a.v.sb;
           }).o(function () {
             a.a = null;
             throw new t("network-request-failed");
           });
         };
 
-        k.$b = function () {
+        k.ac = function () {
           return !0;
         };
 
@@ -6171,7 +6171,7 @@
           a.i = h;
           a.b = nb(m || null);
           a.f = p;
-          return a.yb(v).toString();
+          return a.zb(v).toString();
         }
 
         function bk(a) {
@@ -6213,7 +6213,7 @@
           this.h.push(a);
         };
 
-        k.Sa = function (a) {
+        k.Ta = function (a) {
           Xa(this.h, function (b) {
             return b == a;
           });
@@ -6289,7 +6289,7 @@
               var g = [];
               w(f, function (h) {
                 g.push({
-                  fulfilled: h.Pb,
+                  fulfilled: h.Qb,
                   value: h.value,
                   reason: h.reason ? h.reason.message : void 0
                 });
@@ -6895,19 +6895,19 @@
         var Qk,
             Mk = {
           F: Ek,
-          bb: Ik
+          cb: Ik
         },
             Nk = {
           F: Ek,
-          bb: Ik
+          cb: Ik
         },
             Ok = {
           F: fk,
-          bb: Hk
+          cb: Hk
         },
             Pk = {
           F: Ek,
-          bb: Hk
+          cb: Hk
         };
         var Rk = {
           rd: "local",
@@ -6968,13 +6968,13 @@
           }
 
           try {
-            this.i = new a.a.bb();
+            this.i = new a.a.cb();
           } catch (d) {
             this.i = new Dk();
           }
 
           this.v = new Dk();
-          this.f = q(this.Yb, this);
+          this.f = q(this.Zb, this);
           this.b = {};
         }
 
@@ -7069,7 +7069,7 @@
                 oldValue: d,
                 newValue: c,
                 a: !0
-              }), a.Yb(c));
+              }), a.Zb(c));
             }
           }, 1E3);
         }
@@ -7078,29 +7078,29 @@
           a.c && (clearInterval(a.c), a.c = null);
         }
 
-        k.Yb = function (a) {
+        k.Zb = function (a) {
           if (a && a.g) {
             var b = a.a.key;
             if (null == b) for (var c in this.a) {
               var d = this.b[c];
               "undefined" === typeof d && (d = null);
               var e = l.localStorage.getItem(c);
-              e !== d && (this.b[c] = e, this.mb(c));
+              e !== d && (this.b[c] = e, this.nb(c));
             } else if (0 == b.indexOf("firebase:") && this.a[b]) {
               "undefined" !== typeof a.a.a ? Wk(this, "local").ia(this.f) : al(this);
               if (this.m) if (c = l.localStorage.getItem(b), d = a.a.newValue, d !== c) null !== d ? l.localStorage.setItem(b, d) : l.localStorage.removeItem(b);else if (this.b[b] === d && "undefined" === typeof a.a.a) return;
               var f = this;
 
               c = function c() {
-                if ("undefined" !== typeof a.a.a || f.b[b] !== l.localStorage.getItem(b)) f.b[b] = l.localStorage.getItem(b), f.mb(b);
+                if ("undefined" !== typeof a.a.a || f.b[b] !== l.localStorage.getItem(b)) f.b[b] = l.localStorage.getItem(b), f.nb(b);
               };
 
               Wb && ic && 10 == ic && l.localStorage.getItem(b) !== a.a.newValue && a.a.newValue !== a.a.oldValue ? setTimeout(c, 10) : c();
             }
-          } else w(a, q(this.mb, this));
+          } else w(a, q(this.nb, this));
         };
 
-        k.mb = function (a) {
+        k.nb = function (a) {
           this.a[a] && w(this.a[a], function (b) {
             b();
           });
@@ -7297,28 +7297,28 @@
           return cg(a);
         }
 
-        k.Ob = function (a, b) {
+        k.Pb = function (a, b) {
           b(new t("operation-not-supported-in-this-environment"));
           return E();
         };
 
-        k.Mb = function () {
+        k.Nb = function () {
           return F(new t("operation-not-supported-in-this-environment"));
         };
 
-        k.$b = function () {
+        k.ac = function () {
           return !1;
         };
 
-        k.Xb = function () {
+        k.Yb = function () {
           return !0;
         };
 
-        k.Tb = function () {
+        k.Ub = function () {
           return !0;
         };
 
-        k.Nb = function (a, b, c, d) {
+        k.Ob = function (a, b, c, d) {
           if (this.c) return F(new t("redirect-operation-pending"));
           var e = this,
               f = l.document,
@@ -7364,7 +7364,7 @@
             m && f.removeEventListener("resume", m, !1);
             p && f.removeEventListener("visibilitychange", p, !1);
             g && g.cancel();
-            h && e.Sa(h);
+            h && e.Ta(h);
             e.c = null;
           });
         };
@@ -7416,7 +7416,7 @@
             return new D(function (b) {
               function c(d) {
                 b(d);
-                a.Sa(c);
+                a.Ta(c);
                 return !1;
               }
 
@@ -7487,7 +7487,7 @@
           });
         };
 
-        k.Sa = function (a) {
+        k.Ta = function (a) {
           Xa(this.b, function (b) {
             return b == a;
           });
@@ -7550,7 +7550,7 @@
 
         Gl.prototype.reset = function () {
           this.f = !1;
-          this.a.Sa(this.l);
+          this.a.Ta(this.l);
           this.a = Kl(this.D, this.v, this.m, null, this.J);
           this.i = {};
         };
@@ -7565,11 +7565,11 @@
         }
 
         function Ml(a) {
-          a.a.Xb() && Ll(a).o(function (b) {
+          a.a.Yb() && Ll(a).o(function (b) {
             var c = new sh("unknown", null, null, null, new t("operation-not-supported-in-this-environment"));
             Nl(b) && a.s(c);
           });
-          a.a.Tb() || Ol(a.b);
+          a.a.Ub() || Ol(a.b);
         }
 
         function Pl(a, b) {
@@ -7594,14 +7594,14 @@
 
         Gl.prototype.s = function (a) {
           if (!a) throw new t("invalid-auth-event");
-          6E5 <= va() - this.u && (this.i = {}, this.u = 0);
+          6E5 <= Date.now() - this.u && (this.i = {}, this.u = 0);
           if (a && a.getUid() && this.i.hasOwnProperty(a.getUid())) return !1;
 
           for (var b = !1, c = 0; c < this.h.length; c++) {
             var d = this.h[c];
 
-            if (d.Fb(a.c, a.b)) {
-              if (b = this.c[a.c]) b.h(a, d), a && (a.f || a.b) && (this.i[a.getUid()] = !0, this.u = va());
+            if (d.Gb(a.c, a.b)) {
+              if (b = this.c[a.c]) b.h(a, d), a && (a.f || a.b) && (this.i[a.getUid()] = !0, this.u = Date.now());
               b = !0;
               break;
             }
@@ -7614,12 +7614,12 @@
         var Rl = new Ze(2E3, 1E4),
             Sl = new Ze(3E4, 6E4);
 
-        Gl.prototype.qa = function () {
-          return this.b.qa();
+        Gl.prototype.ra = function () {
+          return this.b.ra();
         };
 
         function Tl(a, b, c, d, e, f, g) {
-          return a.a.Mb(b, c, d, function () {
+          return a.a.Nb(b, c, d, function () {
             a.f || (a.f = !0, a.a.Ea(a.l));
           }, function () {
             a.reset();
@@ -7633,22 +7633,22 @@
         function Ul(a, b, c, d, e) {
           var f;
           return Dl(a.g).then(function () {
-            return a.a.Nb(b, c, d, e).o(function (g) {
+            return a.a.Ob(b, c, d, e).o(function (g) {
               if (Nl(g)) throw new t("operation-not-supported-in-this-environment");
               f = g;
               return El(a.g).then(function () {
                 throw f;
               });
             }).then(function () {
-              return a.a.$b() ? new D(function () {}) : El(a.g).then(function () {
-                return a.qa();
+              return a.a.ac() ? new D(function () {}) : El(a.g).then(function () {
+                return a.ra();
               }).then(function () {}).o(function () {});
             });
           });
         }
 
         function Vl(a, b, c, d, e) {
-          return a.a.Ob(d, function (f) {
+          return a.a.Pb(d, function (f) {
             b.na(c, null, f, e);
           }, Rl.get());
         }
@@ -7743,7 +7743,7 @@
           a.c = [];
         }
 
-        Hl.prototype.qa = function () {
+        Hl.prototype.ra = function () {
           var a = this;
           return new D(function (b, c) {
             a.b ? a.b().then(b, c) : (a.f.push(b), a.c.push(c), cm(a));
@@ -7781,13 +7781,13 @@
         ;
 
         function em() {
-          this.ib = !1;
+          this.jb = !1;
           Object.defineProperty(this, "appVerificationDisabled", {
             get: function get() {
-              return this.ib;
+              return this.jb;
             },
             set: function set(a) {
-              this.ib = a;
+              this.jb = a;
             },
             enumerable: !1
           });
@@ -7806,7 +7806,7 @@
         };
 
         function gm(a, b, c, d) {
-          return new lh(a).fb(b, c).then(function (e) {
+          return new lh(a).gb(b, c).then(function (e) {
             return new fm(e, d);
           });
         }
@@ -7851,7 +7851,7 @@
 
         im.prototype.Rc = function (a) {
           var b = this;
-          return a.sb(this.a.a, this.c).then(function (c) {
+          return a.tb(this.a.a, this.c).then(function (c) {
             var d = nb(b.f);
             delete d[km];
             delete d[jm];
@@ -7879,7 +7879,7 @@
 
         function nm() {}
 
-        nm.prototype.sb = function (a, b, c) {
+        nm.prototype.tb = function (a, b, c) {
           return b.type == zg ? om(this, a, b, c) : pm(this, a, b);
         };
 
@@ -7979,7 +7979,7 @@
           M(a, "enrolledFactors", b);
         }
 
-        k.Rb = function () {
+        k.Sb = function () {
           return this.a.I().then(function (a) {
             return new yg(a, null);
           });
@@ -7988,8 +7988,8 @@
         k.fc = function (a, b) {
           var c = this,
               d = this.a.a;
-          return this.Rb().then(function (e) {
-            return a.sb(d, e, b);
+          return this.Sb().then(function (e) {
+            return a.tb(d, e, b);
           }).then(function (e) {
             wm(c.a, e);
             return c.a.reload();
@@ -8159,90 +8159,96 @@
         }
 
         function Im(a, b, c) {
-          this.J = [];
+          this.N = [];
           this.l = a.apiKey;
           this.m = a.appName;
           this.s = a.authDomain || null;
           var d = _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION ? Oe(_firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION) : null;
           this.a = new Ii(this.l, Ca(Da), d);
-          a.emulatorConfig && Pi(this.a, a.emulatorConfig);
-          this.b = new Am(this.a);
+          (this.u = a.emulatorConfig || null) && Pi(this.a, this.u);
+          this.h = new Am(this.a);
           Jm(this, b[Dg]);
-          Cm(this.b, b);
-          M(this, "refreshToken", this.b.a);
+          Cm(this.h, b);
+          M(this, "refreshToken", this.h.a);
           Km(this, c || {});
           H.call(this);
-          this.R = !1;
-          this.s && Re() && (this.i = Xl(this.s, this.l, this.m));
-          this.S = [];
-          this.h = null;
-          this.u = Lm(this);
-          this.aa = q(this.hb, this);
+          this.P = !1;
+          this.s && Re() && (this.b = Xl(this.s, this.l, this.m, this.u));
+          this.W = [];
+          this.i = null;
+          this.D = Lm(this);
+          this.ba = q(this.ib, this);
           var e = this;
-          this.ya = null;
+          this.za = null;
+
+          this.Pa = function (f) {
+            e.xa(f.h);
+          };
+
+          this.qa = null;
+
+          this.Ba = function (f) {
+            Mm(e, f.c);
+          };
+
+          this.$ = null;
+          this.aa = [];
 
           this.Oa = function (f) {
-            e.wa(f.h);
+            Nm(e, f.f);
           };
 
           this.ja = null;
-
-          this.Aa = function (f) {
-            Pi(e.a, f.c);
-          };
-
-          this.X = null;
-          this.$ = [];
-
-          this.Ba = function (f) {
-            Mm(e, f.f);
-          };
-
-          this.ba = null;
-          this.O = new tm(this, c);
-          M(this, "multiFactor", this.O);
+          this.S = new tm(this, c);
+          M(this, "multiFactor", this.S);
         }
 
         r(Im, H);
 
-        Im.prototype.wa = function (a) {
-          this.ya = a;
+        Im.prototype.xa = function (a) {
+          this.za = a;
           Oi(this.a, a);
         };
 
+        function Mm(a, b) {
+          a.u = b;
+          Pi(a.a, b);
+          a.b && (b = a.b, a.b = Xl(a.s, a.l, a.m, a.u), a.P && (Ql(b, a), Pl(a.b, a)));
+        }
+
         Im.prototype.la = function () {
-          return this.ya;
+          return this.za;
         };
 
-        function Nm(a, b) {
-          a.ja && xd(a.ja, "languageCodeChanged", a.Oa);
-          (a.ja = b) && nd(b, "languageCodeChanged", a.Oa);
-        }
-
         function Om(a, b) {
-          a.X && xd(a.X, "emulatorConfigChanged", a.Aa);
-          (a.X = b) && nd(b, "emulatorConfigChanged", a.Aa);
+          a.qa && xd(a.qa, "languageCodeChanged", a.Pa);
+          (a.qa = b) && nd(b, "languageCodeChanged", a.Pa);
         }
 
-        function Mm(a, b) {
-          a.$ = b;
-          Ri(a.a, _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION ? Oe(_firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION, a.$) : null);
+        function Pm(a, b) {
+          a.$ && xd(a.$, "emulatorConfigChanged", a.Ba);
+          (a.$ = b) && nd(b, "emulatorConfigChanged", a.Ba);
+        }
+
+        function Nm(a, b) {
+          a.aa = b;
+          Ri(a.a, _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION ? Oe(_firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION, a.aa) : null);
         }
 
         Im.prototype.Ga = function () {
-          return Za(this.$);
+          return Za(this.aa);
         };
 
-        function Pm(a, b) {
-          a.ba && xd(a.ba, "frameworkChanged", a.Ba);
-          (a.ba = b) && nd(b, "frameworkChanged", a.Ba);
+        function Qm(a, b) {
+          a.ja && xd(a.ja, "frameworkChanged", a.Oa);
+          (a.ja = b) && nd(b, "frameworkChanged", a.Oa);
         }
 
-        Im.prototype.hb = function () {
-          this.u.b && (this.u.stop(), this.u.start());
+        Im.prototype.ib = function () {
+          this.D.b && (this.D.stop(), this.D.start());
         };
 
-        function Qm(a) {
+        function Rm(a) {
           try {
             return _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].app(a.m).auth();
           } catch (b) {
@@ -8256,34 +8262,34 @@
           }, function (b) {
             return b && "auth/network-request-failed" == b.code ? !0 : !1;
           }, function () {
-            var b = a.b.c - Date.now() - 3E5;
+            var b = a.h.c - Date.now() - 3E5;
             return 0 < b ? b : 0;
           });
         }
 
-        function Rm(a) {
-          a.D || a.u.b || (a.u.start(), xd(a, "tokenChanged", a.aa), nd(a, "tokenChanged", a.aa));
+        function Sm(a) {
+          a.J || a.D.b || (a.D.start(), xd(a, "tokenChanged", a.ba), nd(a, "tokenChanged", a.ba));
         }
 
-        function Sm(a) {
-          xd(a, "tokenChanged", a.aa);
-          a.u.stop();
+        function Tm(a) {
+          xd(a, "tokenChanged", a.ba);
+          a.D.stop();
         }
 
         function Jm(a, b) {
-          a.za = b;
+          a.Aa = b;
           M(a, "_lat", b);
         }
 
-        function Tm(a, b) {
-          Xa(a.S, function (c) {
+        function Um(a, b) {
+          Xa(a.W, function (c) {
             return c == b;
           });
         }
 
-        function Um(a) {
-          for (var b = [], c = 0; c < a.S.length; c++) {
-            b.push(a.S[c](a));
+        function Vm(a) {
+          for (var b = [], c = 0; c < a.W.length; c++) {
+            b.push(a.W[c](a));
           }
 
           return Jc(b).then(function () {
@@ -8291,8 +8297,8 @@
           });
         }
 
-        function Vm(a) {
-          a.i && !a.R && (a.R = !0, Pl(a.i, a));
+        function Wm(a) {
+          a.b && !a.P && (a.P = !0, Pl(a.b, a));
         }
 
         function Km(a, b) {
@@ -8313,35 +8319,35 @@
 
         M(Im.prototype, "providerId", "firebase");
 
-        function Wm() {}
+        function Xm() {}
 
-        function Xm(a) {
+        function Ym(a) {
           return E().then(function () {
-            if (a.D) throw new t("app-deleted");
+            if (a.J) throw new t("app-deleted");
           });
         }
 
-        function Ym(a) {
+        function Zm(a) {
           return Ra(a.providerData, function (b) {
             return b.providerId;
           });
         }
 
-        function Zm(a, b) {
-          b && ($m(a, b.providerId), a.providerData.push(b));
+        function $m(a, b) {
+          b && (an(a, b.providerId), a.providerData.push(b));
         }
 
-        function $m(a, b) {
+        function an(a, b) {
           Xa(a.providerData, function (c) {
             return c.providerId == b;
           });
         }
 
-        function an(a, b, c) {
+        function bn(a, b, c) {
           ("uid" != b || c) && a.hasOwnProperty(b) && M(a, b, c);
         }
 
-        function bn(a, b) {
+        function cn(a, b) {
           a != b && (N(a, {
             uid: b.uid,
             displayName: b.displayName,
@@ -8353,26 +8359,26 @@
             tenantId: b.tenantId,
             providerData: []
           }), b.metadata ? M(a, "metadata", Gm(b.metadata)) : M(a, "metadata", new Fm()), w(b.providerData, function (c) {
-            Zm(a, c);
-          }), Dm(a.b, b.b), M(a, "refreshToken", a.b.a), um(a.O, b.O.b));
+            $m(a, c);
+          }), Dm(a.h, b.h), M(a, "refreshToken", a.h.a), um(a.S, b.S.b));
         }
 
         k = Im.prototype;
 
         k.reload = function () {
           var a = this;
-          return R(this, Xm(this).then(function () {
-            return cn(a).then(function () {
-              return Um(a);
-            }).then(Wm);
+          return R(this, Ym(this).then(function () {
+            return dn(a).then(function () {
+              return Vm(a);
+            }).then(Xm);
           }));
         };
 
-        function cn(a) {
+        function dn(a) {
           return a.I().then(function (b) {
             var c = a.isAnonymous;
-            return dn(a, b).then(function () {
-              c || an(a, "isAnonymous", !1);
+            return en(a, b).then(function () {
+              c || bn(a, "isAnonymous", !1);
               return b;
             });
           });
@@ -8386,21 +8392,21 @@
 
         k.I = function (a) {
           var b = this;
-          return R(this, Xm(this).then(function () {
-            return b.b.getToken(a);
+          return R(this, Ym(this).then(function () {
+            return b.h.getToken(a);
           }).then(function (c) {
             if (!c) throw new t("internal-error");
-            c.accessToken != b.za && (Jm(b, c.accessToken), b.dispatchEvent(new sm("tokenChanged")));
-            an(b, "refreshToken", c.refreshToken);
+            c.accessToken != b.Aa && (Jm(b, c.accessToken), b.dispatchEvent(new sm("tokenChanged")));
+            bn(b, "refreshToken", c.refreshToken);
             return c.accessToken;
           }));
         };
 
         function wm(a, b) {
-          b[Dg] && a.za != b[Dg] && (Cm(a.b, b), a.dispatchEvent(new sm("tokenChanged")), Jm(a, b[Dg]), an(a, "refreshToken", a.b.a));
+          b[Dg] && a.Aa != b[Dg] && (Cm(a.h, b), a.dispatchEvent(new sm("tokenChanged")), Jm(a, b[Dg]), bn(a, "refreshToken", a.h.a));
         }
 
-        function dn(a, b) {
+        function en(a, b) {
           return O(a.a, Ij, {
             idToken: b
           }).then(q(a.Kc, a));
@@ -8422,17 +8428,17 @@
             tenantId: a.tenantId
           });
 
-          for (var b = en(a), c = 0; c < b.length; c++) {
-            Zm(this, b[c]);
+          for (var b = fn(a), c = 0; c < b.length; c++) {
+            $m(this, b[c]);
           }
 
-          an(this, "isAnonymous", !(this.email && a.passwordHash) && !(this.providerData && this.providerData.length));
+          bn(this, "isAnonymous", !(this.email && a.passwordHash) && !(this.providerData && this.providerData.length));
           this.dispatchEvent(new sm("userReloaded", {
             hd: a
           }));
         };
 
-        function en(a) {
+        function fn(a) {
           return (a = a.providerUserInfo) && a.length ? Ra(a, function (b) {
             return new Hm(b.rawId, b.providerId, b.email, b.displayName, b.photoUrl, b.phoneNumber);
           }) : [];
@@ -8440,25 +8446,25 @@
 
         k.Lc = function (a) {
           gf("firebase.User.prototype.reauthenticateAndRetrieveDataWithCredential is deprecated. Please use firebase.User.prototype.reauthenticateWithCredential instead.");
-          return this.tb(a);
+          return this.ub(a);
         };
 
-        k.tb = function (a) {
+        k.ub = function (a) {
           var b = this,
               c = null;
           return R(this, a.c(this.a, this.uid).then(function (d) {
             wm(b, d);
-            c = fn(b, d, "reauthenticate");
-            b.h = null;
+            c = gn(b, d, "reauthenticate");
+            b.i = null;
             return b.reload();
           }).then(function () {
             return c;
           }), !0);
         };
 
-        function gn(a, b) {
-          return cn(a).then(function () {
-            if (Va(Ym(a), b)) return Um(a).then(function () {
+        function hn(a, b) {
+          return dn(a).then(function () {
+            if (Va(Zm(a), b)) return Vm(a).then(function () {
               throw new t("provider-already-linked");
             });
           });
@@ -8466,19 +8472,19 @@
 
         k.Cc = function (a) {
           gf("firebase.User.prototype.linkAndRetrieveDataWithCredential is deprecated. Please use firebase.User.prototype.linkWithCredential instead.");
-          return this.qb(a);
+          return this.rb(a);
         };
 
-        k.qb = function (a) {
+        k.rb = function (a) {
           var b = this,
               c = null;
-          return R(this, gn(this, a.providerId).then(function () {
+          return R(this, hn(this, a.providerId).then(function () {
             return b.I();
           }).then(function (d) {
             return a.b(b.a, d);
           }).then(function (d) {
-            c = fn(b, d, "link");
-            return hn(b, d);
+            c = gn(b, d, "link");
+            return jn(b, d);
           }).then(function () {
             return c;
           }));
@@ -8486,19 +8492,19 @@
 
         k.Dc = function (a, b) {
           var c = this;
-          return R(this, gn(this, "phone").then(function () {
-            return gm(Qm(c), a, b, q(c.qb, c));
+          return R(this, hn(this, "phone").then(function () {
+            return gm(Rm(c), a, b, q(c.rb, c));
           }));
         };
 
         k.Mc = function (a, b) {
           var c = this;
           return R(this, E().then(function () {
-            return gm(Qm(c), a, b, q(c.tb, c));
+            return gm(Rm(c), a, b, q(c.ub, c));
           }), !0);
         };
 
-        function fn(a, b, c) {
+        function gn(a, b, c) {
           var d = qh(b);
           b = og(b);
           return kf({
@@ -8509,17 +8515,17 @@
           });
         }
 
-        function hn(a, b) {
+        function jn(a, b) {
           wm(a, b);
           return a.reload().then(function () {
             return a;
           });
         }
 
-        k.Bb = function (a) {
+        k.Cb = function (a) {
           var b = this;
           return R(this, this.I().then(function (c) {
-            return b.a.Bb(c, a);
+            return b.a.Cb(c, a);
           }).then(function (c) {
             wm(b, c);
             return b.reload();
@@ -8536,49 +8542,49 @@
           }));
         };
 
-        k.Cb = function (a) {
+        k.Db = function (a) {
           var b = this;
           return R(this, this.I().then(function (c) {
-            return b.a.Cb(c, a);
+            return b.a.Db(c, a);
           }).then(function (c) {
             wm(b, c);
             return b.reload();
           }));
         };
 
-        k.Db = function (a) {
-          if (void 0 === a.displayName && void 0 === a.photoURL) return Xm(this);
+        k.Eb = function (a) {
+          if (void 0 === a.displayName && void 0 === a.photoURL) return Ym(this);
           var b = this;
           return R(this, this.I().then(function (c) {
-            return b.a.Db(c, {
+            return b.a.Eb(c, {
               displayName: a.displayName,
               photoUrl: a.photoURL
             });
           }).then(function (c) {
             wm(b, c);
-            an(b, "displayName", c.displayName || null);
-            an(b, "photoURL", c.photoUrl || null);
+            bn(b, "displayName", c.displayName || null);
+            bn(b, "photoURL", c.photoUrl || null);
             w(b.providerData, function (d) {
               "password" === d.providerId && (M(d, "displayName", b.displayName), M(d, "photoURL", b.photoURL));
             });
-            return Um(b);
-          }).then(Wm));
+            return Vm(b);
+          }).then(Xm));
         };
 
         k.cd = function (a) {
           var b = this;
-          return R(this, cn(this).then(function (c) {
-            return Va(Ym(b), a) ? rj(b.a, c, [a]).then(function (d) {
+          return R(this, dn(this).then(function (c) {
+            return Va(Zm(b), a) ? rj(b.a, c, [a]).then(function (d) {
               var e = {};
               w(d.providerUserInfo || [], function (f) {
                 e[f.providerId] = !0;
               });
-              w(Ym(b), function (f) {
-                e[f] || $m(b, f);
+              w(Zm(b), function (f) {
+                e[f] || an(b, f);
               });
               e[lh.PROVIDER_ID] || M(b, "phoneNumber", null);
-              return Um(b);
-            }) : Um(b).then(function () {
+              return Vm(b);
+            }) : Vm(b).then(function () {
               throw new t("no-such-provider");
             });
           }));
@@ -8593,22 +8599,22 @@
           }).then(function () {
             a.dispatchEvent(new sm("userDeleted"));
           })).then(function () {
-            for (var b = 0; b < a.J.length; b++) {
-              a.J[b].cancel("app-deleted");
+            for (var b = 0; b < a.N.length; b++) {
+              a.N[b].cancel("app-deleted");
             }
 
-            Nm(a, null);
             Om(a, null);
             Pm(a, null);
-            a.J = [];
-            a.D = !0;
-            Sm(a);
+            Qm(a, null);
+            a.N = [];
+            a.J = !0;
+            Tm(a);
             M(a, "refreshToken", null);
-            a.i && Ql(a.i, a);
+            a.b && Ql(a.b, a);
           });
         };
 
-        k.Fb = function (a, b) {
+        k.Gb = function (a, b) {
           return "linkViaPopup" == a && (this.g || null) == b && this.f || "reauthViaPopup" == a && (this.g || null) == b && this.f || "linkViaRedirect" == a && (this.ga || null) == b || "reauthViaRedirect" == a && (this.ga || null) == b ? !0 : !1;
         };
 
@@ -8617,44 +8623,44 @@
         };
 
         k.Fa = function (a, b) {
-          return "linkViaPopup" == a && b == (this.g || null) ? q(this.Kb, this) : "reauthViaPopup" == a && b == (this.g || null) ? q(this.Lb, this) : "linkViaRedirect" == a && (this.ga || null) == b ? q(this.Kb, this) : "reauthViaRedirect" == a && (this.ga || null) == b ? q(this.Lb, this) : null;
+          return "linkViaPopup" == a && b == (this.g || null) ? q(this.Lb, this) : "reauthViaPopup" == a && b == (this.g || null) ? q(this.Mb, this) : "linkViaRedirect" == a && (this.ga || null) == b ? q(this.Lb, this) : "reauthViaRedirect" == a && (this.ga || null) == b ? q(this.Mb, this) : null;
         };
 
         k.Ec = function (a) {
           var b = this;
-          return jn(this, "linkViaPopup", a, function () {
-            return gn(b, a.providerId).then(function () {
-              return Um(b);
+          return kn(this, "linkViaPopup", a, function () {
+            return hn(b, a.providerId).then(function () {
+              return Vm(b);
             });
           }, !1);
         };
 
         k.Nc = function (a) {
-          return jn(this, "reauthViaPopup", a, function () {
+          return kn(this, "reauthViaPopup", a, function () {
             return E();
           }, !0);
         };
 
-        function jn(a, b, c, d, e) {
+        function kn(a, b, c, d, e) {
           if (!Re()) return F(new t("operation-not-supported-in-this-environment"));
-          if (a.h && !e) return F(a.h);
+          if (a.i && !e) return F(a.i);
           var f = ng(c.providerId),
               g = Qe(a.uid + ":::"),
               h = null;
-          (!Te() || Ie()) && a.s && c.isOAuthProvider && (h = ek(a.s, a.l, a.m, b, c, null, g, _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION || null, null, null, a.tenantId));
-          var m = ze(h, f && f.ua, f && f.ta);
+          (!Te() || Ie()) && a.s && c.isOAuthProvider && (h = ek(a.s, a.l, a.m, b, c, null, g, _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION || null, null, null, a.tenantId, a.u));
+          var m = ze(h, f && f.va, f && f.ua);
           d = d().then(function () {
-            kn(a);
+            ln(a);
             if (!e) return a.I().then(function () {});
           }).then(function () {
-            return Tl(a.i, m, b, c, g, !!h, a.tenantId);
+            return Tl(a.b, m, b, c, g, !!h, a.tenantId);
           }).then(function () {
             return new D(function (p, v) {
               a.na(b, null, new t("cancelled-popup-request"), a.g || null);
               a.f = p;
               a.C = v;
               a.g = g;
-              a.c = Vl(a.i, a, b, m, g);
+              a.c = Vl(a.b, a, b, m, g);
             });
           }).then(function (p) {
             m && ye(m);
@@ -8668,36 +8674,36 @@
 
         k.Fc = function (a) {
           var b = this;
-          return ln(this, "linkViaRedirect", a, function () {
-            return gn(b, a.providerId);
+          return mn(this, "linkViaRedirect", a, function () {
+            return hn(b, a.providerId);
           }, !1);
         };
 
         k.Oc = function (a) {
-          return ln(this, "reauthViaRedirect", a, function () {
+          return mn(this, "reauthViaRedirect", a, function () {
             return E();
           }, !0);
         };
 
-        function ln(a, b, c, d, e) {
+        function mn(a, b, c, d, e) {
           if (!Re()) return F(new t("operation-not-supported-in-this-environment"));
-          if (a.h && !e) return F(a.h);
+          if (a.i && !e) return F(a.i);
           var f = null,
               g = Qe(a.uid + ":::");
           d = d().then(function () {
-            kn(a);
+            ln(a);
             if (!e) return a.I().then(function () {});
           }).then(function () {
             a.ga = g;
-            return Um(a);
+            return Vm(a);
           }).then(function (h) {
-            a.ha && (h = a.ha, h = h.b.set(mn, a.w(), h.a));
+            a.ha && (h = a.ha, h = h.b.set(nn, a.w(), h.a));
             return h;
           }).then(function () {
-            return Ul(a.i, b, c, g, a.tenantId);
+            return Ul(a.b, b, c, g, a.tenantId);
           }).o(function (h) {
             f = h;
-            if (a.ha) return nn(a.ha);
+            if (a.ha) return on(a.ha);
             throw f;
           }).then(function () {
             if (f) throw f;
@@ -8705,14 +8711,14 @@
           return R(a, d, e);
         }
 
-        function kn(a) {
-          if (!a.i || !a.R) {
-            if (a.i && !a.R) throw new t("internal-error");
+        function ln(a) {
+          if (!a.b || !a.P) {
+            if (a.b && !a.P) throw new t("internal-error");
             throw new t("auth-domain-config-required");
           }
         }
 
-        k.Kb = function (a, b, c, d) {
+        k.Lb = function (a, b, c, d) {
           var e = this;
           this.c && (this.c.cancel(), this.c = null);
           var f = null;
@@ -8724,15 +8730,15 @@
               idToken: g
             });
           }).then(function (g) {
-            f = fn(e, g, "link");
-            return hn(e, g);
+            f = gn(e, g, "link");
+            return jn(e, g);
           }).then(function () {
             return f;
           });
           return R(this, c);
         };
 
-        k.Lb = function (a, b, c, d) {
+        k.Mb = function (a, b, c, d) {
           var e = this;
           this.c && (this.c.cancel(), this.c = null);
           var f = null,
@@ -8744,9 +8750,9 @@
               tenantId: c
             }), e.uid);
           }).then(function (h) {
-            f = fn(e, h, "reauthenticate");
+            f = gn(e, h, "reauthenticate");
             wm(e, h);
-            e.h = null;
+            e.i = null;
             return e.reload();
           }).then(function () {
             return f;
@@ -8754,41 +8760,41 @@
           return R(this, g, !0);
         };
 
-        k.ub = function (a) {
+        k.vb = function (a) {
           var b = this,
               c = null;
           return R(this, this.I().then(function (d) {
             c = d;
             return "undefined" === typeof a || mb(a) ? {} : bg(new Sf(a));
           }).then(function (d) {
-            return b.a.ub(c, d);
+            return b.a.vb(c, d);
           }).then(function (d) {
             if (b.email != d) return b.reload();
           }).then(function () {}));
         };
 
-        k.Eb = function (a, b) {
+        k.Fb = function (a, b) {
           var c = this,
               d = null;
           return R(this, this.I().then(function (e) {
             d = e;
             return "undefined" === typeof b || mb(b) ? {} : bg(new Sf(b));
           }).then(function (e) {
-            return c.a.Eb(d, a, e);
+            return c.a.Fb(d, a, e);
           }).then(function (e) {
             if (c.email != e) return c.reload();
           }).then(function () {}));
         };
 
         function R(a, b, c) {
-          var d = on(a, b, c);
-          a.J.push(d);
+          var d = pn(a, b, c);
+          a.N.push(d);
           d.oa(function () {
-            Wa(a.J, d);
+            Wa(a.N, d);
           });
           return d.o(function (e) {
             var f = null;
-            e && "auth/multi-factor-auth-required" === e.code && (f = mm(e.w(), Qm(a), q(a.jc, a)));
+            e && "auth/multi-factor-auth-required" === e.code && (f = mm(e.w(), Rm(a), q(a.jc, a)));
             throw f || e;
           });
         }
@@ -8797,9 +8803,9 @@
           var b = null,
               c = this;
           a = Cg(E(a), c.uid).then(function (d) {
-            b = fn(c, d, "reauthenticate");
+            b = gn(c, d, "reauthenticate");
             wm(c, d);
-            c.h = null;
+            c.i = null;
             return c.reload();
           }).then(function () {
             return b;
@@ -8807,9 +8813,9 @@
           return R(this, a, !0);
         };
 
-        function on(a, b, c) {
-          return a.h && !c ? (b.cancel(), F(a.h)) : b.o(function (d) {
-            !d || "auth/user-disabled" != d.code && "auth/user-token-expired" != d.code || (a.h || a.dispatchEvent(new sm("userInvalidated")), a.h = d);
+        function pn(a, b, c) {
+          return a.i && !c ? (b.cancel(), F(a.i)) : b.o(function (d) {
+            !d || "auth/user-disabled" != d.code && "auth/user-token-expired" != d.code || (a.i || a.dispatchEvent(new sm("userInvalidated")), a.i = d);
             throw d;
           });
         }
@@ -8832,18 +8838,18 @@
             apiKey: this.l,
             appName: this.m,
             authDomain: this.s,
-            stsTokenManager: this.b.w(),
+            stsTokenManager: this.h.w(),
             redirectEventId: this.ga || null
           };
           this.metadata && z(a, this.metadata.w());
           w(this.providerData, function (b) {
             a.providerData.push(lf(b));
           });
-          z(a, this.O.w());
+          z(a, this.S.w());
           return a;
         };
 
-        function pn(a) {
+        function qn(a) {
           if (!a.apiKey) return null;
           var b = {
             apiKey: a.apiKey,
@@ -8862,23 +8868,23 @@
 
           var e = new Im(b, c, a);
           a.providerData && w(a.providerData, function (f) {
-            f && Zm(e, kf(f));
+            f && $m(e, kf(f));
           });
           a.redirectEventId && (e.ga = a.redirectEventId);
           return e;
         }
 
-        function qn(a, b, c, d) {
+        function rn(a, b, c, d) {
           var e = new Im(a, b);
           c && (e.ha = c);
-          d && Mm(e, d);
+          d && Nm(e, d);
           return e.reload().then(function () {
             return e;
           });
         }
 
-        function rn(a, b, c, d) {
-          var e = a.b,
+        function sn(a, b, c, d) {
+          var e = a.h,
               f = {};
           f[Dg] = e.b && e.b.toString();
           f.refreshToken = e.a;
@@ -8888,219 +8894,219 @@
             appName: a.m
           }, f);
           c && (b.ha = c);
-          d && Mm(b, d);
-          bn(b, a);
+          d && Nm(b, d);
+          cn(b, a);
           return b;
         }
 
         ;
 
-        function sn(a) {
+        function tn(a) {
           this.a = a;
           this.b = Vk();
         }
 
-        var mn = {
+        var nn = {
           name: "redirectUser",
           F: "session"
         };
 
-        function nn(a) {
-          return Zk(a.b, mn, a.a);
+        function on(a) {
+          return Zk(a.b, nn, a.a);
         }
 
-        function tn(a, b) {
-          return a.b.get(mn, a.a).then(function (c) {
+        function un(a, b) {
+          return a.b.get(nn, a.a).then(function (c) {
             c && b && (c.authDomain = b);
-            return pn(c || {});
+            return qn(c || {});
           });
         }
 
         ;
 
-        function un(a) {
+        function vn(a) {
           this.a = a;
           this.b = Vk();
           this.c = null;
-          this.f = vn(this);
-          this.b.addListener(wn("local"), this.a, q(this.g, this));
+          this.f = wn(this);
+          this.b.addListener(xn("local"), this.a, q(this.g, this));
         }
 
-        un.prototype.g = function () {
+        vn.prototype.g = function () {
           var a = this,
-              b = wn("local");
-          xn(this, function () {
+              b = xn("local");
+          yn(this, function () {
             return E().then(function () {
               return a.c && "local" != a.c.F ? a.b.get(b, a.a) : null;
             }).then(function (c) {
-              if (c) return yn(a, "local").then(function () {
+              if (c) return zn(a, "local").then(function () {
                 a.c = b;
               });
             });
           });
         };
 
-        function yn(a, b) {
+        function zn(a, b) {
           var c = [],
               d;
 
           for (d in Rk) {
-            Rk[d] !== b && c.push(Zk(a.b, wn(Rk[d]), a.a));
+            Rk[d] !== b && c.push(Zk(a.b, xn(Rk[d]), a.a));
           }
 
-          c.push(Zk(a.b, zn, a.a));
+          c.push(Zk(a.b, An, a.a));
           return Ic(c);
         }
 
-        function vn(a) {
-          var b = wn("local"),
-              c = wn("session"),
-              d = wn("none");
+        function wn(a) {
+          var b = xn("local"),
+              c = xn("session"),
+              d = xn("none");
           return Yk(a.b, b, a.a).then(function () {
             return a.b.get(c, a.a);
           }).then(function (e) {
             return e ? c : a.b.get(d, a.a).then(function (f) {
               return f ? d : a.b.get(b, a.a).then(function (g) {
-                return g ? b : a.b.get(zn, a.a).then(function (h) {
-                  return h ? wn(h) : b;
+                return g ? b : a.b.get(An, a.a).then(function (h) {
+                  return h ? xn(h) : b;
                 });
               });
             });
           }).then(function (e) {
             a.c = e;
-            return yn(a, e.F);
+            return zn(a, e.F);
           }).o(function () {
             a.c || (a.c = b);
           });
         }
 
-        var zn = {
+        var An = {
           name: "persistence",
           F: "session"
         };
 
-        function wn(a) {
+        function xn(a) {
           return {
             name: "authUser",
             F: a
           };
         }
 
-        un.prototype.xb = function (a) {
+        vn.prototype.yb = function (a) {
           var b = null,
               c = this;
           Sk(a);
-          return xn(this, function () {
+          return yn(this, function () {
             return a != c.c.F ? c.b.get(c.c, c.a).then(function (d) {
               b = d;
-              return yn(c, a);
+              return zn(c, a);
             }).then(function () {
-              c.c = wn(a);
+              c.c = xn(a);
               if (b) return c.b.set(c.c, b, c.a);
             }) : E();
           });
         };
 
-        function An(a) {
-          return xn(a, function () {
-            return a.b.set(zn, a.c.F, a.a);
+        function Bn(a) {
+          return yn(a, function () {
+            return a.b.set(An, a.c.F, a.a);
           });
         }
 
-        function Bn(a, b) {
-          return xn(a, function () {
+        function Cn(a, b) {
+          return yn(a, function () {
             return a.b.set(a.c, b.w(), a.a);
           });
         }
 
-        function Cn(a) {
-          return xn(a, function () {
+        function Dn(a) {
+          return yn(a, function () {
             return Zk(a.b, a.c, a.a);
           });
         }
 
-        function Dn(a, b, c) {
-          return xn(a, function () {
+        function En(a, b, c) {
+          return yn(a, function () {
             return a.b.get(a.c, a.a).then(function (d) {
               d && b && (d.authDomain = b);
               d && c && (d.emulatorConfig = c);
-              return pn(d || {});
+              return qn(d || {});
             });
           });
         }
 
-        function xn(a, b) {
+        function yn(a, b) {
           a.f = a.f.then(b, b);
           return a.f;
         }
 
         ;
 
-        function En(a) {
+        function Fn(a) {
           this.l = !1;
           M(this, "settings", new em());
           M(this, "app", a);
           if (S(this).options && S(this).options.apiKey) a = _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION ? Oe(_firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION) : null, this.a = new Ii(S(this).options && S(this).options.apiKey, Ca(Da), a);else throw new t("invalid-api-key");
-          this.R = [];
+          this.P = [];
           this.s = [];
-          this.O = [];
-          this.hb = _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].INTERNAL.createSubscribe(q(this.zc, this));
-          this.X = void 0;
-          this.bc = _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].INTERNAL.createSubscribe(q(this.Ac, this));
-          Fn(this, null);
-          this.i = new un(S(this).options.apiKey + ":" + S(this).name);
-          this.D = new sn(S(this).options.apiKey + ":" + S(this).name);
-          this.$ = T(this, Gn(this));
-          this.h = T(this, Hn(this));
+          this.N = [];
+          this.Pa = _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].INTERNAL.createSubscribe(q(this.zc, this));
+          this.W = void 0;
+          this.ib = _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].INTERNAL.createSubscribe(q(this.Ac, this));
+          Gn(this, null);
+          this.i = new vn(S(this).options.apiKey + ":" + S(this).name);
+          this.D = new tn(S(this).options.apiKey + ":" + S(this).name);
+          this.$ = T(this, Hn(this));
+          this.h = T(this, In(this));
           this.ba = !1;
           this.ja = q(this.Zc, this);
           this.Ba = q(this.da, this);
-          this.ya = q(this.mc, this);
+          this.qa = q(this.mc, this);
           this.za = q(this.wc, this);
           this.Aa = q(this.xc, this);
           this.b = null;
-          In(this);
+          Jn(this);
           this.INTERNAL = {};
           this.INTERNAL["delete"] = q(this["delete"], this);
           this.INTERNAL.logFramework = q(this.Gc, this);
           this.u = 0;
           H.call(this);
-          Jn(this);
+          Kn(this);
           this.J = [];
-          this.P = null;
+          this.R = null;
         }
 
-        r(En, H);
-
-        function Kn(a) {
-          G.call(this, "languageCodeChanged");
-          this.h = a;
-        }
-
-        r(Kn, G);
+        r(Fn, H);
 
         function Ln(a) {
-          G.call(this, "emulatorConfigChanged");
-          this.c = a;
+          G.call(this, "languageCodeChanged");
+          this.h = a;
         }
 
         r(Ln, G);
 
         function Mn(a) {
+          G.call(this, "emulatorConfigChanged");
+          this.c = a;
+        }
+
+        r(Mn, G);
+
+        function Nn(a) {
           G.call(this, "frameworkChanged");
           this.f = a;
         }
 
-        r(Mn, G);
-        k = En.prototype;
+        r(Nn, G);
+        k = Fn.prototype;
 
-        k.xb = function (a) {
-          a = this.i.xb(a);
+        k.yb = function (a) {
+          a = this.i.yb(a);
           return T(this, a);
         };
 
-        k.wa = function (a) {
-          this.aa === a || this.l || (this.aa = a, Oi(this.a, this.aa), this.dispatchEvent(new Kn(this.la())));
+        k.xa = function (a) {
+          this.aa === a || this.l || (this.aa = a, Oi(this.a, this.aa), this.dispatchEvent(new Ln(this.la())));
         };
 
         k.la = function () {
@@ -9109,25 +9115,25 @@
 
         k.fd = function () {
           var a = l.navigator;
-          this.wa(a ? a.languages && a.languages[0] || a.language || a.userLanguage || null : null);
+          this.xa(a ? a.languages && a.languages[0] || a.language || a.userLanguage || null : null);
         };
 
         k.gd = function (a, b) {
-          if (!this.P) {
+          if (!this.R) {
             if (!/^https?:\/\//.test(a)) throw new t("argument-error", "Emulator URL must start with a valid scheme (http:// or https://).");
             b = b ? !!b.disableWarnings : !1;
-            Nn(b);
-            this.P = {
+            On(b);
+            this.R = {
               url: a,
               ec: b
             };
-            this.settings.ib = !0;
-            Pi(this.a, this.P);
-            this.dispatchEvent(new Ln(this.P));
+            this.settings.jb = !0;
+            Pi(this.a, this.R);
+            this.dispatchEvent(new Mn(this.R));
           }
         };
 
-        function Nn(a) {
+        function On(a) {
           "undefined" !== typeof console && "function" === typeof console.info && console.info("WARNING: You are using the Auth Emulator, which is intended for local testing only.  Do not use with production credentials.");
           l.document && !a && Ee().then(function () {
             var b = l.document.createElement("div");
@@ -9136,7 +9142,7 @@
             b.style.width = "100%";
             b.style.backgroundColor = "#ffffff";
             b.style.border = ".1em solid #000000";
-            b.style.color = "#ff0000";
+            b.style.color = "#b50000";
             b.style.bottom = "0px";
             b.style.left = "0px";
             b.style.margin = "0px";
@@ -9150,14 +9156,14 @@
         k.Gc = function (a) {
           this.J.push(a);
           Ri(this.a, _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION ? Oe(_firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION, this.J) : null);
-          this.dispatchEvent(new Mn(this.J));
+          this.dispatchEvent(new Nn(this.J));
         };
 
         k.Ga = function () {
           return Za(this.J);
         };
 
-        k.yb = function (a) {
+        k.zb = function (a) {
           this.S === a || this.l || (this.S = a, this.a.b = this.S);
         };
 
@@ -9165,13 +9171,13 @@
           return this.S;
         };
 
-        function Jn(a) {
+        function Kn(a) {
           Object.defineProperty(a, "lc", {
             get: function get() {
               return this.la();
             },
             set: function set(b) {
-              this.wa(b);
+              this.xa(b);
             },
             enumerable: !1
           });
@@ -9181,21 +9187,21 @@
               return this.T();
             },
             set: function set(b) {
-              this.yb(b);
+              this.zb(b);
             },
             enumerable: !1
           });
           a.S = null;
           Object.defineProperty(a, "emulatorConfig", {
             get: function get() {
-              if (this.P) {
-                var b = J(this.P.url);
+              if (this.R) {
+                var b = J(this.R.url);
                 b = kf({
                   protocol: b.c,
                   host: b.a,
                   port: b.g,
                   options: kf({
-                    disableWarnings: this.P.ec
+                    disableWarnings: this.R.ec
                   })
                 });
               } else b = null;
@@ -9215,30 +9221,30 @@
           };
         };
 
-        function On(a) {
+        function Pn(a) {
           return a.Oa || F(new t("auth-domain-config-required"));
         }
 
-        function In(a) {
+        function Jn(a) {
           var b = S(a).options.authDomain,
               c = S(a).options.apiKey;
           b && Re() && (a.Oa = a.$.then(function () {
             if (!a.l) {
-              a.b = Xl(b, c, S(a).name, a.P);
+              a.b = Xl(b, c, S(a).name, a.R);
               Pl(a.b, a);
-              U(a) && Vm(U(a));
+              U(a) && Wm(U(a));
 
               if (a.m) {
-                Vm(a.m);
+                Wm(a.m);
                 var d = a.m;
-                d.wa(a.la());
-                Nm(d, a);
-                d = a.m;
-                Mm(d, a.J);
-                Pm(d, a);
-                d = a.m;
-                Pi(d.a, a.P);
+                d.xa(a.la());
                 Om(d, a);
+                d = a.m;
+                Nm(d, a.J);
+                Qm(d, a);
+                d = a.m;
+                Mm(d, a.R);
+                Pm(d, a);
                 a.m = null;
               }
 
@@ -9247,7 +9253,7 @@
           }));
         }
 
-        k.Fb = function (a, b) {
+        k.Gb = function (a, b) {
           switch (a) {
             case "unknown":
             case "signInViaRedirect":
@@ -9279,7 +9285,7 @@
           };
           this.c && (this.c.cancel(), this.c = null);
           return e.$.then(function () {
-            return Pn(e, Fg(e.a, f));
+            return Qn(e, Fg(e.a, f));
           });
         };
 
@@ -9289,9 +9295,9 @@
               c = ng(a.providerId),
               d = Qe(),
               e = null;
-          (!Te() || Ie()) && S(this).options.authDomain && a.isOAuthProvider && (e = ek(S(this).options.authDomain, S(this).options.apiKey, S(this).name, "signInViaPopup", a, null, d, _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION || null, null, null, this.T(), this.P));
-          var f = ze(e, c && c.ua, c && c.ta);
-          c = On(this).then(function (g) {
+          (!Te() || Ie()) && S(this).options.authDomain && a.isOAuthProvider && (e = ek(S(this).options.authDomain, S(this).options.apiKey, S(this).name, "signInViaPopup", a, null, d, _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION || null, null, null, this.T(), this.R));
+          var f = ze(e, c && c.va, c && c.ua);
+          c = Pn(this).then(function (g) {
             return Tl(g, f, "signInViaPopup", a, d, !!e, b.T());
           }).then(function () {
             return new D(function (g, h) {
@@ -9314,27 +9320,27 @@
         k.Yc = function (a) {
           if (!Re()) return F(new t("operation-not-supported-in-this-environment"));
           var b = this,
-              c = On(this).then(function () {
-            return An(b.i);
+              c = Pn(this).then(function () {
+            return Bn(b.i);
           }).then(function () {
             return Ul(b.b, "signInViaRedirect", a, void 0, b.T());
           });
           return T(this, c);
         };
 
-        function Qn(a) {
+        function Rn(a) {
           if (!Re()) return F(new t("operation-not-supported-in-this-environment"));
-          var b = On(a).then(function () {
-            return a.b.qa();
+          var b = Pn(a).then(function () {
+            return a.b.ra();
           }).then(function (c) {
             return c ? kf(c) : null;
           });
           return T(a, b);
         }
 
-        k.qa = function () {
+        k.ra = function () {
           var a = this;
-          return Qn(this).then(function (b) {
+          return Rn(this).then(function (b) {
             a.b && $l(a.b.b);
             return b;
           }).o(function (b) {
@@ -9351,100 +9357,100 @@
           c.apiKey = S(this).options.apiKey;
           c.authDomain = S(this).options.authDomain;
           c.appName = S(this).name;
-          var d = rn(a, c, b.D, b.Ga());
+          var d = sn(a, c, b.D, b.Ga());
           return T(this, this.h.then(function () {
             if (S(b).options.apiKey != a.l) return d.reload();
           }).then(function () {
-            if (U(b) && a.uid == U(b).uid) return bn(U(b), a), b.da(a);
-            Fn(b, d);
-            Vm(d);
+            if (U(b) && a.uid == U(b).uid) return cn(U(b), a), b.da(a);
+            Gn(b, d);
+            Wm(d);
             return b.da(d);
           }).then(function () {
-            Rn(b);
+            Sn(b);
           }));
         };
 
-        function Sn(a, b) {
+        function Tn(a, b) {
           var c = {};
           c.apiKey = S(a).options.apiKey;
           c.authDomain = S(a).options.authDomain;
           c.appName = S(a).name;
-          a.P && (c.emulatorConfig = a.P);
+          a.R && (c.emulatorConfig = a.R);
           return a.$.then(function () {
-            return qn(c, b, a.D, a.Ga());
+            return rn(c, b, a.D, a.Ga());
           }).then(function (d) {
-            if (U(a) && d.uid == U(a).uid) return bn(U(a), d), a.da(d);
-            Fn(a, d);
-            Vm(d);
+            if (U(a) && d.uid == U(a).uid) return cn(U(a), d), a.da(d);
+            Gn(a, d);
+            Wm(d);
             return a.da(d);
           }).then(function () {
-            Rn(a);
+            Sn(a);
           });
         }
 
-        function Fn(a, b) {
-          U(a) && (Tm(U(a), a.Ba), xd(U(a), "tokenChanged", a.ya), xd(U(a), "userDeleted", a.za), xd(U(a), "userInvalidated", a.Aa), Sm(U(a)));
-          b && (b.S.push(a.Ba), nd(b, "tokenChanged", a.ya), nd(b, "userDeleted", a.za), nd(b, "userInvalidated", a.Aa), 0 < a.u && Rm(b));
+        function Gn(a, b) {
+          U(a) && (Um(U(a), a.Ba), xd(U(a), "tokenChanged", a.qa), xd(U(a), "userDeleted", a.za), xd(U(a), "userInvalidated", a.Aa), Tm(U(a)));
+          b && (b.W.push(a.Ba), nd(b, "tokenChanged", a.qa), nd(b, "userDeleted", a.za), nd(b, "userInvalidated", a.Aa), 0 < a.u && Sm(b));
           M(a, "currentUser", b);
-          b && (b.wa(a.la()), Nm(b, a), Mm(b, a.J), Pm(b, a), Pi(b.a, a.P), Om(b, a));
+          b && (b.xa(a.la()), Om(b, a), Nm(b, a.J), Qm(b, a), Mm(b, a.R), Pm(b, a));
         }
 
-        k.Ab = function () {
+        k.Bb = function () {
           var a = this,
               b = this.h.then(function () {
             a.b && $l(a.b.b);
             if (!U(a)) return E();
-            Fn(a, null);
-            return Cn(a.i).then(function () {
-              Rn(a);
+            Gn(a, null);
+            return Dn(a.i).then(function () {
+              Sn(a);
             });
           });
           return T(this, b);
         };
 
-        function Tn(a) {
-          var b = tn(a.D, S(a).options.authDomain).then(function (c) {
+        function Un(a) {
+          var b = un(a.D, S(a).options.authDomain).then(function (c) {
             if (a.m = c) c.ha = a.D;
-            return nn(a.D);
+            return on(a.D);
           });
           return T(a, b);
         }
 
-        function Gn(a) {
+        function Hn(a) {
           var b = S(a).options.authDomain,
-              c = Tn(a).then(function () {
-            return Dn(a.i, b, a.P);
+              c = Un(a).then(function () {
+            return En(a.i, b, a.R);
           }).then(function (d) {
             return d ? (d.ha = a.D, a.m && (a.m.ga || null) == (d.ga || null) ? d : d.reload().then(function () {
-              return Bn(a.i, d).then(function () {
+              return Cn(a.i, d).then(function () {
                 return d;
               });
             }).o(function (e) {
-              return "auth/network-request-failed" == e.code ? d : Cn(a.i);
+              return "auth/network-request-failed" == e.code ? d : Dn(a.i);
             })) : null;
           }).then(function (d) {
-            Fn(a, d || null);
+            Gn(a, d || null);
           });
           return T(a, c);
         }
 
-        function Hn(a) {
+        function In(a) {
           return a.$.then(function () {
-            return Qn(a);
+            return Rn(a);
           }).o(function () {}).then(function () {
             if (!a.l) return a.ja();
           }).o(function () {}).then(function () {
             if (!a.l) {
               a.ba = !0;
               var b = a.i;
-              b.b.addListener(wn("local"), b.a, a.ja);
+              b.b.addListener(xn("local"), b.a, a.ja);
             }
           });
         }
 
         k.Zc = function () {
           var a = this;
-          return Dn(this.i, S(this).options.authDomain).then(function (b) {
+          return En(this.i, S(this).options.authDomain).then(function (b) {
             if (!a.l) {
               var c;
 
@@ -9454,36 +9460,36 @@
                 c = void 0 === c || null === c || "" === c || void 0 === d || null === d || "" === d ? !1 : c == d;
               }
 
-              if (c) return bn(U(a), b), U(a).I();
-              if (U(a) || b) Fn(a, b), b && (Vm(b), b.ha = a.D), a.b && Pl(a.b, a), Rn(a);
+              if (c) return cn(U(a), b), U(a).I();
+              if (U(a) || b) Gn(a, b), b && (Wm(b), b.ha = a.D), a.b && Pl(a.b, a), Sn(a);
             }
           });
         };
 
         k.da = function (a) {
-          return Bn(this.i, a);
+          return Cn(this.i, a);
         };
 
         k.mc = function () {
-          Rn(this);
+          Sn(this);
           this.da(U(this));
         };
 
         k.wc = function () {
-          this.Ab();
+          this.Bb();
         };
 
         k.xc = function () {
-          this.Ab();
+          this.Bb();
         };
 
-        function Pn(a, b) {
+        function Qn(a, b) {
           var c = null,
               d = null;
           return T(a, b.then(function (e) {
             c = qh(e);
             d = og(e);
-            return Sn(a, e);
+            return Tn(a, e);
           }, function (e) {
             var f = null;
             e && "auth/multi-factor-auth-required" === e.code && (f = mm(e.w(), a, q(a.kc, a)));
@@ -9501,7 +9507,7 @@
         k.kc = function (a) {
           var b = this;
           return this.h.then(function () {
-            return Pn(b, E(a));
+            return Qn(b, E(a));
           });
         };
 
@@ -9514,7 +9520,7 @@
 
         k.Ac = function (a) {
           var b = this;
-          Un(this, function () {
+          Vn(this, function () {
             a.next(U(b));
           });
         };
@@ -9524,16 +9530,16 @@
           this.ba && Promise.resolve().then(function () {
             "function" === typeof a ? a(U(d)) : "function" === typeof a.next && a.next(U(d));
           });
-          return this.hb(a, b, c);
+          return this.Pa(a, b, c);
         };
 
         k.Hc = function (a, b, c) {
           var d = this;
           this.ba && Promise.resolve().then(function () {
-            d.X = d.getUid();
+            d.W = d.getUid();
             "function" === typeof a ? a(U(d)) : "function" === typeof a.next && a.next(U(d));
           });
-          return this.bc(a, b, c);
+          return this.ib(a, b, c);
         };
 
         k.nc = function (a) {
@@ -9551,12 +9557,12 @@
         k.Tc = function (a) {
           var b = this;
           return this.h.then(function () {
-            return Pn(b, O(b.a, Kj, {
+            return Qn(b, O(b.a, Kj, {
               token: a
             }));
           }).then(function (c) {
             var d = c.user;
-            an(d, "isAnonymous", !1);
+            bn(d, "isAnonymous", !1);
             b.da(d);
             return c;
           });
@@ -9565,7 +9571,7 @@
         k.Uc = function (a, b) {
           var c = this;
           return this.h.then(function () {
-            return Pn(c, O(c.a, ah, {
+            return Qn(c, O(c.a, ah, {
               email: a,
               password: b
             }));
@@ -9575,26 +9581,26 @@
         k.dc = function (a, b) {
           var c = this;
           return this.h.then(function () {
-            return Pn(c, O(c.a, Ej, {
+            return Qn(c, O(c.a, Ej, {
               email: a,
               password: b
             }));
           });
         };
 
-        k.$a = function (a) {
+        k.ab = function (a) {
           var b = this;
           return this.h.then(function () {
-            return Pn(b, a.ka(b.a));
+            return Qn(b, a.ka(b.a));
           });
         };
 
         k.Sc = function (a) {
           gf("firebase.auth.Auth.prototype.signInAndRetrieveDataWithCredential is deprecated. Please use firebase.auth.Auth.prototype.signInWithCredential instead.");
-          return this.$a(a);
+          return this.ab(a);
         };
 
-        k.zb = function () {
+        k.Ab = function () {
           var a = this;
           return this.h.then(function () {
             var b = U(a);
@@ -9612,9 +9618,9 @@
               });
             }
 
-            return Pn(a, a.a.zb()).then(function (d) {
+            return Qn(a, a.a.Ab()).then(function (d) {
               var e = d.user;
-              an(e, "isAnonymous", !0);
+              bn(e, "isAnonymous", !0);
               a.da(e);
               return d;
             });
@@ -9633,18 +9639,18 @@
           return U(this) && U(this).uid || null;
         };
 
-        function Vn(a) {
+        function Wn(a) {
           return U(a) && U(a)._lat || null;
         }
 
-        function Rn(a) {
+        function Sn(a) {
           if (a.ba) {
             for (var b = 0; b < a.s.length; b++) {
-              if (a.s[b]) a.s[b](Vn(a));
+              if (a.s[b]) a.s[b](Wn(a));
             }
 
-            if (a.X !== a.getUid() && a.O.length) for (a.X = a.getUid(), b = 0; b < a.O.length; b++) {
-              if (a.O[b]) a.O[b](Vn(a));
+            if (a.W !== a.getUid() && a.N.length) for (a.W = a.getUid(), b = 0; b < a.N.length; b++) {
+              if (a.N[b]) a.N[b](Wn(a));
             }
           }
         }
@@ -9652,7 +9658,7 @@
         k.cc = function (a) {
           this.addAuthTokenListener(a);
           this.u++;
-          0 < this.u && U(this) && Rm(U(this));
+          0 < this.u && U(this) && Sm(U(this));
         };
 
         k.Pc = function (a) {
@@ -9661,7 +9667,7 @@
             c == a && b.u--;
           });
           0 > this.u && (this.u = 0);
-          0 == this.u && U(this) && Sm(U(this));
+          0 == this.u && U(this) && Tm(U(this));
           this.removeAuthTokenListener(a);
         };
 
@@ -9669,7 +9675,7 @@
           var b = this;
           this.s.push(a);
           T(this, this.h.then(function () {
-            b.l || Va(b.s, a) && a(Vn(b));
+            b.l || Va(b.s, a) && a(Wn(b));
           }));
         };
 
@@ -9679,30 +9685,30 @@
           });
         };
 
-        function Un(a, b) {
-          a.O.push(b);
+        function Vn(a, b) {
+          a.N.push(b);
           T(a, a.h.then(function () {
-            !a.l && Va(a.O, b) && a.X !== a.getUid() && (a.X = a.getUid(), b(Vn(a)));
+            !a.l && Va(a.N, b) && a.W !== a.getUid() && (a.W = a.getUid(), b(Wn(a)));
           }));
         }
 
         k["delete"] = function () {
           this.l = !0;
 
-          for (var a = 0; a < this.R.length; a++) {
-            this.R[a].cancel("app-deleted");
+          for (var a = 0; a < this.P.length; a++) {
+            this.P[a].cancel("app-deleted");
           }
 
-          this.R = [];
-          this.i && (a = this.i, a.b.removeListener(wn("local"), a.a, this.ja));
+          this.P = [];
+          this.i && (a = this.i, a.b.removeListener(xn("local"), a.a, this.ja));
           this.b && (Ql(this.b, this), $l(this.b.b));
           return Promise.resolve();
         };
 
         function T(a, b) {
-          a.R.push(b);
+          a.P.push(b);
           b.oa(function () {
-            Wa(a.R, b);
+            Wa(a.P, b);
           });
           return b;
         }
@@ -9715,48 +9721,48 @@
           return !!fh(a);
         };
 
-        k.wb = function (a, b) {
+        k.xb = function (a, b) {
           var c = this;
           return T(this, E().then(function () {
             var d = new Sf(b);
             if (!d.c) throw new t("argument-error", $f + " must be true when sending sign in link to email");
             return bg(d);
           }).then(function (d) {
-            return c.a.wb(a, d);
+            return c.a.xb(a, d);
           }).then(function () {}));
         };
 
         k.jd = function (a) {
-          return this.Ra(a).then(function (b) {
+          return this.Sa(a).then(function (b) {
             return b.data.email;
           });
         };
 
-        k.nb = function (a, b) {
-          return T(this, this.a.nb(a, b).then(function () {}));
+        k.ob = function (a, b) {
+          return T(this, this.a.ob(a, b).then(function () {}));
         };
 
-        k.Ra = function (a) {
-          return T(this, this.a.Ra(a).then(function (b) {
+        k.Sa = function (a) {
+          return T(this, this.a.Sa(a).then(function (b) {
             return new vf(b);
           }));
         };
 
-        k.jb = function (a) {
-          return T(this, this.a.jb(a).then(function () {}));
+        k.kb = function (a) {
+          return T(this, this.a.kb(a).then(function () {}));
         };
 
-        k.vb = function (a, b) {
+        k.wb = function (a, b) {
           var c = this;
           return T(this, E().then(function () {
             return "undefined" === typeof b || mb(b) ? {} : bg(new Sf(b));
           }).then(function (d) {
-            return c.a.vb(a, d);
+            return c.a.wb(a, d);
           }).then(function () {}));
         };
 
         k.Wc = function (a, b) {
-          return T(this, gm(this, a, b, q(this.$a, this)));
+          return T(this, gm(this, a, b, q(this.ab, this)));
         };
 
         k.Vc = function (a, b) {
@@ -9767,55 +9773,55 @@
             d = fh(d);
             if (!d) throw new t("argument-error", "Invalid email link!");
             if (d.tenantId !== c.T()) throw new t("tenant-id-mismatch");
-            return c.$a(e);
+            return c.ab(e);
           }));
         };
 
-        function Wn() {}
+        function Xn() {}
 
-        Wn.prototype.render = function () {};
+        Xn.prototype.render = function () {};
 
-        Wn.prototype.reset = function () {};
+        Xn.prototype.reset = function () {};
 
-        Wn.prototype.getResponse = function () {};
+        Xn.prototype.getResponse = function () {};
 
-        Wn.prototype.execute = function () {};
+        Xn.prototype.execute = function () {};
 
-        function Xn() {
+        function Yn() {
           this.a = {};
           this.b = 1E12;
         }
 
-        var Yn = null;
+        var Zn = null;
 
-        Xn.prototype.render = function (a, b) {
-          this.a[this.b.toString()] = new Zn(a, b);
+        Yn.prototype.render = function (a, b) {
+          this.a[this.b.toString()] = new $n(a, b);
           return this.b++;
         };
 
-        Xn.prototype.reset = function (a) {
-          var b = $n(this, a);
-          a = ao(a);
+        Yn.prototype.reset = function (a) {
+          var b = ao(this, a);
+          a = bo(a);
           b && a && (b["delete"](), delete this.a[a]);
         };
 
-        Xn.prototype.getResponse = function (a) {
-          return (a = $n(this, a)) ? a.getResponse() : null;
+        Yn.prototype.getResponse = function (a) {
+          return (a = ao(this, a)) ? a.getResponse() : null;
         };
 
-        Xn.prototype.execute = function (a) {
-          (a = $n(this, a)) && a.execute();
+        Yn.prototype.execute = function (a) {
+          (a = ao(this, a)) && a.execute();
         };
 
-        function $n(a, b) {
-          return (b = ao(b)) ? a.a[b] || null : null;
+        function ao(a, b) {
+          return (b = bo(b)) ? a.a[b] || null : null;
         }
 
-        function ao(a) {
+        function bo(a) {
           return (a = "undefined" === typeof a ? 1E12 : a) ? a.toString() : null;
         }
 
-        function Zn(a, b) {
+        function $n(a, b) {
           this.g = !1;
           this.c = b;
           this.a = this.b = null;
@@ -9830,13 +9836,13 @@
           this.h ? this.execute() : nd(this.f, "click", this.i);
         }
 
-        Zn.prototype.getResponse = function () {
-          bo(this);
+        $n.prototype.getResponse = function () {
+          co(this);
           return this.b;
         };
 
-        Zn.prototype.execute = function () {
-          bo(this);
+        $n.prototype.execute = function () {
+          co(this);
           var a = this;
           this.a || (this.a = setTimeout(function () {
             a.b = Me();
@@ -9856,50 +9862,50 @@
           }, 500));
         };
 
-        Zn.prototype["delete"] = function () {
-          bo(this);
+        $n.prototype["delete"] = function () {
+          co(this);
           this.g = !0;
           clearTimeout(this.a);
           this.a = null;
           xd(this.f, "click", this.i);
         };
 
-        function bo(a) {
+        function co(a) {
           if (a.g) throw Error("reCAPTCHA mock was already deleted!");
         }
 
         ;
 
-        function co() {}
-
-        M(co, "FACTOR_ID", "phone");
-
         function eo() {}
 
-        eo.prototype.g = function () {
-          Yn || (Yn = new Xn());
-          return E(Yn);
+        M(eo, "FACTOR_ID", "phone");
+
+        function fo() {}
+
+        fo.prototype.g = function () {
+          Zn || (Zn = new Yn());
+          return E(Zn);
         };
 
-        eo.prototype.c = function () {};
+        fo.prototype.c = function () {};
 
-        var fo = null;
+        var go = null;
 
-        function go() {
+        function ho() {
           this.b = l.grecaptcha ? Infinity : 0;
           this.f = null;
           this.a = "__rcb" + Math.floor(1E6 * Math.random()).toString();
         }
 
-        var ho = new qb(rb, "https://www.google.com/recaptcha/api.js?onload=%{onload}&render=explicit&hl=%{hl}"),
-            io = new Ze(3E4, 6E4);
+        var io = new qb(rb, "https://www.google.com/recaptcha/api.js?onload=%{onload}&render=explicit&hl=%{hl}"),
+            jo = new Ze(3E4, 6E4);
 
-        go.prototype.g = function (a) {
+        ho.prototype.g = function (a) {
           var b = this;
           return new D(function (c, d) {
             var e = setTimeout(function () {
               d(new t("network-request-failed"));
-            }, io.get());
+            }, jo.get());
 
             if (!l.grecaptcha || a !== b.f && !b.b) {
               l[b.a] = function () {
@@ -9920,7 +9926,7 @@
                 delete l[b.a];
               };
 
-              var f = zb(ho, {
+              var f = zb(io, {
                 onload: b.a,
                 hl: a || ""
               });
@@ -9932,27 +9938,27 @@
           });
         };
 
-        go.prototype.c = function () {
+        ho.prototype.c = function () {
           this.b--;
         };
 
-        var jo = null;
+        var ko = null;
 
-        function ko(a, b, c, d, e, f, g) {
+        function lo(a, b, c, d, e, f, g) {
           M(this, "type", "recaptcha");
           this.c = this.f = null;
-          this.D = !1;
+          this.J = !1;
           this.v = b;
           this.g = null;
-          g ? (fo || (fo = new eo()), g = fo) : (jo || (jo = new go()), g = jo);
+          g ? (go || (go = new fo()), g = go) : (ko || (ko = new ho()), g = ko);
           this.m = g;
           this.a = c || {
             theme: "light",
             type: "image"
           };
           this.h = [];
-          if (this.a[lo]) throw new t("argument-error", "sitekey should not be provided for reCAPTCHA as one is automatically provisioned for the current project.");
-          this.i = "invisible" === this.a[mo];
+          if (this.a[mo]) throw new t("argument-error", "sitekey should not be provided for reCAPTCHA as one is automatically provisioned for the current project.");
+          this.i = "invisible" === this.a[no];
           if (!l.document) throw new t("operation-not-supported-in-this-environment", "RecaptchaVerifier is only supported in a browser HTTP/HTTPS environment with DOM support.");
           if (!kc(b) || !this.i && kc(b).hasChildNodes()) throw new t("argument-error", "reCAPTCHA container is either not found or already contains inner elements!");
           this.s = new Ii(a, f || null, e || null);
@@ -9963,20 +9969,20 @@
 
           var h = this;
           this.l = [];
-          var m = this.a[no];
+          var m = this.a[oo];
 
-          this.a[no] = function (v) {
-            oo(h, v);
+          this.a[oo] = function (v) {
+            po(h, v);
             if ("function" === typeof m) m(v);else if ("string" === typeof m) {
               var B = L(m, l);
               "function" === typeof B && B(v);
             }
           };
 
-          var p = this.a[po];
+          var p = this.a[qo];
 
-          this.a[po] = function () {
-            oo(h, null);
+          this.a[qo] = function () {
+            po(h, null);
             if ("function" === typeof p) p();else if ("string" === typeof p) {
               var v = L(p, l);
               "function" === typeof v && v();
@@ -9984,12 +9990,12 @@
           };
         }
 
-        var no = "callback",
-            po = "expired-callback",
-            lo = "sitekey",
-            mo = "size";
+        var oo = "callback",
+            qo = "expired-callback",
+            mo = "sitekey",
+            no = "size";
 
-        function oo(a, b) {
+        function po(a, b) {
           for (var c = 0; c < a.l.length; c++) {
             try {
               a.l[c](b);
@@ -9997,13 +10003,13 @@
           }
         }
 
-        function qo(a, b) {
+        function ro(a, b) {
           Xa(a.l, function (c) {
             return c == b;
           });
         }
 
-        function ro(a, b) {
+        function so(a, b) {
           a.h.push(b);
           b.oa(function () {
             Wa(a.h, b);
@@ -10011,11 +10017,11 @@
           return b;
         }
 
-        k = ko.prototype;
+        k = lo.prototype;
 
         k.Ia = function () {
           var a = this;
-          return this.f ? this.f : this.f = ro(this, E().then(function () {
+          return this.f ? this.f : this.f = so(this, E().then(function () {
             if (Se() && !Je()) return Ee();
             throw new t("operation-not-supported-in-this-environment", "RecaptchaVerifier is only supported in a browser HTTP/HTTPS environment.");
           }).then(function () {
@@ -10024,7 +10030,7 @@
             a.g = b;
             return O(a.s, Jj, {});
           }).then(function (b) {
-            a.a[lo] = b.recaptchaSiteKey;
+            a.a[mo] = b.recaptchaSiteKey;
           }).o(function (b) {
             a.f = null;
             throw b;
@@ -10032,9 +10038,9 @@
         };
 
         k.render = function () {
-          so(this);
+          to(this);
           var a = this;
-          return ro(this, this.Ia().then(function () {
+          return so(this, this.Ia().then(function () {
             if (null === a.c) {
               var b = a.v;
 
@@ -10052,14 +10058,14 @@
         };
 
         k.verify = function () {
-          so(this);
+          to(this);
           var a = this;
-          return ro(this, this.render().then(function (b) {
+          return so(this, this.render().then(function (b) {
             return new D(function (c) {
               var d = a.g.getResponse(b);
               if (d) c(d);else {
                 var e = function e(f) {
-                  f && (qo(a, e), c(f));
+                  f && (ro(a, e), c(f));
                 };
 
                 a.l.push(e);
@@ -10070,17 +10076,17 @@
         };
 
         k.reset = function () {
-          so(this);
+          to(this);
           null !== this.c && this.g.reset(this.c);
         };
 
-        function so(a) {
-          if (a.D) throw new t("internal-error", "RecaptchaVerifier instance has been destroyed.");
+        function to(a) {
+          if (a.J) throw new t("internal-error", "RecaptchaVerifier instance has been destroyed.");
         }
 
         k.clear = function () {
-          so(this);
-          this.D = !0;
+          to(this);
+          this.J = !0;
           this.m.c();
 
           for (var a = 0; a < this.h.length; a++) {
@@ -10096,7 +10102,7 @@
           }
         };
 
-        function to(a, b, c) {
+        function uo(a, b, c) {
           var d = !1;
 
           try {
@@ -10118,7 +10124,7 @@
           } catch (g) {}
 
           f = _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION ? Oe(_firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].SDK_VERSION, f) : null;
-          ko.call(this, c, a, b, function () {
+          lo.call(this, c, a, b, function () {
             try {
               var g = e.b.auth().la();
             } catch (h) {
@@ -10129,9 +10135,9 @@
           }, f, Ca(Da), d);
         }
 
-        r(to, ko);
+        r(uo, lo);
 
-        function uo(a, b, c, d) {
+        function vo(a, b, c, d) {
           a: {
             c = Array.prototype.slice.call(c);
             var e = 0;
@@ -10148,8 +10154,8 @@
               for (e = 0; e < c.length; e++) {
                 if (f = b[e].optional && void 0 === c[e], !b[e].M(c[e]) && !f) {
                   b = b[e];
-                  if (0 > e || e >= vo.length) throw new t("internal-error", "Argument validator received an unsupported number of arguments.");
-                  c = vo[e];
+                  if (0 > e || e >= wo.length) throw new t("internal-error", "Argument validator received an unsupported number of arguments.");
+                  c = wo[e];
                   d = (d ? "" : c + " argument ") + (b.name ? '"' + b.name + '" ' : "") + "must be " + b.K + ".";
                   break a;
                 }
@@ -10162,7 +10168,7 @@
           if (d) throw new t("argument-error", a + " failed: " + d);
         }
 
-        var vo = "First Second Third Fourth Fifth Sixth Seventh Eighth Ninth".split(" ");
+        var wo = "First Second Third Fourth Fifth Sixth Seventh Eighth Ninth".split(" ");
 
         function V(a, b) {
           return {
@@ -10175,7 +10181,7 @@
           };
         }
 
-        function wo(a, b) {
+        function xo(a, b) {
           return {
             name: a || "",
             K: "a boolean",
@@ -10195,7 +10201,7 @@
           };
         }
 
-        function xo(a, b) {
+        function yo(a, b) {
           return {
             name: a || "",
             K: "a function",
@@ -10206,7 +10212,7 @@
           };
         }
 
-        function yo(a, b) {
+        function zo(a, b) {
           return {
             name: a || "",
             K: "null",
@@ -10217,7 +10223,7 @@
           };
         }
 
-        function zo() {
+        function Ao() {
           return {
             name: "",
             K: "an HTML element",
@@ -10228,18 +10234,18 @@
           };
         }
 
-        function Ao() {
+        function Bo() {
           return {
             name: "auth",
             K: "an instance of Firebase Auth",
             optional: !0,
             M: function M(a) {
-              return !!(a && a instanceof En);
+              return !!(a && a instanceof Fn);
             }
           };
         }
 
-        function Bo() {
+        function Co() {
           return {
             name: "app",
             K: "an instance of Firebase App",
@@ -10250,7 +10256,7 @@
           };
         }
 
-        function Co(a) {
+        function Do(a) {
           return {
             name: a ? a + "Credential" : "credential",
             K: a ? "a valid " + a + " credential" : "a valid credential",
@@ -10263,18 +10269,18 @@
           };
         }
 
-        function Do() {
+        function Eo() {
           return {
             name: "multiFactorAssertion",
             K: "a valid multiFactorAssertion",
             optional: !1,
             M: function M(a) {
-              return a ? !!a.sb : !1;
+              return a ? !!a.tb : !1;
             }
           };
         }
 
-        function Eo() {
+        function Fo() {
           return {
             name: "authProvider",
             K: "a valid Auth provider",
@@ -10285,15 +10291,15 @@
           };
         }
 
-        function Fo(a, b) {
+        function Go(a, b) {
           return n(a) && "string" === typeof a.type && a.type === b && "function" === typeof a.Ha;
         }
 
-        function Go(a) {
+        function Ho(a) {
           return n(a) && "string" === typeof a.uid;
         }
 
-        function Ho() {
+        function Io() {
           return {
             name: "applicationVerifier",
             K: "an implementation of firebase.auth.ApplicationVerifier",
@@ -10320,11 +10326,11 @@
         function Y(a, b) {
           for (var c in b) {
             var d = b[c].name;
-            a[d] = Io(d, a[c], b[c].j);
+            a[d] = Jo(d, a[c], b[c].j);
           }
         }
 
-        function Jo(a, b) {
+        function Ko(a, b) {
           for (var c in b) {
             var d = b[c].name;
             d !== c && Object.defineProperty(a, d, {
@@ -10332,27 +10338,27 @@
                 return this[e];
               }, c),
               set: ua(function (e, f, g, h) {
-                uo(e, [g], [h], !0);
+                vo(e, [g], [h], !0);
                 this[f] = h;
-              }, d, c, b[c].kb),
+              }, d, c, b[c].lb),
               enumerable: !0
             });
           }
         }
 
         function Z(a, b, c, d) {
-          a[b] = Io(b, c, d);
+          a[b] = Jo(b, c, d);
         }
 
-        function Io(a, b, c) {
+        function Jo(a, b, c) {
           function d() {
             var g = Array.prototype.slice.call(arguments);
-            uo(e, c, g);
+            vo(e, c, g);
             return b.apply(this, g);
           }
 
           if (!c) return b;
-          var e = Ko(a),
+          var e = Lo(a),
               f;
 
           for (f in b) {
@@ -10366,22 +10372,22 @@
           return d;
         }
 
-        function Ko(a) {
+        function Lo(a) {
           a = a.split(".");
           return a[a.length - 1];
         }
 
         ;
-        Y(En.prototype, {
-          jb: {
+        Y(Fn.prototype, {
+          kb: {
             name: "applyActionCode",
             j: [V("code")]
           },
-          Ra: {
+          Sa: {
             name: "checkActionCode",
             j: [V("code")]
           },
-          nb: {
+          ob: {
             name: "confirmPasswordReset",
             j: [V("code"), V("newPassword")]
           },
@@ -10393,7 +10399,7 @@
             name: "fetchSignInMethodsForEmail",
             j: [V("email")]
           },
-          qa: {
+          ra: {
             name: "getRedirectResult",
             j: []
           },
@@ -10403,35 +10409,35 @@
           },
           Hc: {
             name: "onAuthStateChanged",
-            j: [X(W(), xo(), "nextOrObserver"), xo("opt_error", !0), xo("opt_completed", !0)]
+            j: [X(W(), yo(), "nextOrObserver"), yo("opt_error", !0), yo("opt_completed", !0)]
           },
           Ic: {
             name: "onIdTokenChanged",
-            j: [X(W(), xo(), "nextOrObserver"), xo("opt_error", !0), xo("opt_completed", !0)]
-          },
-          vb: {
-            name: "sendPasswordResetEmail",
-            j: [V("email"), X(W("opt_actionCodeSettings", !0), yo(null, !0), "opt_actionCodeSettings", !0)]
+            j: [X(W(), yo(), "nextOrObserver"), yo("opt_error", !0), yo("opt_completed", !0)]
           },
           wb: {
+            name: "sendPasswordResetEmail",
+            j: [V("email"), X(W("opt_actionCodeSettings", !0), zo(null, !0), "opt_actionCodeSettings", !0)]
+          },
+          xb: {
             name: "sendSignInLinkToEmail",
             j: [V("email"), W("actionCodeSettings")]
           },
-          xb: {
+          yb: {
             name: "setPersistence",
             j: [V("persistence")]
           },
           Sc: {
             name: "signInAndRetrieveDataWithCredential",
-            j: [Co()]
+            j: [Do()]
           },
-          zb: {
+          Ab: {
             name: "signInAnonymously",
             j: []
           },
-          $a: {
+          ab: {
             name: "signInWithCredential",
-            j: [Co()]
+            j: [Do()]
           },
           Tc: {
             name: "signInWithCustomToken",
@@ -10447,15 +10453,15 @@
           },
           Wc: {
             name: "signInWithPhoneNumber",
-            j: [V("phoneNumber"), Ho()]
+            j: [V("phoneNumber"), Io()]
           },
           Xc: {
             name: "signInWithPopup",
-            j: [Eo()]
+            j: [Fo()]
           },
           Yc: {
             name: "signInWithRedirect",
-            j: [Eo()]
+            j: [Fo()]
           },
           dd: {
             name: "updateCurrentUser",
@@ -10468,9 +10474,9 @@
                   return !!(b && b instanceof Im);
                 }
               };
-            }(), yo(), "user")]
+            }(), zo(), "user")]
           },
-          Ab: {
+          Bb: {
             name: "signOut",
             j: []
           },
@@ -10491,20 +10497,20 @@
             j: [V("code")]
           }
         });
-        Jo(En.prototype, {
+        Ko(Fn.prototype, {
           lc: {
             name: "languageCode",
-            kb: X(V(), yo(), "languageCode")
+            lb: X(V(), zo(), "languageCode")
           },
           ti: {
             name: "tenantId",
-            kb: X(V(), yo(), "tenantId")
+            lb: X(V(), zo(), "tenantId")
           }
         });
-        En.Persistence = Rk;
-        En.Persistence.LOCAL = "local";
-        En.Persistence.SESSION = "session";
-        En.Persistence.NONE = "none";
+        Fn.Persistence = Rk;
+        Fn.Persistence.LOCAL = "local";
+        Fn.Persistence.SESSION = "session";
+        Fn.Persistence.NONE = "none";
         Y(Im.prototype, {
           "delete": {
             name: "delete",
@@ -10512,59 +10518,59 @@
           },
           oc: {
             name: "getIdTokenResult",
-            j: [wo("opt_forceRefresh", !0)]
+            j: [xo("opt_forceRefresh", !0)]
           },
           I: {
             name: "getIdToken",
-            j: [wo("opt_forceRefresh", !0)]
+            j: [xo("opt_forceRefresh", !0)]
           },
           Cc: {
             name: "linkAndRetrieveDataWithCredential",
-            j: [Co()]
+            j: [Do()]
           },
-          qb: {
+          rb: {
             name: "linkWithCredential",
-            j: [Co()]
+            j: [Do()]
           },
           Dc: {
             name: "linkWithPhoneNumber",
-            j: [V("phoneNumber"), Ho()]
+            j: [V("phoneNumber"), Io()]
           },
           Ec: {
             name: "linkWithPopup",
-            j: [Eo()]
+            j: [Fo()]
           },
           Fc: {
             name: "linkWithRedirect",
-            j: [Eo()]
+            j: [Fo()]
           },
           Lc: {
             name: "reauthenticateAndRetrieveDataWithCredential",
-            j: [Co()]
+            j: [Do()]
           },
-          tb: {
+          ub: {
             name: "reauthenticateWithCredential",
-            j: [Co()]
+            j: [Do()]
           },
           Mc: {
             name: "reauthenticateWithPhoneNumber",
-            j: [V("phoneNumber"), Ho()]
+            j: [V("phoneNumber"), Io()]
           },
           Nc: {
             name: "reauthenticateWithPopup",
-            j: [Eo()]
+            j: [Fo()]
           },
           Oc: {
             name: "reauthenticateWithRedirect",
-            j: [Eo()]
+            j: [Fo()]
           },
           reload: {
             name: "reload",
             j: []
           },
-          ub: {
+          vb: {
             name: "sendEmailVerification",
-            j: [X(W("opt_actionCodeSettings", !0), yo(null, !0), "opt_actionCodeSettings", !0)]
+            j: [X(W("opt_actionCodeSettings", !0), zo(null, !0), "opt_actionCodeSettings", !0)]
           },
           toJSON: {
             name: "toJSON",
@@ -10574,28 +10580,28 @@
             name: "unlink",
             j: [V("provider")]
           },
-          Bb: {
+          Cb: {
             name: "updateEmail",
             j: [V("email")]
           },
-          Cb: {
+          Db: {
             name: "updatePassword",
             j: [V("password")]
           },
           ed: {
             name: "updatePhoneNumber",
-            j: [Co("phone")]
+            j: [Do("phone")]
           },
-          Db: {
+          Eb: {
             name: "updateProfile",
             j: [W("profile")]
           },
-          Eb: {
+          Fb: {
             name: "verifyBeforeUpdateEmail",
-            j: [V("email"), X(W("opt_actionCodeSettings", !0), yo(null, !0), "opt_actionCodeSettings", !0)]
+            j: [V("email"), X(W("opt_actionCodeSettings", !0), zo(null, !0), "opt_actionCodeSettings", !0)]
           }
         });
-        Y(Xn.prototype, {
+        Y(Yn.prototype, {
           execute: {
             name: "execute"
           },
@@ -10609,7 +10615,7 @@
             name: "getResponse"
           }
         });
-        Y(Wn.prototype, {
+        Y(Xn.prototype, {
           execute: {
             name: "execute"
           },
@@ -10634,10 +10640,10 @@
             name: "then"
           }
         });
-        Jo(em.prototype, {
+        Ko(em.prototype, {
           appVerificationDisabled: {
             name: "appVerificationDisabledForTesting",
-            kb: wo("appVerificationDisabledForTesting")
+            lb: xo("appVerificationDisabledForTesting")
           }
         });
         Y(fm.prototype, {
@@ -10697,7 +10703,7 @@
             j: [W("customOAuthParameters")]
           }
         });
-        Z(Ug, "credential", Vg, [X(V(), X(W(), yo()), "idToken"), X(V(), yo(), "accessToken", !0)]);
+        Z(Ug, "credential", Vg, [X(V(), X(W(), zo()), "idToken"), X(V(), zo(), "accessToken", !0)]);
         Y(Wg.prototype, {
           Ka: {
             name: "setCustomParameters",
@@ -10712,7 +10718,7 @@
           },
           credential: {
             name: "credential",
-            j: [X(V(), X(W(), yo()), "optionsOrIdToken"), X(V(), yo(), "accessToken", !0)]
+            j: [X(V(), X(W(), zo()), "optionsOrIdToken"), X(V(), zo(), "accessToken", !0)]
           },
           Ka: {
             name: "setCustomParameters",
@@ -10733,7 +10739,7 @@
         });
         Z(lh, "credential", ph, [V("verificationId"), V("verificationCode")]);
         Y(lh.prototype, {
-          fb: {
+          gb: {
             name: "verifyPhoneNumber",
             j: [X(V(), function (a, b) {
               return {
@@ -10741,10 +10747,10 @@
                 K: "valid phone info options",
                 optional: !!b,
                 M: function M(c) {
-                  return c ? c.session && c.phoneNumber ? Fo(c.session, zg) && "string" === typeof c.phoneNumber : c.session && c.multiFactorHint ? Fo(c.session, Ag) && Go(c.multiFactorHint) : c.session && c.multiFactorUid ? Fo(c.session, Ag) && "string" === typeof c.multiFactorUid : c.phoneNumber ? "string" === typeof c.phoneNumber : !1 : !1;
+                  return c ? c.session && c.phoneNumber ? Go(c.session, zg) && "string" === typeof c.phoneNumber : c.session && c.multiFactorHint ? Go(c.session, Ag) && Ho(c.multiFactorHint) : c.session && c.multiFactorUid ? Go(c.session, Ag) && "string" === typeof c.multiFactorUid : c.phoneNumber ? "string" === typeof c.phoneNumber : !1 : !1;
                 }
               };
-            }(), "phoneInfoOptions"), Ho()]
+            }(), "phoneInfoOptions"), Io()]
           }
         });
         Y(gh.prototype, {
@@ -10780,17 +10786,17 @@
         Y(im.prototype, {
           Rc: {
             name: "resolveSignIn",
-            j: [Do()]
+            j: [Eo()]
           }
         });
         Y(tm.prototype, {
-          Rb: {
+          Sb: {
             name: "getSession",
             j: []
           },
           fc: {
             name: "enroll",
-            j: [Do(), V("displayName", !0)]
+            j: [Eo(), V("displayName", !0)]
           },
           bd: {
             name: "unenroll",
@@ -10798,11 +10804,11 @@
               name: "multiFactorInfo",
               K: "a valid multiFactorInfo",
               optional: !1,
-              M: Go
+              M: Ho
             }, V(), "multiFactorInfoIdentifier")]
           }
         });
-        Y(to.prototype, {
+        Y(uo.prototype, {
           clear: {
             name: "clear",
             j: []
@@ -10817,9 +10823,9 @@
           }
         });
         Z(Jf, "parseLink", Rf, [V("link")]);
-        Z(co, "assertion", function (a) {
+        Z(eo, "assertion", function (a) {
           return new rm(a);
-        }, [Co("phone")]);
+        }, [Do("phone")]);
 
         (function () {
           if ("undefined" !== typeof _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"] && _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].INTERNAL && _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].INTERNAL.registerComponent) {
@@ -10834,7 +10840,7 @@
                   VERIFY_EMAIL: "VERIFY_EMAIL"
                 }
               },
-              Auth: En,
+              Auth: Fn,
               AuthCredential: Bg,
               Error: t
             };
@@ -10845,21 +10851,24 @@
             Z(a, "TwitterAuthProvider", Wg, []);
             Z(a, "OAuthProvider", Pg, [V("providerId")]);
             Z(a, "SAMLAuthProvider", Og, [V("providerId")]);
-            Z(a, "PhoneAuthProvider", lh, [Ao()]);
-            Z(a, "RecaptchaVerifier", to, [X(V(), zo(), "recaptchaContainer"), W("recaptchaParameters", !0), Bo()]);
+            Z(a, "PhoneAuthProvider", lh, [Bo()]);
+            Z(a, "RecaptchaVerifier", uo, [X(V(), Ao(), "recaptchaContainer"), W("recaptchaParameters", !0), Co()]);
             Z(a, "ActionCodeURL", Jf, []);
-            Z(a, "PhoneMultiFactorGenerator", co, []);
+            Z(a, "PhoneMultiFactorGenerator", eo, []);
 
             _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].INTERNAL.registerComponent({
               name: "auth",
               instanceFactory: function instanceFactory(b) {
                 b = b.getProvider("app").getImmediate();
-                return new En(b);
+                return new Fn(b);
               },
               multipleInstances: !1,
               serviceProps: a,
               instantiationMode: "LAZY",
-              type: "PUBLIC"
+              type: "PUBLIC",
+              onInstanceCreated: function onInstanceCreated(b) {
+                b.getProvider("auth-internal").initialize();
+              }
             });
 
             _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].INTERNAL.registerComponent({
@@ -10878,7 +10887,7 @@
               type: "PRIVATE"
             });
 
-            _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].registerVersion("@firebase/auth", "0.16.4");
+            _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].registerVersion("@firebase/auth", "0.16.8");
 
             _firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].INTERNAL.extendNamespace({
               User: Im
