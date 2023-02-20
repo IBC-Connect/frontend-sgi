@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController, NavController, ToastController } from '@ionic/angular';
-import { Observable } from 'rxjs';
-import { Membro } from 'src/app/modelo/Membro';
-import { Usuario } from 'src/app/modelo/Usuario';
-import { AutenticacaoService } from 'src/app/servicos/Autenticacao';
-import { MembroService } from 'src/app/servicos/Membro';
-import { MensagensUtil } from 'src/app/util/MensagensUtil';
+import { Component, OnInit } from "@angular/core";
+import {
+  LoadingController,
+  ModalController,
+  NavController,
+  ToastController,
+} from "@ionic/angular";
+import { Observable } from "rxjs";
+import { Membro } from "src/app/modelo/Membro";
+import { Usuario } from "src/app/modelo/Usuario";
+import { AutenticacaoService } from "src/app/servicos/Autenticacao";
+import { MembroService } from "src/app/servicos/Membro";
+import { MensagensUtil } from "src/app/util/MensagensUtil";
 
-import { SistemaRelatorioModalPage } from '../componentes/sistema-relatorio-modal/sistema-relatorio-modal.page';
-import { DadosUsuarioUtil } from './../../util/DadosUsuarioUtil';
-import { RedirecionadorUtil } from './../../util/RedirecionadorUtil';
+import { SistemaRelatorioModalPage } from "../componentes/sistema-relatorio-modal/sistema-relatorio-modal.page";
+import { DadosUsuarioUtil } from "./../../util/DadosUsuarioUtil";
+import { RedirecionadorUtil } from "./../../util/RedirecionadorUtil";
 
 @Component({
   selector: "app-inicio",
@@ -33,13 +38,15 @@ export class InicioPage implements OnInit {
   permissaoGeral: boolean = true;
   permissaoPsicologo: boolean = false;
   permissaoFinancas: boolean = false;
+  permissaoSecretaria: boolean = false;
 
   constructor(
     private autenticacao: AutenticacaoService,
     private aviso: ToastController,
     private membroService: MembroService,
     private modalController: ModalController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private loadingCtrl : LoadingController
   ) {
     this.mensagens = new MensagensUtil(this.aviso);
     this.redirecionadorUtil = new RedirecionadorUtil(this.navCtrl);
@@ -48,6 +55,7 @@ export class InicioPage implements OnInit {
 
   async ngOnInit() {
     await this.inicializar();
+    await this.showLoading();
   }
 
   public deslogar() {
@@ -85,8 +93,10 @@ export class InicioPage implements OnInit {
     if (membroEncontrado) {
       switch (membroEncontrado.perfil) {
         case "ADMIN":
-        case "SEC":
           this.permissaoAdmin = true;
+          break;
+        case "SEC":
+          this.permissaoSecretaria = true;
           break;
         case "FIN":
           this.permissaoFinancas = true;
@@ -94,6 +104,8 @@ export class InicioPage implements OnInit {
         case "PSI":
           this.permissaoPsicologo = true;
           break;
+        default:
+          this.permissaoGeral = true;
       }
     }
   }
@@ -104,5 +116,14 @@ export class InicioPage implements OnInit {
       cssClass: "my-custom-class",
     });
     return await modal.present();
+  }
+
+  async showLoading() {
+    const loading = await this.loadingCtrl.create({
+      duration: 3000,
+      cssClass: 'custom-loading'
+    });
+
+    loading.present();
   }
 }

@@ -146,7 +146,6 @@ export class MembroAtivoPage {
 
   private excluirMembro(membro: Membro): void {
     this.membroService.deletar(membro.key);
-    this.autenticacaoService.deletarMembro(membro);
     this.mensagens.mensagemSucesso('Membro excluído com sucesso!');
     this.inicializar();
   }

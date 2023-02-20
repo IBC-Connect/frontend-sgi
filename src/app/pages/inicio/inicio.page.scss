@@ -6,6 +6,13 @@ ion-title {
   font-family: "Rubik", sans-serif;
 }
 
+ion-loading.custom-loading {
+  --background: #e3edff;
+  --spinner-color: #1c6dff;
+
+  color: #1c6dff;
+}
+
 .icone {
   font-size: 25pt;
   color: #c58128;

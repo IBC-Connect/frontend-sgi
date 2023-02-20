@@ -101,6 +101,13 @@
                         <ion-input mode="md" formControlName="membroDesde" maxlength="10" [brmasker]="{mask:'00/00/0000', len:10}"></ion-input>
                     </ion-item>
                 </ion-col>
+                <ion-col>
+                    <ion-label mode="md" class="titulo-dado-select" position="stacked">Membro Transformar</ion-label>
+                    <ion-select placeholder="Selecione uma opção" interface="action-sheet" formControlName="membroTransformar">
+                        <ion-select-option value="true">Sim</ion-select-option>
+                        <ion-select-option value="false">Não</ion-select-option>
+                    </ion-select>
+                </ion-col>
             </ion-row>
             <h2>Endereço</h2>
             <ion-row>

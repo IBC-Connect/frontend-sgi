@@ -50,7 +50,8 @@ export class MembroPage {
 
   private criarFormulario(): void {
     this.formulario = this.formulador.group({
-      cpf: [this.membro.cpf, Validators.required],
+      cpf: [this.membro.cpf],
+      rg: [this.membro.rg],
       nomeCompleto: [this.membro.nomeCompleto, Validators.required],
       dataNascimento: [this.membro.dataNascimento, Validators.required],
       telefone: [this.membro.telefone, Validators.required],
@@ -61,6 +62,10 @@ export class MembroPage {
       escolaridade: [this.membro.escolaridade, Validators.required],
       trabalhandoAtualmente: [
         this.membro.trabalhandoAtualmente,
+        Validators.required,
+      ],
+      membroTransformar: [
+        this.membro.membroTransformar,
         Validators.required,
       ],
       classificacao: [this.membro.classificacao, Validators.required],
@@ -74,7 +79,7 @@ export class MembroPage {
       cidade: [this.membro.endereco.cidade, Validators.required],
       estado: [this.membro.endereco.estado, Validators.required],
       perfil: [this.membro.perfil, Validators.required],
-      senha: [this.membro.senha, Validators.required],
+      senha: [this.membro.senha],
     });
   }
 
@@ -113,12 +118,17 @@ export class MembroPage {
       if (!ValidadorInformacoesPessoais.cpfCnpjIsValid(event.target.value)) {
         this.mensagens.mensagemError("CPF inválido.");
         this.formulario.controls["cpf"].setValue(null);
-        this.formulario.controls["senha"].setValue(null);
         return;
-      } else {
-        this.formulario.controls["senha"].setValue(
-          event.target.value.replace(".", "").replace(".", "").replace("-", "")
-        );
+      }
+  }
+
+  public validarRG(event): void {
+    if (event.target.value)
+    console.log(event.target.value)
+      if (!ValidadorInformacoesPessoais.validarRG(event.target.value)) {
+        this.mensagens.mensagemError("RG inválido.");
+        this.formulario.controls["rg"].setValue(null);
+        return;
       }
   }
 

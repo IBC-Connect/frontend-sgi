@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title
+      >Total de Membros no Transformar: {{totalMembrosTransformar}}</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h2 *ngIf="totalMembrosTransformar == 0">Não há membros.</h2>
+  <ion-searchbar
+    *ngIf="totalMembrosTransformar > 0"
+    (ionChange)="pesquisarMembrosTransformar($event)"
+    placeholder="Digite o nome do membro."
+    color="tertiary"
+  ></ion-searchbar>
+  <ion-grid>
+    <ion-row align-items-center justify-content-center>
+      <ion-col>
+        <ion-list>
+          <ion-item-sliding *ngFor="let membro of membrosTransformarFiltrados">
+            <ion-item text-wrap class="item-text-wrap">
+              <ion-label class="informacao-membro" text-wrap>
+                <h1 class="content-title">{{membro.nomeCompleto}}</h1>
+                Data de nascimento:
+                {{formatarDataDeNascimento(membro.dataNascimento)}} <br />
+                {{membro.whatsapp? 'Whatsapp: '.concat(membro.whatsapp) : '' }}
+              </ion-label>
+            </ion-item>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

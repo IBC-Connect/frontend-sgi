@@ -4,6 +4,7 @@ export class Membro {
   key: string;
   uId: string;
   cpf: string;
+  rg: string;
   nomeCompleto: string;
   dataNascimento: string;
   email: string;
@@ -11,6 +12,7 @@ export class Membro {
   escolaridade: number;
   profissao: string;
   trabalhandoAtualmente: boolean;
+  membroTransformar: boolean;
   classificacao: string;
   telefone: string;
   whatsapp: string;

@@ -1,11 +1,10 @@
-import { DadosUsuarioUtil } from './../../../util/DadosUsuarioUtil';
 import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { Observable } from "rxjs/internal/Observable";
 import { Membro } from "src/app/modelo/Membro";
-import { AutenticacaoService } from "src/app/servicos/Autenticacao";
 import { MembroService } from "src/app/servicos/Membro";
 import { DateUtil } from "src/app/util/DateUtil";
+import { DadosUsuarioUtil } from "./../../../util/DadosUsuarioUtil";
 
 import { Diario } from "./../../../modelo/Diario";
 import { Usuario } from "./../../../modelo/Usuario";
@@ -30,8 +29,7 @@ export class RegistroConsultorioModalPage implements OnInit {
   constructor(
     private membroService: MembroService,
     private modalController: ModalController,
-    private diarioService: DiarioService,
-    private autenticacaoService: AutenticacaoService
+    private diarioService: DiarioService
   ) {
     this.diario = new Diario();
     this.membro = new Membro();
@@ -98,24 +96,21 @@ export class RegistroConsultorioModalPage implements OnInit {
     this.diario.dataRegistro = DateUtil.dateFormatterBrazil(
       new Date().toISOString()
     );
+
     this.diarioService.adicionarOuAtualizar(this.diario);
     this.fecharModal();
   }
 
   public onSearchTerm(ev: any) {
-
     this.listaMembrosFiltrados = this.listaMembros;
     const val = ev.detail.value;
 
     if (val && val.trim() !== "") {
-      this.listaMembrosFiltrados = this.listaMembrosFiltrados.filter(
-        (term) => {
-          return (
-            term.nomeCompleto.toUpperCase().indexOf(val.trim().toUpperCase()) >
-            -1
-          );
-        }
-      );
+      this.listaMembrosFiltrados = this.listaMembrosFiltrados.filter((term) => {
+        return (
+          term.nomeCompleto.toUpperCase().indexOf(val.trim().toUpperCase()) > -1
+        );
+      });
     }
   }
 }

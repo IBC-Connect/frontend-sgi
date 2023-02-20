@@ -11,7 +11,7 @@
       routerLink="/cadastro/membro"
       routerDirection="forward"
       class="ion-text-wrap"
-      *ngIf="permissaoAdmin"
+      *ngIf="permissaoAdmin || permissaoSecretaria"
     >
       <ion-icon class="icone" name="accessibility-outline"></ion-icon> <br />
       <label>Cadastro na IBC</label>

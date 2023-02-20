@@ -1,45 +1,52 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { MembroPage } from './membro.page';
+import { MembroPage } from "./membro.page";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: MembroPage,
     children: [
       {
-        path: 'ativos',
+        path: "ativos",
         loadChildren: () =>
-          import(
-            './membro-ativo/membro-ativo.module'
-          ).then((m) => m.MembroAtivoPageModule),
+          import("./membro-ativo/membro-ativo.module").then(
+            (m) => m.MembroAtivoPageModule
+          ),
       },
       {
-        path: 'inativos',
+        path: "inativos",
         loadChildren: () =>
-          import(
-            './membro-inativo/membro-inativo.module'
-          ).then((m) => m.MembroInativoPageModule),
+          import("./membro-inativo/membro-inativo.module").then(
+            (m) => m.MembroInativoPageModule
+          ),
       },
       {
-        path: 'congregados',
+        path: "congregados",
         loadChildren: () =>
-          import(
-            './congregado/congregado.module'
-          ).then((m) => m.CongregadoPageModule),
+          import("./congregado/congregado.module").then(
+            (m) => m.CongregadoPageModule
+          ),
       },
       {
-        path: 'voluntarios',
+        path: "voluntarios",
         loadChildren: () =>
-          import(
-            './voluntario/voluntario.module'
-          ).then((m) => m.VoluntarioPageModule),
+          import("./voluntario/voluntario.module").then(
+            (m) => m.VoluntarioPageModule
+          ),
       },
       {
-        path: '',
-        redirectTo: '/lista/membro/ativos',
-        pathMatch: 'full',
+        path: "transformar",
+        loadChildren: () =>
+          import("./membro-transformar/membro-transformar.module").then(
+            (m) => m.MembroTransformarPageModule
+          ),
+      },
+      {
+        path: "",
+        redirectTo: "/lista/membro/ativos",
+        pathMatch: "full",
       },
     ],
   },
