@@ -31,6 +31,10 @@ export class DateUtil {
     return moment(data).format("DD/MM/YYYY");
   }
 
+  public static dateFormatterTeste(data: string): any {
+    return moment(data).format("MM/DD/YYYY");
+  }
+
   public static numeroDiasEntreDuasDatas(dataUm: any, dataDois: any) {
     const dataInicio = moment(dataUm);
     const dataFim = moment(dataDois);

@@ -1,20 +1,24 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 import {
   AlertController,
   NavController,
   ToastController,
-} from '@ionic/angular';
-import { Observable } from 'rxjs';
-import { Membro } from 'src/app/modelo/Membro';
-import { AutenticacaoService } from 'src/app/servicos/Autenticacao';
-import { MembroService } from 'src/app/servicos/Membro';
-import { DateUtil } from 'src/app/util/DateUtil';
-import { MensagensUtil } from 'src/app/util/MensagensUtil';
+} from "@ionic/angular";
+import { Observable } from "rxjs";
+import { Membro } from "src/app/modelo/Membro";
+import { MembroService } from "src/app/servicos/Membro";
+import { DateUtil } from "src/app/util/DateUtil";
+import { MensagensUtil } from "src/app/util/MensagensUtil";
+
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
-  selector: 'app-membro-ativo',
-  templateUrl: './membro-ativo.page.html',
-  styleUrls: ['./membro-ativo.page.scss'],
+  selector: "app-membro-ativo",
+  templateUrl: "./membro-ativo.page.html",
+  styleUrls: ["./membro-ativo.page.scss"],
 })
 export class MembroAtivoPage {
   totalMembros: Number;
@@ -27,8 +31,7 @@ export class MembroAtivoPage {
     private membroService: MembroService,
     public navCtrl: NavController,
     private aviso: ToastController,
-    public alertController: AlertController,
-    private autenticacaoService : AutenticacaoService
+    public alertController: AlertController
   ) {
     this.mensagens = new MensagensUtil(this.aviso);
     this.inicializar();
@@ -39,8 +42,12 @@ export class MembroAtivoPage {
     this.listaMembrosObservable.subscribe((response) => {
       this.membrosAtivos = response;
       this.membrosAtivosFiltrados = response;
-      this.membrosAtivos = this.membrosAtivos.filter((m) => this.filtrarMembro(m));
-      this.membrosAtivosFiltrados = this.membrosAtivosFiltrados.filter((m) => this.filtrarMembro(m));
+      this.membrosAtivos = this.membrosAtivos.filter((m) =>
+        this.filtrarMembro(m)
+      );
+      this.membrosAtivosFiltrados = this.membrosAtivosFiltrados.filter((m) =>
+        this.filtrarMembro(m)
+      );
       this.totalMembros = this.membrosAtivos.length;
       this.membrosAtivosFiltrados.sort((a, b) =>
         a.nomeCompleto > b.nomeCompleto
@@ -54,33 +61,36 @@ export class MembroAtivoPage {
     });
   }
 
-  private filtrarMembro(membro) : boolean {
-    return membro.situacao === 'Ativo' && (membro.classificacao === undefined || membro.classificacao === "Membro");
+  private filtrarMembro(membro): boolean {
+    return (
+      membro.situacao === "Ativo" &&
+      (membro.classificacao === undefined || membro.classificacao === "Membro")
+    );
   }
 
   public editarMembro(membro: Membro): void {
-    this.navCtrl.navigateForward('/editar/membro', {
+    this.navCtrl.navigateForward("/editar/membro", {
       state: { content: membro },
     });
   }
 
   public formatarDataDeNascimento(data: any): any {
-    return data.includes('/') ? data : DateUtil.dateFormatterBrazil(data);
+    return data.includes("/") ? data : DateUtil.dateFormatterBrazil(data);
   }
 
   public async confirmarInativacao(membro: Membro) {
     const alert = await this.alertController.create({
-      header: 'Confirmação de inativação',
-      message: 'Tem certeza que deseja inativar o membro selecionado?',
+      header: "Confirmação de inativação",
+      message: "Tem certeza que deseja inativar o membro selecionado?",
       buttons: [
         {
-          text: 'Não',
+          text: "Não",
           handler: () => {
             this.alertController.dismiss();
           },
         },
         {
-          text: 'Sim',
+          text: "Sim",
           handler: () => {
             this.inativarUsuario(membro);
           },
@@ -92,10 +102,10 @@ export class MembroAtivoPage {
 
   private inativarUsuario(membro: Membro): void {
     if (membro.key) {
-      membro.situacao = 'Inativo';
+      membro.situacao = "Inativo";
       this.membroService.adicionarOuAtualizar(membro);
       this.inicializar();
-      this.mensagens.mensagemSucesso('Usuário inativado com sucesso!');
+      this.mensagens.mensagemSucesso("Usuário inativado com sucesso!");
     }
   }
 
@@ -103,7 +113,7 @@ export class MembroAtivoPage {
     this.membrosAtivosFiltrados = this.membrosAtivos;
     const val = ev.detail.value;
 
-    if (val && val.trim() !== '') {
+    if (val && val.trim() !== "") {
       this.membrosAtivosFiltrados = this.membrosAtivosFiltrados.filter(
         (term) => {
           return (
@@ -124,17 +134,17 @@ export class MembroAtivoPage {
 
   public async confirmarExclusao(membro: Membro) {
     const alert = await this.alertController.create({
-      header: 'Confirmação de exclusão',
-      message: 'Tem certeza que deseja excluir o membro selecionado?',
+      header: "Confirmação de exclusão",
+      message: "Tem certeza que deseja excluir o membro selecionado?",
       buttons: [
         {
-          text: 'Não',
+          text: "Não",
           handler: () => {
             this.alertController.dismiss();
           },
         },
         {
-          text: 'Sim',
+          text: "Sim",
           handler: () => {
             this.excluirMembro(membro);
           },
@@ -146,7 +156,55 @@ export class MembroAtivoPage {
 
   private excluirMembro(membro: Membro): void {
     this.membroService.deletar(membro.key);
-    this.mensagens.mensagemSucesso('Membro excluído com sucesso!');
+    this.mensagens.mensagemSucesso("Membro excluído com sucesso!");
     this.inicializar();
+  }
+
+  gerarAta(): void {
+    const listaMembros = this.membrosAtivos
+      .sort((a, b) => a.nomeCompleto.localeCompare(b.nomeCompleto))
+      .map((membro) => [membro.nomeCompleto, membro.cpf, ""]);
+
+    const dataAtual = DateUtil.dateFormatterBrazil(
+      new Date().toLocaleDateString()
+    );
+
+    const docDefinition = {
+      content: [
+        { text: "Ata de Presença", style: "header" },
+        { text: "Assembleia Administrativa IBC", style: "subheader" },
+        { text: dataAtual, style: "subheader" },
+        {
+          table: {
+            headerRows: 1,
+            widths: ["auto", "auto", 170],
+            body: [["Nome", "CPF", "Assinatura"], ...listaMembros],
+          },
+        },
+        { text: "\n\n\n\n\n\n" },
+        {
+          text: "Assinatura do Pastor Presidente: ____________________________________________",
+          style: "signature",
+        },
+      ],
+      styles: {
+        header: {
+          fontSize: 22,
+          bold: true,
+          margin: [0, 0, 0, 5],
+          alignment: "center",
+        },
+        subheader: {
+          fontSize: 16,
+          bold: true,
+          margin: [0, 5, 0, 5],
+        },
+        signature: {
+          margin: [50, 50, 50, 50],
+        },
+      },
+    };
+
+    pdfMake.createPdf(docDefinition).download("ata.pdf");
   }
 }
