@@ -47,7 +47,7 @@ export class AutenticacaoService {
     return this.afAuth
       .signInWithEmailAndPassword(membro.email.trim(), membro.senha.trim())
       .then((sucess) => {
-        sucess.user.delete();
+        sucess.user.delete()
       });
   }
 

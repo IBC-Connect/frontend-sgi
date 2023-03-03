@@ -30,6 +30,15 @@
                 {{membro.whatsapp? 'Whatsapp: '.concat(membro.whatsapp) : '' }}
               </ion-label>
             </ion-item>
+            <ion-item-options side="start">
+              <button
+                ion-button
+                (click)="editarMembro(membro)"
+                class="bt-editar"
+              >
+                <ion-icon class="icones" name="create"></ion-icon>
+              </button>
+            </ion-item-options>
           </ion-item-sliding>
         </ion-list>
       </ion-col>

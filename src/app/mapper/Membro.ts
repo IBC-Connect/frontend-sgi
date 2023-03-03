@@ -5,8 +5,6 @@ export class MembroMapper {
   public static formularioToMembro(form: any): Membro {
     let membro = new Membro();
 
-    console.log(form)
-
     membro.nomeCompleto = form.nomeCompleto.toUpperCase();
     membro.dataNascimento = form.dataNascimento;
     membro.email = form.email ? form.email.toLowerCase() : "";

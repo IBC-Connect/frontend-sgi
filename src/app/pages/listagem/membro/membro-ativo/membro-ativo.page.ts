@@ -161,74 +161,127 @@ export class MembroAtivoPage {
   }
 
   gerarAta(): void {
-    const membrosAtivosOrdenados: Membro[] = this.membrosAtivos.sort((a, b) => a.nomeCompleto.localeCompare(b.nomeCompleto));
-    const listaMembros: Array<[string, string, string]> = membrosAtivosOrdenados.map(membro => [membro.nomeCompleto, membro.cpf, ""]);
-  
-    const dataAtual = DateUtil.dateFormatterBrazil(new Date().toLocaleDateString());
-  
+    const membrosAtivosOrdenados: Membro[] = this.membrosAtivos.sort((a, b) =>
+      a.nomeCompleto.localeCompare(b.nomeCompleto)
+    );
+    const listaMembros: Array<[string, string, string]> =
+      membrosAtivosOrdenados.map((membro) => [
+        membro.nomeCompleto,
+        membro.cpf,
+        "",
+      ]);
+
+    const dataAtual = DateUtil.dateFormatterBrazil(
+      new Date().toLocaleDateString()
+    );
+
     const docDefinition: pdfMake.TDocumentDefinitions = {
       content: [
-        { text: "Ata de Presença", style: "header" },
-        { text: "Assembleia Administrativa IBC", style: "subheader" },
-        { text: dataAtual, style: "subheader" },
         {
-          table: {
-            headerRows: 1,
-            widths: ["auto", "auto", 170],
-            body: [
-              ["Nome", "CPF", "Assinatura"],
-              ...listaMembros,
-            ],
-          },
-          layout: {
-            hLineWidth: () => 0.5,
-            vLineWidth: () => 0.5,
-            hLineColor: "#bfbfbf",
-            vLineColor: "#bfbfbf",
-            paddingLeft: () => 8,
-            paddingRight: () => 8,
-            paddingTop: () => 8,
-            paddingBottom: () => 8,
-          },
-          style: "table",
-        },
-        {
-          text: "\n\n",
-        },
-        {
-          text: "Assinatura do Pastor Presidente:",
-          style: "signatureLabel",
-          alignment: "center",
-        },
-        {
-          canvas: [{ type: "line", x1: 72, y1: 0, x2: 300, y2: 0, lineWidth: 1 }],
-          margin: [72, 0, 72, 8],
+          stack: [
+            {
+              text: "Ata de Presença",
+              style: "header",
+              alignment: "center",
+              margin: [0, 20, 0, 20],
+            },
+            {
+              text: "Assembleia Administrativa IBC",
+              style: "subheader",
+              alignment: "center",
+              margin: [0, 0, 0, 10],
+            },
+            {
+              text: dataAtual,
+              style: "subheader",
+              alignment: "center",
+              margin: [0, 0, 0, 20],
+            },
+            {
+              table: {
+                headerRows: 1,
+                widths: ["auto", "*", 180],
+                body: [
+                  [
+                    {
+                      text: "Nome",
+                      style: "tableHeader",
+                      fillColor: "#dddddd",
+                    },
+                    {
+                      text: "CPF",
+                      style: "tableHeader",
+                      fillColor: "#dddddd",
+                    },
+                    {
+                      text: "Assinatura",
+                      style: "tableHeader",
+                      fillColor: "#dddddd",
+                    },
+                  ],
+                  ...listaMembros,
+                ],
+              },
+              style: "table",
+              layout: {
+                fillColor: function (rowIndex, node, columnIndex) {
+                  return rowIndex % 2 === 0 ? "#F0F0F0" : null;
+                },
+              },
+            },
+            {
+              canvas: [
+                {
+                  type: "line",
+                  x1: 30,
+                  y1: 0,
+                  x2: 390,
+                  y2: 0,
+                  lineWidth: 1,
+                  lineColor: "#333333",
+                },
+              ],
+              margin: [30, 40, 30, 0],
+            },
+            {
+              text: "Assinatura do Pastor Presidente",
+              style: "signatureLabel",
+              alignment: "center",
+              margin: [0, 10, 0, 0],
+            },
+          ],
+          margin: [20, 20, 20, 20],
         },
       ],
       styles: {
         header: {
-          fontSize: 22,
+          fontSize: 28,
           bold: true,
-          margin: [0, 0, 0, 5],
-          alignment: "center",
+          color: "#2d2d2d",
         },
         subheader: {
           fontSize: 16,
           bold: true,
-          margin: [0, 5, 0, 5],
+          color: "#666666",
         },
         table: {
           margin: [0, 10, 0, 10],
-          fontSize: 10,
-          alignment: "center",
+          fontSize: 12,
+          color: "#333333",
+        },
+        tableHeader: {
+          fontSize: 12,
+          bold: true,
+          color: "#333333",
         },
         signatureLabel: {
-          margin: [0, 5, 0, 25],
+          fontSize: 12,
+          bold: true,
+          color: "#666666",
         },
       },
     };
-  
+
     pdfMake.createPdf(docDefinition).download("ata.pdf");
   }
-  
 }

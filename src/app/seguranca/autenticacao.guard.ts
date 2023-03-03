@@ -33,7 +33,7 @@ export class AutenticacaoGuard implements CanActivateChild {
       const usuario = localStorage.getItem("usuario");
 
       if (usuario) {
-        this.autenticaService.afAuth.onAuthStateChanged((user) => {
+        this.autenticaService.afAuth.authState.subscribe((user) => {
           if (user) {
             resolve(true);
           } else {

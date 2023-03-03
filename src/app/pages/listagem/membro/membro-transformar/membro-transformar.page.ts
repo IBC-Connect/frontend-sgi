@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import {
   AlertController,
   NavController,
@@ -28,7 +28,8 @@ export class MembroTransformarPage implements OnInit {
     public navCtrl: NavController,
     private aviso: ToastController,
     public alertController: AlertController,
-    private autenticacaoService: AutenticacaoService
+    private autenticacaoService: AutenticacaoService,
+    private changes : ChangeDetectorRef
   ) {
     this.mensagens = new MensagensUtil(this.aviso);
   }
@@ -39,14 +40,9 @@ export class MembroTransformarPage implements OnInit {
 
   private async inicializar(): Promise<void> {
     this.listaMembrosObservable = this.membroService.listar();
-    this.listaMembrosObservable.subscribe((response) => {
+    this.listaMembrosObservable.subscribe((response : Membro[]) => {
       this.membrosTransformar = response
-        .filter((m) => m.membroTransformar)
-        .map((m) => ({
-          ...m,
-          escolaridade: Number(m.escolaridade),
-          estadoCivil: Number(m.estadoCivil),
-        }))
+        .filter((m) => String(m.membroTransformar) === 'true')
         .sort((a, b) => a.nomeCompleto.localeCompare(b.nomeCompleto));
       this.membrosTransformarFiltrados = [...this.membrosTransformar];
       this.totalMembrosTransformar = this.membrosTransformar.length;

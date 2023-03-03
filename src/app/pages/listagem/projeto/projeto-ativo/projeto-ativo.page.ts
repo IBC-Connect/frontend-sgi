@@ -93,10 +93,39 @@ export class ProjetoAtivoPage implements OnInit {
     await alert.present();
   }
 
+  public async confirmarExclusao(projeto: Projeto) {
+    const alert = await this.alertController.create({
+      header: "Confirmação de inativação",
+      message: "Tem certeza que deseja excluir o projeto selecionado?",
+      buttons: [
+        {
+          text: "Não",
+          handler: () => {
+            this.alertController.dismiss();
+          },
+        },
+        {
+          text: "Sim",
+          handler: () => {
+            this.excluirProjeto(projeto);
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
+
   private inativarProjeto(projeto: Projeto): void {
     if (projeto.key) {
       projeto.situacao = "Inativo";
       this.projetoService.adicionarOuAtualizar(projeto, "Projeto inativado com sucesso!");
+      this.inicializar();
+    }
+  }
+
+  private excluirProjeto(projeto: Projeto): void {
+    if (projeto.key) {
+      this.projetoService.deletar(projeto.key, "Projeto excluido com sucesso!");
       this.inicializar();
     }
   }

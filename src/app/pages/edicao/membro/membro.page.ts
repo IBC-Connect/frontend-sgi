@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectorRef, Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastController } from "@ionic/angular";
@@ -30,7 +30,8 @@ export class MembroPage {
     private membroService: MembroService,
     private aviso: ToastController,
     private consultaCep: ConsultaCEPService,
-    private router: Router
+    private router: Router,
+    private changes: ChangeDetectorRef
   ) {
     const nav = this.router.getCurrentNavigation();
     this.membro = nav.extras.state.content;
@@ -138,6 +139,15 @@ export class MembroPage {
       }
   }
 
+  public validarRG(event): void {
+    if (event.target.value)
+      if (!ValidadorInformacoesPessoais.validarRG(event.target.value)) {
+        this.mensagens.mensagemError("RG inválido.");
+        this.formulario.controls["rg"].setValue(null);
+        return;
+      }
+  }
+
   public validarEmail(event): void {
     if (event.target.value && !event.target.value.includes("@")) {
       this.mensagens.mensagemError("E-mail inválido.");
@@ -194,59 +204,43 @@ export class MembroPage {
   }
 
   public editar(): void {
-    if (this.formulario.value) {
+    const formulario = this.formulario.value;
+
+    if (!formulario) {
+      console.log("O formulário não foi preenchido.");
+      return;
+    }
+
+    const dataNascimentoValida = DateUtil.verificarIsDataValida(
+      formulario.dataNascimento
+    );
+
+    if (!dataNascimentoValida) {
+      this.mensagens.mensagemError(
+        "A data do campo 'Data de nascimento' informada não é válida."
+      );
+      return;
+    }
+
+    if (formulario.dataBatismo && formulario.membroDesde) {
       if (
-        this.formulario.value.dataBatismo &&
-        !DateUtil.verificarIsDataValida(this.formulario.value.dataBatismo)
+        DateUtil.isDataDoisMaiorDataUm(
+          formulario.dataBatismo,
+          formulario.membroDesde
+        ) &&
+        !DateUtil.isDatasIguais(formulario.dataBatismo, formulario.membroDesde)
       ) {
         this.mensagens.mensagemError(
-          "A data do campo'Data de Batismo' informada não é válida."
+          "A data 'Membro desde' não pode ser maior que a 'Data do Batismo'."
         );
-      } else if (
-        this.formulario.value.membroDesde &&
-        !DateUtil.verificarIsDataValida(this.formulario.value.membroDesde)
-      ) {
-        this.mensagens.mensagemError(
-          " A data do campo 'Membro desde' informada não é válida."
-        );
-      } else if (
-        this.formulario.value.dataNascimento &&
-        !DateUtil.verificarIsDataValida(this.formulario.value.dataNascimento)
-      ) {
-        this.mensagens.mensagemError(
-          " A data do campo 'Data de nascimento' informada não é válida."
-        );
-      } else if (
-        this.formulario.value.dataBatismo &&
-        this.formulario.value.membroDesde
-      ) {
-        if (
-          DateUtil.isDataFutura(this.formulario.value.dataBatismo) ||
-          DateUtil.isDataFutura(this.formulario.value.membroDesde)
-        ) {
-          this.mensagens.mensagemError(
-            "Não são permitidas datas futuras para o campo 'Data do Batismo' e o campo 'Membro desde.'"
-          );
-        } else if (
-          DateUtil.isDataDoisMaiorDataUm(
-            this.formulario.value.dataBatismo,
-            this.formulario.value.membroDesde
-          ) &&
-          !DateUtil.isDatasIguais(
-            this.formulario.value.dataBatismo,
-            this.formulario.value.membroDesde
-          )
-        ) {
-          this.mensagens.mensagemError(
-            "A data 'Membro desde' não pode ser maior que a 'Data do Batismo'."
-          );
-        }
-      } else {
-        this.disableEndereco(false);
-        this.membro = MembroMapper.formularioToMembro(this.formulario.value);
-        this.membroService.adicionarOuAtualizar(this.membro);
-        this.mensagens.mensagemSucesso("Atualização realizada com sucesso!");
+        return;
       }
     }
+
+    this.disableEndereco(false);
+    this.membro = MembroMapper.formularioToMembro(formulario);
+    this.membroService.adicionarOuAtualizar(this.membro);
+    this.mensagens.mensagemSucesso("Atualização realizada com sucesso!");
+    this.changes.detectChanges();
   }
 }
