@@ -161,15 +161,12 @@ export class MembroAtivoPage {
   }
 
   gerarAta(): void {
-    const listaMembros = this.membrosAtivos
-      .sort((a, b) => a.nomeCompleto.localeCompare(b.nomeCompleto))
-      .map((membro) => [membro.nomeCompleto, membro.cpf, ""]);
-
-    const dataAtual = DateUtil.dateFormatterBrazil(
-      new Date().toLocaleDateString()
-    );
-
-    const docDefinition = {
+    const membrosAtivosOrdenados: Membro[] = this.membrosAtivos.sort((a, b) => a.nomeCompleto.localeCompare(b.nomeCompleto));
+    const listaMembros: Array<[string, string, string]> = membrosAtivosOrdenados.map(membro => [membro.nomeCompleto, membro.cpf, ""]);
+  
+    const dataAtual = DateUtil.dateFormatterBrazil(new Date().toLocaleDateString());
+  
+    const docDefinition: pdfMake.TDocumentDefinitions = {
       content: [
         { text: "Ata de Presença", style: "header" },
         { text: "Assembleia Administrativa IBC", style: "subheader" },
@@ -178,13 +175,34 @@ export class MembroAtivoPage {
           table: {
             headerRows: 1,
             widths: ["auto", "auto", 170],
-            body: [["Nome", "CPF", "Assinatura"], ...listaMembros],
+            body: [
+              ["Nome", "CPF", "Assinatura"],
+              ...listaMembros,
+            ],
           },
+          layout: {
+            hLineWidth: () => 0.5,
+            vLineWidth: () => 0.5,
+            hLineColor: "#bfbfbf",
+            vLineColor: "#bfbfbf",
+            paddingLeft: () => 8,
+            paddingRight: () => 8,
+            paddingTop: () => 8,
+            paddingBottom: () => 8,
+          },
+          style: "table",
         },
-        { text: "\n\n\n\n\n\n" },
         {
-          text: "Assinatura do Pastor Presidente: ____________________________________________",
-          style: "signature",
+          text: "\n\n",
+        },
+        {
+          text: "Assinatura do Pastor Presidente:",
+          style: "signatureLabel",
+          alignment: "center",
+        },
+        {
+          canvas: [{ type: "line", x1: 72, y1: 0, x2: 300, y2: 0, lineWidth: 1 }],
+          margin: [72, 0, 72, 8],
         },
       ],
       styles: {
@@ -199,12 +217,18 @@ export class MembroAtivoPage {
           bold: true,
           margin: [0, 5, 0, 5],
         },
-        signature: {
-          margin: [50, 50, 50, 50],
+        table: {
+          margin: [0, 10, 0, 10],
+          fontSize: 10,
+          alignment: "center",
+        },
+        signatureLabel: {
+          margin: [0, 5, 0, 25],
         },
       },
     };
-
+  
     pdfMake.createPdf(docDefinition).download("ata.pdf");
   }
+  
 }
