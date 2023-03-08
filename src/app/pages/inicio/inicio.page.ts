@@ -3,7 +3,7 @@ import {
   LoadingController,
   ModalController,
   NavController,
-  ToastController,
+  ToastController
 } from "@ionic/angular";
 import { Observable } from "rxjs";
 import { Membro } from "src/app/modelo/Membro";
@@ -13,7 +13,6 @@ import { MembroService } from "src/app/servicos/Membro";
 import { MensagensUtil } from "src/app/util/MensagensUtil";
 
 import { SistemaRelatorioModalPage } from "../componentes/sistema-relatorio-modal/sistema-relatorio-modal.page";
-import { DadosUsuarioUtil } from "./../../util/DadosUsuarioUtil";
 import { RedirecionadorUtil } from "./../../util/RedirecionadorUtil";
 
 @Component({
@@ -40,17 +39,19 @@ export class InicioPage implements OnInit {
   permissaoFinancas: boolean = false;
   permissaoSecretaria: boolean = false;
 
+  boasVindas = "Bem-vindo(a) ";
+
   constructor(
     private autenticacao: AutenticacaoService,
     private aviso: ToastController,
     private membroService: MembroService,
     private modalController: ModalController,
     private navCtrl: NavController,
-    private loadingCtrl : LoadingController
+    private loadingCtrl: LoadingController
   ) {
     this.mensagens = new MensagensUtil(this.aviso);
     this.redirecionadorUtil = new RedirecionadorUtil(this.navCtrl);
-    this.usuario = DadosUsuarioUtil.dadosUsuarioLogado();
+    this.usuario = this.autenticacao.pegarDadosLocalmente();
   }
 
   async ngOnInit() {
@@ -86,7 +87,7 @@ export class InicioPage implements OnInit {
   }
 
   verificarTelasUsuario(membros) {
-    const membroEncontrado = membros.find(
+    const membroEncontrado: Membro = membros.find(
       (m) => m.email === this.usuario.email
     );
 
@@ -108,6 +109,13 @@ export class InicioPage implements OnInit {
           this.permissaoGeral = true;
       }
     }
+
+    this.boasVindas = this.boasVindas.includes(membroEncontrado.nomeCompleto)
+      ? this.boasVindas
+      : this.boasVindas
+          .concat(membroEncontrado.nomeCompleto)
+          .concat(" | ")
+          .concat(membroEncontrado.perfil);
   }
 
   async abriModalSistema() {
@@ -121,7 +129,7 @@ export class InicioPage implements OnInit {
   async showLoading() {
     const loading = await this.loadingCtrl.create({
       duration: 3000,
-      cssClass: 'custom-loading'
+      cssClass: "custom-loading",
     });
 
     loading.present();

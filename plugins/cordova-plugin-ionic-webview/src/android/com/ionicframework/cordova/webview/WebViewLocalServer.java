@@ -100,7 +100,7 @@ public class WebViewLocalServer {
       this.statusCode = statusCode;
       this.reasonPhrase = reasonPhrase;
       Map<String, String> tempResponseHeaders;
-      if (responseHeaders == null) {
+      if (responseHeaders == null) { 
         tempResponseHeaders = new HashMap<String, String>();
       } else {
         tempResponseHeaders = responseHeaders;

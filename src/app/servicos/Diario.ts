@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, shareReplay } from "rxjs/operators";
 
 import { Diario } from "../modelo/Diario";
 
@@ -22,13 +22,14 @@ export class DiarioService {
   }
 
   public listar(): any {
-    return (this.diarios = this.diarioRef
-      .snapshotChanges()
-      .pipe(
-        map((changes) =>
-          changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
-        )
-      ));
+    let cacheTime: number = 10000; // cache de 5 minuto
+
+    return (this.diarios = this.diarioRef.snapshotChanges().pipe(
+      map((changes) =>
+        changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
+      ),
+      shareReplay({ refCount: true, bufferSize: 1, windowTime: cacheTime })
+    ));
   }
 
   public adicionarOuAtualizar(diario: Diario): void {

@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import {
   AlertController,
   NavController,
-  ToastController,
+  ToastController
 } from "@ionic/angular";
 import { Observable } from "rxjs";
 import { Membro } from "src/app/modelo/Membro";
@@ -29,7 +29,7 @@ export class MembroTransformarPage implements OnInit {
     private aviso: ToastController,
     public alertController: AlertController,
     private autenticacaoService: AutenticacaoService,
-    private changes : ChangeDetectorRef
+    private changes: ChangeDetectorRef
   ) {
     this.mensagens = new MensagensUtil(this.aviso);
   }
@@ -40,9 +40,9 @@ export class MembroTransformarPage implements OnInit {
 
   private async inicializar(): Promise<void> {
     this.listaMembrosObservable = this.membroService.listar();
-    this.listaMembrosObservable.subscribe((response : Membro[]) => {
+    this.listaMembrosObservable.subscribe((response: Membro[]) => {
       this.membrosTransformar = response
-        .filter((m) => String(m.membroTransformar) === 'true')
+        .filter((m) => String(m.membroTransformar) === "true")
         .sort((a, b) => a.nomeCompleto.localeCompare(b.nomeCompleto));
       this.membrosTransformarFiltrados = [...this.membrosTransformar];
       this.totalMembrosTransformar = this.membrosTransformar.length;
@@ -71,8 +71,7 @@ export class MembroTransformarPage implements OnInit {
 
   private excluirMembro(membro: Membro): void {
     this.membroService.deletar(membro.key);
-    this.autenticacaoService.deletarMembro(membro);
-    this.mensagens.mensagemSucesso("Congregado excluído com sucesso!");
+    this.mensagens.mensagemSucesso("Membro excluído com sucesso!");
     this.inicializar();
   }
 

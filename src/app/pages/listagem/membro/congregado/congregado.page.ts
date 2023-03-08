@@ -119,7 +119,6 @@ export class CongregadoPage {
 
   private excluirMembro(membro: Membro): void {
     this.membroService.deletar(membro.key);
-    this.autenticacaoService.deletarMembro(membro);
     this.mensagens.mensagemSucesso('Congregado excluído com sucesso!');
     this.inicializar();
   }

@@ -1,4 +1,4 @@
-import { Familiar } from './Familiar';
+import { Familiar } from "./Familiar";
 import { Endereco } from "./Endereco";
 
 export class Assistido {

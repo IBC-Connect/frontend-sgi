@@ -1,3 +1,4 @@
+import { AutenticacaoService } from "src/app/servicos/Autenticacao";
 import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { Observable } from "rxjs/internal/Observable";
@@ -29,7 +30,8 @@ export class RegistroConsultorioModalPage implements OnInit {
   constructor(
     private membroService: MembroService,
     private modalController: ModalController,
-    private diarioService: DiarioService
+    private diarioService: DiarioService,
+    private autenticacaoService: AutenticacaoService
   ) {
     this.diario = new Diario();
     this.membro = new Membro();
@@ -70,7 +72,8 @@ export class RegistroConsultorioModalPage implements OnInit {
   }
 
   private informacoesPsicologo() {
-    this.usuario = DadosUsuarioUtil.dadosUsuarioLogado();
+    this.usuario = this.autenticacaoService.pegarDadosLocalmente();
+    //this.usuario = DadosUsuarioUtil.dadosUsuarioLogado();
 
     const usuarioEncontrado = this.listaMembros.filter(
       (membros) => membros.email === this.usuario.email

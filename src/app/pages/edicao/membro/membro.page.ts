@@ -1,3 +1,4 @@
+import { AutenticacaoService } from "./../../../servicos/Autenticacao";
 import { ChangeDetectorRef, Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -31,12 +32,12 @@ export class MembroPage {
     private aviso: ToastController,
     private consultaCep: ConsultaCEPService,
     private router: Router,
-    private changes: ChangeDetectorRef
+    private changes: ChangeDetectorRef,
+    private autenticacaoService: AutenticacaoService
   ) {
     const nav = this.router.getCurrentNavigation();
     this.membro = nav.extras.state.content;
     this.ajustarDatas();
-
     this.inicializar();
   }
 
@@ -203,7 +204,7 @@ export class MembroPage {
     }
   }
 
-  public editar(): void {
+  public async editar(): Promise<void> {
     const formulario = this.formulario.value;
 
     if (!formulario) {

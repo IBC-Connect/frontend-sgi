@@ -1,5 +1,11 @@
+import { AutenticacaoService } from "src/app/servicos/Autenticacao";
+import { AutenticacaoGuard } from "./../../seguranca/autenticacao.guard";
 import { Component, OnInit } from "@angular/core";
-import { AlertController, ModalController, ToastController } from "@ionic/angular";
+import {
+  AlertController,
+  ModalController,
+  ToastController,
+} from "@ionic/angular";
 import { Observable } from "rxjs";
 import { Diario } from "src/app/modelo/Diario";
 import { DiarioService } from "src/app/servicos/Diario";
@@ -20,10 +26,11 @@ export class ConsultorioPage implements OnInit {
   mensagens: MensagensUtil;
 
   constructor(
-    public modalController: ModalController,
+    private autenticacaoService: AutenticacaoService,
+    private modalController: ModalController,
     private diarioService: DiarioService,
-    private alertController : AlertController,
-    private aviso : ToastController
+    private alertController: AlertController,
+    private aviso: ToastController
   ) {
     this.mensagens = new MensagensUtil(this.aviso);
     this.inicializar();
@@ -41,7 +48,8 @@ export class ConsultorioPage implements OnInit {
   }
 
   filtrarPorPsicologo(listaDiarios: Diario[]) {
-    let usuarioLogado = DadosUsuarioUtil.dadosUsuarioLogado();
+    let usuarioLogado = this.autenticacaoService.pegarDadosLocalmente();
+    //let usuarioLogado = DadosUsuarioUtil.dadosUsuarioLogado();
 
     return listaDiarios.filter((d) => {
       d.uIdPsicologo === usuarioLogado.uid;
@@ -58,17 +66,17 @@ export class ConsultorioPage implements OnInit {
 
   public async confirmarExclusao(diario: Diario) {
     const alert = await this.alertController.create({
-      header: 'Confirmação de exclusão',
-      message: 'Tem certeza que deseja excluir o diario selecionado?',
+      header: "Confirmação de exclusão",
+      message: "Tem certeza que deseja excluir o diario selecionado?",
       buttons: [
         {
-          text: 'Não',
+          text: "Não",
           handler: () => {
             this.alertController.dismiss();
           },
         },
         {
-          text: 'Sim',
+          text: "Sim",
           handler: () => {
             this.excluirDiario(diario);
           },
@@ -79,8 +87,8 @@ export class ConsultorioPage implements OnInit {
   }
 
   private excluirDiario(diario: Diario): void {
-      this.diarioService.deletar(diario.key);
-      this.mensagens.mensagemSucesso('Diario excluido com sucesso!');
+    this.diarioService.deletar(diario.key);
+    this.mensagens.mensagemSucesso("Diario excluido com sucesso!");
   }
 
   pesquisarPacientes(ev: any) {

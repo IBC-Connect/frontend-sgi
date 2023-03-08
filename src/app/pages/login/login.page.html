@@ -19,7 +19,7 @@
                             <ion-icon id="icone-olho" name="eye" (click)="visualizarSenha()"></ion-icon>
                         </ion-item>
                         <br />
-                        <ion-button mode="md" (click)="logar(usuario)" color="secondary" type="submit" fill="solid" expand="full">ENTRAR</ion-button>
+                        <ion-button mode="md" [disabled]="logarAcionado" (click)="logar(usuario)" color="secondary" type="submit" fill="solid" expand="full">ENTRAR</ion-button>
                         <h2 id="esqueci-senha">Esqueci minha senha</h2>
                     </ion-col>
                 </ion-row>

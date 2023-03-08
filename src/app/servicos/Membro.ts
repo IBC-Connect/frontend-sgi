@@ -1,10 +1,8 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, shareReplay } from "rxjs/operators";
 import { Membro } from "../modelo/Membro";
-import { Usuario } from "../modelo/Usuario";
-import { AutenticacaoService } from "./Autenticacao";
 
 @Injectable({
   providedIn: "root",
@@ -21,14 +19,19 @@ export class MembroService {
     this.membroRef = this.db.list(this.path);
   }
 
-  public listar(): any {
-    return (this.membros = this.membroRef
-      .snapshotChanges()
-      .pipe(
-        map((changes) =>
-          changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
-        )
-      ));
+  public listar(): Observable<any> {
+    let cacheTime: number = 10000; // cache de 5 minuto
+
+    return (this.membros = this.membroRef.snapshotChanges().pipe(
+      map((changes) =>
+        changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
+      ),
+      shareReplay({ refCount: true, bufferSize: 1, windowTime: cacheTime })
+    ));
+  }
+
+  public listar2() : Observable<any> {
+    return this.db.object(`${this.path}`).valueChanges();
   }
 
   public adicionarOuAtualizar(membro: Membro): void {

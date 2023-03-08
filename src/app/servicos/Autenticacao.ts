@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Observable } from "rxjs";
 
+import { CookieService } from "ngx-cookie-service";
 import { Membro } from "../modelo/Membro";
 import { Usuario } from "../modelo/Usuario";
 import { CriptografiaUtil } from "../util/CriptografiaUtil";
@@ -11,10 +12,14 @@ import { CriptografiaUtil } from "../util/CriptografiaUtil";
   providedIn: "root",
 })
 export class AutenticacaoService {
+  public listaMembrosObservable: Observable<any[]>;
   public userData$: Observable<any>;
   public listaMembros: Membro[];
 
-  constructor(public afAuth: AngularFireAuth) {
+  constructor(
+    public afAuth: AngularFireAuth,
+    private cookieService: CookieService
+  ) {
     //Dados Firebase
     this.afAuth.setPersistence("none");
     this.afAuth.updateCurrentUser;
@@ -43,60 +48,21 @@ export class AutenticacaoService {
     return novoUsuario;
   }
 
-  public async deletarMembro(membro: Membro) {
-    return this.afAuth
-      .signInWithEmailAndPassword(membro.email.trim(), membro.senha.trim())
-      .then((sucess) => {
-        sucess.user.delete()
-      });
-  }
-
   public async resetarSenha(email: string) {
     return await this.afAuth.sendPasswordResetEmail(email);
   }
 
   public async sair() {
-    localStorage.clear();
-
-    await this.afAuth.signOut().then(
-      function () {},
-      function (erro) {
-        console.log(erro.message);
-      }
-    );
+    this.cookieService.deleteAll();
   }
 
-  public dadosMembro(email): Membro {
-    let membroRetorno: Membro;
-
-    this.listaMembros.find((membro) => {
-      if (membro.email === email) {
-        membroRetorno = membro;
-      }
-    });
-
-    return membroRetorno;
-  }
-
-  public salvaUsuario(usuario, login: any): void {
+  public salvaUsuario(usuario: any): void {
     let membro = new Membro();
 
     membro.email = usuario.email;
-    membro.uId = login.user.uid;
+    membro.uId = usuario.uid;
 
     this.salvarDadosLocalmente(membro);
-  }
-
-  public verificaUsuarioExistente(membroCadastrar: Membro): boolean {
-    let resultado: boolean = false;
-
-    this.listaMembros.find((membro) => {
-      if (membro.cpf === membroCadastrar.cpf) {
-        resultado = true;
-      }
-    });
-
-    return resultado;
   }
 
   private salvarDadosLocalmente(membro: Membro): void {
@@ -104,11 +70,21 @@ export class AutenticacaoService {
       email: membro.email,
       nome: membro.nomeCompleto,
       perfil: membro.perfil,
-      uid: membro.uId,
+      uId: membro.key,
     };
 
     let membroCriptografado =
       CriptografiaUtil.criptografarDadosComObjeto(membroData);
-    localStorage.setItem("usuario", membroCriptografado);
+    this.cookieService.set("usuario", membroCriptografado);
+  }
+
+  public pegarDadosLocalmente(): Usuario {
+    let usuario: any = this.cookieService.get("usuario");
+
+    if (usuario != null) {
+      usuario = CriptografiaUtil.descriptografiaDadosComObjeto(usuario);
+    }
+
+    return usuario;
   }
 }

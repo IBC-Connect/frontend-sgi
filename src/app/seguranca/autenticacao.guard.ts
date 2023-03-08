@@ -4,7 +4,7 @@ import {
   CanActivateChild,
   Router,
   RouterStateSnapshot,
-  UrlTree,
+  UrlTree
 } from "@angular/router";
 import { AlertController } from "@ionic/angular";
 import { Observable } from "rxjs";
@@ -30,7 +30,7 @@ export class AutenticacaoGuard implements CanActivateChild {
     | boolean
     | UrlTree {
     return new Promise((resolve) => {
-      const usuario = localStorage.getItem("usuario");
+      const usuario = this.autenticaService.pegarDadosLocalmente();
 
       if (usuario) {
         this.autenticaService.afAuth.authState.subscribe((user) => {

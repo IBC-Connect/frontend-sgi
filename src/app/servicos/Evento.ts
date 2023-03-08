@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Evento } from '../modelo/Evento';
+import { Injectable } from "@angular/core";
+import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
+import { Observable } from "rxjs";
+import { map, shareReplay } from "rxjs/operators";
+import { Evento } from "../modelo/Evento";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class EventoService {
   eventosLista: Evento[];
@@ -13,7 +13,7 @@ export class EventoService {
   eventos: Observable<any[]>;
   eventoRef: AngularFireList<any>;
 
-  private path = 'eventos';
+  private path = "eventos";
 
   constructor(private db: AngularFireDatabase) {
     this.eventosLista = new Array<Evento>();
@@ -21,13 +21,14 @@ export class EventoService {
   }
 
   public listar() {
-    return (this.eventos = this.eventoRef
-      .snapshotChanges()
-      .pipe(
-        map((changes) =>
-          changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
-        )
-      ));
+    let cacheTime: number = 10000; // cache de 5 minuto
+
+    return (this.eventos = this.eventoRef.snapshotChanges().pipe(
+      map((changes) =>
+        changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
+      ),
+      shareReplay({ refCount: true, bufferSize: 1, windowTime: cacheTime })
+    ));
   }
 
   public adicionarOuAtualizar(evento: Evento) {
@@ -54,7 +55,7 @@ export class EventoService {
           this.eventosLista = sucess;
         },
         (error) => {
-          console.log(error)
+          console.log(error);
         }
       );
 

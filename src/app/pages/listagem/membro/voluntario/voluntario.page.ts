@@ -116,7 +116,6 @@ export class VoluntarioPage {
 
   private excluirMembro(membro: Membro): void {
     this.membroService.deletar(membro.key);
-    this.autenticacaoService.deletarMembro(membro);
     this.mensagens.mensagemSucesso('Voluntário excluído com sucesso!');
     this.inicializar();
   }

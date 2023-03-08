@@ -72,7 +72,6 @@
               >E-mail
             </ion-label>
             <ion-input
-              [disabled]="true"
               mode="md"
               id="email"
               (keyup)="retirarEspacamentoEmail()"
@@ -353,6 +352,20 @@
               formControlName="rg"
               maxlength="14"
               type="text"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item class="row-item">
+            <ion-label mode="md" class="titulo-dado" position="stacked"
+              >Senha <span>*</span></ion-label
+            >
+            <ion-input
+              mode="md"
+              formControlName="senha"
+              maxlength="14"
+              minlength="8"
+              type="password"
             ></ion-input>
           </ion-item>
         </ion-col>
