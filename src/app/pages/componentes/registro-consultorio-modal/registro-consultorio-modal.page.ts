@@ -73,7 +73,6 @@ export class RegistroConsultorioModalPage implements OnInit {
 
   private informacoesPsicologo() {
     this.usuario = this.autenticacaoService.pegarDadosLocalmente();
-    //this.usuario = DadosUsuarioUtil.dadosUsuarioLogado();
 
     const usuarioEncontrado = this.listaMembros.filter(
       (membros) => membros.email === this.usuario.email
@@ -84,7 +83,7 @@ export class RegistroConsultorioModalPage implements OnInit {
       usuarioEncontrado.length > 0
         ? usuarioEncontrado[0].nomeCompleto
         : "Psicologo Não Cadastrado";
-    this.diario.uIdPsicologo = this.usuario.uid;
+    this.diario.email = this.usuario.email;
   }
 
   ngOnInit() {}

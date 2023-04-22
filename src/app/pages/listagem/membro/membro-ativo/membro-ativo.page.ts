@@ -1,19 +1,28 @@
-import { Component } from "@angular/core";
+import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
 import {
-  AlertController,
-  NavController,
-  ToastController,
-} from "@ionic/angular";
-import { Observable } from "rxjs";
-import { Membro } from "src/app/modelo/Membro";
-import { MembroService } from "src/app/servicos/Membro";
-import { DateUtil } from "src/app/util/DateUtil";
-import { MensagensUtil } from "src/app/util/MensagensUtil";
+  AlignmentType,
+  BorderStyle, Document,
+  HeadingLevel, Packer,
+  Paragraph,
+  Table,
+  TableCell,
+  TableRow,
+  TextRun, WidthType
+} from 'docx';
+import { saveAs } from 'file-saver';
+import * as moment from 'moment';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { TDocumentDefinitions } from 'pdfmake/interfaces';
+import { Observable } from 'rxjs';
+import { Membro } from 'src/app/modelo/Membro';
+import { MembroService } from 'src/app/servicos/Membro';
+import { DateUtil } from 'src/app/util/DateUtil';
+import { MensagensUtil } from 'src/app/util/MensagensUtil';
 
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
-
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: "app-membro-ativo",
@@ -26,6 +35,10 @@ export class MembroAtivoPage {
   membrosAtivosFiltrados: Membro[];
   mensagens: MensagensUtil;
   listaMembrosObservable: Observable<any[]>;
+  
+  dataAtual : any;
+
+  pdf: any;
 
   constructor(
     private membroService: MembroService,
@@ -34,6 +47,7 @@ export class MembroAtivoPage {
     public alertController: AlertController
   ) {
     this.mensagens = new MensagensUtil(this.aviso);
+    this.dataAtual = moment().format("DD/MM/YYYY");
     this.inicializar();
   }
 
@@ -53,11 +67,13 @@ export class MembroAtivoPage {
         a.nomeCompleto > b.nomeCompleto
           ? 1
           : b.nomeCompleto > a.nomeCompleto
-          ? -1
-          : 0
+            ? -1
+            : 0
       );
       this.membrosAtivos.map((m) => (m.escolaridade = Number(m.escolaridade)));
       this.membrosAtivos.map((m) => (m.estadoCivil = Number(m.estadoCivil)));
+
+      this.gerarAta();
     });
   }
 
@@ -126,8 +142,8 @@ export class MembroAtivoPage {
         a.nomeCompleto > b.nomeCompleto
           ? 1
           : b.nomeCompleto > a.nomeCompleto
-          ? -1
-          : 0
+            ? -1
+            : 0
       );
     }
   }
@@ -164,18 +180,15 @@ export class MembroAtivoPage {
     const membrosAtivosOrdenados: Membro[] = this.membrosAtivos.sort((a, b) =>
       a.nomeCompleto.localeCompare(b.nomeCompleto)
     );
-    const listaMembros: Array<[string, string, string]> =
+    const listaMembros: Array<[string, string, string, string]> =
       membrosAtivosOrdenados.map((membro) => [
         membro.nomeCompleto,
-        membro.cpf,
+        membro.cpf ? membro.cpf : "",
+        membro.rg ? membro.rg : "",
         "",
       ]);
 
-    const dataAtual = DateUtil.dateFormatterBrazil(
-      new Date().toLocaleDateString()
-    );
-
-    const docDefinition: pdfMake.TDocumentDefinitions = {
+    const docDefinition: TDocumentDefinitions = {
       content: [
         {
           stack: [
@@ -192,7 +205,7 @@ export class MembroAtivoPage {
               margin: [0, 0, 0, 10],
             },
             {
-              text: dataAtual,
+              text: this.dataAtual,
               style: "subheader",
               alignment: "center",
               margin: [0, 0, 0, 20],
@@ -200,7 +213,7 @@ export class MembroAtivoPage {
             {
               table: {
                 headerRows: 1,
-                widths: ["auto", "*", 180],
+                widths: ["auto", "auto", "auto", 180],
                 body: [
                   [
                     {
@@ -210,6 +223,11 @@ export class MembroAtivoPage {
                     },
                     {
                       text: "CPF",
+                      style: "tableHeader",
+                      fillColor: "#dddddd",
+                    },
+                    {
+                      text: "RG",
                       style: "tableHeader",
                       fillColor: "#dddddd",
                     },
@@ -282,6 +300,169 @@ export class MembroAtivoPage {
       },
     };
 
-    pdfMake.createPdf(docDefinition).download("ata.pdf");
+    this.pdf = pdfMake.createPdf(docDefinition);
+  }
+
+  gerarAtaPDF() {
+    this.pdf.download("ata.pdf");
+  }
+
+  membersRows(): TableRow[] {
+
+    const membrosAtivosOrdenados: Membro[] = this.membrosAtivos.sort((a, b) =>
+      a.nomeCompleto.localeCompare(b.nomeCompleto)
+    );
+
+    const listaMembros: Array<[string, string, string, string]> =
+      membrosAtivosOrdenados.map((membro) => [
+        membro.nomeCompleto,
+        membro.cpf ? membro.cpf : "",
+        membro.rg ? membro.rg : "",
+        "",
+      ]);
+
+    const membersTableRows = listaMembros.map((membros) => {
+      return new TableRow({
+        children: [
+          new TableCell({
+            children: [new Paragraph(membros[0])],
+            width: {
+              size: 25,
+              type: WidthType.PERCENTAGE,
+            },
+            margins: { top: 100, bottom: 100, left: 100, right: 100 },
+            borders: { top: { style: BorderStyle.SINGLE }, bottom: { style: BorderStyle.SINGLE } },
+          }),
+          new TableCell({
+            children: [new Paragraph(membros[1])],
+            width: {
+              size: 25,
+              type: WidthType.PERCENTAGE,
+            },
+            margins: { top: 100, bottom: 100, left: 100, right: 100 },
+            borders: { top: { style: BorderStyle.SINGLE }, bottom: { style: BorderStyle.SINGLE } },
+          }),
+          new TableCell({
+            children: [new Paragraph(membros[2])],
+            width: {
+              size: 25,
+              type: WidthType.PERCENTAGE,
+            },
+            margins: { top: 100, bottom: 100, left: 100, right: 100 },
+            borders: { top: { style: BorderStyle.SINGLE }, bottom: { style: BorderStyle.SINGLE } },
+          }),
+          new TableCell({
+            children: [new Paragraph('')],
+            width: {
+              size: 25,
+              type: WidthType.PERCENTAGE,
+            },
+            margins: { top: 100, bottom: 100, left: 100, right: 100 },
+            borders: { top: { style: BorderStyle.SINGLE }, bottom: { style: BorderStyle.SINGLE } },
+          }),
+        ],
+      });
+    });
+
+    return membersTableRows
+  }
+
+  async gerarAtaDocx() {
+
+    const doc = new Document({
+      creator: "JP",
+      title: "Ata de Presença",
+      description: "Ata da reunião de " + this.dataAtual,
+      sections: [
+        {
+          children: [
+            new Paragraph({
+              children: [new TextRun('ATA DE PRESENÇA')],
+              heading: HeadingLevel.HEADING_1,
+              alignment: AlignmentType.CENTER,
+            }),
+            new Paragraph({
+              children: [new TextRun('Assembléia IBC')],
+              heading: HeadingLevel.HEADING_2,
+              alignment: AlignmentType.CENTER,
+            }),
+            new Paragraph({
+              children: [new TextRun('Data: ' + this.dataAtual)],
+              alignment: AlignmentType.LEFT,
+            }),
+            new Paragraph({
+              children: [new TextRun('Membros presentes')],
+              heading: HeadingLevel.HEADING_2,
+              alignment: AlignmentType.LEFT,
+            }),
+            new Paragraph({
+              spacing: {
+                after: 100, // 100 twips (1/20 of a point) ~= 5 points ~= 100/72*5 pixels
+              },
+            }),
+            new Table({
+              rows: [
+                // Header row
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [new Paragraph("Nome")],
+                      width: {
+                        size: 25,
+                        type: WidthType.PERCENTAGE,
+                      },
+                    }),
+                    new TableCell({
+                      children: [new Paragraph("CPF")],
+                      width: {
+                        size: 25,
+                        type: WidthType.PERCENTAGE,
+                      },
+                    }),
+                    new TableCell({
+                      children: [new Paragraph("RG")],
+                      width: {
+                        size: 25,
+                        type: WidthType.PERCENTAGE,
+                      },
+                    }),
+                    new TableCell({
+                      children: [new Paragraph("Assinatura")],
+                      width: {
+                        size: 25,
+                        type: WidthType.PERCENTAGE,
+                      },
+                    }),
+                  ],
+                }),
+                // Member rows
+                ...this.membersRows(),
+              ],
+            }),
+            new Paragraph({
+              spacing: {
+                after: 300, // 100 twips (1/20 of a point) ~= 5 points ~= 100/72*5 pixels
+              },
+            }),
+            // Line for the signature
+            new Paragraph({
+              children: [new TextRun("_____________________________")],
+              alignment: AlignmentType.CENTER,
+              
+            }),
+            // Text for the signature
+            new Paragraph({
+              children: [new TextRun("Assinatura do Pastor Presidente")],
+              alignment: AlignmentType.CENTER,
+            }),
+          ],
+        },
+      ],
+    });
+
+
+    Packer.toBlob(doc).then((blob) => {
+      saveAs(blob, "ata-de-presenca.docx");
+    });
   }
 }

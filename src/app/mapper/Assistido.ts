@@ -34,7 +34,7 @@ export class AssistidoMapper {
       : '';
       assistido.endereco.estado = form.estado.toUpperCase();
 
-    assistido.familiares = form.familiares.length > 0 ? form.familiares : '';
+    assistido.familiares = form.familiares?.length > 0 ? form.familiares : '';
 
     if (form.key) assistido.key = form.key;
 

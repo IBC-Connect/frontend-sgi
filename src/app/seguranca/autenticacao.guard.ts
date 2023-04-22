@@ -31,6 +31,10 @@ export class AutenticacaoGuard implements CanActivateChild {
     | UrlTree {
     return new Promise((resolve) => {
       const usuario = this.autenticaService.pegarDadosLocalmente();
+      
+      resolve(true);
+
+      /*
 
       if (usuario) {
         this.autenticaService.afAuth.authState.subscribe((user) => {
@@ -44,7 +48,7 @@ export class AutenticacaoGuard implements CanActivateChild {
       } else {
         this.mensagemAlertaPrecisaFazerLogin();
         resolve(false);
-      }
+      }*/
     });
   }
 

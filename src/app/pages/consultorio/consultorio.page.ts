@@ -49,10 +49,9 @@ export class ConsultorioPage implements OnInit {
 
   filtrarPorPsicologo(listaDiarios: Diario[]) {
     let usuarioLogado = this.autenticacaoService.pegarDadosLocalmente();
-    //let usuarioLogado = DadosUsuarioUtil.dadosUsuarioLogado();
 
     return listaDiarios.filter((d) => {
-      d.uIdPsicologo === usuarioLogado.uid;
+      d.email === usuarioLogado.email;
     });
   }
 
