@@ -1,11 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ToastController } from "@ionic/angular";
 import { Observable } from "rxjs";
 import { AssistidoMapper } from "src/app/mapper/Assistido";
-import { Assistido } from "src/app/modelo/Assistido";
-import { Endereco } from "src/app/modelo/Endereco";
 import { Projeto } from "src/app/modelo/Projeto";
 import { AssistidoService } from "src/app/servicos/Assistido";
 import { ConsultaCEPService } from "src/app/servicos/ConsultaCEP";
@@ -14,6 +12,8 @@ import { DateUtil } from "src/app/util/DateUtil";
 import { InformacoesPessoaisUtil } from "src/app/util/InformacoesPessoaisUtil";
 import { MensagensUtil } from "src/app/util/MensagensUtil";
 import { ValidadorInformacoesPessoais } from "src/app/validador/ValidadorInformacoesPessoais";
+import { Assistido } from './../../../modelo/Assistido';
+import { Familiar } from './../../../modelo/Familiar';
 
 @Component({
   selector: "app-assistido",
@@ -33,6 +33,8 @@ export class AssistidoPage implements OnInit {
   numTotalProjetos: number;
   listaProjetosObservable: Observable<any[]>;
 
+  familiar: Familiar;
+
   constructor(
     private formulador: FormBuilder,
     private aviso: ToastController,
@@ -43,6 +45,7 @@ export class AssistidoPage implements OnInit {
   ) {
     const nav = this.router.getCurrentNavigation();
     this.assistido = nav.extras.state.content;
+    this.familiar = new Familiar();
   }
 
   ngOnInit() {
@@ -50,11 +53,58 @@ export class AssistidoPage implements OnInit {
     this.inicializarProjetos();
   }
 
+  get familiares(): FormArray {
+    return this.formulario.controls["familiares"] as FormArray;
+  }
+
+  adicionarFamiliar() {
+    this.familiares.push(this.novoFamiliarForm());
+  }
+
+  removerFamiliar(index: number) {
+    this.familiares.removeAt(index);
+  }
+
+  novoFamiliarForm(): FormGroup {
+    return this.formulador.group({
+      nome: [this.familiar.nome, Validators.required],
+      parentesco: [this.familiar.parentesco, Validators.required],
+      beneficiadoPelaIgreja: [
+        this.familiar.beneficiadoPelaIgreja,
+        Validators.required,
+      ],
+      descricaoBeneficios: [this.familiar.descricaoBeneficios],
+      precisaAjuda: [this.familiar.precisaAjuda],
+    });
+  }
+
+  novoFamiliarExistenteForm(ass: Familiar): FormGroup {
+    return this.formulador.group({
+      nome: [ass.nome, Validators.required],
+      parentesco: [ass.parentesco, Validators.required],
+      beneficiadoPelaIgreja: [
+        ass.beneficiadoPelaIgreja,
+        Validators.required,
+      ],
+      descricaoBeneficios: [ass.descricaoBeneficios],
+      precisaAjuda: [ass.precisaAjuda],
+    });
+  }
+
+  adicionarFamiliares(familiares: Familiar[]){
+    if (familiares) {
+      familiares.forEach((familiar) => {
+        this.familiares.push(this.novoFamiliarExistenteForm(familiar))
+      })
+    }
+  }
+
   private inicializar(): void {
     this.mensagens = new MensagensUtil(this.aviso);
     this.estadoCivil = InformacoesPessoaisUtil.estadoCivil();
     this.escolaridade = InformacoesPessoaisUtil.escolaridade();
     this.criarFormulario();
+    this.adicionarFamiliares(this.assistido.familiares);
   }
 
   private inicializarProjetos() {
@@ -101,6 +151,7 @@ export class AssistidoPage implements OnInit {
       projetosAssistidos: [this.assistido.projetos],
       cpf: [this.assistido.cpf],
       rg: [this.assistido.rg],
+      familiares: this.formulador.array([])
     });
   }
 

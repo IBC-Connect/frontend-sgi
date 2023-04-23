@@ -1,3 +1,4 @@
+import { Familiar } from './../../../modelo/Familiar';
 import { Component } from '@angular/core';
 import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
@@ -40,8 +41,8 @@ export class AssistidoPage {
         a.nomeCompleto > b.nomeCompleto
           ? 1
           : b.nomeCompleto > a.nomeCompleto
-          ? -1
-          : 0
+            ? -1
+            : 0
       );
     });
   }
@@ -54,6 +55,16 @@ export class AssistidoPage {
 
   public formatarDataDeNascimento(data: any): any {
     return data.includes("/") ? data : DateUtil.dateFormatterBrazil(data);
+  }
+
+  exibirFamiliares(assistido: Assistido) {
+    if (!assistido.familiares || assistido.familiares.length === 0) {
+      return '';
+    }
+  
+    return assistido.familiares
+      .map(familiar => `${familiar.nome} - ${familiar.parentesco}`)
+      .join(', ');
   }
 
   public onSearchTerm(ev: any) {

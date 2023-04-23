@@ -29,6 +29,8 @@
                 {{assistido.projetos ? 'Projetos: '.concat(assistido.projetos[0]) : ''}}
                 <br />
                 {{assistido.observacoes? 'Observações: '.concat(assistido.observacoes) : '' }}
+                <br />
+                {{assistido.familiares? 'Familiares: ' : ''}}{{exibirFamiliares(assistido)}}
               </ion-label>
             </ion-item>
             <ion-item-options side="start">
