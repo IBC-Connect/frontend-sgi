@@ -1,10 +1,10 @@
-import { DateUtil } from "src/app/util/DateUtil";
 import { Component } from "@angular/core";
 import { NavController } from "@ionic/angular";
 import * as moment from "moment";
 import { Observable } from "rxjs";
 import { Membro } from "src/app/modelo/Membro";
 import { MembroService } from "src/app/servicos/Membro";
+import { DateUtil } from "src/app/util/DateUtil";
 import { MensagensUtil } from "src/app/util/MensagensUtil";
 
 @Component({
@@ -29,13 +29,17 @@ export class AniversarioDoMesPage {
   }
 
   private inicializar(): void {
-    this.listaMembrosObservable = this.membroService.listar();
-    this.listaMembrosObservable.subscribe((response) => {
-      this.membros = response;
-      this.membros = this.filtrarMembrosAtivos(response);
-      this.membros = this.exibirAniversariantes(this.membros);
-      this.membrosFiltrados = this.membros;
-      this.totalAniversariantes = this.membros.length;
+    this.membroService.listar().subscribe((response) => {
+      if (response) {
+        this.membros = response;
+        this.membrosFiltrados = this.exibirAniversariantes(response);
+        this.membrosFiltrados = this.ordernarDataAniversario(this.membrosFiltrados);
+        this.totalAniversariantes = this.membros.length;
+      } else {
+        this.membros = [];
+        this.membrosFiltrados = [];
+        this.totalAniversariantes = 0;
+      }
     });
   }
 
@@ -47,15 +51,31 @@ export class AniversarioDoMesPage {
     );
   }
 
+  private ordernarDataAniversario(membrosFiltrados) {
+    return membrosFiltrados.sort((a, b) => {
+      const dataNascimentoA = moment(a.dataNascimento, "DD/MM/YYYY");
+      const dataNascimentoB = moment(b.dataNascimento, "DD/MM/YYYY");
+
+      // Comparando o mês do aniversário
+      const diffMonth = dataNascimentoA.month() - dataNascimentoB.month();
+      if (diffMonth !== 0) {
+        return diffMonth;
+      }
+
+      // Comparando o dia do aniversário
+      return dataNascimentoA.date() - dataNascimentoB.date();
+    });
+  }
+
   public exibirAniversariantes(listaMembros) {
     return listaMembros.filter(
-      (m) => new Date(m.dataNascimento).getDate() === new Date().getMonth() + 1
+      (m) => moment(m.dataNascimento, "DD/MM/YYYY").month() === moment().month()
     );
   }
 
   public idadeAtual(membro) {
     let anoAtual = moment();
-    let anoMembro = moment(membro.dataNascimento);
+    let anoMembro = moment(membro.dataNascimento, "DD/MM/YYYY")
     return anoAtual.year() - anoMembro.year();
   }
 

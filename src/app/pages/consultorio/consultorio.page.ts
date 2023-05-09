@@ -6,14 +6,13 @@ import {
 } from "@ionic/angular";
 import { Observable } from "rxjs";
 import { Diario } from "src/app/modelo/Diario";
+import { Membro } from "src/app/modelo/Membro";
+import { Usuario } from "src/app/modelo/Usuario";
 import { AutenticacaoService } from "src/app/servicos/Autenticacao";
 import { DiarioService } from "src/app/servicos/Diario";
+import { MembroService } from "src/app/servicos/Membro";
 import { MensagensUtil } from "src/app/util/MensagensUtil";
 import { RegistroConsultorioModalPage } from "./../componentes/registro-consultorio-modal/registro-consultorio-modal.page";
-import { MembroService } from "src/app/servicos/Membro";
-import { Membro } from "src/app/modelo/Membro";
-import { newArray } from "@angular/compiler/src/util";
-import { Usuario } from "src/app/modelo/Usuario";
 
 @Component({
   selector: "app-consultorio",
@@ -24,22 +23,22 @@ export class ConsultorioPage implements OnInit {
   listaDiarios: Diario[];
   listaDiariosFiltrados: Diario[];
   listaDiariosObservable: Observable<any[]>;
-  
+
   numTotalRegistros: number;
-  
+
   listaMembros: Membro[];
   listaMembrosObservable: Observable<any[]>;
 
   mensagens: MensagensUtil;
 
-  usuarioLogado : Usuario;
-  perfilUsuario : Membro;
+  usuarioLogado: Usuario;
+  perfilUsuario: Membro;
 
   constructor(
     private autenticacaoService: AutenticacaoService,
     private modalController: ModalController,
     private diarioService: DiarioService,
-    private membroService : MembroService,
+    private membroService: MembroService,
     private alertController: AlertController,
     private aviso: ToastController
   ) {
@@ -53,7 +52,7 @@ export class ConsultorioPage implements OnInit {
 
   public inicializar(): void {
     let membro: Membro | null = null;
-  
+
     this.membroService.listar().subscribe((response) => {
       this.listaMembros = response;
       const listaMembrosEncontrados: Membro[] = response.filter(
@@ -61,13 +60,13 @@ export class ConsultorioPage implements OnInit {
       );
       membro = listaMembrosEncontrados.length > 0 ? listaMembrosEncontrados[0] : null;
     });
-  
+
     this.diarioService.listar().subscribe((response) => {
       this.listaDiarios = response;
       this.listaDiariosFiltrados = response.filter(
         (psi) => psi.email === this.usuarioLogado.email || (membro && membro.perfil === "ADMIN")
       );
-  
+
       this.numTotalRegistros = this.listaDiariosFiltrados.length;
     });
   }

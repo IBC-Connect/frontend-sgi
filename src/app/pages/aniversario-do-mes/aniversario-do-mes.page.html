@@ -3,19 +3,14 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="inicio"></ion-back-button>
     </ion-buttons>
-    <ion-title
-      >Aniversariantes do mês: {{aniversarioMes()}}</ion-title
-    >
+    <ion-title>Aniversariantes do mês: {{aniversarioMes()}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <h2 *ngIf="totalAniversariantes == 0"> Não há aniversariantes esse mês.</h2>
-  <ion-searchbar
-    (ionChange)="pesquisarMembros($event)"
-    placeholder="Digite o nome do aniversariante."
-    color="tertiary"
-  ></ion-searchbar>
+  <ion-searchbar *ngIf="totalAniversariantes > 0" (ionChange)="pesquisarMembros($event)"
+    placeholder="Digite o nome do aniversariante." color="tertiary"></ion-searchbar>
   <ion-grid>
     <ion-row align-items-center justify-content-center>
       <ion-col>
@@ -31,7 +26,8 @@
                 <br />
                 <div *ngIf="membro.whatsapp">
                   {{membro.whatsapp? 'Whatsapp: '.concat(membro.whatsapp) : '' }}
-                <a target="_blank" [href]="formatarNumeroWhatsapp(membro.whatsapp)"><ion-icon name="send-outline"></ion-icon></a>
+                  <a target="_blank" [href]="formatarNumeroWhatsapp(membro.whatsapp)"><ion-icon
+                      name="send-outline"></ion-icon></a>
                 </div>
               </ion-label>
             </ion-item>

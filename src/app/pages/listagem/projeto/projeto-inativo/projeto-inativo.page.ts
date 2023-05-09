@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { AlertController, ToastController } from "@ionic/angular";
 import { Observable } from "rxjs";
 import { Projeto } from "src/app/modelo/Projeto";
+import { Usuario } from "src/app/modelo/Usuario";
+import { AutenticacaoService } from "src/app/servicos/Autenticacao";
 import { ProjetoService } from "src/app/servicos/Projeto";
 import { MensagensUtil } from "src/app/util/MensagensUtil";
 
@@ -17,37 +19,38 @@ export class ProjetoInativoPage implements OnInit {
   listaProjetosObservable: Observable<any[]>;
   numTotalProjetos: Number = 0;
 
+  usuarioLogado: Usuario;
+
   constructor(
     private aviso: ToastController,
     public alertController: AlertController,
-    private projetoService: ProjetoService
-  ) {}
+    private projetoService: ProjetoService,
+    private autenticacaoService: AutenticacaoService
+  ) { }
 
   ngOnInit() {
     this.inicializar();
+    this.usuarioLogado = this.autenticacaoService.pegarDadosLocalmente();
   }
 
   private inicializar(): void {
     this.mensagens = new MensagensUtil(this.aviso);
-    this.listaProjetosObservable = this.projetoService.listar();
-    this.listaProjetosObservable.subscribe((response) => {
-      this.projetosInativos = response;
-      this.projetosInativosFiltrados = response;
-      this.projetosInativos = this.projetosInativos.filter(
-        (m) => m.situacao === "Inativo"
-      );
-      this.projetosInativosFiltrados = this.projetosInativosFiltrados.filter(
-        (m) => m.situacao === "Inativo"
-      );
-      this.numTotalProjetos =
-        this.projetosInativos.length > 0 ? this.projetosInativos.length : 0;
-      this.projetosInativosFiltrados.sort((a, b) =>
-        a.responsavel > b.responsavel
-          ? 1
-          : b.responsavel > a.responsavel
-          ? -1
-          : 0
-      );
+    this.projetoService.listar().subscribe((response) => {
+
+      if (response) {
+        this.projetosInativos = response;
+        this.projetosInativosFiltrados = response.filter(
+          (m) => m.situacao === "Inativo"
+        );
+        this.numTotalProjetos = this.projetosInativosFiltrados.length;
+        this.projetosInativosFiltrados.sort((a, b) =>
+          a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0
+        );
+      } else {
+        this.projetosInativos = [];
+        this.projetosInativosFiltrados = []
+        this.numTotalProjetos = 0;
+      }
     });
   }
 
@@ -112,6 +115,10 @@ export class ProjetoInativoPage implements OnInit {
       this.projetoService.deletar(projeto.key, "Projeto excluido com sucesso!");
       this.inicializar();
     }
+  }
+
+  private desabilitaAcessoBotoes(): boolean {
+    return this.usuarioLogado.perfil === 'MEM' ? true : false;
   }
 
   public pesquisarProjetos(ev: any) {

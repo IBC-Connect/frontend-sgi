@@ -5,13 +5,15 @@
     </ion-buttons>
     <ion-title>Total de eventos: {{numTotalEventos}}</ion-title>
 
-    <div slot="end">
+    <div slot="end" style="margin-right: 16px;">
       <ion-datetime
         locale="pt-BR"
         displayFormat="MMM YYYY"
         pickerFormat="MMM YYYY"
         [(ngModel)]="dataSelecionada"
         min="2020"
+        monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
+        monthShortNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
         (ionChange)="dataMudando($event)"
       ></ion-datetime>
     </div>
@@ -39,7 +41,7 @@
                 : '' }}
               </ion-label>
             </ion-item>
-            <ion-item-options side="start">
+            <ion-item-options side="start" *ngIf="desabilitaAcessoBotoes()">
               <button
                 ion-button
                 (click)="editarEvento(evento)"

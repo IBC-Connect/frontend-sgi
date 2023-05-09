@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController } from '@ionic/angular';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 import { Cargo } from 'src/app/modelo/Cargo';
+import { Usuario } from 'src/app/modelo/Usuario';
+import { AutenticacaoService } from 'src/app/servicos/Autenticacao';
 import { CargoService } from 'src/app/servicos/Cargo';
 import { MensagensUtil } from 'src/app/util/MensagensUtil';
 import { RedirecionadorUtil } from 'src/app/util/RedirecionadorUtil';
-import { AlertController } from '@ionic/angular';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cargo',
@@ -20,29 +21,43 @@ export class CargoPage {
   mensagens: MensagensUtil;
   redirecionador: RedirecionadorUtil;
 
+  usuarioLogado: Usuario;
+
   constructor(
     private cargoService: CargoService,
     private aviso: ToastController,
     private navCtrl: NavController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private autenticacaoService: AutenticacaoService
   ) {
     this.inicializar();
   }
 
+  ngOnInit(): void {
+    this.usuarioLogado = this.autenticacaoService.pegarDadosLocalmente();
+  }
+
   public inicializar(): void {
     this.mensagens = new MensagensUtil(this.aviso);
-    this.listaCargosObservable = this.cargoService.listar();
-    this.listaCargosObservable.subscribe((response) => {
-      this.listaCargos = response;
-      this.listaCargosFiltrados = response;
-      this.numTotalCargos = this.listaCargos.length;
-      this.listaCargosFiltrados.sort((a, b) =>
-        a.nome > b.nome
-          ? 1
-          : b.nome > a.nome
-          ? -1
-          : 0
-      );
+    this.cargoService.listar().subscribe((response) => {
+
+      if (response) {
+        this.listaCargos = response;
+        this.listaCargosFiltrados = response;
+        this.numTotalCargos = this.listaCargos.length;
+        this.listaCargosFiltrados.sort((a, b) =>
+          a.nome > b.nome
+            ? 1
+            : b.nome > a.nome
+              ? -1
+              : 0
+        );
+      } else {
+        this.listaCargos = [];
+        this.listaCargosFiltrados = [];
+        this.numTotalCargos = 0;
+      }
+
     });
   }
 
@@ -66,6 +81,10 @@ export class CargoPage {
       ],
     });
     await alert.present();
+  }
+
+  private desabilitaAcessoBotoes(): boolean {
+    return this.usuarioLogado.perfil === 'MEM' ? false : true;
   }
 
   private excluirCargo(cargo: Cargo): void {

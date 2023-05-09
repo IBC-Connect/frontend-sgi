@@ -1,28 +1,29 @@
-h1{
-   font-family: 'Lexend', sans-serif;
-    text-align: center;
-    margin: 15px;
-    font-size: 16pt;
- 
-    color: #2e2e3c;
+h1 {
+  font-family: 'Lexend', sans-serif;
+  text-align: center;
+  margin: 15px;
+  font-size: 16pt;
+
+  color: #2e2e3c;
 }
- 
-h2{
+
+h2 {
   font-size: 12pt;
   font-family: 'Lexend', sans-serif;
+  text-align: center;
+
   a {
     color: #A57D51;
   }
 }
 
 img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width:20%
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%
 }
 
- ion-grid{
-     margin:15px
- }
-
+ion-grid {
+  margin: 15px
+}

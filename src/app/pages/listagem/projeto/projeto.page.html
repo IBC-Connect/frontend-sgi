@@ -1,6 +1,6 @@
 <ion-content class="ion-padding">
   <ion-tabs>
-    <ion-tab-bar slot="bottom">
+    <ion-tab-bar slot="bottom" *ngIf="desabilitaAcessoBotoes()">
       <ion-tab-button tab="ativos">
         <ion-icon name="person-add"></ion-icon>
         <ion-label>Ativos</ion-label>

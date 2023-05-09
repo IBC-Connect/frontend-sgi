@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Projeto } from 'src/app/modelo/Projeto';
+import { Usuario } from 'src/app/modelo/Usuario';
+import { AutenticacaoService } from 'src/app/servicos/Autenticacao';
 import { ProjetoService } from 'src/app/servicos/Projeto';
 import { MensagensUtil } from 'src/app/util/MensagensUtil';
 import { RedirecionadorUtil } from 'src/app/util/RedirecionadorUtil';
@@ -19,33 +21,40 @@ export class ProjetoAtivoPage implements OnInit {
   numTotalProjetos: number;
   listaProjetosObservable: Observable<any[]>;
 
+  usuarioLogado: Usuario;
+
   constructor(
     private projetoService: ProjetoService,
     private aviso: ToastController,
     private navegador: NavController,
-    public alertController: AlertController
-  ) {}
+    public alertController: AlertController,
+    private autenticacaoService: AutenticacaoService
+  ) { }
 
   ngOnInit() {
     this.inicializar();
+    this.usuarioLogado = this.autenticacaoService.pegarDadosLocalmente();
   }
 
   private inicializar(): void {
     this.mensagens = new MensagensUtil(this.aviso);
-    this.listaProjetosObservable = this.projetoService.listar();
-    this.listaProjetosObservable.subscribe((response) => {
-      this.listaProjetos = response;
-      this.listaProjetosFiltrados = response;
-      this.listaProjetos = this.listaProjetos.filter(
-        (m) => m.situacao === "Ativo"
-      );
-      this.listaProjetosFiltrados = this.listaProjetosFiltrados.filter(
-        (m) => m.situacao === "Ativo"
-      );
-      this.numTotalProjetos = this.listaProjetos.length;
-      this.listaProjetosFiltrados.sort((a, b) =>
-        a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0
-      );
+    this.projetoService.listar().subscribe((response) => {
+
+      if (response) {
+        this.listaProjetos = response;
+        this.listaProjetosFiltrados = response.filter(
+          (m) => m.situacao === "Ativo"
+        );
+        this.numTotalProjetos = this.listaProjetosFiltrados.length;
+        this.listaProjetosFiltrados.sort((a, b) =>
+          a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0
+        );
+      } else {
+        this.listaProjetos = [];
+        this.listaProjetosFiltrados = []
+        this.numTotalProjetos = 0;
+      }
+
     });
   }
 
@@ -113,6 +122,10 @@ export class ProjetoAtivoPage implements OnInit {
       ],
     });
     await alert.present();
+  }
+
+  private desabilitaAcessoBotoes(): boolean {
+    return this.usuarioLogado.perfil === 'MEM' ? false : true;
   }
 
   private inativarProjeto(projeto: Projeto): void {

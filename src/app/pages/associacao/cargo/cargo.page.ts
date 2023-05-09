@@ -39,11 +39,9 @@ export class CargoPage {
   }
 
   private inicializar(): void {
-    this.listaMembrosObservable = this.membroService.listar();
-    this.listaMembrosObservable.subscribe((response) => {
-      this.membrosAtivos = response;
-      this.membrosAtivos = this.membrosAtivos.filter(
-        (m) => m.situacao === 'Ativo'
+    this.membroService.listar().subscribe((response) => {
+      this.membrosAtivos = response.filter((m) =>
+        this.filtrarMembro(m)
       );
       this.membrosAtivos.sort((a, b) =>
         a.nomeCompleto > b.nomeCompleto
@@ -56,6 +54,13 @@ export class CargoPage {
 
     this.criarFormulario();
     this.formulario.controls['responsavel'].setValue(this.cargo.responsavel);
+  }
+
+  private filtrarMembro(membro): boolean {
+    return (
+      membro.situacao === "Ativo" &&
+      (membro.classificacao === undefined || membro.classificacao === "Membro")
+    );
   }
 
   private criarFormulario(): void {

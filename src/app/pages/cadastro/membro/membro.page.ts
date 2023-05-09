@@ -79,7 +79,7 @@ export class MembroPage {
       cidade: [this.membro.endereco.cidade, Validators.required],
       estado: [this.membro.endereco.estado, Validators.required],
       perfil: [this.membro.perfil, Validators.required],
-      senha: [this.membro.senha],
+      senha: [this.membro.senha, Validators.required],
     });
   }
 

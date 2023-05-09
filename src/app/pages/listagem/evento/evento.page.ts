@@ -1,23 +1,25 @@
-import { Component } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import {
   AlertController,
   NavController,
   ToastController,
 } from "@ionic/angular";
+import * as moment from "moment";
+import "moment/locale/pt-br";
 import { Observable } from "rxjs";
 import { Evento } from "src/app/modelo/Evento";
+import { Usuario } from "src/app/modelo/Usuario";
+import { AutenticacaoService } from "src/app/servicos/Autenticacao";
 import { EventoService } from "src/app/servicos/Evento";
 import { MensagensUtil } from "src/app/util/MensagensUtil";
 import { RedirecionadorUtil } from "src/app/util/RedirecionadorUtil";
-import * as moment from "moment";
-import "moment/locale/pt-br";
 
 @Component({
   selector: "app-evento",
   templateUrl: "./evento.page.html",
   styleUrls: ["./evento.page.scss"],
 })
-export class EventoPage {
+export class EventoPage implements OnInit {
   listaEventos: Evento[];
   listaEventosFiltrados: Evento[];
   numTotalEventos: number;
@@ -26,30 +28,47 @@ export class EventoPage {
   redirecionador: RedirecionadorUtil;
 
   dataSelecionada: any = moment().format("YYYY-MM-DD");
+  usuarioLogado: Usuario;
 
   constructor(
     private eventoService: EventoService,
     private aviso: ToastController,
     private navCtrl: NavController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private mudancas: ChangeDetectorRef,
+    private autenticacaoService: AutenticacaoService
   ) {
     moment.locale("pt-br");
     this.inicializar();
   }
 
+  ngOnInit(): void {
+    this.usuarioLogado = this.autenticacaoService.pegarDadosLocalmente();
+  }
+
   public inicializar(): void {
     this.mensagens = new MensagensUtil(this.aviso);
-    this.listaEventosObservable = this.eventoService.listar();
-    this.listaEventosObservable.subscribe(async (response) => {
-      console.log(response);
-      this.listaEventos = response;
-      this.listaEventosFiltrados = this.listaEventos;
-      this.numTotalEventos = this.listaEventos ? this.listaEventos.length : 0;
-      this.listaEventosFiltrados = this.listaEventosFiltrados
-        ? this.listaEventosFiltrados.sort((a, b) =>
-            moment.utc(b.data).diff(moment.utc(a.data))
-          )
-        : new Array<Evento>();
+    this.eventoService.listar().subscribe((response) => {
+
+      if (response) {
+        this.listaEventos = response;
+
+        this.listaEventosFiltrados = response.filter((evento) => {
+          let dataEvento = moment(evento.data, "DD/MM/YYYY").format("MM/YYYY");
+          let dataAtual = moment().format("MM/YYYY");
+
+          return dataEvento === dataAtual ? true : false;
+        });
+
+        this.listaEventosFiltrados = this.listaEventosFiltrados.sort((a, b) =>
+          moment(b.data, "DD/MM/YYYY").diff(moment(a.data, "DD/MM/YYYY"))
+        )
+        this.numTotalEventos = this.listaEventosFiltrados.length;
+      } else {
+        this.listaEventos = [];
+        this.listaEventosFiltrados = [];
+        this.numTotalEventos = 0;
+      }
     });
   }
 
@@ -73,6 +92,10 @@ export class EventoPage {
       ],
     });
     await alert.present();
+  }
+
+  private desabilitaAcessoBotoes(): boolean {
+    return this.usuarioLogado.perfil === 'MEM' ? false : true;
   }
 
   private excluirEvento(evento: Evento): void {
@@ -124,5 +147,7 @@ export class EventoPage {
     });
 
     this.numTotalEventos = this.listaEventosFiltrados.length;
+
+    this.mudancas.detectChanges();
   }
 }

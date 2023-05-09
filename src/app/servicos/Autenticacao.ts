@@ -56,12 +56,7 @@ export class AutenticacaoService {
     this.cookieService.deleteAll();
   }
 
-  public salvaUsuario(usuario: any): void {
-    let membro = new Membro();
-
-    membro.email = usuario.email;
-    membro.uId = usuario.uid;
-
+  public salvaUsuario(membro: any): void {
     this.salvarDadosLocalmente(membro);
   }
 

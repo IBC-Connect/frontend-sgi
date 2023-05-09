@@ -24,7 +24,7 @@
                 {{cargo.responsavel? 'Responsável: '.concat(cargo.responsavel) : '' }}
               </ion-label>
             </ion-item>
-            <ion-item-options side="start">
+            <ion-item-options side="start" *ngIf="desabilitaAcessoBotoes()">
               <button
                 ion-button
                 (click)="editarCargo(cargo)"

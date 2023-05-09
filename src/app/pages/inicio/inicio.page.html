@@ -80,7 +80,7 @@
       routerLink="/lista/projeto"
       routerDirection="forward"
       class="ion-text-wrap"
-      *ngIf="permissaoAdmin || permissaoSecretaria"
+      *ngIf="permissaoGeral"
     >
       <ion-icon class="icone" name="receipt-outline"></ion-icon> <br />
       <label>Lista de Projetos</label>
@@ -91,7 +91,7 @@
       routerLink="/lista/cargo"
       routerDirection="forward"
       class="ion-text-wrap"
-      *ngIf="permissaoAdmin || permissaoSecretaria"
+      *ngIf="permissaoGeral"
     >
       <ion-icon class="icone" name="file-tray-stacked-outline"></ion-icon>
       <br />
