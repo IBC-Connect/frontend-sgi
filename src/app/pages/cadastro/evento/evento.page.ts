@@ -33,7 +33,6 @@ export class EventoPage {
     private consultaCep: ConsultaCEPService,
     private membroService: MembroService
   ) {
-    this.listaMembrosObservable = this.membroService.listar();
     this.mensagens = new MensagensUtil(this.aviso);
     this.inicializar();
   }
@@ -42,7 +41,7 @@ export class EventoPage {
     this.evento = new Evento();
     this.evento.local = new Endereco();
     this.horarios = DiaDaSemanaEHorarioUtil.horarios();
-    this.listaMembrosObservable.subscribe((response) => {
+    this.membroService.listar().subscribe((response) => {
       this.membrosAtivos = response;
       this.membrosAtivos = this.membrosAtivos.filter(
         (m) => m.situacao == 'Ativo'
