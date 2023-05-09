@@ -1,5 +1,3 @@
-import { AutenticacaoService } from "src/app/servicos/Autenticacao";
-import { AutenticacaoGuard } from "./../../seguranca/autenticacao.guard";
 import { Component, OnInit } from "@angular/core";
 import {
   AlertController,
@@ -8,10 +6,14 @@ import {
 } from "@ionic/angular";
 import { Observable } from "rxjs";
 import { Diario } from "src/app/modelo/Diario";
+import { AutenticacaoService } from "src/app/servicos/Autenticacao";
 import { DiarioService } from "src/app/servicos/Diario";
 import { MensagensUtil } from "src/app/util/MensagensUtil";
-import { DadosUsuarioUtil } from "./../../util/DadosUsuarioUtil";
 import { RegistroConsultorioModalPage } from "./../componentes/registro-consultorio-modal/registro-consultorio-modal.page";
+import { MembroService } from "src/app/servicos/Membro";
+import { Membro } from "src/app/modelo/Membro";
+import { newArray } from "@angular/compiler/src/util";
+import { Usuario } from "src/app/modelo/Usuario";
 
 @Component({
   selector: "app-consultorio",
@@ -21,37 +23,52 @@ import { RegistroConsultorioModalPage } from "./../componentes/registro-consulto
 export class ConsultorioPage implements OnInit {
   listaDiarios: Diario[];
   listaDiariosFiltrados: Diario[];
-  numTotalRegistros: number;
   listaDiariosObservable: Observable<any[]>;
+  
+  numTotalRegistros: number;
+  
+  listaMembros: Membro[];
+  listaMembrosObservable: Observable<any[]>;
+
   mensagens: MensagensUtil;
+
+  usuarioLogado : Usuario;
+  perfilUsuario : Membro;
 
   constructor(
     private autenticacaoService: AutenticacaoService,
     private modalController: ModalController,
     private diarioService: DiarioService,
+    private membroService : MembroService,
     private alertController: AlertController,
     private aviso: ToastController
   ) {
     this.mensagens = new MensagensUtil(this.aviso);
+    this.usuarioLogado = this.autenticacaoService.pegarDadosLocalmente();
+  }
+
+  ngOnInit() {
     this.inicializar();
   }
 
-  ngOnInit() {}
-
-  public inicializar() {
-    this.listaDiariosObservable = this.diarioService.listar();
-    this.listaDiariosObservable.subscribe((response) => {
-      this.listaDiarios = response;
-      this.listaDiariosFiltrados = response;
-      this.numTotalRegistros = this.listaDiarios.length;
+  public inicializar(): void {
+    let membro: Membro | null = null;
+  
+    this.membroService.listar().subscribe((response) => {
+      this.listaMembros = response;
+      const listaMembrosEncontrados: Membro[] = response.filter(
+        (membro) => membro.email === this.usuarioLogado.email
+      );
+      membro = listaMembrosEncontrados.length > 0 ? listaMembrosEncontrados[0] : null;
     });
-  }
-
-  filtrarPorPsicologo(listaDiarios: Diario[]) {
-    let usuarioLogado = this.autenticacaoService.pegarDadosLocalmente();
-
-    return listaDiarios.filter((d) => {
-      d.email === usuarioLogado.email;
+  
+    this.diarioService.listar().subscribe((response) => {
+      this.listaDiarios = response;
+      this.listaDiariosFiltrados = response.filter(
+        (psi) => psi.email === this.usuarioLogado.email || (membro && membro.perfil === "ADMIN")
+      );
+  
+      this.numTotalRegistros = this.listaDiariosFiltrados.length;
     });
   }
 
