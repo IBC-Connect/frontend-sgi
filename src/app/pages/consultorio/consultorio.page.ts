@@ -22,12 +22,10 @@ import { RegistroConsultorioModalPage } from "./../componentes/registro-consulto
 export class ConsultorioPage implements OnInit {
   listaDiarios: Diario[];
   listaDiariosFiltrados: Diario[];
-  listaDiariosObservable: Observable<any[]>;
 
   numTotalRegistros: number;
 
   listaMembros: Membro[];
-  listaMembrosObservable: Observable<any[]>;
 
   mensagens: MensagensUtil;
 
@@ -62,10 +60,10 @@ export class ConsultorioPage implements OnInit {
     });
 
     this.diarioService.listar().subscribe((response) => {
-      this.listaDiarios = response;
       this.listaDiariosFiltrados = response.filter(
         (psi) => psi.email === this.usuarioLogado.email || (membro && membro.perfil === "ADMIN")
       );
+      this.listaDiarios = this.listaDiariosFiltrados;
 
       this.numTotalRegistros = this.listaDiariosFiltrados.length;
     });
