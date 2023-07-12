@@ -10,6 +10,7 @@ import { AlertController } from "@ionic/angular";
 import { Observable } from "rxjs";
 
 import { AutenticacaoService } from "../servicos/Autenticacao";
+import { catchError } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -33,7 +34,13 @@ export class AutenticacaoGuard implements CanActivateChild {
       const usuario = this.autenticaService.pegarDadosLocalmente();
 
       if (usuario) {
-        this.autenticaService.afAuth.authState.subscribe((user) => {
+        this.autenticaService.afAuth.authState.pipe(
+          catchError((error) => {    // Adicione o catchError aqui
+            this.mensagemAlertaPrecisaFazerLogin();
+            resolve(false);
+            return Observable.throw(error.message);
+          })
+        ).subscribe((user) => {
           if (user) {
             resolve(true);
           } else {

@@ -68,6 +68,6 @@ export class DateUtil {
 
   public static isIdadeMaiorDozeAnos(dataNasc: string): boolean {
     let idade = moment().diff(this.dateFormatterAmerica(dataNasc), "years");
-    return idade >= 12;
+    return idade >= 0;
   }
 }

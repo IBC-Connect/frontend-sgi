@@ -4,4 +4,5 @@ export class Usuario {
   uid: string;
   perfil: string;
   senha: string;
+  localizacao?: string;
 }

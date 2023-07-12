@@ -51,7 +51,8 @@ export class LoginPage implements OnInit {
     let membro = this.filtrarUsuario(usuario, this.listaMembros);
 
     if (membro) {
-      this.autenticacao.salvaUsuario(membro);
+      let localizacao = await this.getUserLocation();
+      this.autenticacao.salvaUsuario(localizacao, membro);
       await this.autenticacao.login(this.preencherDadosLogin());
       this.redirecionadorUtil.redicionarPara("inicio");
       this.logarAcionado = false;
@@ -95,5 +96,27 @@ export class LoginPage implements OnInit {
     });
 
     loading.present();
+  }
+
+  private async getIpAddress() {
+    const response = await fetch('https://api.ipify.org?format=json');
+    const data = await response.json();
+    return data.ip;
+  }
+
+  private async getLocation(ipAddress) {
+    const response = await fetch(`http://ip-api.com/json/${ipAddress}`);
+    const locationData = await response.json();
+    return locationData;
+  }
+
+  private async getUserLocation() {
+    try {
+      const ipAddress = await this.getIpAddress();
+      const location = await this.getLocation(ipAddress);
+      return location
+    } catch (error) {
+      console.error("Erro ao obter a localização do usuário: ", error);
+    }
   }
 }

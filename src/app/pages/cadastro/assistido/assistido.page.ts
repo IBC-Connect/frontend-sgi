@@ -121,8 +121,8 @@ export class AssistidoPage implements OnInit {
       cidade: [this.assistido.endereco.cidade, Validators.required],
       estado: [this.assistido.endereco.estado, Validators.required],
       projetosAssistidos: [this.assistido.projetos],
-      cpf: [this.assistido.cpf, Validators.required],
-      rg: [this.assistido.rg, Validators.required],
+      cpf: [this.assistido.cpf],
+      rg: [this.assistido.rg],
       familiares: this.formulador.array([]),
     });
   }

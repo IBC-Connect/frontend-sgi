@@ -56,12 +56,13 @@ export class AutenticacaoService {
     this.cookieService.deleteAll();
   }
 
-  public salvaUsuario(membro: any): void {
-    this.salvarDadosLocalmente(membro);
+  public salvaUsuario(localizacao: any, membro: any): void {
+    this.salvarDadosLocalmente(localizacao, membro);
   }
 
-  private salvarDadosLocalmente(membro: Membro): void {
+  private salvarDadosLocalmente(localizacao: any ,membro: Membro): void {
     let membroData = {
+      localizacao : JSON.stringify(localizacao),
       email: membro.email,
       nome: membro.nomeCompleto,
       perfil: membro.perfil,

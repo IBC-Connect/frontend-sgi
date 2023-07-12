@@ -4,7 +4,10 @@ import { ToastController } from "@ionic/angular";
 import { Observable } from "rxjs";
 import { map, shareReplay } from "rxjs/operators";
 import { Assistido } from "../modelo/Assistido";
+import { Auditoria } from "../modelo/Auditoria";
 import { MensagensUtil } from "../util/MensagensUtil";
+import { AuditoriaService } from "./Auditoria";
+import { AutenticacaoService } from "./Autenticacao";
 
 @Injectable({
   providedIn: "root",
@@ -17,7 +20,9 @@ export class AssistidoService {
   mensagens: MensagensUtil;
   private path = "assistidos";
 
-  constructor(private db: AngularFireDatabase, private aviso: ToastController) {
+  private mensagemError = 'Erro ao cadastrar um assistido';
+
+  constructor(private db: AngularFireDatabase, private aviso: ToastController, private auditoriaService: AuditoriaService, private autenticacaoService: AutenticacaoService) {
     this.assistidoLista = new Array<Assistido>();
     this.assistidoRef = this.db.list(this.path);
     this.mensagens = new MensagensUtil(this.aviso);
@@ -35,34 +40,57 @@ export class AssistidoService {
   }
 
   public adicionarOuAtualizar(assistido: Assistido, mensagem: string): void {
+
     if (assistido.key) {
-      this.assistidoRef.update(assistido.key, assistido).then(
-        (sucess) => {
-          this.mensagens.mensagemSucesso(mensagem);
-        },
-        (error) => {
-          this.mensagens.mensagemError("Houve um erro ao cadastrar.");
-          console.log(error);
-        }
-      );
+      this.assistidoRef.update(assistido.key, assistido).then((sucess: any) => {
+        this.auditoriaService.adicionarOuAtualizar(this.objetoAuditoria('Atualizar/Cadastrar Assistido', assistido, 'Sucesso'))
+      }, (error: any) => {
+        this.auditoriaService.adicionarOuAtualizar(this.objetoAuditoria('Atualizar/Cadastrar Assistido', assistido, 'Falha'))
+        this.mensagens.mensagemError(this.mensagemError)
+      });
     } else {
       this.assistidoRef.push(assistido).then(
         (sucess) => {
+          this.auditoriaService.adicionarOuAtualizar(this.objetoAuditoria('Cadastrar Assistido', assistido, 'Falha'))
           this.mensagens.mensagemSucesso(mensagem);
         },
         (error) => {
-          this.mensagens.mensagemError("Houve um erro ao cadastrar.");
-          console.log(error);
+          this.auditoriaService.adicionarOuAtualizar(this.objetoAuditoria('Cadastrar Assistido', assistido, 'Falha'))
+          this.mensagens.mensagemError(this.mensagemError);
         }
       );
     }
   }
 
   public deletar(key: string): void {
-    this.assistidoRef.remove(key);
+    this.assistidoRef.remove(key).then((sucess: any) => {
+      this.auditoriaService.adicionarOuAtualizar(this.objetoAuditoria('Remover Assistido', { key: key }, 'Sucesso'))
+    }, (error: any) => {
+      this.auditoriaService.adicionarOuAtualizar(this.objetoAuditoria('Remover Assistido', { key: key }, 'Falha'))
+      this.mensagens.mensagemError(this.mensagemError)
+    });;
   }
 
   public deletarTudo(): void {
     this.assistidoRef.remove();
   }
+
+  private objetoAuditoria(acao: string, conteudoAcao: any, statuaAcao: string): Auditoria {
+    let dadosUsuario = this.autenticacaoService.pegarDadosLocalmente();
+
+    let dataAtual = new Date();
+    let dataFormatada = dataAtual.toLocaleDateString('pt-BR');
+
+    let auditoria = {
+      acao: acao,
+      conteudoAcao: JSON.stringify(conteudoAcao),
+      usuario: dadosUsuario.nome,
+      statuaAcao: statuaAcao,
+      dataAcao: dataFormatada,
+      localizacao : dadosUsuario.localizacao
+    }
+
+    return auditoria
+  }
+
 }
