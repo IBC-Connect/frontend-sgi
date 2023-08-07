@@ -10,6 +10,9 @@ import { AutenticacaoService } from "../../servicos/Autenticacao";
 import { MensagensUtil } from "../../util/MensagensUtil";
 import { RedirecionadorUtil } from "../../util/RedirecionadorUtil";
 import { Membro } from "src/app/modelo/Membro";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-Login",
@@ -30,7 +33,8 @@ export class LoginPage implements OnInit {
     private membroService: MembroService,
     private toast: ToastController,
     private navCtrl: NavController,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private http: HttpClient
   ) {
     this.usuario = new Usuario();
     this.mensagens = new MensagensUtil(this.toast);
@@ -51,7 +55,7 @@ export class LoginPage implements OnInit {
     let membro = this.filtrarUsuario(usuario, this.listaMembros);
 
     if (membro) {
-      let localizacao = await this.getUserLocation();
+      let localizacao = await this.getUserIPAndLocation();
       this.autenticacao.salvaUsuario(localizacao, membro);
       await this.autenticacao.login(this.preencherDadosLogin());
       this.redirecionadorUtil.redicionarPara("inicio");
@@ -98,25 +102,21 @@ export class LoginPage implements OnInit {
     loading.present();
   }
 
-  private async getIpAddress() {
-    const response = await fetch('https://api.ipify.org?format=json');
-    const data = await response.json();
-    return data.ip;
-  }
-
-  private async getLocation(ipAddress) {
-    const response = await fetch(`http://ip-api.com/json/${ipAddress}`);
-    const locationData = await response.json();
-    return locationData;
-  }
-
-  private async getUserLocation() {
-    try {
-      const ipAddress = await this.getIpAddress();
-      const location = await this.getLocation(ipAddress);
-      return location
-    } catch (error) {
-      console.error("Erro ao obter a localização do usuário: ", error);
-    }
+  getUserIPAndLocation(): Observable<any> {
+    return this.http.get('https://api.ipify.org?format=json').pipe(
+      map((response: any) => {
+        const ip = response.ip;
+        return this.http.get(`https://ipapi.co/${ip}/json/`).pipe(
+          map((locationResponse: any) => {
+            return {
+              ip,
+              city: locationResponse.city,
+              region: locationResponse.region,
+              country: locationResponse.country_name,
+            };
+          })
+        );
+      })
+    );
   }
 }

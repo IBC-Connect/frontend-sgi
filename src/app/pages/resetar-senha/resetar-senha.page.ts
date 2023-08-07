@@ -30,9 +30,8 @@ export class ResetarSenhaPage {
     if (this.usuario) {
       if (this.validaSenha(membroAlterado.senha)) {
         this.membroService.adicionarOuAtualizar(
-          this.trocaSenha(membroAlterado.senha)
+          this.trocaSenha(membroAlterado.senha), "Senha atualizada com sucesso!"
         );
-        this.mensagens.mensagemSucesso("Senha atualizada com sucesso!");
       } else {
         this.mensagens.mensagemAlerta(
           "A Senha não pode ser alterada, você está utilizando a mesma senha anterior!"

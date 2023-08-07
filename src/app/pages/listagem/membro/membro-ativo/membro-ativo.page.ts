@@ -16,6 +16,7 @@ import * as moment from 'moment';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
+
 import { Observable } from 'rxjs';
 import { Membro } from 'src/app/modelo/Membro';
 import { MembroService } from 'src/app/servicos/Membro';
@@ -37,7 +38,6 @@ export class MembroAtivoPage {
   listaMembrosObservable: Observable<any[]>;
   
   dataAtual : any;
-
   pdf: any;
 
   constructor(
@@ -119,9 +119,8 @@ export class MembroAtivoPage {
   private inativarUsuario(membro: Membro): void {
     if (membro.key) {
       membro.situacao = "Inativo";
-      this.membroService.adicionarOuAtualizar(membro);
+      this.membroService.adicionarOuAtualizar(membro, "Usuário inativado com sucesso!");
       this.inicializar();
-      this.mensagens.mensagemSucesso("Usuário inativado com sucesso!");
     }
   }
 

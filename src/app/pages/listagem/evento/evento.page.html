@@ -6,16 +6,11 @@
     <ion-title>Total de eventos: {{numTotalEventos}}</ion-title>
 
     <div slot="end" style="margin-right: 16px;">
-      <ion-datetime
-        locale="pt-BR"
-        displayFormat="MMM YYYY"
-        pickerFormat="MMM YYYY"
-        [(ngModel)]="dataSelecionada"
+      <ion-datetime locale="pt-BR" displayFormat="MMM YYYY" pickerFormat="MMM YYYY" [(ngModel)]="dataSelecionada"
         min="2020"
         monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
         monthShortNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
-        (ionChange)="dataMudando($event)"
-      ></ion-datetime>
+        (ionChange)="dataMudando($event)"></ion-datetime>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -23,12 +18,8 @@
 <ion-content padding>
   <h2 *ngIf="listaEventosFiltrados == 0">Não há eventos cadastrados.</h2>
 
-  <ion-searchbar
-    *ngIf="numTotalEventos > 0"
-    (ionChange)="pesquisarEvento($event)"
-    placeholder="Digite o nome do evento"
-    color="tertiary"
-  ></ion-searchbar>
+  <ion-searchbar *ngIf="numTotalEventos > 0" (ionChange)="pesquisarEvento($event)" placeholder="Digite o nome do evento"
+    color="tertiary"></ion-searchbar>
   <ion-grid>
     <ion-row align-items-center justify-content-center>
       <ion-col>
@@ -39,22 +30,18 @@
                 <h1 class="content-title">{{evento.nome}}</h1>
                 {{evento.responsavel? 'Responsável: '.concat(evento.responsavel)
                 : '' }}
+                <br>
+                {{evento.data}} - {{evento.horarioInicio}} / {{evento.horarioFim}}
+                <br>
+                {{evento.local.logradouro}}, {{evento.local.numero}} - {{evento.local.cep}}
               </ion-label>
             </ion-item>
             <ion-item-options side="start" *ngIf="desabilitaAcessoBotoes()">
-              <button
-                ion-button
-                (click)="editarEvento(evento)"
-                class="bt-editar"
-              >
+              <button ion-button (click)="editarEvento(evento)" class="bt-editar">
                 <ion-icon class="icones" name="create"></ion-icon>
               </button>
 
-              <button
-                (click)="confirmarExclusao(evento)"
-                ion-button
-                class="bt-deletar"
-              >
+              <button (click)="confirmarExclusao(evento)" ion-button class="bt-deletar">
                 <ion-icon class="icones" name="trash"></ion-icon>
               </button>
             </ion-item-options>

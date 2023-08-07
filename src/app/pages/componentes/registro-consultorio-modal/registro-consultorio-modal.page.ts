@@ -10,6 +10,8 @@ import { DadosUsuarioUtil } from "./../../../util/DadosUsuarioUtil";
 import { Diario } from "./../../../modelo/Diario";
 import { Usuario } from "./../../../modelo/Usuario";
 import { DiarioService } from "./../../../servicos/Diario";
+import { AssistidoService } from "src/app/servicos/Assistido";
+import { Assistido } from "src/app/modelo/Assistido";
 
 @Component({
   selector: "app-registro-consultorio-modal",
@@ -17,58 +19,59 @@ import { DiarioService } from "./../../../servicos/Diario";
   styleUrls: ["./registro-consultorio-modal.page.scss"],
 })
 export class RegistroConsultorioModalPage implements OnInit {
-  totalMembros: Number;
-  membro: Membro;
-  listaMembros: Membro[];
-  listaMembrosFiltrados: Membro[];
-  listaMembrosObservable: Observable<any[]>;
+  
   diario: Diario;
   usuario: Usuario;
+
+  totalAssistidos: Number;  
   termoPesquisa: string;
-  apareceListaMembros: boolean = true;
+  apareceListaAssistidos: boolean = true;
+
+  listaMembros: Membro[];
+  listaAssistidos: Assistido[];
+  listaAssistidoFiltrados: Assistido[];
 
   constructor(
     private membroService: MembroService,
+    private assistidoService: AssistidoService,
     private modalController: ModalController,
     private diarioService: DiarioService,
     private autenticacaoService: AutenticacaoService
   ) {
     this.diario = new Diario();
-    this.membro = new Membro();
     this.inicializar();
   }
 
   private inicializar(): void {
-    this.listaMembrosObservable = this.membroService.listar();
-    this.listaMembrosObservable.subscribe((response) => {
-      this.listaMembros = response;
-      this.listaMembrosFiltrados = response;
-      this.listaMembros = this.listaMembros.filter((m) =>
-        this.filtrarMembro(m)
-      );
-      this.listaMembrosFiltrados = this.listaMembrosFiltrados.filter((m) =>
-        this.filtrarMembro(m)
-      );
-      this.totalMembros = this.listaMembros.length;
-      this.listaMembrosFiltrados.sort((a, b) =>
+    
+    this.membroService.listar().subscribe((data: Membro[]) => {
+      this.listaMembros = data;
+    })
+
+    this.assistidoService.listar().subscribe((data: Assistido[]) => {
+      if(data){
+        this.listaAssistidos = this.ordenarAssitidos(data);
+        this.listaAssistidoFiltrados = this.listaAssistidos;
+        this.totalAssistidos = this.listaAssistidos.length;
+      } else {
+        this.listaAssistidos = new Array();
+        this.totalAssistidos = 0;
+      }
+    });
+  }
+
+  ordenarAssitidos(listaAssistidos : Assistido[]){
+    return listaAssistidos.sort((a, b) =>
         a.nomeCompleto > b.nomeCompleto
           ? 1
           : b.nomeCompleto > a.nomeCompleto
           ? -1
           : 0
       );
-    });
   }
 
-  public membroSelecionado(item) {
+  public assitidoSelecionado(item) {
     this.termoPesquisa = item.nomeCompleto;
-  }
-
-  private filtrarMembro(membro): boolean {
-    return (
-      membro.situacao === "Ativo" &&
-      (membro.classificacao === undefined || membro.classificacao === "Membro")
-    );
   }
 
   private informacoesPsicologo() {
@@ -82,7 +85,7 @@ export class RegistroConsultorioModalPage implements OnInit {
     this.diario.nomePsicologo =
       usuarioEncontrado.length > 0
         ? usuarioEncontrado[0].nomeCompleto
-        : "Psicologo Não Cadastrado";
+        : "Usuário Não Cadastrado";
     this.diario.email = this.usuario.email;
   }
 
@@ -104,11 +107,11 @@ export class RegistroConsultorioModalPage implements OnInit {
   }
 
   public onSearchTerm(ev: any) {
-    this.listaMembrosFiltrados = this.listaMembros;
+    this.listaAssistidoFiltrados = this.listaAssistidos;
     const val = ev.detail.value;
 
     if (val && val.trim() !== "") {
-      this.listaMembrosFiltrados = this.listaMembrosFiltrados.filter((term) => {
+      this.listaAssistidoFiltrados = this.listaAssistidoFiltrados.filter((term) => {
         return (
           term.nomeCompleto.toUpperCase().indexOf(val.trim().toUpperCase()) > -1
         );

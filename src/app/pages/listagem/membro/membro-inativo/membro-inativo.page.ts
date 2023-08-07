@@ -78,8 +78,7 @@ export class MembroInativoPage   {
   private ativarUsuario(membro: Membro): void {
     if (membro.key) {
       membro.situacao='Ativo';
-      this.membroService.adicionarOuAtualizar(membro);
-      this.mensagens.mensagemSucesso('Usuário ativado com sucesso!');
+      this.membroService.adicionarOuAtualizar(membro, 'Usuário ativado com sucesso!');
       this.inicializar();
     }
   }

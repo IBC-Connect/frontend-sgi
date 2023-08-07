@@ -44,6 +44,7 @@ export class AssistidoService {
     if (assistido.key) {
       this.assistidoRef.update(assistido.key, assistido).then((sucess: any) => {
         this.auditoriaService.adicionarOuAtualizar(this.objetoAuditoria('Atualizar/Cadastrar Assistido', assistido, 'Sucesso'))
+        this.mensagens.mensagemSucesso(mensagem)
       }, (error: any) => {
         this.auditoriaService.adicionarOuAtualizar(this.objetoAuditoria('Atualizar/Cadastrar Assistido', assistido, 'Falha'))
         this.mensagens.mensagemError(this.mensagemError)
@@ -81,16 +82,31 @@ export class AssistidoService {
     let dataAtual = new Date();
     let dataFormatada = dataAtual.toLocaleDateString('pt-BR');
 
-    let auditoria = {
-      acao: acao,
-      conteudoAcao: JSON.stringify(conteudoAcao),
-      usuario: dadosUsuario.nome,
-      statuaAcao: statuaAcao,
-      dataAcao: dataFormatada,
-      localizacao : dadosUsuario.localizacao
-    }
+    if (dadosUsuario.localizacao) {
 
-    return auditoria
+      let auditoria = {
+        acao: acao,
+        conteudoAcao: JSON.stringify(conteudoAcao),
+        usuario: dadosUsuario.nome,
+        statuaAcao: statuaAcao,
+        dataAcao: dataFormatada,
+        localizacao: dadosUsuario.localizacao
+      }
+
+      return auditoria
+    } else {
+
+      let auditoria = {
+        acao: acao,
+        conteudoAcao: JSON.stringify(conteudoAcao),
+        usuario: dadosUsuario.nome,
+        statuaAcao: statuaAcao,
+        dataAcao: dataFormatada,
+        localizacao: "Desconhecida"
+      }
+
+      return auditoria
+    }
   }
 
 }

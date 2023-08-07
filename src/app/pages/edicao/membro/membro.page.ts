@@ -240,8 +240,7 @@ export class MembroPage {
 
     this.disableEndereco(false);
     this.membro = MembroMapper.formularioToMembro(formulario);
-    this.membroService.adicionarOuAtualizar(this.membro);
-    this.mensagens.mensagemSucesso("Atualização realizada com sucesso!");
+    this.membroService.adicionarOuAtualizar(this.membro, "Atualização realizada com sucesso!");
     this.changes.detectChanges();
   }
 }

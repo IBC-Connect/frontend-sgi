@@ -35,7 +35,7 @@ export class InicioPage implements OnInit {
   //Permissoes
   permissaoAdmin: boolean = false;
   permissaoGeral: boolean = true;
-  permissaoPsicologo: boolean = false;
+  permissaoSaude: boolean = false;
   permissaoFinancas: boolean = false;
   permissaoSecretaria: boolean = false;
 
@@ -102,8 +102,8 @@ export class InicioPage implements OnInit {
         case "FIN":
           this.permissaoFinancas = true;
           break;
-        case "PSI":
-          this.permissaoPsicologo = true;
+        case "SAU":
+          this.permissaoSaude = true;
           break;
         default:
           this.permissaoGeral = true;

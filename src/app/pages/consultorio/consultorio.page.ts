@@ -61,7 +61,7 @@ export class ConsultorioPage implements OnInit {
 
     this.diarioService.listar().subscribe((response) => {
       this.listaDiariosFiltrados = response.filter(
-        (psi) => psi.email === this.usuarioLogado.email || (membro && membro.perfil === "ADMIN")
+        (saude) => saude.email === this.usuarioLogado.email || (membro && membro.perfil === "ADMIN")
       );
       this.listaDiarios = this.listaDiariosFiltrados;
 

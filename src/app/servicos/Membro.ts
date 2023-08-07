@@ -44,11 +44,12 @@ export class MembroService {
     return this.db.object(`${this.path}`).valueChanges();
   }
 
-  public adicionarOuAtualizar(membro: Membro): void {
+  public adicionarOuAtualizar(membro: Membro, mensagem : any): void {
 
     if (membro.key) {
       this.membroRef.update(membro.key, membro).then((sucess: any) => {
         this.auditoriaService.adicionarOuAtualizar(this.objetoAuditoria('Atualizar/Cadastrar Membro', membro, 'Sucesso'))
+        this.mensagens.mensagemSucesso(mensagem)
       }, (error: any) => {
         this.auditoriaService.adicionarOuAtualizar(this.objetoAuditoria('Atualizar/Cadastrar Membro', membro, 'Falha'))
         this.mensagens.mensagemError(this.mensagemError)

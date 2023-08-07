@@ -226,7 +226,7 @@ export class MembroPage {
           }
 
           this.membro.uId = usuarioCriado.user.uid;
-          this.membroService.adicionarOuAtualizar(this.membro);
+          this.membroService.adicionarOuAtualizar(this.membro, "Membro atualizado com sucesso!");
           await this.verResultado();
         }
       }

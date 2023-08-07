@@ -23,8 +23,8 @@
       [(ngModel)]="termoPesquisa"
     ></ion-searchbar>
     <div style="width: 100%; height: auto;">
-      <ion-virtual-scroll [items]="listaMembrosFiltrados">
-        <ion-item *virtualItem="let item" (click)="membroSelecionado(item)">
+      <ion-virtual-scroll [items]="listaAssistidoFiltrados">
+        <ion-item *virtualItem="let item" (click)="assitidoSelecionado(item)">
           {{ item.nomeCompleto }}
         </ion-item>
       </ion-virtual-scroll>
