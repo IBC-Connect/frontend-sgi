@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormGroup } from '@angular/forms';
-import { NavController, ToastController, AlertController } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { FormArray } from '@angular/forms';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Membro } from 'src/app/modelo/Membro';
-import { AutenticacaoService } from 'src/app/servicos/Autenticacao';
 import { MembroService } from 'src/app/servicos/Membro';
 import { DateUtil } from 'src/app/util/DateUtil';
 import { MensagensUtil } from 'src/app/util/MensagensUtil';
@@ -38,21 +37,20 @@ export class VoluntarioPage {
   mensagens: MensagensUtil;
   listaMembrosObservable: Observable<any[]>;
 
-  formArray : FormArray;
+  formArray: FormArray;
   membrosAtivos: any;
 
-  dataAtual : any;
+  dataAtual: any;
   pdf: any;
 
   constructor(
     private membroService: MembroService,
     public navCtrl: NavController,
     private aviso: ToastController,
-    private autenticacaoService : AutenticacaoService,
     public alertController: AlertController
   ) {
     this.mensagens = new MensagensUtil(this.aviso);
-    this.dataAtual = moment().format("DD/MM/YYYY")
+    this.dataAtual = moment().format("DD/MM/YYYY");
     this.inicializar();
   }
 
@@ -72,8 +70,8 @@ export class VoluntarioPage {
         a.nomeCompleto > b.nomeCompleto
           ? 1
           : b.nomeCompleto > a.nomeCompleto
-          ? -1
-          : 0
+            ? -1
+            : 0
       );
       this.membrosVoluntarios.map((m) => (m.escolaridade = Number(m.escolaridade)));
       this.membrosVoluntarios.map((m) => (m.estadoCivil = Number(m.estadoCivil)));
@@ -109,8 +107,8 @@ export class VoluntarioPage {
         a.nomeCompleto > b.nomeCompleto
           ? 1
           : b.nomeCompleto > a.nomeCompleto
-          ? -1
-          : 0
+            ? -1
+            : 0
       );
     }
   }
@@ -169,7 +167,7 @@ export class VoluntarioPage {
               margin: [0, 20, 0, 20],
             },
             {
-              text: "Assembleia Administrativa - Transformar",
+              text: "Assembleia Administrativa - Voluntários",
               style: "subheader",
               alignment: "center",
               margin: [0, 0, 0, 10],
@@ -352,7 +350,7 @@ export class VoluntarioPage {
               alignment: AlignmentType.CENTER,
             }),
             new Paragraph({
-              children: [new TextRun('Assembléia Transformar')],
+              children: [new TextRun('Assembléia Voluntários')],
               heading: HeadingLevel.HEADING_2,
               alignment: AlignmentType.CENTER,
             }),
@@ -418,7 +416,7 @@ export class VoluntarioPage {
             new Paragraph({
               children: [new TextRun("_____________________________")],
               alignment: AlignmentType.CENTER,
-              
+
             }),
             // Text for the signature
             new Paragraph({

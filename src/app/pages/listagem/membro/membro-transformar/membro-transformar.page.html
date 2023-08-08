@@ -3,20 +3,18 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="inicio"></ion-back-button>
     </ion-buttons>
-    <ion-title
-      >Total de Membros no Transformar: {{totalMembrosTransformar}}</ion-title
-    >
+    <ion-title>Total de Membros no Transformar: {{totalMembrosTransformar}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="gerarAtaPDF()"> Gerar Ata - PDF</ion-button>
+      <ion-button (click)="gerarAtaDocx()"> Gerar Ata - Word</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <h2 *ngIf="totalMembrosTransformar == 0">Não há membros.</h2>
-  <ion-searchbar
-    *ngIf="totalMembrosTransformar > 0"
-    (ionChange)="pesquisarMembrosTransformar($event)"
-    placeholder="Digite o nome do membro."
-    color="tertiary"
-  ></ion-searchbar>
+  <ion-searchbar *ngIf="totalMembrosTransformar > 0" (ionChange)="pesquisarMembrosTransformar($event)"
+    placeholder="Digite o nome do membro." color="tertiary"></ion-searchbar>
   <ion-grid>
     <ion-row align-items-center justify-content-center>
       <ion-col>
@@ -31,11 +29,7 @@
               </ion-label>
             </ion-item>
             <ion-item-options side="start">
-              <button
-                ion-button
-                (click)="editarMembro(membro)"
-                class="bt-editar"
-              >
+              <button ion-button (click)="editarMembro(membro)" class="bt-editar">
                 <ion-icon class="icones" name="create"></ion-icon>
               </button>
             </ion-item-options>
