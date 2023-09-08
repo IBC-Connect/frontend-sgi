@@ -21,7 +21,7 @@
             <ion-row>
                 <ion-col>
                     <ion-label mode="md" class="titulo-dado-select" position="stacked">Responsável</ion-label>
-                    <ion-select [selectedText]="formulario.get('responsavel').value" placeholder="Selecione uma opção" formControlName="responsavel" multiple="false" interface="popover">
+                    <ion-select [selectedText]="formulario.get('responsavel').value" placeholder="Selecione uma opção" formControlName="responsavel" multiple="false" interface="action-sheet">
                         <ion-select-option *ngFor="let item of membrosAtivos" [value]="item.nomeCompleto">
                             {{item.nomeCompleto}}
                         </ion-select-option>

@@ -1,6 +1,6 @@
 export class InformacoesPessoaisUtil {
 
-    public static escolaridade() {
+  public static escolaridade() {
     return [
       { id: 1, valor: 'Não Alfabetizado' },
       { id: 2, valor: 'Ensino Fundamental Completo' },

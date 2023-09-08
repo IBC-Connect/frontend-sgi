@@ -77,7 +77,7 @@
             <ion-row>
                 <ion-col>
                     <ion-label class="titulo-dado-select-acesso" position="stacked">Horário inicial <span>*</span></ion-label>
-                    <ion-select formControlName="horarioInicio" class="horario" placeholder="Selecione um horário" multiple="false" interface="popover">
+                    <ion-select formControlName="horarioInicio" class="horario" placeholder="Selecione um horário" multiple="false" interface="action-sheet">
                         <ion-select-option *ngFor="let item of horarios" [value]="item">
                             {{item}}
                         </ion-select-option>
@@ -85,7 +85,7 @@
                 </ion-col>
                 <ion-col>
                     <ion-label class="titulo-dado-select-acesso" position="stacked">Horário final <span>*</span></ion-label>
-                    <ion-select formControlName="horarioFim" class="horario" placeholder="Selecione um horário" multiple="false" interface="popover">
+                    <ion-select formControlName="horarioFim" class="horario" placeholder="Selecione um horário" multiple="false" interface="action-sheet">
                         <ion-select-option *ngFor="let item of horarios" [value]="item">
                             {{item}}
                         </ion-select-option>
@@ -97,7 +97,7 @@
             <ion-row>
                 <ion-col>
                     <ion-label class="titulo-dado-select-acesso" position="stacked">Membro responsável<span>*</span></ion-label>
-                    <ion-select [selectedText]="formulario.get('responsavel').value" formControlName="responsavel" class="horario" placeholder="Selecione um membro" multiple="false" interface="popover">
+                    <ion-select [selectedText]="formulario.get('responsavel').value" formControlName="responsavel" class="horario" placeholder="Selecione um membro" multiple="false" interface="action-sheet">
                         <ion-select-option *ngFor="let item of membrosAtivos" [value]="item.nomeCompleto">
                             {{item.nomeCompleto}}
                         </ion-select-option>
