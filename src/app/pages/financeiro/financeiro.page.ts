@@ -96,12 +96,7 @@ export class FinanceiroPage implements OnInit {
   }
 
   monthChanged() {
-    const filtredTransacoes = this.transacoes.filter((Transacao: Transacao) => {
-      const date = moment(Transacao.date);
-      return date.month() + 1 === this.selectedMonth;
-    });
-
-    this.filtredTransacoes = filtredTransacoes;
+    this.filtredTransacoes = this.filterTransacoes();
     this.eraseTotals();
     this.calculateTotals();
   }
