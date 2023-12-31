@@ -25,6 +25,11 @@
           </ion-select>
         </ion-item>
         <ion-item>
+          <ion-select formControlName="category" placeholder="Categoria">
+            <ion-select-option *ngFor="let categoria of categorys" value={{categoria}}>{{categoria}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
           <ion-input formControlName="amount" placeholder="Valor" inputmode="decimal"></ion-input>
         </ion-item>
         <ion-button expand="block" (click)="removeTransactionFormGroup(i)">Remover esta transação</ion-button>

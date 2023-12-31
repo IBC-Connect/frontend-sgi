@@ -9,7 +9,7 @@ export class MensagensUtil {
     }
 
     public async mensagemError(error: string) {
-        const exibirMensagem = this.aviso.create({ id:'error', position: 'top', message: error, duration: 3000, color: 'danger' });
+        const exibirMensagem = this.aviso.create({ id:'error', position: 'top', message: error, duration: 5000, color: 'danger' });
         (await exibirMensagem).present();
     }
 

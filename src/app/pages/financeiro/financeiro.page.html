@@ -30,6 +30,7 @@
                     <th>Data</th>
                     <th>Descrição</th>
                     <th>Tipo</th>
+                    <th>Categoria</th>
                     <th>Valor</th>
                     <th>Ação</th>
                   </tr>
@@ -43,9 +44,10 @@
                       <td>{{ trasacao.date | date: 'dd/MM/yyyy' }}</td>
                       <td>{{ trasacao.description }}</td>
                       <td>{{ trasacao.type }}</td>
+                      <td>{{ trasacao.category }}</td>
                       <td>{{ trasacao.amount | currency:'BRL' }}</td>
                       <td class="remove-button-cell">
-                        <ion-button size="small" (click)="removeTransacao(trasacao)">
+                        <ion-button id="present-alert" size="small" (click)="removerTransacaoDialog(trasacao)">
                           Remover
                         </ion-button>
                       </td>

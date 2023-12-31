@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import * as moment from 'moment';
 import { TransacaoService } from '../../servicos/Transacao';
 import * as XLSX from 'xlsx';
@@ -12,7 +12,6 @@ import { AdicionarRegistroFinanceiroModalPage } from '../componentes/adicionar-r
   styleUrls: ['./financeiro.page.scss'],
 })
 export class FinanceiroPage implements OnInit {
-
   totalEntradas: number = 0;
   totalSaidas: number = 0;
   saldoFinal: number = 0;
@@ -37,6 +36,7 @@ export class FinanceiroPage implements OnInit {
   filtredTransacoes: Transacao[] = [];
 
   constructor(private modalController: ModalController,
+    private alertController: AlertController,
     private transacaoService: TransacaoService,
     private cdr: ChangeDetectorRef) {
     // Define o mês atual como selecionado por padrão
@@ -45,6 +45,7 @@ export class FinanceiroPage implements OnInit {
 
   ngOnInit() {
     this.loadDataAndTotals();
+    this.cdr.detectChanges();
   }
 
   eraseTotals() {
@@ -54,29 +55,11 @@ export class FinanceiroPage implements OnInit {
   }
 
   loadDataAndTotals() {
-    this.eraseTotals();
-
-    this.transacoes = this.sortTransacaosByDate(this.tras());
-    this.filtredTransacoes = this.transacoes;
-    this.calculateTotals();
-
-    /*
-    this.transacaoService.listar().toPromise().then((transacoes: Transacao[]) => {
+    this.transacaoService.listar().subscribe((transacoes: Transacao[]) => {
       this.transacoes = this.sortTransacaosByDate(transacoes);
-      this.filtredTransacoes = this.transacoes;
+      this.filtredTransacoes = this.filterTransacoes();
       this.calculateTotals();
-    });*/
-  }
-
-  tras() {
-    return [{
-      "key": "4xKcb5P1hsM5jmhN22kG",
-      "id": "",
-      "amount": "20",
-      "type": "Pessoal",
-      "description": "Teste",
-      "date": "2023-03-12"
-    }]
+    });
   }
 
   sortTransacaosByDate(transacoes: Transacao[]): Transacao[] {
@@ -88,18 +71,28 @@ export class FinanceiroPage implements OnInit {
     });
   }
 
+  filterTransacoes(){
+    return this.transacoes.filter((Transacao: Transacao) => {
+      const date = moment(Transacao.date);
+      return date.month() + 1 === this.selectedMonth;
+    });
+  }
+
   calculateTotals() {
+    this.eraseTotals();
     this.filtredTransacoes.forEach(this.updateTotals);
   }
 
-  updateTotals = (Transacao: Transacao) => {
-    if (Transacao.type === 'Entrada') {
-      this.totalEntradas += Number(Transacao.amount);
-    } else if (Transacao.type === 'Saida') {
-      this.totalSaidas += Number(Transacao.amount);
+  updateTotals = (transacao: Transacao) => {
+    if (transacao.type === 'Entrada') {
+      this.totalEntradas += Number(transacao.amount);
+    } else if (transacao.type === 'Saida') {
+      this.totalSaidas += Number(transacao.amount);
     }
 
     this.saldoFinal = this.totalEntradas - this.totalSaidas;
+
+    this.cdr.detectChanges();
   }
 
   monthChanged() {
@@ -120,16 +113,15 @@ export class FinanceiroPage implements OnInit {
 
     modal.onDidDismiss().then((result) => {
       if (result.data) {
-        const newTransacaos: Transacao[] = result.data.transacoes;
+        const newTransacaos: Transacao[] = result.data.transactions;
 
         if (newTransacaos.length > 0) {
           newTransacaos.forEach(transacao => {
             this.transacaoService.adicionarOuAtualizar(transacao, "Transação realizada com sucesso");
-            this.updateTotals(transacao);
           });
-        }
 
-        this.atualizarInformacoes();
+          this.atualizarInformacoes();
+        }
       }
     });
 
@@ -138,7 +130,30 @@ export class FinanceiroPage implements OnInit {
 
   atualizarInformacoes() {
     this.loadDataAndTotals();
-    this.cdr.detectChanges();
+  }
+
+  async removerTransacaoDialog(transacao: Transacao) {
+    const alert = await this.alertController.create({
+      header: 'Escolha uma alternativa',
+      message: 'Deseja realmente <strong>excluir</strong> essa transação?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+          },
+        },
+        {
+          text: 'Excluir',
+          handler: () => {
+            this.removeTransacao(transacao)
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
   removeTransacao(transacao: Transacao) {

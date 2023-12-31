@@ -262,11 +262,11 @@ const routes: Routes = [
   {
     path: 'financeiro',
     loadChildren: () => import('./pages/financeiro/financeiro.module').then(m => m.FinanceiroPageModule),
-    canActivateChild: [AutenticacaoGuard]
+    //canActivateChild: [AutenticacaoGuard]
   },
   {
     path: 'adicionar-registro-financeiro-modal',
-    loadChildren: () => import('./pages/componentes/adicionar-registro-financeiro-modal/adicionar-registro-financeiro-modal.module').then( m => m.AdicionarRegistroFinanceiroModalModule)
+    loadChildren: () => import('./pages/componentes/adicionar-registro-financeiro-modal/adicionar-registro-financeiro-modal.module').then(m => m.AdicionarRegistroFinanceiroModalModule)
   }
 
 

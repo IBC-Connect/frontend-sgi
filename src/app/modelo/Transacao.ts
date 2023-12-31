@@ -4,5 +4,6 @@ export interface Transacao {
   date: string;
   description: string;
   type: string;
+  category: string;
   amount: string;
 }

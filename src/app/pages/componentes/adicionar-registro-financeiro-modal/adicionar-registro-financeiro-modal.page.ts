@@ -24,6 +24,14 @@ export class AdicionarRegistroFinanceiroModalPage implements OnInit {
     return this.transactionsForm.get('transactions') as FormArray;
   }
 
+  get categorys() {
+    return ["Pessoal",
+      "Dízimo",
+      "Oferta",
+      "Gastos Fixos",
+      "Gastos Variáveis"]
+  }
+
   constructor(private fb: FormBuilder, private modalController: ModalController) { }
 
   ngOnInit() {
@@ -35,6 +43,7 @@ export class AdicionarRegistroFinanceiroModalPage implements OnInit {
       date: ['', Validators.required],
       description: ['', Validators.required],
       type: ['', Validators.required],
+      category: ['', Validators.required],
       amount: ['', [Validators.required, Validators.min(0), Validators.max(100000)]]
     }));
   }
