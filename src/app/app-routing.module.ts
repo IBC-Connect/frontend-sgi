@@ -259,6 +259,17 @@ const routes: Routes = [
         "./pages/componentes/sistema-relatorio-modal/sistema-relatorio-modal.module"
       ).then((m) => m.SistemaRelatorioModalPageModule),
   },
+  {
+    path: 'financeiro',
+    loadChildren: () => import('./pages/financeiro/financeiro.module').then(m => m.FinanceiroPageModule),
+    canActivateChild: [AutenticacaoGuard]
+  },
+  {
+    path: 'adicionar-registro-financeiro-modal',
+    loadChildren: () => import('./pages/componentes/adicionar-registro-financeiro-modal/adicionar-registro-financeiro-modal.module').then( m => m.AdicionarRegistroFinanceiroModalModule)
+  }
+
+
 ];
 
 @NgModule({
@@ -267,4 +278,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

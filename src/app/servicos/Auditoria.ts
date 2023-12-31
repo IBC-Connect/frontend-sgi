@@ -10,18 +10,22 @@ import { MensagensUtil } from "../util/MensagensUtil";
     providedIn: "root",
 })
 export class AuditoriaService {
+
     auditoria: Observable<any>;
-    auditorias: Observable<Auditoria[]>;
+    auditoriaLista: Auditoria[];
+    auditorias: Observable<any[]>;
     auditoriaRef: AngularFireList<any>;
+
     mensagens: MensagensUtil;
     private path = "auditorias";
 
     constructor(private db: AngularFireDatabase, private aviso: ToastController) {
+        this.auditoriaLista = new Array<Auditoria>();
         this.auditoriaRef = this.db.list(this.path);
         this.mensagens = new MensagensUtil(this.aviso);
     }
 
-    public listar(): any {
+    public listar() {
         let cacheTime: number = 10000; // cache de 5 minuto
 
         return (this.auditorias = this.auditoriaRef.snapshotChanges().pipe(
@@ -32,30 +36,19 @@ export class AuditoriaService {
         ));
     }
 
-    public adicionarOuAtualizar(auditoria: Auditoria): void {
-
+    public adicionarOuAtualizar(auditoria: Auditoria) {
         if (auditoria.key) {
-            this.auditoriaRef.update(auditoria.key, auditoria).then(
-                (sucess) => { },
-                (error) => {
-                    console.log(error)
-                }
-            );
+            this.auditoriaRef.update(auditoria.key, auditoria);
         } else {
-            this.auditoriaRef.push(auditoria).then(
-                (sucess) => { },
-                (error) => {
-                    console.log(error)
-                }
-            );
+            this.auditoriaRef.push(auditoria);
         }
     }
 
-    public deletar(key: string): void {
-        this.auditoriaRef.remove(key);
+    public deletar(auditoria: Auditoria) {
+        this.auditoriaRef.remove(auditoria.key);
     }
 
-    public deletarTudo(): void {
+    public deletarTudo() {
         this.auditoriaRef.remove();
     }
 }

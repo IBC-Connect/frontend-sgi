@@ -1,6 +1,6 @@
 {
   "name": "sig-ibc",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
@@ -29,9 +29,11 @@
     "firebase": "^8.10.1",
     "moment": "^2.29.1",
     "ngx-cookie-service": "12.0.3",
+    "ngx-currency": "^3.0.0",
     "pdfmake": "^0.2.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -44,6 +46,7 @@
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
+    "@types/pdfkit": "^0.13.3",
     "@types/pdfmake": "^0.2.2",
     "codelyzer": "^6.0.0",
     "cordova-plugin-device": "2.0.2",

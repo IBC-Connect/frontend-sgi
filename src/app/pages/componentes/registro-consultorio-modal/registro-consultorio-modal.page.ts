@@ -19,11 +19,11 @@ import { Assistido } from "src/app/modelo/Assistido";
   styleUrls: ["./registro-consultorio-modal.page.scss"],
 })
 export class RegistroConsultorioModalPage implements OnInit {
-  
+
   diario: Diario;
   usuario: Usuario;
 
-  totalAssistidos: Number;  
+  totalAssistidos: Number;
   termoPesquisa: string;
   apareceListaAssistidos: boolean = true;
 
@@ -43,13 +43,13 @@ export class RegistroConsultorioModalPage implements OnInit {
   }
 
   private inicializar(): void {
-    
+
     this.membroService.listar().subscribe((data: Membro[]) => {
       this.listaMembros = data;
     })
 
     this.assistidoService.listar().subscribe((data: Assistido[]) => {
-      if(data){
+      if (data) {
         this.listaAssistidos = this.ordenarAssitidos(data);
         this.listaAssistidoFiltrados = this.listaAssistidos;
         this.totalAssistidos = this.listaAssistidos.length;
@@ -60,14 +60,14 @@ export class RegistroConsultorioModalPage implements OnInit {
     });
   }
 
-  ordenarAssitidos(listaAssistidos : Assistido[]){
+  ordenarAssitidos(listaAssistidos: Assistido[]) {
     return listaAssistidos.sort((a, b) =>
-        a.nomeCompleto > b.nomeCompleto
-          ? 1
-          : b.nomeCompleto > a.nomeCompleto
+      a.nomeCompleto > b.nomeCompleto
+        ? 1
+        : b.nomeCompleto > a.nomeCompleto
           ? -1
           : 0
-      );
+    );
   }
 
   public assitidoSelecionado(item) {
@@ -89,7 +89,7 @@ export class RegistroConsultorioModalPage implements OnInit {
     this.diario.email = this.usuario.email;
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   async fecharModal() {
     this.modalController.dismiss();

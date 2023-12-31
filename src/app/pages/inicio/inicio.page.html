@@ -76,7 +76,7 @@
       <label>Diário de Saúde</label>
     </button>
 
-    <button ion-button (click)="mensagemDeConstrucao()" class="ion-text-wrap"
+    <button ion-button routerLink="/financeiro" class="ion-text-wrap"
       *ngIf="permissaoAdmin || permissaoFinancas">
       <ion-icon class="icone" name="cash-outline"></ion-icon><br />
       <label> Sistema Financeiro </label>

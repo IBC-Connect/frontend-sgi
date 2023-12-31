@@ -21,6 +21,7 @@ import { EventoService } from '../app/servicos/Evento';
 import { ProjetoService } from '../app/servicos/Projeto';
 import { ConsultaCEPService } from '../app/servicos/ConsultaCEP';
 import { HttpClientModule } from '@angular/common/http';
+import { AdicionarRegistroFinanceiroModalModule } from './pages/componentes/adicionar-registro-financeiro-modal/adicionar-registro-financeiro-modal.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireStorageModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AdicionarRegistroFinanceiroModalModule,
     FormsModule],
   providers: [
     AutenticacaoService,
