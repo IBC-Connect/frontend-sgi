@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
+import { Transacao } from 'src/app/modelo/Transacao';
 
 @Component({
   selector: 'app-adicionar-registro-financeiro-modal',
@@ -8,6 +9,8 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./adicionar-registro-financeiro-modal.page.scss'],
 })
 export class AdicionarRegistroFinanceiroModalPage implements OnInit {
+
+  transacao: Transacao;
 
   transactionsForm = this.fb.group({
     transactions: this.fb.array([])
@@ -33,7 +36,9 @@ export class AdicionarRegistroFinanceiroModalPage implements OnInit {
       "Construção"]
   }
 
-  constructor(private fb: FormBuilder, private modalController: ModalController) { }
+  constructor(private fb: FormBuilder, private modalController: ModalController, navParams: NavParams) {
+    this.transacao = navParams.get('transacao');
+  }
 
   ngOnInit() {
     this.addTransactionFormGroup(); // Adds an initial form group when the modal loads
@@ -41,20 +46,13 @@ export class AdicionarRegistroFinanceiroModalPage implements OnInit {
 
   addTransactionFormGroup() {
     this.transactionsFormArray.push(this.fb.group({
-      date: ['', Validators.required],
-      description: ['', Validators.required],
-      type: ['', Validators.required],
-      category: ['', Validators.required],
-      amount: ['', [Validators.required, Validators.min(0), Validators.max(100000)]]
+      key: [this.transacao?.key],
+      date: [this.transacao?.date, Validators.required],
+      description: [this.transacao?.description, Validators.required],
+      type: [this.transacao?.type, Validators.required],
+      category: [this.transacao?.category, Validators.required],
+      amount: [this.transacao?.amount, [Validators.required, Validators.min(0), Validators.max(100000)]]
     }));
-  }
-
-  public dateValidator(control: AbstractControl): ValidationErrors | null {
-    const date = new Date(control.value);
-    if (date && (date.getFullYear() < 0 || date.getFullYear() > 2099)) {
-      return { 'dateOutOfRange': true };
-    }
-    return null;
   }
 
   removeTransactionFormGroup(index: number) {

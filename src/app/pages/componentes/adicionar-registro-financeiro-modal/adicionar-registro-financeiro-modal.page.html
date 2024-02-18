@@ -13,7 +13,8 @@
       <div *ngFor="let transaction of transactionsFormArray.controls; let i = index" [formGroupName]="i"
         class="transaction-form-group">
         <ion-item>
-          <ion-input type="date" formControlName="date" placeholder="Data"></ion-input>
+          <ion-datetime min="1900" max="2030" displayFormat="DD/MM/YYYY" formControlName="date"
+            placeholder="Clique para selecionar uma data"></ion-datetime>
         </ion-item>
         <ion-item>
           <ion-input formControlName="description" placeholder="Descrição"></ion-input>

@@ -54,6 +54,9 @@
                       <td>{{ trasacao.category }}</td>
                       <td>{{ trasacao.amount | currency:'BRL' }}</td>
                       <td class="remove-button-cell">
+                        <ion-button id="present-alert" size="small" (click)="editarTransacao(trasacao)">
+                          Editar
+                        </ion-button>
                         <ion-button id="present-alert" size="small" (click)="removerTransacaoDialog(trasacao)">
                           Remover
                         </ion-button>

@@ -151,6 +151,31 @@ export class FinanceiroPage implements OnInit {
     return await modal.present();
   }
 
+  async editarTransacao(transacao: Transacao) {
+    const modal = await this.modalController.create({
+      component: AdicionarRegistroFinanceiroModalPage,
+      componentProps: {
+        'transacao': transacao
+      }
+    });
+
+    modal.onDidDismiss().then((result) => {
+      if (result.data) {
+        const newTransacaos: Transacao[] = result.data.transactions;
+
+        if (newTransacaos.length > 0) {
+          newTransacaos.forEach(transacao => {
+            this.ambienteSelecionado.adicionarOuAtualizar(transacao, "Transação realizada com sucesso");
+          });
+
+          this.loadDataAndTotals();
+        }
+      }
+    });
+
+    return await modal.present();
+  }
+
   async removerTransacaoDialog(transacao: Transacao) {
     const alert = await this.alertController.create({
       header: 'Escolha uma alternativa',
