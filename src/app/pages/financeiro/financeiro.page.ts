@@ -18,7 +18,7 @@ export class FinanceiroPage implements OnInit {
   saldoFinal: number = 0;
   saldoConstrucao: number = 0;
 
-  ambienteSelecionado: string = "ibc";
+  ambienteSelecionado: any;
 
   months = [
     { label: 'Janeiro', value: 1 },
@@ -46,10 +46,11 @@ export class FinanceiroPage implements OnInit {
     private cdr: ChangeDetectorRef) {
     // Define o mês atual como selecionado por padrão
     this.selectedMonth = new Date().getMonth() + 1;
+    this.ambienteSelecionado = this.transacaoService;
   }
 
   selecionarAmbiente(event: any) {
-    this.ambienteSelecionado = event.detail.value;
+    this.ambienteSelecionado = event.detail.value === "ibc" ? this.transacaoService : this.transacaoTransformarService
     this.loadDataAndTotals();
   }
 
@@ -66,19 +67,11 @@ export class FinanceiroPage implements OnInit {
   }
 
   loadDataAndTotals() {
-    if (this.ambienteSelecionado === "ibc") {
-      this.transacaoService.listar().subscribe((transacoes: Transacao[]) => {
-        this.transacoes = this.sortTransacaosByDate(transacoes);
-        this.filtredTransacoes = this.filterTransacoes();
-        this.calculateTotals();
-      });
-    } else {
-      this.transacaoTransformarService.listar().subscribe((transacoes: Transacao[]) => {
-        this.transacoes = this.sortTransacaosByDate(transacoes);
-        this.filtredTransacoes = this.filterTransacoes();
-        this.calculateTotals();
-      });
-    }
+    this.ambienteSelecionado.listar().subscribe((transacoes: Transacao[]) => {
+      this.transacoes = this.sortTransacaosByDate(transacoes);
+      this.filtredTransacoes = this.filterTransacoes();
+      this.calculateTotals();
+    });
   }
 
   sortTransacaosByDate(transacoes: Transacao[]): Transacao[] {
@@ -147,19 +140,15 @@ export class FinanceiroPage implements OnInit {
 
         if (newTransacaos.length > 0) {
           newTransacaos.forEach(transacao => {
-            this.transacaoService.adicionarOuAtualizar(transacao, "Transação realizada com sucesso");
+            this.ambienteSelecionado.adicionarOuAtualizar(transacao, "Transação realizada com sucesso");
           });
 
-          this.atualizarInformacoes();
+          this.loadDataAndTotals();
         }
       }
     });
 
     return await modal.present();
-  }
-
-  atualizarInformacoes() {
-    this.loadDataAndTotals();
   }
 
   async removerTransacaoDialog(transacao: Transacao) {
@@ -187,8 +176,8 @@ export class FinanceiroPage implements OnInit {
   }
 
   removeTransacao(transacao: Transacao) {
-    this.transacaoService.deletar(transacao, "Transação removida com sucesso");
-    this.atualizarInformacoes();
+    this.ambienteSelecionado.deletar(transacao, "Transação removida com sucesso");
+    this.loadDataAndTotals();
   }
 
   exportToExcel() {
