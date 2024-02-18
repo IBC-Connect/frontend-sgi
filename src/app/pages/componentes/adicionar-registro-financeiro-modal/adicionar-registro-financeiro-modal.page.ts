@@ -29,7 +29,8 @@ export class AdicionarRegistroFinanceiroModalPage implements OnInit {
       "Dízimo",
       "Oferta",
       "Gastos Fixos",
-      "Gastos Variáveis"]
+      "Gastos Variáveis",
+      "Construção"]
   }
 
   constructor(private fb: FormBuilder, private modalController: ModalController) { }

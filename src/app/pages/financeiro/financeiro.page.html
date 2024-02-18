@@ -3,6 +3,13 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="inicio"></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-select placeholder="Selecione um ambiente" interface="action-sheet" value="ibc"
+        (ionChange)="selecionarAmbiente($event)">
+        <ion-select-option value="ibc">IBC</ion-select-option>
+        <ion-select-option value="transformar">Transformar</ion-select-option>
+      </ion-select>
+    </ion-buttons>
     <ion-title>Movimentações Financeiras</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -69,6 +76,12 @@
               <ion-col class="ion-text-center">
                 <strong>Saldo Final:</strong> <span
                   [ngClass]="{'positive': saldoFinal >= 0, 'negative': saldoFinal < 0}">{{ saldoFinal | currency:'BRL'
+                  }}</span>
+              </ion-col>
+              <ion-col class="ion-text-center">
+                <strong>Saldo Construção:</strong> <span
+                  [ngClass]="{'positive': saldoConstrucao >= 0, 'negative': saldoConstrucao < 0}">{{ saldoConstrucao |
+                  currency:'BRL'
                   }}</span>
               </ion-col>
             </ion-row>

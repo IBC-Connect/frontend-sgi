@@ -1,9 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import * as moment from 'moment';
-import { TransacaoService } from '../../servicos/Transacao';
+import { TransacaoTransformarService } from 'src/app/servicos/TransacaoTransformar';
 import * as XLSX from 'xlsx';
 import { Transacao } from '../../modelo/Transacao';
+import { TransacaoService } from '../../servicos/Transacao';
 import { AdicionarRegistroFinanceiroModalPage } from '../componentes/adicionar-registro-financeiro-modal/adicionar-registro-financeiro-modal.page';
 
 @Component({
@@ -15,6 +16,9 @@ export class FinanceiroPage implements OnInit {
   totalEntradas: number = 0;
   totalSaidas: number = 0;
   saldoFinal: number = 0;
+  saldoConstrucao: number = 0;
+
+  ambienteSelecionado: string = "ibc";
 
   months = [
     { label: 'Janeiro', value: 1 },
@@ -38,9 +42,15 @@ export class FinanceiroPage implements OnInit {
   constructor(private modalController: ModalController,
     private alertController: AlertController,
     private transacaoService: TransacaoService,
+    private transacaoTransformarService: TransacaoTransformarService,
     private cdr: ChangeDetectorRef) {
     // Define o mês atual como selecionado por padrão
     this.selectedMonth = new Date().getMonth() + 1;
+  }
+
+  selecionarAmbiente(event: any) {
+    this.ambienteSelecionado = event.detail.value;
+    this.loadDataAndTotals();
   }
 
   ngOnInit() {
@@ -52,14 +62,23 @@ export class FinanceiroPage implements OnInit {
     this.totalEntradas = 0;
     this.totalSaidas = 0;
     this.saldoFinal = 0;
+    this.saldoConstrucao = 0;
   }
 
   loadDataAndTotals() {
-    this.transacaoService.listar().subscribe((transacoes: Transacao[]) => {
-      this.transacoes = this.sortTransacaosByDate(transacoes);
-      this.filtredTransacoes = this.filterTransacoes();
-      this.calculateTotals();
-    });
+    if (this.ambienteSelecionado === "ibc") {
+      this.transacaoService.listar().subscribe((transacoes: Transacao[]) => {
+        this.transacoes = this.sortTransacaosByDate(transacoes);
+        this.filtredTransacoes = this.filterTransacoes();
+        this.calculateTotals();
+      });
+    } else {
+      this.transacaoTransformarService.listar().subscribe((transacoes: Transacao[]) => {
+        this.transacoes = this.sortTransacaosByDate(transacoes);
+        this.filtredTransacoes = this.filterTransacoes();
+        this.calculateTotals();
+      });
+    }
   }
 
   sortTransacaosByDate(transacoes: Transacao[]): Transacao[] {
@@ -71,7 +90,7 @@ export class FinanceiroPage implements OnInit {
     });
   }
 
-  filterTransacoes(){
+  filterTransacoes() {
     return this.transacoes.filter((Transacao: Transacao) => {
       const date = moment(Transacao.date);
       return date.month() + 1 === this.selectedMonth;
@@ -80,18 +99,34 @@ export class FinanceiroPage implements OnInit {
 
   calculateTotals() {
     this.eraseTotals();
+    this.calcularTransacoesConstrucao(this.transacoes);
     this.filtredTransacoes.forEach(this.updateTotals);
+  }
+
+  calcularTransacoesConstrucao(transacoes: Transacao[]) {
+    let totalEntradasConstrucao: number = 0;
+    let totalSaidasConstrucao: number = 0;
+
+    transacoes.forEach((transacao) => {
+      if (transacao.type === 'Entrada' && transacao.category === 'Construção') {
+        totalEntradasConstrucao += Number(transacao.amount);
+      } else if (transacao.type === 'Saida' && transacao.category === 'Construção') {
+        totalSaidasConstrucao += Number(transacao.amount);
+      }
+    });
+
+    this.saldoConstrucao = totalEntradasConstrucao - totalSaidasConstrucao;
   }
 
   updateTotals = (transacao: Transacao) => {
     if (transacao.type === 'Entrada') {
       this.totalEntradas += Number(transacao.amount);
+
     } else if (transacao.type === 'Saida') {
       this.totalSaidas += Number(transacao.amount);
     }
 
     this.saldoFinal = this.totalEntradas - this.totalSaidas;
-
     this.cdr.detectChanges();
   }
 
