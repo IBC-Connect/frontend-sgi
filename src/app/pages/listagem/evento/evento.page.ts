@@ -49,26 +49,31 @@ export class EventoPage implements OnInit {
   public inicializar(): void {
     this.mensagens = new MensagensUtil(this.aviso);
     this.eventoService.listar().subscribe((response) => {
+      // Definindo valores padrões para evitar verificação redundante
+      this.listaEventos = response || [];
+      const dataAtual = moment().format("MM/YYYY"); // Calcula apenas uma vez
 
-      if (response) {
-        this.listaEventos = response;
+      this.listaEventosFiltrados = this.listaEventos.filter((evento) => {
+        // Simplifica a comparação das datas
+        return moment(evento.data, "DD/MM/YYYY").format("MM/YYYY") === dataAtual;
+      });
 
-        this.listaEventosFiltrados = response.filter((evento) => {
-          let dataEvento = moment(evento.data, "DD/MM/YYYY").format("MM/YYYY");
-          let dataAtual = moment().format("MM/YYYY");
+      console.log(this.listaEventosFiltrados);
 
-          return dataEvento === dataAtual ? true : false;
-        });
+      // Ordena os eventos filtrados por data corretamente
+      this.ordenaInformacoes()
 
-        this.listaEventosFiltrados = this.listaEventosFiltrados.sort((a, b) =>
-          moment(b.data, "DD/MM/YYYY").diff(moment(a.data, "DD/MM/YYYY"))
-        )
-        this.numTotalEventos = this.listaEventosFiltrados.length;
-      } else {
-        this.listaEventos = [];
-        this.listaEventosFiltrados = [];
-        this.numTotalEventos = 0;
-      }
+      // Atualiza a contagem
+      this.numTotalEventos = this.listaEventosFiltrados.length;
+    });
+  }
+
+  ordenaInformacoes() {
+    this.listaEventosFiltrados.sort((a, b) => {
+      // Converte as datas para um formato comparável antes da ordenação
+      const dataA = moment(a.data, "DD/MM/YYYY");
+      const dataB = moment(b.data, "DD/MM/YYYY");
+      return dataA.diff(dataB);
     });
   }
 
@@ -145,6 +150,8 @@ export class EventoPage implements OnInit {
 
       return novaDataEvento === novaDataSelecionada ? true : false;
     });
+
+    this.ordenaInformacoes()
 
     this.numTotalEventos = this.listaEventosFiltrados.length;
 
