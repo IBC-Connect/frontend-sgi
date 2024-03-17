@@ -4,118 +4,14 @@ import { AutenticacaoGuard } from "../app/seguranca/autenticacao.guard";
 
 const routes: Routes = [
   {
-    path: "login",
-    loadChildren: () =>
-      import("./pages/login/login.module").then((m) => m.LoginPageModule),
-  },
-
-  {
-    path: "inicio",
-    loadChildren: () =>
-      import("./pages/inicio/inicio.module").then((m) => m.InicioPageModule),
-    canActivateChild: [AutenticacaoGuard],
-  },
-
-  {
     path: "",
     redirectTo: "login",
     pathMatch: "full",
   },
-
   {
-    path: "cadastro/projeto",
+    path: "login",
     loadChildren: () =>
-      import("./pages/cadastro/projeto/projeto.module").then(
-        (m) => m.ProjetoPageModule
-      ),
-    canActivateChild: [AutenticacaoGuard],
-  },
-
-  {
-    path: "cadastro/membro",
-    loadChildren: () =>
-      import("./pages/cadastro/membro/membro.module").then(
-        (m) => m.MembroPageModule
-      ),
-    canActivateChild: [AutenticacaoGuard],
-  },
-
-  {
-    path: "cadastro/evento",
-    loadChildren: () =>
-      import("./pages/cadastro/evento/evento.module").then(
-        (m) => m.EventoPageModule
-      ),
-    canActivateChild: [AutenticacaoGuard],
-  },
-
-  {
-    path: "cadastro/cargo",
-    loadChildren: () =>
-      import("./pages/cadastro/cargo/cargo.module").then(
-        (m) => m.CargoPageModule
-      ),
-    canActivateChild: [AutenticacaoGuard],
-  },
-
-  {
-    path: "lista/cargo",
-    loadChildren: () =>
-      import("./pages/listagem/cargo/cargo.module").then(
-        (m) => m.CargoPageModule
-      ),
-    canActivateChild: [AutenticacaoGuard],
-  },
-
-  {
-    path: "lista/evento",
-    loadChildren: () =>
-      import("./pages/listagem/evento/evento.module").then(
-        (m) => m.EventoPageModule
-      ),
-    canActivateChild: [AutenticacaoGuard],
-  },
-
-  {
-    path: "lista/membro",
-    loadChildren: () =>
-      import("./pages/listagem/membro/membro.module").then(
-        (m) => m.MembroPageModule
-      ),
-    canActivateChild: [AutenticacaoGuard],
-  },
-
-  {
-    path: "lista/projeto",
-    loadChildren: () =>
-      import("./pages/listagem/projeto/projeto.module").then(
-        (m) => m.ProjetoPageModule
-      ),
-    canActivateChild: [AutenticacaoGuard],
-  },
-
-  {
-    path: "lista/assistido",
-    loadChildren: () =>
-      import("./pages/listagem/assistido/assistido.module").then(
-        (m) => m.AssistidoPageModule
-      ),
-  },
-
-  {
-    path: "lista/membro/congregados",
-    loadChildren: () =>
-      import("./pages/listagem/membro/congregado/congregado.module").then(
-        (m) => m.CongregadoPageModule
-      ),
-  },
-
-  {
-    path: "lista/membro/voluntarios",
-    loadChildren: () =>
-      import("./pages/listagem/membro/voluntario/voluntario.module").then(
-        (m) => m.VoluntarioPageModule
-      ),
+      import("./pages/login/login.module").then((m) => m.LoginPageModule),
   },
   {
     path: "resetar-senha",
@@ -124,7 +20,100 @@ const routes: Routes = [
         (m) => m.ResetarSenhaPageModule
       ),
   },
-
+  {
+    path: "inicio",
+    loadChildren: () =>
+      import("./pages/inicio/inicio.module").then((m) => m.InicioPageModule),
+    canActivateChild: [AutenticacaoGuard],
+  },
+  {
+    path: "cadastro/projeto",
+    loadChildren: () =>
+      import("./pages/cadastro/projeto/projeto.module").then(
+        (m) => m.ProjetoPageModule
+      ),
+    canActivateChild: [AutenticacaoGuard],
+  },
+  {
+    path: "cadastro/membro",
+    loadChildren: () =>
+      import("./pages/cadastro/membro/membro.module").then(
+        (m) => m.MembroPageModule
+      ),
+    canActivateChild: [AutenticacaoGuard],
+  },
+  {
+    path: "cadastro/evento",
+    loadChildren: () =>
+      import("./pages/cadastro/evento/evento.module").then(
+        (m) => m.EventoPageModule
+      ),
+    canActivateChild: [AutenticacaoGuard],
+  },
+  {
+    path: "cadastro/cargo",
+    loadChildren: () =>
+      import("./pages/cadastro/cargo/cargo.module").then(
+        (m) => m.CargoPageModule
+      ),
+    canActivateChild: [AutenticacaoGuard],
+  },
+  {
+    path: "lista/cargo",
+    loadChildren: () =>
+      import("./pages/listagem/cargo/cargo.module").then(
+        (m) => m.CargoPageModule
+      ),
+    canActivateChild: [AutenticacaoGuard],
+  },
+  {
+    path: "lista/evento",
+    loadChildren: () =>
+      import("./pages/listagem/evento/evento.module").then(
+        (m) => m.EventoPageModule
+      ),
+    canActivateChild: [AutenticacaoGuard],
+  },
+  {
+    path: "lista/membro",
+    loadChildren: () =>
+      import("./pages/listagem/membro/membro.module").then(
+        (m) => m.MembroPageModule
+      ),
+    canActivateChild: [AutenticacaoGuard],
+  },
+  {
+    path: "lista/projeto",
+    loadChildren: () =>
+      import("./pages/listagem/projeto/projeto.module").then(
+        (m) => m.ProjetoPageModule
+      ),
+    canActivateChild: [AutenticacaoGuard],
+  },
+  {
+    path: "lista/assistido",
+    loadChildren: () =>
+      import("./pages/listagem/assistido/assistido.module").then(
+        (m) => m.AssistidoPageModule
+      ),
+    canActivateChild: [AutenticacaoGuard]
+  },
+  {
+    path: "lista/membro/congregados",
+    loadChildren: () =>
+      import("./pages/listagem/membro/congregado/congregado.module").then(
+        (m) => m.CongregadoPageModule
+      ),
+    canActivateChild: [AutenticacaoGuard]
+  },
+  {
+    path: "lista/membro/voluntarios",
+    loadChildren: () =>
+      import("./pages/listagem/membro/voluntario/voluntario.module").then(
+        (m) => m.VoluntarioPageModule
+      ),
+    canActivateChild: [AutenticacaoGuard]
+  },
   {
     path: "editar/membro",
     loadChildren: () =>
@@ -133,7 +122,6 @@ const routes: Routes = [
       ),
     canActivateChild: [AutenticacaoGuard],
   },
-
   {
     path: "editar/cargo",
     loadChildren: () =>
@@ -142,7 +130,6 @@ const routes: Routes = [
       ),
     canActivateChild: [AutenticacaoGuard],
   },
-
   {
     path: "associar/cargo",
     loadChildren: () =>
@@ -151,7 +138,6 @@ const routes: Routes = [
       ),
     canActivateChild: [AutenticacaoGuard],
   },
-
   {
     path: "projeto-ativo",
     loadChildren: () =>
@@ -160,7 +146,6 @@ const routes: Routes = [
       ).then((m) => m.ProjetoAtivoPageModule),
     canActivateChild: [AutenticacaoGuard],
   },
-
   {
     path: "projeto-inativo",
     loadChildren: () =>
@@ -169,7 +154,6 @@ const routes: Routes = [
       ).then((m) => m.ProjetoInativoPageModule),
     canActivateChild: [AutenticacaoGuard],
   },
-
   {
     path: "editar/projeto",
     loadChildren: () =>
@@ -178,7 +162,6 @@ const routes: Routes = [
       ),
     canActivateChild: [AutenticacaoGuard],
   },
-
   {
     path: "associar/projeto",
     loadChildren: () =>
@@ -187,7 +170,6 @@ const routes: Routes = [
       ),
     canActivateChild: [AutenticacaoGuard],
   },
-
   {
     path: "editar/evento",
     loadChildren: () =>
@@ -211,7 +193,6 @@ const routes: Routes = [
       ),
     canActivateChild: [AutenticacaoGuard],
   },
-
   {
     path: "direcao-atual",
     loadChildren: () =>
@@ -220,7 +201,6 @@ const routes: Routes = [
       ),
     canActivateChild: [AutenticacaoGuard],
   },
-
   {
     path: "meu-perfil",
     loadChildren: () =>
@@ -229,7 +209,6 @@ const routes: Routes = [
       ),
     canActivateChild: [AutenticacaoGuard],
   },
-
   {
     path: "cadastro/assistido",
     loadChildren: () =>
@@ -251,6 +230,7 @@ const routes: Routes = [
       import(
         "./pages/componentes/registro-consultorio-modal/registro-consultorio-modal.module"
       ).then((m) => m.RegistroConsultorioModalPageModule),
+    canActivateChild: [AutenticacaoGuard]
   },
   {
     path: "sistema-relatorio-modal",
@@ -258,6 +238,7 @@ const routes: Routes = [
       import(
         "./pages/componentes/sistema-relatorio-modal/sistema-relatorio-modal.module"
       ).then((m) => m.SistemaRelatorioModalPageModule),
+    canActivateChild: [AutenticacaoGuard]
   },
   {
     path: 'financeiro',
@@ -266,25 +247,29 @@ const routes: Routes = [
   },
   {
     path: 'adicionar-registro-financeiro-modal',
-    loadChildren: () => import('./pages/componentes/adicionar-registro-financeiro-modal/adicionar-registro-financeiro-modal.module').then(m => m.AdicionarRegistroFinanceiroModalModule)
+    loadChildren: () => import('./pages/componentes/adicionar-registro-financeiro-modal/adicionar-registro-financeiro-modal.module').then(m => m.AdicionarRegistroFinanceiroModalModule),
+    canActivateChild: [AutenticacaoGuard]
   },
   {
     path: 'lista/patrimonio',
-    loadChildren: () => import('./pages/listagem/patrimonio/patrimonio.module').then(m => m.PatrimonioPageModule)
+    loadChildren: () => import('./pages/listagem/patrimonio/patrimonio.module').then(m => m.PatrimonioPageModule),
+    canActivateChild: [AutenticacaoGuard]
   },
   {
     path: 'editar/patrimonio',
-    loadChildren: () => import('./pages/edicao/patrimonio/patrimonio.module').then(m => m.PatrimonioPageModule)
+    loadChildren: () => import('./pages/edicao/patrimonio/patrimonio.module').then(m => m.PatrimonioPageModule),
+    canActivateChild: [AutenticacaoGuard]
   },
   {
     path: 'cadastro/patrimonio',
-    loadChildren: () => import('./pages/cadastro/patrimonio/patrimonio.module').then(m => m.PatrimonioPageModule)
+    loadChildren: () => import('./pages/cadastro/patrimonio/patrimonio.module').then(m => m.PatrimonioPageModule),
+    canActivateChild: [AutenticacaoGuard]
   },
   {
     path: 'patrimonio',
-    loadChildren: () => import('./pages/patrimonio/patrimonio.module').then(m => m.PatrimonioPageModule)
+    loadChildren: () => import('./pages/patrimonio/patrimonio.module').then(m => m.PatrimonioPageModule),
+    canActivateChild: [AutenticacaoGuard]
   }
-
 ];
 
 @NgModule({
