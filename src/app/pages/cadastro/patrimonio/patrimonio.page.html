@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="inicio"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Cadastro de Patrimônio</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <h2>Informações do Patrimônio</h2>
+
+        <ion-item class="row-item">
+            <ion-label mode="md" class="titulo-dado" position="stacked">Nome <span>*</span></ion-label>
+            <ion-input mode="md" [(ngModel)]="patrimonio.nome" type="text" maxlength="100"></ion-input>
+        </ion-item>
+
+        <ion-item class="row-item">
+            <ion-label mode="md" class="titulo-dado" position="stacked">Descrição <span>*</span></ion-label>
+            <ion-textarea mode="md" [(ngModel)]="patrimonio.descricao"></ion-textarea>
+        </ion-item>
+
+        <ion-item class="row-item">
+            <ion-label mode="md" class="titulo-dado" position="stacked">Quantidade <span>*</span></ion-label>
+            <ion-input mode="md" [(ngModel)]="patrimonio.quantidade" type="number" maxlength="100"></ion-input>
+        </ion-item>
+
+        <ion-item class="row-item">
+            <ion-label mode="md" class="titulo-dado" position="stacked">Àrea ou Pessoa Responsável
+                <span>*</span></ion-label>
+            <ion-textarea mode="md" [(ngModel)]="patrimonio.responsavel"></ion-textarea>
+        </ion-item>
+
+        <ion-item class="row-item">
+            <ion-label mode="md" class="titulo-dado" position="stacked">Observações</ion-label>
+            <ion-textarea mode="md" [(ngModel)]="patrimonio.observacoes"></ion-textarea>
+        </ion-item>
+    </ion-grid>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <ion-toolbar no-padding id="rodape">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-button mode="md" color="primary" (click)="cadastrar()" [disabled]="disabledBotaoCadastrar()"
+                        type="submit" fill="solid" expand="full">
+                        Cadastrar</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>

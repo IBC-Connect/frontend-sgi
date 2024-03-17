@@ -76,8 +76,7 @@
       <label>Diário de Saúde</label>
     </button>
 
-    <button ion-button routerLink="/financeiro" class="ion-text-wrap"
-      *ngIf="permissaoAdmin || permissaoFinancas">
+    <button ion-button routerLink="/financeiro" class="ion-text-wrap" *ngIf="permissaoAdmin || permissaoFinancas">
       <ion-icon class="icone" name="cash-outline"></ion-icon><br />
       <label> Sistema Financeiro </label>
     </button>
@@ -94,12 +93,17 @@
       <label>Sistema Relatorios</label>
     </button>
 
-    <button ion-button (click)="mensagemDeConstrucao()" class="ion-text-wrap" *ngIf="permissaoGeral">
-      <ion-icon class="icone" name="megaphone-outline"></ion-icon><br />
-      <label>Novidades da IBC</label>
+    <button ion-button routerLink="/patrimonio" class="ion-text-wrap" *ngIf="permissaoGeral">
+      <ion-icon class="icone" name="business-outline"></ion-icon><br />
+      <label>Patrimônio da IBC</label>
     </button>
 
     <br />
+
+    <button ion-button (click)="mensagemDeConstrucao()" class="ion-text-wrap" *ngIf="permissaoGeral">
+      <ion-icon class="icone" name="megaphone-outline"></ion-icon><br />
+      <label>Novidades</label>
+    </button>
 
     <button ion-button routerLink="/meu-perfil" routerDirection="forward" class="ion-text-wrap" *ngIf="permissaoGeral">
       <ion-icon class="icone" name="person-circle-outline"></ion-icon><br />

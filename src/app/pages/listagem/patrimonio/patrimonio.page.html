@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Total de patrimônios cadastrados: {{numTotalPatrimonios}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar
+  (ionChange)="onSearchTerm($event)"
+    placeholder="Digite o nome do patrimonio"
+    color="tertiary"
+  ></ion-searchbar>
+  <ion-grid>
+    <ion-row align-items-center justify-content-center>
+      <ion-col>
+        <ion-list>
+          <ion-item-sliding *ngFor="let patrimonio of listaPatrimoniosFiltrados" >
+            <ion-item text-wrap class="item-text-wrap">
+              <ion-label class="informacao-membro" text-wrap>
+                <h1 class="content-title">{{patrimonio.nome}}</h1>
+                {{patrimonio.responsavel ? 'Responsável: '.concat(patrimonio.responsavel) : '' }}
+                <br>
+                {{patrimonio.quantidade ? 'Quantidade: '.concat(patrimonio.quantidade) : '' }}
+                <br>
+                {{patrimonio.observacoes ? 'Observações: '.concat(patrimonio.observacoes) : '' }}
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="start" *ngIf="desabilitaAcessoBotoes()">
+              <button
+                ion-button
+                (click)="editarPatrimonio(patrimonio)"
+                class="bt-editar"
+              >
+                <ion-icon class="icones" name="create"></ion-icon>
+              </button>
+              <button (click)="confirmarExclusao(patrimonio)" ion-button class="bt-deletar">
+                <ion-icon class="icones" name="trash"></ion-icon>
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

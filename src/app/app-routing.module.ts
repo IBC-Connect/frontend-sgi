@@ -262,13 +262,28 @@ const routes: Routes = [
   {
     path: 'financeiro',
     loadChildren: () => import('./pages/financeiro/financeiro.module').then(m => m.FinanceiroPageModule),
-    //canActivateChild: [AutenticacaoGuard]
+    canActivateChild: [AutenticacaoGuard]
   },
   {
     path: 'adicionar-registro-financeiro-modal',
     loadChildren: () => import('./pages/componentes/adicionar-registro-financeiro-modal/adicionar-registro-financeiro-modal.module').then(m => m.AdicionarRegistroFinanceiroModalModule)
+  },
+  {
+    path: 'lista/patrimonio',
+    loadChildren: () => import('./pages/listagem/patrimonio/patrimonio.module').then(m => m.PatrimonioPageModule)
+  },
+  {
+    path: 'editar/patrimonio',
+    loadChildren: () => import('./pages/edicao/patrimonio/patrimonio.module').then(m => m.PatrimonioPageModule)
+  },
+  {
+    path: 'cadastro/patrimonio',
+    loadChildren: () => import('./pages/cadastro/patrimonio/patrimonio.module').then(m => m.PatrimonioPageModule)
+  },
+  {
+    path: 'patrimonio',
+    loadChildren: () => import('./pages/patrimonio/patrimonio.module').then(m => m.PatrimonioPageModule)
   }
-
 
 ];
 

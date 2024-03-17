@@ -58,8 +58,6 @@ export class EventoPage implements OnInit {
         return moment(evento.data, "DD/MM/YYYY").format("MM/YYYY") === dataAtual;
       });
 
-      console.log(this.listaEventosFiltrados);
-
       // Ordena os eventos filtrados por data corretamente
       this.ordenaInformacoes()
 
