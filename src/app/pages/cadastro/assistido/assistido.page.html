@@ -177,11 +177,9 @@
                   <ion-item class="row-item">
                     <ion-label mode="md" class="titulo-dado" position="stacked">Parentesco <span>*</span></ion-label>
                     <ion-select placeholder="Escolha uma opção" formControlName="parentesco">
-                      <ion-select-option value="Pai">Pai</ion-select-option>
-                      <ion-select-option value="Mae">Mãe</ion-select-option>
-                      <ion-select-option value="Tio">Tio(a)</ion-select-option>
-                      <ion-select-option value="Irmao">Irmã(o)</ion-select-option>
-                      <ion-select-option value="Avo">Avô(ó)</ion-select-option>
+                      <ion-select-option *ngFor="let item of parentesco" [value]="item.valor">
+                        {{item.texto}}
+                      </ion-select-option>
                     </ion-select>
                   </ion-item>
                 </ion-col>

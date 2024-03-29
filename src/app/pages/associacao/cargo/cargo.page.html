@@ -21,7 +21,8 @@
             <ion-row>
                 <ion-col>
                     <ion-label mode="md" class="titulo-dado-select" position="stacked">Responsável</ion-label>
-                    <ion-select [selectedText]="formulario.get('responsavel').value" placeholder="Selecione uma opção" formControlName="responsavel" multiple="false" interface="action-sheet">
+                    <ion-select [selectedText]="formulario.get('responsavel').value" placeholder="Selecione uma opção"
+                        formControlName="responsavel" multiple="false" interface="action-sheet">
                         <ion-select-option *ngFor="let item of membrosAtivos" [value]="item.nomeCompleto">
                             {{item.nomeCompleto}}
                         </ion-select-option>
@@ -32,13 +33,15 @@
                 <ion-col>
                     <ion-item class="row-item">
                         <ion-label mode="md" class="titulo-dado" position="stacked">Data Início</ion-label>
-                        <ion-input mode="md" formControlName="dataInicio" maxlength="10" [brmasker]="{mask:'00/00/0000', len:10}"></ion-input>
+                        <ion-datetime min="1900" max="2030" displayFormat="DD/MM/YYYY" formControlName="dataInicio"
+                            placeholder="Clique para selecionar uma data"></ion-datetime>
                     </ion-item>
                 </ion-col>
                 <ion-col>
                     <ion-item class="row-item">
                         <ion-label mode="md" class="titulo-dado" position="stacked">Data Fim</ion-label>
-                        <ion-input mode="md" formControlName="dataFim" maxlength="10" [brmasker]="{mask:'00/00/0000', len:10}"></ion-input>
+                        <ion-datetime min="1900" max="2030" displayFormat="DD/MM/YYYY" formControlName="dataFim"
+                            placeholder="Clique para selecionar uma data"></ion-datetime>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -51,7 +54,8 @@
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <ion-button mode="md" (click)="associar()" [disabled]="formulario.invalid" type="submit" fill="solid" expand="full"> Associar</ion-button>
+                    <ion-button mode="md" (click)="associar()" [disabled]="formulario.invalid" type="submit"
+                        fill="solid" expand="full"> Associar</ion-button>
                 </ion-col>
             </ion-row>
         </ion-grid>

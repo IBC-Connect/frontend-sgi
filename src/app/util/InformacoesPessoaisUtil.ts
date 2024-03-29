@@ -17,6 +17,20 @@ export class InformacoesPessoaisUtil {
     ];
   }
 
+  public static parentesco() {
+    return [
+      { id: 1, valor: 'Mae', texto: 'Mãe' },
+      { id: 2, valor: 'Pai', texto: 'Pai' },
+      { id: 3, valor: 'Tio', texto: 'Tio(a)' },
+      { id: 4, valor: 'Irmao', texto: 'Irmão(ã)' },
+      { id: 5, valor: 'Avo', texto: 'Avô(ó)' },
+      { id: 6, valor: 'Esposo', texto: 'Esposo(a)' },
+      { id: 7, valor: 'Padrato', texto: 'Padrasto' },
+      { id: 8, valor: 'Madrasta', texto: 'Madrasta' },
+      { id: 9, valor: 'Primo', texto: 'Primo(a)' }
+    ];
+  }
+
   public static estadoCivil() {
     return [
       { id: 1, valor: 'Solteiro' },

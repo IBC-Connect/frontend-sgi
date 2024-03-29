@@ -50,8 +50,8 @@ export class EventoPage {
         a.nomeCompleto > b.nomeCompleto
           ? 1
           : b.nomeCompleto > a.nomeCompleto
-          ? -1
-          : 0
+            ? -1
+            : 0
       );
     });
     this.criarFormulario();
@@ -59,6 +59,7 @@ export class EventoPage {
 
   public criarFormulario(): void {
     this.formulario = this.formulador.group({
+      key: [this.evento.key],
       data: [this.evento.data, Validators.required],
       horarioInicio: [this.evento.horarioInicio, Validators.required],
       horarioFim: [this.evento.horarioFim, Validators.required],
@@ -125,10 +126,6 @@ export class EventoPage {
     if (this.formulario.value) {
       if (this.formulario.value.data && !DateUtil.verificarIsDataValida(this.formulario.value.data)) {
         this.mensagens.mensagemError("A data informada no campo 'Data' não é válida.");
-      } else if (!this.verificarHorariosEncontro()) {
-        this.mensagens.mensagemError(
-          'O horário final deve ser maior que o horário inicial.'
-        );
       } else {
         this.disableEndereco(false);
         this.evento = EventoMapper.formularioToEvento(this.formulario.value);
@@ -140,18 +137,23 @@ export class EventoPage {
     }
   }
 
-  public verificarHorariosEncontro() {
-    let retorno = false;
+  public verificarHorariosEncontro(event: any) {
+
     if (this.evento.horarioInicio && this.evento.horarioFim) {
-      if (
-        DateUtil.verificarIntervaloHora(
-          this.evento.horarioInicio,
-          this.evento.horarioFim
-        )
-      ) {
-        retorno = true;
+
+      // Se o horario final é antes do inicial
+      let retorno = DateUtil.verificarIntervaloHora(
+        this.evento.horarioInicio,
+        this.evento.horarioFim
+      )
+
+      if (!retorno) {
+        this.mensagens.mensagemAlerta(
+          'O horário final deve ser maior que o horário inicial.'
+        );
+
+        this.evento.horarioFim = ""
       }
     }
-    return retorno;
   }
 }

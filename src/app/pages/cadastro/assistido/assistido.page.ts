@@ -27,6 +27,7 @@ export class AssistidoPage implements OnInit {
   assistido: Assistido;
   estadoCivil: Array<any> = [];
   escolaridade: Array<any> = [];
+  parentesco: Array<any> = [];
   familiar: Familiar;
 
   //Projetos
@@ -79,6 +80,7 @@ export class AssistidoPage implements OnInit {
     this.mensagens = new MensagensUtil(this.aviso);
     this.estadoCivil = InformacoesPessoaisUtil.estadoCivil();
     this.escolaridade = InformacoesPessoaisUtil.escolaridade();
+    this.parentesco = InformacoesPessoaisUtil.parentesco();
     this.assistido = new Assistido();
     this.assistido.endereco = new Endereco();
     this.criarFormulario();
@@ -100,6 +102,7 @@ export class AssistidoPage implements OnInit {
 
   private criarFormulario(): void {
     this.formulario = this.formulador.group({
+      key: [this.assistido.key],
       nomeCompleto: [this.assistido.nomeCompleto, Validators.required],
       dataNascimento: [this.assistido.dataNascimento, Validators.required],
       telefone: [this.assistido.telefone, Validators.required],

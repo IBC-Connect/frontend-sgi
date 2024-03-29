@@ -1,3 +1,4 @@
+import * as moment from "moment";
 import { Endereco } from "../modelo/Endereco";
 import { Evento } from "../modelo/Evento";
 
@@ -9,7 +10,7 @@ export class EventoMapper {
 
         evento.key = form.key;
         evento.nome = form.nome.toString().toUpperCase();
-        evento.data = form.data;
+        evento.data = moment(form.data).format("DD/MM/YYYY");
         evento.horarioInicio = form.horarioInicio;
         evento.horarioFim = form.horarioFim;
         evento.observacoes = form.observacoes ? form.observacoes.toUpperCase() : "";

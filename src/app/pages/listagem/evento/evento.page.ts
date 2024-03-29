@@ -20,7 +20,7 @@ import { RedirecionadorUtil } from "src/app/util/RedirecionadorUtil";
   styleUrls: ["./evento.page.scss"],
 })
 export class EventoPage implements OnInit {
-  listaEventos: Evento[];
+  listaEventos: Array<Evento>;
   listaEventosFiltrados: Evento[];
   numTotalEventos: number;
   listaEventosObservable: Observable<any[]>;
@@ -58,6 +58,8 @@ export class EventoPage implements OnInit {
         return moment(evento.data, "DD/MM/YYYY").format("MM/YYYY") === dataAtual;
       });
 
+      console.log(response)
+
       // Ordena os eventos filtrados por data corretamente
       this.ordenaInformacoes()
 
@@ -73,6 +75,20 @@ export class EventoPage implements OnInit {
       const dataB = moment(b.data, "DD/MM/YYYY");
       return dataA.diff(dataB);
     });
+
+    this.listaEventosFiltrados.sort((a, b) => {
+      // Assuming 24-hour time format for conversion
+      const timeFormat = (time: string) => {
+          const [hours, minutes] = time.split(':');
+          const hour24 = hours !== '12' ? parseInt(hours, 10) + 12 : hours;
+          return `${hour24}:${minutes}`;
+      };
+  
+      const timeA = timeFormat(a.horarioInicio);
+      const timeB = timeFormat(b.horarioFim);
+      
+      return timeA.localeCompare(timeB);
+  });
   }
 
   public async confirmarExclusao(evento: Evento) {
@@ -143,7 +159,7 @@ export class EventoPage implements OnInit {
 
   dataMudando(event: any) {
     this.listaEventosFiltrados = this.listaEventos.filter((evento) => {
-      let novaDataEvento = moment(evento.data, "DD/MM/YYYY").format("MM/YYYY");
+      let novaDataEvento = moment(evento.data).format("MM/YYYY");
       let novaDataSelecionada = moment(this.dataSelecionada).format("MM/YYYY");
 
       return novaDataEvento === novaDataSelecionada ? true : false;

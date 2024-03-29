@@ -47,8 +47,8 @@ export class CargoPage {
         a.nomeCompleto > b.nomeCompleto
           ? 1
           : b.nomeCompleto > a.nomeCompleto
-          ? -1
-          : 0
+            ? -1
+            : 0
       );
     });
 
@@ -74,11 +74,11 @@ export class CargoPage {
     });
   }
 
-  private ajustarDatas() : void {
-    if(this.cargo.dataInicioResponsavel)
-    this.cargo.dataInicioResponsavel = this.cargo.dataInicioResponsavel.includes('/')? this.cargo.dataInicioResponsavel : DateUtil.dateFormatterBrazil(this.cargo.dataInicioResponsavel);
-    if(this.cargo.dataFimResponsavel)
-    this.cargo.dataFimResponsavel= this.cargo.dataFimResponsavel.includes('/')? this.cargo.dataFimResponsavel : DateUtil.dateFormatterBrazil(this.cargo.dataFimResponsavel);
+  private ajustarDatas(): void {
+    if (this.cargo.dataInicioResponsavel)
+      this.cargo.dataInicioResponsavel = this.cargo.dataInicioResponsavel.includes('/') ? this.cargo.dataInicioResponsavel : DateUtil.dateFormatterBrazil(this.cargo.dataInicioResponsavel);
+    if (this.cargo.dataFimResponsavel)
+      this.cargo.dataFimResponsavel = this.cargo.dataFimResponsavel.includes('/') ? this.cargo.dataFimResponsavel : DateUtil.dateFormatterBrazil(this.cargo.dataFimResponsavel);
   }
 
   public associar(): void {
@@ -86,15 +86,15 @@ export class CargoPage {
       this.isDataFimEnable(true);
       this.formulario.controls['dataFim'].enable();
 
-      if(this.formulario.value.dataFim && !DateUtil.verificarIsDataValida(this.formulario.value.dataFim)){
+      if (this.formulario.value.dataFim && !DateUtil.verificarIsDataValida(this.formulario.value.dataFim)) {
         this.mensagens.mensagemError("A data informada no campo 'Data Fim' não é válida.")
-    }
-      else if(this.formulario.value.dataInicio && !DateUtil.verificarIsDataValida(this.formulario.value.dataInicio)){
+      }
+      else if (this.formulario.value.dataInicio && !DateUtil.verificarIsDataValida(this.formulario.value.dataInicio)) {
         this.mensagens.mensagemError("A data informada no campo 'Data Início' não é válida.")
-    }
+      }
       else if (DateUtil.isDataFutura(this.formulario.value.dataInicio)) {
         this.mensagens.mensagemError(
-          "Não é permitido data futura para o campo 'Data Início'"
+          "Não é permitido a data hoje para o campo 'Data Início', pode ser ontem ou amanhã"
         );
       } else if (
         DateUtil.isDataDoisMaiorDataUm(
@@ -122,10 +122,10 @@ export class CargoPage {
         DateUtil.numeroDiasEntreDuasDatas(
           this.formulario.value.dataInicio,
           this.formulario.value.dataFim
-        ) >= 731
+        ) >= 1825
       ) {
         this.mensagens.mensagemError(
-          'O responsável pode assumir um cargo com duração máxima de dois anos.'
+          'O responsável pode assumir um cargo com duração máxima de 5 anos.'
         );
       } else {
         this.cargo = CargoMapper.formularioToCargo(this.formulario.value);

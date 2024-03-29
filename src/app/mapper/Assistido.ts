@@ -9,7 +9,7 @@ export class AssistidoMapper {
     let assistido = new Assistido();
     assistido.nomeCompleto = form.nomeCompleto.toUpperCase();
     assistido.dataNascimento = form.dataNascimento;
-    assistido.email = form.email ? form.email.toLowerCase()() : '';
+    assistido.email = form.email ? form.email.toLowerCase() : '';
     assistido.escolaridade = Number(form.escolaridade);
     assistido.estadoCivil = Number(form.estadoCivil);
     assistido.profissao = form.profissao.toUpperCase();
