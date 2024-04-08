@@ -52,13 +52,11 @@ export class EventoPage implements OnInit {
       // Definindo valores padrões para evitar verificação redundante
       this.listaEventos = response || [];
       const dataAtual = moment().format("MM/YYYY"); // Calcula apenas uma vez
-
+      
       this.listaEventosFiltrados = this.listaEventos.filter((evento) => {
         // Simplifica a comparação das datas
-        return moment(evento.data, "DD/MM/YYYY").format("MM/YYYY") === dataAtual;
+        return moment(evento.data).format("MM/YYYY") === dataAtual;
       });
-
-      console.log(response)
 
       // Ordena os eventos filtrados por data corretamente
       this.ordenaInformacoes()
@@ -71,9 +69,9 @@ export class EventoPage implements OnInit {
   ordenaInformacoes() {
     this.listaEventosFiltrados.sort((a, b) => {
       // Converte as datas para um formato comparável antes da ordenação
-      const dataA = moment(a.data, "DD/MM/YYYY");
-      const dataB = moment(b.data, "DD/MM/YYYY");
-      return dataA.diff(dataB);
+      const dataA = moment(a.data);
+      const dataB = moment(b.data);
+      return dataB.diff(dataA);
     });
 
     this.listaEventosFiltrados.sort((a, b) => {
@@ -158,7 +156,7 @@ export class EventoPage implements OnInit {
   }
 
   dataMudando(event: any) {
-    this.listaEventosFiltrados = this.listaEventos.filter((evento) => {
+    this.listaEventosFiltrados = this.listaEventos?.filter((evento) => {
       let novaDataEvento = moment(evento.data).format("MM/YYYY");
       let novaDataSelecionada = moment(this.dataSelecionada).format("MM/YYYY");
 
@@ -170,5 +168,9 @@ export class EventoPage implements OnInit {
     this.numTotalEventos = this.listaEventosFiltrados.length;
 
     this.mudancas.detectChanges();
+  }
+
+  convertDataBrasil(data : any){
+    return moment(data).format("DD/MM/YYYY")
   }
 }

@@ -77,15 +77,14 @@
                 }}
               </ion-col>
               <ion-col class="ion-text-center">
-                <strong>Saldo Final:</strong> <span
-                  [ngClass]="{'positive': saldoFinal >= 0, 'negative': saldoFinal < 0}">{{ saldoFinal | currency:'BRL'
-                  }}</span>
+                <strong>Saldo Final:</strong>
+                <span [ngClass]="{'positive': saldoFinal >= 0, 'negative': saldoFinal < 0}">
+                  {{ saldoFinal | currency:'BRL'}}</span>
               </ion-col>
               <ion-col class="ion-text-center">
-                <strong>Saldo Construção:</strong> <span
-                  [ngClass]="{'positive': saldoConstrucao >= 0, 'negative': saldoConstrucao < 0}">{{ saldoConstrucao |
-                  currency:'BRL'
-                  }}</span>
+                <strong>Saldo {{enviromentVisibility()}}:</strong>
+                <span [ngClass]="{'positive': saldoEnviromentSelected() >= 0, 'negative': saldoEnviromentSelected() < 0}">
+                  {{ saldoEnviromentSelected() | currency:'BRL'}}</span>
               </ion-col>
             </ion-row>
           </ion-card>

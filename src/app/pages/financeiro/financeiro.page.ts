@@ -17,7 +17,9 @@ export class FinanceiroPage implements OnInit {
   totalSaidas: number = 0;
   saldoFinal: number = 0;
   saldoConstrucao: number = 0;
+  saldoInvestimento: number = 0;
 
+  view: any = "ibc";
   ambienteSelecionado: any;
 
   months = [
@@ -51,6 +53,7 @@ export class FinanceiroPage implements OnInit {
 
   selecionarAmbiente(event: any) {
     this.ambienteSelecionado = event.detail.value === "ibc" ? this.transacaoService : this.transacaoTransformarService
+    this.view = event.detail.value;
     this.loadDataAndTotals();
   }
 
@@ -64,6 +67,7 @@ export class FinanceiroPage implements OnInit {
     this.totalSaidas = 0;
     this.saldoFinal = 0;
     this.saldoConstrucao = 0;
+    this.saldoInvestimento = 0;
   }
 
   loadDataAndTotals() {
@@ -93,6 +97,7 @@ export class FinanceiroPage implements OnInit {
   calculateTotals() {
     this.eraseTotals();
     this.calcularTransacoesConstrucao(this.transacoes);
+    this.calcularTransacoesInvestimento(this.transacoes);
     this.filtredTransacoes.forEach(this.updateTotals);
   }
 
@@ -109,6 +114,21 @@ export class FinanceiroPage implements OnInit {
     });
 
     this.saldoConstrucao = totalEntradasConstrucao - totalSaidasConstrucao;
+  }
+
+  calcularTransacoesInvestimento(transacoes: Transacao[]) {
+    let totalEntradasInvestimentos: number = 0;
+    let totalSaidasInvestimentos: number = 0;
+
+    transacoes.forEach((transacao) => {
+      if (transacao.type === 'Entrada' && transacao.category === 'Investimento') {
+        totalEntradasInvestimentos += Number(transacao.amount);
+      } else if (transacao.type === 'Saida' && transacao.category === 'Investimento') {
+        totalSaidasInvestimentos += Number(transacao.amount);
+      }
+    });
+
+    this.saldoInvestimento = totalEntradasInvestimentos - totalSaidasInvestimentos;
   }
 
   updateTotals = (transacao: Transacao) => {
@@ -235,5 +255,13 @@ export class FinanceiroPage implements OnInit {
     link.href = window.URL.createObjectURL(blob);
     link.download = 'entradas_e_saidas.xlsx';
     link.click();
+  }
+
+  enviromentVisibility() {
+    return this.view === "ibc" ? "Construção" : "Investimento"
+  }
+
+  saldoEnviromentSelected() {
+    return this.view === "ibc" ? this.saldoConstrucao : this.saldoInvestimento
   }
 }
