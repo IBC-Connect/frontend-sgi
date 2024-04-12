@@ -12,23 +12,22 @@ import { ToastController } from '@ionic/angular';
 
 export class CargoPage {
 
-  cargo : Cargo;
-  mensagens : MensagensUtil;
+  cargo: Cargo;
+  mensagens: MensagensUtil;
 
   constructor(
-    private cargoService : CargoService,
-    private aviso : ToastController) {
+    private cargoService: CargoService,
+    private aviso: ToastController) {
 
     this.cargo = new Cargo();
     this.mensagens = new MensagensUtil(this.aviso);
-
   }
 
-   public disabledBotaoCadastrar(): boolean{
-    return this.cargo.nome ==null || this.cargo.descricao==null;
+  public disabledBotaoCadastrar(): boolean {
+    return this.cargo.nome == null || this.cargo.descricao == null;
   }
- 
-  public cadastrar():void {
+
+  public cadastrar(): void {
     if (this.cargo) {
       this.cargo.nome = this.cargo.nome.toUpperCase();
       this.cargo.descricao = this.cargo.descricao.toUpperCase();

@@ -38,7 +38,7 @@ export class EventoPage implements OnInit {
     private mudancas: ChangeDetectorRef,
     private autenticacaoService: AutenticacaoService
   ) {
-    moment.locale("pt-br");
+    moment.locale('pt-br');
     this.inicializar();
   }
 
@@ -52,10 +52,10 @@ export class EventoPage implements OnInit {
       // Definindo valores padrões para evitar verificação redundante
       this.listaEventos = response || [];
       const dataAtual = moment().format("MM/YYYY"); // Calcula apenas uma vez
-      
+
       this.listaEventosFiltrados = this.listaEventos.filter((evento) => {
         // Simplifica a comparação das datas
-        return moment(evento.data).format("MM/YYYY") === dataAtual;
+        return this.transformaData(evento.data) === dataAtual;
       });
 
       // Ordena os eventos filtrados por data corretamente
@@ -66,27 +66,19 @@ export class EventoPage implements OnInit {
     });
   }
 
+  transformaData(data: string) {
+    const partesData = data.split('/')
+    let mesAnoData = partesData[1] + "/" + partesData[2]
+    return mesAnoData
+  }
+
   ordenaInformacoes() {
-    this.listaEventosFiltrados.sort((a, b) => {
+    this.listaEventosFiltrados?.sort((a, b) => {
       // Converte as datas para um formato comparável antes da ordenação
-      const dataA = moment(a.data);
-      const dataB = moment(b.data);
+      const dataA = moment(this.transformaDataBRToEn(a.data));
+      const dataB = moment(this.transformaDataBRToEn(b.data));
       return dataB.diff(dataA);
     });
-
-    this.listaEventosFiltrados.sort((a, b) => {
-      // Assuming 24-hour time format for conversion
-      const timeFormat = (time: string) => {
-          const [hours, minutes] = time.split(':');
-          const hour24 = hours !== '12' ? parseInt(hours, 10) + 12 : hours;
-          return `${hour24}:${minutes}`;
-      };
-  
-      const timeA = timeFormat(a.horarioInicio);
-      const timeB = timeFormat(b.horarioFim);
-      
-      return timeA.localeCompare(timeB);
-  });
   }
 
   public async confirmarExclusao(evento: Evento) {
@@ -157,7 +149,7 @@ export class EventoPage implements OnInit {
 
   dataMudando(event: any) {
     this.listaEventosFiltrados = this.listaEventos?.filter((evento) => {
-      let novaDataEvento = moment(evento.data).format("MM/YYYY");
+      let novaDataEvento = this.transformaData(evento.data);
       let novaDataSelecionada = moment(this.dataSelecionada).format("MM/YYYY");
 
       return novaDataEvento === novaDataSelecionada ? true : false;
@@ -165,12 +157,13 @@ export class EventoPage implements OnInit {
 
     this.ordenaInformacoes()
 
-    this.numTotalEventos = this.listaEventosFiltrados.length;
+    this.numTotalEventos = this.listaEventosFiltrados?.length;
 
     this.mudancas.detectChanges();
   }
 
-  convertDataBrasil(data : any){
-    return moment(data).format("DD/MM/YYYY")
+  transformaDataBRToEn(data : string){
+    const partesData = data.split('/')
+    return partesData[2] + '-' + partesData[1] + '-' + partesData[0]
   }
 }
