@@ -22,13 +22,25 @@
           <ion-card>
             <ion-card-header>
               <ion-card-title class="header-text">Entradas e Saídas</ion-card-title>
-              <ion-item>
-                <ion-select label="Selecione o mês" [(ngModel)]="selectedMonth" (ionChange)="monthChanged()">
-                  <ion-select-option *ngFor="let month of months" [value]="month.value">{{ month.label
-                    }}</ion-select-option>
-                </ion-select>
-              </ion-item>
-              <ion-button expand="block" (click)="addTransacao()">Adicionar Entrada/Saída</ion-button>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6">
+                    <ion-item>
+                      <ion-select label="Selecione o ano" [(ngModel)]="selectedYear" (ionChange)="dateChanged()">
+                        <ion-select-option *ngFor="let year of years" [value]="year.value">{{ year.label }}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item>
+                      <ion-select label="Selecione o mês" [(ngModel)]="selectedMonth" (ionChange)="dateChanged()">
+                        <ion-select-option *ngFor="let month of months" [value]="month.value">{{ month.label }}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-button expand="block" (click)="addTransacao()">Adicionar Registro</ion-button>
             </ion-card-header>
             <ion-card-content>
               <table>
@@ -82,9 +94,10 @@
                   {{ saldoFinal | currency:'BRL'}}</span>
               </ion-col>
               <ion-col class="ion-text-center">
-                <strong>Saldo {{enviromentVisibility()}}:</strong>
-                <span [ngClass]="{'positive': saldoEnviromentSelected() >= 0, 'negative': saldoEnviromentSelected() < 0}">
-                  {{ saldoEnviromentSelected() | currency:'BRL'}}</span>
+                <strong>Saldo Investimento:</strong>
+                <span
+                  [ngClass]="{'positive': saldoEnviromentSelected() >= 0, 'negative': saldoEnviromentSelected() < 0}">
+                  {{ saldoInvestimento | currency:'BRL'}}</span>
               </ion-col>
             </ion-row>
           </ion-card>
