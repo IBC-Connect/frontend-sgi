@@ -27,20 +27,22 @@
                   <ion-col size="6">
                     <ion-item>
                       <ion-select label="Selecione o ano" [(ngModel)]="selectedYear" (ionChange)="dateChanged()">
-                        <ion-select-option *ngFor="let year of years" [value]="year.value">{{ year.label }}</ion-select-option>
+                        <ion-select-option *ngFor="let year of years" [value]="year.value">{{ year.label
+                          }}</ion-select-option>
                       </ion-select>
                     </ion-item>
                   </ion-col>
                   <ion-col size="6">
                     <ion-item>
                       <ion-select label="Selecione o mês" [(ngModel)]="selectedMonth" (ionChange)="dateChanged()">
-                        <ion-select-option *ngFor="let month of months" [value]="month.value">{{ month.label }}</ion-select-option>
+                        <ion-select-option *ngFor="let month of months" [value]="month.value">{{ month.label
+                          }}</ion-select-option>
                       </ion-select>
                     </ion-item>
                   </ion-col>
                 </ion-row>
               </ion-grid>
-              <ion-button expand="block" (click)="addTransacao()">Adicionar Registro</ion-button>
+              <ion-button expand="block" (click)="addTransacao()">Adicionar Registro Financeiro</ion-button>
             </ion-card-header>
             <ion-card-content>
               <table>
@@ -81,23 +83,27 @@
             <ion-button expand="block" (click)="exportToExcel()">Exportar para Excel</ion-button>
             <ion-row class="totals-row">
               <ion-col class="ion-text-center">
-                <strong>Total Entradas:</strong> {{ totalEntradas |
+                <strong>Entradas:</strong> {{ totalEntradas |
                 currency:'BRL' }}
               </ion-col>
               <ion-col class="ion-text-center">
-                <strong>Total Saídas:</strong> {{ totalSaidas | currency:'BRL'
+                <strong>Saídas:</strong> {{ totalSaidas | currency:'BRL'
                 }}
               </ion-col>
               <ion-col class="ion-text-center">
-                <strong>Saldo Final:</strong>
+                <strong>Final:</strong>
                 <span [ngClass]="{'positive': saldoFinal >= 0, 'negative': saldoFinal < 0}">
                   {{ saldoFinal | currency:'BRL'}}</span>
               </ion-col>
               <ion-col class="ion-text-center">
-                <strong>Saldo Investimento:</strong>
-                <span
-                  [ngClass]="{'positive': saldoEnviromentSelected() >= 0, 'negative': saldoEnviromentSelected() < 0}">
+                <strong>Investimento:</strong>
+                <span [ngClass]="{'positive': saldoInvestimento >= 0, 'negative': saldoInvestimento < 0}">
                   {{ saldoInvestimento | currency:'BRL'}}</span>
+              </ion-col>
+              <ion-col class="ion-text-center">
+                <strong>Geral:</strong>
+                <span [ngClass]="{'positive': saldoInvestimento >= 0, 'negative': saldoInvestimento < 0}">
+                  {{ saldoGeral | currency:'BRL'}}</span>
               </ion-col>
             </ion-row>
           </ion-card>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { ModalController, NavParams } from '@ionic/angular';
 import { Transacao } from 'src/app/modelo/Transacao';
+import { Categoria } from 'src/app/servicos/Categoria';
 
 @Component({
   selector: 'app-adicionar-registro-financeiro-modal',
@@ -18,6 +19,7 @@ export class AdicionarRegistroFinanceiroModalPage implements OnInit {
 
   selectedImageFiles!: FileList;
   imageURLs: string[] = [];
+  categorys: any;
 
   uploadFiles(event: any) {
     this.selectedImageFiles = event.target.files;
@@ -27,18 +29,24 @@ export class AdicionarRegistroFinanceiroModalPage implements OnInit {
     return this.transactionsForm.get('transactions') as FormArray;
   }
 
-  get categorys() {
-    return ["Pessoal",
+  constructor(private fb: FormBuilder, private modalController: ModalController, navParams: NavParams, private categoriaService: Categoria) {
+    this.transacao = navParams.get('transacao');
+    this.selecionaCategoriaVisualizacao(this.categoriaService.visualizacao);
+  }
+
+  selecionaCategoriaVisualizacao(visualizacao) {
+    this.categorys = visualizacao === "ibc" ? ["Pessoal",
       "Dízimo",
       "Oferta",
       "Gastos Fixos",
       "Gastos Variáveis",
       "Investimento"
+    ] : ["Pessoa Física",
+      "Pessoa Jurídica",
+      "Gastos Fixos",
+      "Gastos Variáveis",
+      "Investimento"
     ]
-  }
-
-  constructor(private fb: FormBuilder, private modalController: ModalController, navParams: NavParams) {
-    this.transacao = navParams.get('transacao');
   }
 
   ngOnInit() {

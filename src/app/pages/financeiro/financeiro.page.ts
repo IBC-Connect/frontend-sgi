@@ -6,6 +6,7 @@ import * as XLSX from 'xlsx';
 import { Transacao } from '../../modelo/Transacao';
 import { TransacaoService } from '../../servicos/Transacao';
 import { AdicionarRegistroFinanceiroModalPage } from '../componentes/adicionar-registro-financeiro-modal/adicionar-registro-financeiro-modal.page';
+import { Categoria } from 'src/app/servicos/Categoria';
 
 @Component({
   selector: 'app-financeiro',
@@ -16,7 +17,7 @@ export class FinanceiroPage implements OnInit {
   totalEntradas: number = 0;
   totalSaidas: number = 0;
   saldoFinal: number = 0;
-  saldoConstrucao: number = 0;
+  saldoGeral: number = 0;
   saldoInvestimento: number = 0;
 
   view: any = "ibc";
@@ -34,6 +35,7 @@ export class FinanceiroPage implements OnInit {
     private alertController: AlertController,
     private transacaoService: TransacaoService,
     private transacaoTransformarService: TransacaoTransformarService,
+    private categoriaService: Categoria,
     private cdr: ChangeDetectorRef) {
     // Define o mês atual como selecionado por padrão
     let dataAtual = new Date();
@@ -47,6 +49,7 @@ export class FinanceiroPage implements OnInit {
   selecionarAmbiente(event: any) {
     this.ambienteSelecionado = event.detail.value === "ibc" ? this.transacaoService : this.transacaoTransformarService
     this.view = event.detail.value;
+    this.categoriaService.visualizacao = event.detail.value;
     this.loadDataAndTotals();
   }
 
@@ -103,6 +106,7 @@ export class FinanceiroPage implements OnInit {
     });
 
     this.saldoFinal = this.totalEntradas - this.totalSaidas;
+    this.saldoGeral = this.totalEntradas + this.saldoInvestimento;
   }
 
   calcularTransacoesInvestimento(transacoes: Transacao[]) {
@@ -235,7 +239,7 @@ export class FinanceiroPage implements OnInit {
   }
 
   saldoEnviromentSelected() {
-    return this.view === "ibc" ? this.saldoConstrucao : this.saldoInvestimento
+    return this.saldoInvestimento;
   }
 
   getMonths() {
