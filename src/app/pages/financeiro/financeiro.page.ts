@@ -106,7 +106,7 @@ export class FinanceiroPage implements OnInit {
     });
 
     this.saldoFinal = this.totalEntradas - this.totalSaidas;
-    this.saldoGeral = this.totalEntradas + this.saldoInvestimento;
+    this.saldoGeral = this.saldoFinal + this.saldoInvestimento;
   }
 
   calcularTransacoesInvestimento(transacoes: Transacao[]) {
