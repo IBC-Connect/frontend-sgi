@@ -35,7 +35,7 @@ export class AdicionarRegistroFinanceiroModalPage implements OnInit {
   }
 
   selecionaCategoriaVisualizacao(visualizacao) {
-    this.categorys = visualizacao === "ibc" ? ["Pessoal",
+    this.categorys = visualizacao === "ibc" ? ["Saldo Anterior",
       "Dízimo",
       "Oferta",
       "Gastos Fixos",
