@@ -27,7 +27,8 @@ export class InformacoesPessoaisUtil {
       { id: 6, valor: 'Esposo', texto: 'Esposo(a)' },
       { id: 7, valor: 'Padrato', texto: 'Padrasto' },
       { id: 8, valor: 'Madrasta', texto: 'Madrasta' },
-      { id: 9, valor: 'Primo', texto: 'Primo(a)' }
+      { id: 9, valor: 'Primo', texto: 'Primo(a)' },
+      { id: 10, valor: 'Filho', texto: 'Filho(a)' }
     ];
   }
 
