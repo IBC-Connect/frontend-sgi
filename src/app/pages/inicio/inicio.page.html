@@ -93,12 +93,17 @@
       <label>Sistema Relatorios</label>
     </button>
 
-    <button ion-button routerLink="/patrimonio" class="ion-text-wrap" *ngIf="permissaoGeral">
+    <button ion-button routerLink="/parceiro" class="ion-text-wrap" *ngIf="permissaoAdmin || permissaoSecretaria">
       <ion-icon class="icone" name="business-outline"></ion-icon><br />
-      <label>Patrimônio da IBC</label>
+      <label>Parceiros da IBC</label>
     </button>
 
     <br />
+
+    <button ion-button routerLink="/patrimonio" class="ion-text-wrap" *ngIf="permissaoAdmin || permissaoSecretaria">
+      <ion-icon class="icone" name="business-outline"></ion-icon><br />
+      <label>Patrimônio IBC</label>
+    </button>
 
     <button ion-button (click)="mensagemDeConstrucao()" class="ion-text-wrap" *ngIf="permissaoGeral">
       <ion-icon class="icone" name="megaphone-outline"></ion-icon><br />

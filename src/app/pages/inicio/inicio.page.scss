@@ -46,6 +46,10 @@ button:hover {
   cursor: pointer;
 }
 
+button:hover .icone {
+  font-size: 32pt; /* Ajuste o tamanho do ícone conforme necessário */
+}
+
 label {
   color: #141311;
   font-size: 16px;

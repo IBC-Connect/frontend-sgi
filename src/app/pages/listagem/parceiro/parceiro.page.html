@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Total de parceiros cadastrados: {{numTotalParceiros}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar (ionChange)="onSearchTerm($event)" placeholder="Digite o nome do Parceiro"
+    color="tertiary"></ion-searchbar>
+  <ion-grid>
+    <ion-row align-items-center justify-content-center>
+      <ion-col>
+        <ion-list>
+          <ion-item-sliding *ngFor="let parceiro of listaParceirosFiltrados">
+            <ion-item text-wrap class="item-text-wrap">
+              <ion-label class="informacao-membro" text-wrap>
+                <h1 class="content-title">{{parceiro.nome}}</h1>
+                {{parceiro.representante ? 'Representante: '.concat(parceiro.representante) : '' }}
+                <br>
+                {{parceiro.contato ? 'Contato: '.concat(parceiro.contato) : '' }}
+                <br>
+                {{parceiro.observacoes ? 'Observações: '.concat(parceiro.observacoes) : '' }}
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="start" *ngIf="desabilitaAcessoBotoes()">
+              <button (click)="confirmarExclusao(parceiro)" ion-button class="bt-deletar">
+                <ion-icon class="icones" name="trash"></ion-icon>
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

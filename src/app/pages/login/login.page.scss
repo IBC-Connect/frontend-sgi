@@ -9,14 +9,12 @@ ion-icon {
 
 ion-input,
 ion-item {
-
-  color:#2e2e3c;
+  color: #2e2e3c;
   --background: #d9d9d9;
   --placeholder-color: #2e2e3c;
   --placeholder-opacity: 1;
   font-size: 0.9em;
   font-family: "Montserrat", sans-serif;
-
 }
 
 img {
@@ -27,14 +25,14 @@ img {
 }
 
 #container, #container2 {
- position: absolute;
+  position: absolute;
   left: 0;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
 }
 
-#container{
+#container {
   text-align: left;
 }
 
@@ -45,32 +43,62 @@ img {
 }
 
 #nome-igreja {
-  margin-left: 15%; 
-  color:#fff;
+  margin-left: 15%;
+  color: #fff;
   font-size: 16px;
   line-height: 22px;
- 
 }
 
-#area-restrita, #esqueci-senha{
-  text-align: center; 
-  color:#2e2e3c; 
+#area-restrita, #esqueci-senha {
+  text-align: center;
+  color: #2e2e3c;
 }
 
-#area-restrita{
+#area-restrita {
   font-size: 16pt;
 }
 
-#esqueci-senha{
+#esqueci-senha {
   font-size: 10pt;
 }
 
-#icone-olho{
+#icone-olho {
   font-size: 14pt;
 }
 
-#icone-user, #icone-cadeado{
+#icone-user, #icone-cadeado {
   font-size: 16pt;
 }
 
- 
+/* Esconda a logomarca para dispositivos móveis e tablets */
+.logo-container {
+  display: none;
+}
+
+/* Media queries para dispositivos móveis e tablets */
+@media (max-width: 768px) {
+  ion-content {
+    --background: #e6e6e6 !important; /* Cor de fundo cinza claro */
+  }
+
+  #container {
+    display: none;
+  }
+
+  #container2 {
+    margin-left: 0;
+    text-align: center;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .mobile-logo {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 50%; /* Ajuste o tamanho conforme necessário */
+  }
+
+  img {
+    display: none;
+  }
+}

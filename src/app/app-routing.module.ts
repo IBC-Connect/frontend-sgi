@@ -269,7 +269,20 @@ const routes: Routes = [
     path: 'patrimonio',
     loadChildren: () => import('./pages/patrimonio/patrimonio.module').then(m => m.PatrimonioPageModule),
     canActivateChild: [AutenticacaoGuard]
+  },
+  {
+    path: 'cadastro/parceiro',
+    loadChildren: () => import('./pages/cadastro/parceiro/parceiro.module').then( m => m.ParceiroPageModule)
+  },
+  {
+    path: 'lista/parceiro',
+    loadChildren: () => import('./pages/listagem/parceiro/parceiro.module').then( m => m.ParceiroPageModule)
+  },
+  {
+    path: 'parceiro',
+    loadChildren: () => import('./pages/parceiro/parceiro.module').then( m => m.ParceiroPageModule)
   }
+
 ];
 
 @NgModule({
