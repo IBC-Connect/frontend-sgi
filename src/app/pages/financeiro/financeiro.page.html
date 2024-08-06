@@ -97,13 +97,20 @@
               </ion-col>
               <ion-col class="ion-text-center">
                 <strong>Investimento:</strong>
-                <span [ngClass]="{'positive': saldoInvestimento >= 0, 'negative': saldoInvestimento < 0}">
-                  {{ saldoInvestimento | currency:'BRL'}}</span>
+                <span [ngClass]="{'positive': saldoInvestimento >= 0, 'negative': saldoInvestimentoMesAtual < 0}">
+                  {{ saldoInvestimentoMesAtual | currency:'BRL'}}</span>
+                <br>
               </ion-col>
               <ion-col class="ion-text-center">
                 <strong>Geral:</strong>
-                <span [ngClass]="{'positive': saldoInvestimento >= 0, 'negative': saldoInvestimento < 0}">
+                <span [ngClass]="{'positive': saldoGeral >= 0, 'negative': saldoGeral < 0}">
                   {{ saldoGeral | currency:'BRL'}}</span>
+              </ion-col>
+              <ion-col class="ion-text-center">
+                <strong>Investido:</strong>
+                <span [ngClass]="{'positive': saldoInvestimento >= 0, 'negative': saldoInvestimento < 0}">
+                  {{ saldoInvestimento | currency:'BRL'}}</span>
+                <br>
               </ion-col>
             </ion-row>
           </ion-card>

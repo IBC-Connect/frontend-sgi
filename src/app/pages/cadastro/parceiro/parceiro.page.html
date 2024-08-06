@@ -22,6 +22,21 @@
     </ion-item>
 
     <ion-item class="row-item">
+      <ion-label mode="md" class="titulo-dado" position="stacked">Valor Contribuição <span>*</span></ion-label>
+      <ion-input mode="md" [(ngModel)]="parceiro.valor" placeholder="Valor" inputmode="decimal"></ion-input>
+    </ion-item>
+
+    <ion-item class="row-item">
+      <ion-label mode="md" class="titulo-dado" position="stacked">Data Contribuição <span>*</span></ion-label>
+      <ion-input mode="md" [(ngModel)]="parceiro.dataContribuicao" placeholder="Dia de Contribuição" type="text" maxlength="2"></ion-input>
+    </ion-item>
+
+    <ion-item class="row-item">
+      <ion-label mode="md" class="titulo-dado" position="stacked">Forma Pagamento <span>*</span></ion-label>
+      <ion-input mode="md" [(ngModel)]="parceiro.formaContribuicao" type="text" maxlength="20"></ion-input>
+    </ion-item>
+
+    <ion-item class="row-item">
       <ion-label mode="md" class="titulo-dado" position="stacked">Contato <span>*</span></ion-label>
       <ion-input mode="md" [(ngModel)]="parceiro.contato" type="text" maxlength="15"></ion-input>
     </ion-item>

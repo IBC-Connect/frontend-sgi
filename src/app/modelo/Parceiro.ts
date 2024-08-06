@@ -4,4 +4,7 @@ export class Parceiro {
   representante: string;
   contato: string
   observacoes: string;
+  valor: string;
+  dataContribuicao: string;
+  formaContribuicao: string;
 }

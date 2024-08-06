@@ -19,6 +19,7 @@ export class FinanceiroPage implements OnInit {
   saldoFinal: number = 0;
   saldoGeral: number = 0;
   saldoInvestimento: number = 0;
+  saldoInvestimentoMesAtual: number = 0;
 
   view: any = "ibc";
   ambienteSelecionado: any;
@@ -92,6 +93,7 @@ export class FinanceiroPage implements OnInit {
   calculateTotals() {
     this.eraseTotals();
     this.calcularTransacoesInvestimento(this.transacoes);
+    this.calcularTransacoesInvestimentoMesAtual(this.filtredTransacoes);
     this.calcularSaldoTotal(this.filtredTransacoes);
     this.cdr.detectChanges();
   }
@@ -106,7 +108,7 @@ export class FinanceiroPage implements OnInit {
     });
 
     this.saldoFinal = this.totalEntradas - this.totalSaidas;
-    this.saldoGeral = this.saldoFinal + this.saldoInvestimento;
+    this.saldoGeral = this.saldoFinal + this.saldoInvestimentoMesAtual;
   }
 
   calcularTransacoesInvestimento(transacoes: Transacao[]) {
@@ -122,6 +124,21 @@ export class FinanceiroPage implements OnInit {
     });
 
     this.saldoInvestimento = totalEntradasInvestimentos - totalSaidasInvestimentos;
+  }
+
+  calcularTransacoesInvestimentoMesAtual(transacoes: Transacao[]) {
+    let totalEntradasInvestimentos: number = 0;
+    let totalSaidasInvestimentos: number = 0;
+
+    transacoes.forEach((transacao) => {
+      if (transacao.type === 'Entrada' && transacao.category === 'Investimento') {
+        totalEntradasInvestimentos += Number(transacao.amount);
+      } else if (transacao.type === 'Saida' && transacao.category === 'Investimento') {
+        totalSaidasInvestimentos += Number(transacao.amount);
+      }
+    });
+
+    this.saldoInvestimentoMesAtual = totalEntradasInvestimentos - totalSaidasInvestimentos;
   }
 
   dateChanged() {

@@ -41,7 +41,8 @@ export class AdicionarRegistroFinanceiroModalPage implements OnInit {
       "Gastos Fixos",
       "Gastos Variáveis",
       "Investimento"
-    ] : ["Pessoa Física",
+    ] : ["Saldo Anterior",
+      "Pessoa Física",
       "Pessoa Jurídica",
       "Gastos Fixos",
       "Gastos Variáveis",

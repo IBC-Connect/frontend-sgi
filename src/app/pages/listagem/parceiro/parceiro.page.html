@@ -22,6 +22,12 @@
                 <br>
                 {{parceiro.contato ? 'Contato: '.concat(parceiro.contato) : '' }}
                 <br>
+                {{parceiro.valor ? 'Valor: '.concat(parceiro.valor | currency:'BRL') : '' }}
+                <br>
+                {{parceiro.dataContribuicao ? 'Data Contribuição: '.concat(parceiro.dataContribuicao) : '' }}
+                <br>
+                {{parceiro.formaContribuicao ? 'Data Contribuição: '.concat(parceiro.formaContribuicao) : '' }}
+                <br>
                 {{parceiro.observacoes ? 'Observações: '.concat(parceiro.observacoes) : '' }}
               </ion-label>
             </ion-item>

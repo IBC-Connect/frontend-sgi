@@ -1,7 +1,7 @@
-<ion-header autoHide="false">
+<ion-header autoHide="true">
   <ion-toolbar color="primary">
     <ion-title>Igreja Batista do Caçote</ion-title>
-    <ion-title slot="end">{{boasVindas}}</ion-title>
+    <p class="boas-vindas">{{boasVindas}}</p>
   </ion-toolbar>
 </ion-header>
 
@@ -101,7 +101,7 @@
     <br />
 
     <button ion-button routerLink="/patrimonio" class="ion-text-wrap" *ngIf="permissaoAdmin || permissaoSecretaria">
-      <ion-icon class="icone" name="business-outline"></ion-icon><br />
+      <ion-icon class="icone" name="reader-outline"></ion-icon><br />
       <label>Patrimônio IBC</label>
     </button>
 
