@@ -29,7 +29,7 @@ ion-loading.custom-loading {
 button {
   flex: 1 1 calc(25% - 20px);
   /* Ajusta o tamanho dos botões para ocupar um quarto da largura */
-  max-width: calc(25% - 20px);
+  max-width: calc(22.5% - 20px);
   /* Garante que o max-width respeite o cálculo do flex */
   height: 100px;
   word-wrap: break-word;
@@ -72,6 +72,7 @@ label {
   /* Impede a quebra de linha */
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 10px;
   /* Adiciona "..." quando o texto for muito longo */
 }
 
@@ -84,6 +85,7 @@ label {
   /* Impede a quebra de linha */
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 10px;
   /* Adiciona "..." quando o texto for muito longo */
 }
 
