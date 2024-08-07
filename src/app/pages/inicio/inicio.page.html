@@ -1,7 +1,9 @@
 <ion-header autoHide="true">
   <ion-toolbar color="primary">
-    <ion-title>Igreja Batista do Caçote</ion-title>
-    <p class="boas-vindas">{{boasVindas}}</p>
+    <div class="toolbar-content">
+      <p class="boas-vindas-2">Igreja Batista do Caçote</p>
+      <p class="boas-vindas">{{boasVindas}}</p>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -54,19 +56,19 @@
     <button ion-button routerLink="/lista/cargo" routerDirection="forward" class="ion-text-wrap" *ngIf="permissaoGeral">
       <ion-icon class="icone" name="file-tray-stacked-outline"></ion-icon>
       <br />
-      <label>Lista de &nbsp; Cargos</label>
+      <label>Lista de Cargos</label>
     </button>
 
     <button ion-button routerLink="/lista/evento" routerDirection="forward" class="ion-text-wrap"
       *ngIf="permissaoGeral">
       <ion-icon class="icone" name="layers-outline"></ion-icon> <br />
-      <label>Lista de &nbsp; Eventos</label>
+      <label>Lista de Eventos</label>
     </button>
 
     <button ion-button routerLink="/lista/assistido" routerDirection="forward" class="ion-text-wrap"
       *ngIf="permissaoAdmin || permissaoSecretaria">
       <ion-icon class="icone" name="list-outline"></ion-icon> <br />
-      <label>Lista de &nbsp; Assistidos</label>
+      <label>Lista de Assistidos</label>
     </button>
 
     <br />

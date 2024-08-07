@@ -29,7 +29,7 @@ ion-loading.custom-loading {
 button {
   flex: 1 1 calc(25% - 20px);
   /* Ajusta o tamanho dos botões para ocupar um quarto da largura */
-  max-width: calc(20% - 10px);
+  max-width: calc(25% - 20px);
   /* Garante que o max-width respeite o cálculo do flex */
   height: 100px;
   word-wrap: break-word;
@@ -57,9 +57,27 @@ label {
   font-size: 16px;
 }
 
+.toolbar-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .boas-vindas {
   text-align: right;
   /* Ajusta a posição do texto à direita */
+  font-size: 1rem;
+  /* Ajuste o tamanho conforme necessário */
+  white-space: nowrap;
+  /* Impede a quebra de linha */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Adiciona "..." quando o texto for muito longo */
+}
+
+.boas-vindas-2 {
+  text-align: left;
+  /* Ajusta a posição do texto à esquerda */
   font-size: 1rem;
   /* Ajuste o tamanho conforme necessário */
   white-space: nowrap;
@@ -92,7 +110,7 @@ label {
 }
 
 @media (max-width: 600px) {
-  ion-title {
+  .boas-vindas-2 {
     display: none;
   }
 
