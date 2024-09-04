@@ -85,32 +85,42 @@
               <ion-col class="ion-text-center">
                 <strong>Entradas:</strong> {{ totalEntradas |
                 currency:'BRL' }}
+                <br>
+                <p>Entradas do Mês</p>
               </ion-col>
               <ion-col class="ion-text-center">
                 <strong>Saídas:</strong> {{ totalSaidas | currency:'BRL'
                 }}
+                <br>
+                <p>Saídas do Mês</p>
               </ion-col>
               <ion-col class="ion-text-center">
-                <strong>Final:</strong>
+                <strong>Saldo:</strong>
                 <span [ngClass]="{'positive': saldoFinal >= 0, 'negative': saldoFinal < 0}">
                   {{ saldoFinal | currency:'BRL'}}</span>
+                <br>
+                <p>Saldo do Mês</p>
               </ion-col>
               <ion-col class="ion-text-center">
                 <strong>Investimento:</strong>
                 <span [ngClass]="{'positive': saldoInvestimento >= 0, 'negative': saldoInvestimentoMesAtual < 0}">
                   {{ saldoInvestimentoMesAtual | currency:'BRL'}}</span>
                 <br>
+                <p>Saldo Investimento do Mês</p>
               </ion-col>
               <ion-col class="ion-text-center">
-                <strong>Geral:</strong>
+                <strong>Caixa:</strong>
                 <span [ngClass]="{'positive': saldoGeral >= 0, 'negative': saldoGeral < 0}">
                   {{ saldoGeral | currency:'BRL'}}</span>
+                <br>
+                <p>Saldo Final Somado ao Saldo Investimento</p>
               </ion-col>
               <ion-col class="ion-text-center">
                 <strong>Investido:</strong>
                 <span [ngClass]="{'positive': saldoInvestimento >= 0, 'negative': saldoInvestimento < 0}">
                   {{ saldoInvestimento | currency:'BRL'}}</span>
                 <br>
+                <p>Investimentos ao Longo do Ano</p>
               </ion-col>
             </ion-row>
           </ion-card>

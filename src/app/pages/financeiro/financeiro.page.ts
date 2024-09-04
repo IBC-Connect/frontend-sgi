@@ -30,6 +30,7 @@ export class FinanceiroPage implements OnInit {
   selectedMonth: number;
   selectedYear: number;
   transacoes: Transacao[] = [];
+  transacoesAno: Transacao[] = [];
   filtredTransacoes: Transacao[] = [];
 
   constructor(private modalController: ModalController,
@@ -70,6 +71,7 @@ export class FinanceiroPage implements OnInit {
     this.ambienteSelecionado.listar().subscribe((transacoes: Transacao[]) => {
       this.transacoes = this.sortTransacaosByDate(transacoes);
       this.filtredTransacoes = this.filterTransacoes();
+      this.transacoesAno = this.filterTransacoesYear();
       this.calculateTotals();
     });
   }
@@ -90,9 +92,16 @@ export class FinanceiroPage implements OnInit {
     });
   }
 
+  filterTransacoesYear() {
+    return this.transacoes.filter((Transacao: Transacao) => {
+      const date = moment(Transacao.date);
+      return date.year() === this.selectedYear;
+    });
+  }
+
   calculateTotals() {
     this.eraseTotals();
-    this.calcularTransacoesInvestimento(this.transacoes);
+    this.calcularTransacoesInvestimento(this.transacoesAno);
     this.calcularTransacoesInvestimentoMesAtual(this.filtredTransacoes);
     this.calcularSaldoTotal(this.filtredTransacoes);
     this.cdr.detectChanges();
