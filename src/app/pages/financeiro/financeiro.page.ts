@@ -70,6 +70,7 @@ export class FinanceiroPage implements OnInit {
   loadDataAndTotals() {
     this.ambienteSelecionado.listar().subscribe((transacoes: Transacao[]) => {
       this.transacoes = this.sortTransacaosByDate(transacoes);
+      //console.log(this.filterTransacoesInvestimento());
       this.filtredTransacoes = this.filterTransacoes();
       this.transacoesAno = this.filterTransacoesYear();
       this.calculateTotals();
@@ -92,6 +93,12 @@ export class FinanceiroPage implements OnInit {
     });
   }
 
+  filterTransacoesInvestimento() {
+    return this.transacoes.filter((transacao: Transacao) => {
+      return transacao.category === 'Investimento';
+    });
+  }
+
   filterTransacoesYear() {
     return this.transacoes.filter((Transacao: Transacao) => {
       const date = moment(Transacao.date);
@@ -101,7 +108,7 @@ export class FinanceiroPage implements OnInit {
 
   calculateTotals() {
     this.eraseTotals();
-    this.calcularTransacoesInvestimento(this.transacoesAno);
+    this.calcularTransacoesInvestimento(this.transacoes);
     this.calcularTransacoesInvestimentoMesAtual(this.filtredTransacoes);
     this.calcularSaldoTotal(this.filtredTransacoes);
     this.cdr.detectChanges();
