@@ -7,6 +7,17 @@ import { Transacao } from '../../modelo/Transacao';
 import { TransacaoService } from '../../servicos/Transacao';
 import { AdicionarRegistroFinanceiroModalPage } from '../componentes/adicionar-registro-financeiro-modal/adicionar-registro-financeiro-modal.page';
 import { Categoria } from 'src/app/servicos/Categoria';
+import {
+  AlignmentType,
+  BorderStyle, Document,
+  HeadingLevel, Packer,
+  Paragraph,
+  Table,
+  TableCell,
+  TableRow,
+  TextRun, WidthType
+} from 'docx';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-financeiro',
@@ -32,6 +43,7 @@ export class FinanceiroPage implements OnInit {
   transacoes: Transacao[] = [];
   transacoesAno: Transacao[] = [];
   filtredTransacoes: Transacao[] = [];
+  dataAtual: any;
 
   constructor(private modalController: ModalController,
     private alertController: AlertController,
@@ -159,7 +171,6 @@ export class FinanceiroPage implements OnInit {
 
   dateChanged() {
     this.filtredTransacoes = this.filterTransacoes();
-    this.eraseTotals();
     this.calculateTotals();
   }
 
@@ -269,6 +280,134 @@ export class FinanceiroPage implements OnInit {
     link.href = window.URL.createObjectURL(blob);
     link.download = 'entradas_e_saidas.xlsx';
     link.click();
+  }
+
+  //String to brazilian real with currency 6387.15 => R$ 6.387,15
+  toReal(value: number): string {
+    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  membersRows(): TableRow[] {
+
+    const data = [
+      ['Data', 'Descrição', 'Tipo', 'Valor'],
+      ...this.filtredTransacoes.map((transacao: Transacao) => [
+        moment(transacao.date).format('DD/MM/YYYY'),
+        transacao.description,
+        transacao.type,
+        this.toReal(Number(transacao.amount))
+      ])
+    ];
+
+    const transacoesTableRows = data.map((transacoes) => {
+      return new TableRow({
+        children: [
+          new TableCell({
+            children: [new Paragraph(transacoes[0])],
+            width: {
+              size: 25,
+              type: WidthType.PERCENTAGE,
+            },
+            margins: { top: 100, bottom: 100, left: 100, right: 100 },
+            borders: { top: { style: BorderStyle.SINGLE }, bottom: { style: BorderStyle.SINGLE } },
+          }),
+          new TableCell({
+            children: [new Paragraph(transacoes[1])],
+            width: {
+              size: 25,
+              type: WidthType.PERCENTAGE,
+            },
+            margins: { top: 100, bottom: 100, left: 100, right: 100 },
+            borders: { top: { style: BorderStyle.SINGLE }, bottom: { style: BorderStyle.SINGLE } },
+          }),
+          new TableCell({
+            children: [new Paragraph(transacoes[2])],
+            width: {
+              size: 25,
+              type: WidthType.PERCENTAGE,
+            },
+            margins: { top: 100, bottom: 100, left: 100, right: 100 },
+            borders: { top: { style: BorderStyle.SINGLE }, bottom: { style: BorderStyle.SINGLE } },
+          }),
+          new TableCell({
+            children: [new Paragraph(transacoes[3])],
+            width: {
+              size: 25,
+              type: WidthType.PERCENTAGE,
+            },
+            margins: { top: 100, bottom: 100, left: 100, right: 100 },
+            borders: { top: { style: BorderStyle.SINGLE }, bottom: { style: BorderStyle.SINGLE } },
+          }),
+        ],
+      });
+    });
+
+    return transacoesTableRows
+  }
+
+  async exportToWord() {
+
+    const doc = new Document({
+      creator: "JP",
+      title: "Resumo Financeiro",
+      description: "Resumo financeiro " + moment().format('DD/MM/YYYY'),
+      sections: [
+        {
+          children: [
+            new Paragraph({
+              children: [new TextRun('Relatório Financeiro')],
+              heading: HeadingLevel.HEADING_1,
+              alignment: AlignmentType.CENTER,
+            }),
+            new Paragraph({
+              children: [new TextRun(moment().format('DD/MM/YYYY'))],
+              heading: HeadingLevel.HEADING_2,
+              alignment: AlignmentType.CENTER,
+            }),
+            new Paragraph({
+              children: [new TextRun('Relatório Mensal')],
+              alignment: AlignmentType.LEFT,
+            }),
+            new Paragraph({
+              children: [new TextRun(moment().format('MMMM/YYYY'))],
+              heading: HeadingLevel.HEADING_2,
+              alignment: AlignmentType.LEFT,
+            }),
+            new Paragraph({
+              spacing: {
+                after: 100, // 100 twips (1/20 of a point) ~= 5 points ~= 100/72*5 pixels
+              },
+            }),
+            new Table({
+              rows: [
+                // Member rows
+                ...this.membersRows()
+              ],
+            }),
+            new Paragraph({
+              spacing: {
+                after: 300, // 100 twips (1/20 of a point) ~= 5 points ~= 100/72*5 pixels
+              },
+            }),
+            // Line for the signature
+            new Paragraph({
+              children: [new TextRun("_____________________________")],
+              alignment: AlignmentType.CENTER,
+
+            }),
+            // Text for the signature
+            new Paragraph({
+              children: [new TextRun("Assinatura do(a) Representante do Dep. Financeiro")],
+              alignment: AlignmentType.CENTER,
+            }),
+          ],
+        },
+      ],
+    });
+
+    Packer.toBlob(doc).then((blob) => {
+      saveAs(blob, "relatorio-financeiro.docx");
+    });
   }
 
   saldoEnviromentSelected() {
