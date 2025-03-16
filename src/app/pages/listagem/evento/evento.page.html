@@ -8,6 +8,7 @@
     <div slot="end" style="margin-right: 16px;">
       <ion-datetime locale="pt-BR" displayFormat="MMM YYYY" pickerFormat="MMM YYYY" [(ngModel)]="dataSelecionada"
         min="2020"
+        max="2030"
         monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
         monthShortNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
         (ionChange)="dataMudando($event)"></ion-datetime>

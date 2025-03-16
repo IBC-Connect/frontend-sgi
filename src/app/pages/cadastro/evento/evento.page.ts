@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { EventoMapper } from 'src/app/mapper/Evento';
@@ -60,7 +60,7 @@ export class EventoPage {
   public criarFormulario(): void {
     this.formulario = this.formulador.group({
       key: [this.evento.key],
-      data: [this.evento.data, Validators.required],
+      data: [this.evento.data, [Validators.required, this.validarData]],
       horarioInicio: [this.evento.horarioInicio, Validators.required],
       horarioFim: [this.evento.horarioFim, Validators.required],
       nome: [this.evento.nome, Validators.required],
@@ -81,7 +81,13 @@ export class EventoPage {
       await this.consultaCep.buscaEndereco(event.target.value).then(
         (data) => {
           const resultadoJson: any = data;
-          if (resultadoJson) {
+
+          if (resultadoJson.erro) {
+            this.mensagens.mensagemAlerta(
+              'Cep não encontrado, por favor insira os dados manualmente.'
+            );
+
+          } else {
             this.formulario.controls['bairro'].setValue(resultadoJson.bairro);
             this.formulario.controls['cidade'].setValue(
               resultadoJson.localidade
@@ -120,6 +126,29 @@ export class EventoPage {
       this.formulario.controls['estado'].enable();
       this.formulario.controls['logradouro'].enable();
     }
+  }
+
+  formatarData(event: any) {
+    let input = event.target.value.replace(/\D/g, '').substring(0, 8);
+    let dia = input.substring(0, 2);
+    let mes = input.substring(2, 4);
+    let ano = input.substring(4, 8);
+
+    if (input.length > 4) {
+      event.target.value = `${dia}/${mes}/${ano}`;
+    } else if (input.length > 2) {
+      event.target.value = `${dia}/${mes}`;
+    } else if (input.length > 0) {
+      event.target.value = `${dia}`;
+    }
+  }
+
+  validarData(control: AbstractControl) {
+    const data = control.value;
+    if (!data) return null;
+
+    const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+    return regex.test(data) ? null : { dataInvalida: true };
   }
 
   public cadastrar(): void {

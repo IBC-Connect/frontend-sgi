@@ -22,8 +22,7 @@
                 <ion-col>
                     <ion-item>
                         <ion-label mode="md" class="titulo-dado" position="stacked">Data <span>*</span></ion-label>
-                        <ion-datetime min="1900" max="2030" displayFormat="DD/MM/YYYY" formControlName="data"
-                            placeholder="Clique para selecionar uma data"></ion-datetime>
+                        <ion-input mode="md" formControlName="data" type="text" placeholder="dd/mm/yyyy" maxlength="10" (ionInput)="formatarData($event)"></ion-input>
                     </ion-item>
                 </ion-col>
             </ion-row>
