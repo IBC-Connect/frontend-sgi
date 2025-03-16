@@ -46,8 +46,7 @@ export class AniversarioDoMesPage {
   private filtrarMembrosAtivos(membrosFiltrados): Membro[] {
     return membrosFiltrados.filter(
       (m) =>
-        m.situacao === "Ativo" &&
-        (m.classificacao === undefined || m.classificacao === "Membro")
+        m.situacao === "Ativo" && m.classificacao != undefined
     );
   }
 

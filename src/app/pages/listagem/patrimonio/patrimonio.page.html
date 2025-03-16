@@ -23,7 +23,7 @@
                 <h1 class="content-title">{{patrimonio.nome}}</h1>
                 {{patrimonio.responsavel ? 'Responsável: '.concat(patrimonio.responsavel) : '' }}
                 <br>
-                {{patrimonio.quantidade ? 'Quantidade: '.concat(patrimonio.quantidade) : '' }}
+                {{patrimonio.quantidade ? 'Quantidade: ' + patrimonio.quantidade : '' }}
                 <br>
                 {{patrimonio.observacoes ? 'Observações: '.concat(patrimonio.observacoes) : '' }}
               </ion-label>

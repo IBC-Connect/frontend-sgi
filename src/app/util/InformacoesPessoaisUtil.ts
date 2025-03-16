@@ -40,4 +40,12 @@ export class InformacoesPessoaisUtil {
       { id: 4, valor: 'Viúvo' },
     ];
   }
+
+  public static procuraEstadoCivil(int : number) {
+    return InformacoesPessoaisUtil.estadoCivil().find(x => x.id === int).valor;
+  }
+
+  public static procuraEscolaridade(int : number) {
+    return InformacoesPessoaisUtil.escolaridade().find(x => x.id === int).valor;
+  }
 }

@@ -117,7 +117,7 @@ export class ProjetoInativoPage implements OnInit {
     }
   }
 
-  private desabilitaAcessoBotoes(): boolean {
+  desabilitaAcessoBotoes(): boolean {
     return this.usuarioLogado.perfil === 'MEM' ? true : false;
   }
 

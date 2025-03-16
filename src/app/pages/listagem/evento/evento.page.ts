@@ -103,7 +103,7 @@ export class EventoPage implements OnInit {
     await alert.present();
   }
 
-  private desabilitaAcessoBotoes(): boolean {
+  desabilitaAcessoBotoes(): boolean {
     return this.usuarioLogado.perfil === 'MEM' ? false : true;
   }
 

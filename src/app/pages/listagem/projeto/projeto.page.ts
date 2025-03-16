@@ -16,7 +16,7 @@ export class ProjetoPage implements OnInit {
     this.usuarioLogado = this.autenticacaoService.pegarDadosLocalmente();
   }
 
-  private desabilitaAcessoBotoes(): boolean {
+  desabilitaAcessoBotoes(): boolean {
     return this.usuarioLogado.perfil === 'MEM' ? false : true;
   }
 }

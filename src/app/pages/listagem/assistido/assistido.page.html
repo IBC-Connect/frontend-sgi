@@ -3,6 +3,9 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="inicio"></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="gerarRelatorio()"> Gerar Relatório - Word</ion-button>
+    </ion-buttons>
     <ion-title>Total de assistidos cadastrados: {{numTotalAssistidos}}</ion-title>
   </ion-toolbar>
 </ion-header>
