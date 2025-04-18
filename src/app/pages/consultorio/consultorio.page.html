@@ -23,8 +23,18 @@
         style="margin-left: 62.5%"
         color="primary"
         (click)="abriModal()"
-        >Adicionar um registro</ion-button
-      >
+        >Adicionar um registro</ion-button>
+    </ion-col>
+    <ion-col class="ion-align-self-end"> </ion-col>
+  </ion-row>
+  <ion-row *ngIf="isAdmin()">
+    <ion-col class="ion-align-self-start"> </ion-col>
+    <ion-col class="ion-align-self-center">
+      <ion-button
+        style="margin-left: 62.5%"
+        color="primary"
+        (click)="abriModal()"
+        >Exportar registros</ion-button>
     </ion-col>
     <ion-col class="ion-align-self-end"> </ion-col>
   </ion-row>

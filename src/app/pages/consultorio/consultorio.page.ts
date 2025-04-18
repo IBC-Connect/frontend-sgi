@@ -4,7 +4,6 @@ import {
   ModalController,
   ToastController,
 } from "@ionic/angular";
-import { Observable } from "rxjs";
 import { Diario } from "src/app/modelo/Diario";
 import { Membro } from "src/app/modelo/Membro";
 import { Usuario } from "src/app/modelo/Usuario";
@@ -13,6 +12,17 @@ import { DiarioService } from "src/app/servicos/Diario";
 import { MembroService } from "src/app/servicos/Membro";
 import { MensagensUtil } from "src/app/util/MensagensUtil";
 import { RegistroConsultorioModalPage } from "./../componentes/registro-consultorio-modal/registro-consultorio-modal.page";
+import {
+  AlignmentType,
+  BorderStyle, Document,
+  HeadingLevel, Packer,
+  Paragraph,
+  Table,
+  TableCell,
+  TableRow,
+  TextRun, WidthType
+} from 'docx';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: "app-consultorio",
@@ -116,4 +126,176 @@ export class ConsultorioPage implements OnInit {
       });
     }
   }
+
+  get isAdmin(): boolean {
+    return this.usuarioLogado.perfil === "ADMIN";
+  }
+
+  get dataAtual(): string {
+    const data = new Date();
+    const dia = String(data.getDate()).padStart(2, "0");
+    const mes = String(data.getMonth() + 1).padStart(2, "0");
+    const ano = data.getFullYear();
+    return `${dia}/${mes}/${ano}`;
+  }
+
+  membersRows(): TableRow[] {
+
+    const diariosOrdenados: Diario[] = this.listaDiariosFiltrados.sort((a, b) =>
+      a.nomePaciente.localeCompare(b.nomePaciente)
+    );
+
+    const diariosOrdenadosArray: Array<[string, string, string]> =
+      diariosOrdenados.map((paciente) => [
+        paciente.nomePaciente,
+        paciente.dataRegistro,
+        paciente.registro
+      ]);
+
+    const membersTableRows = diariosOrdenadosArray.map((membros) => {
+      return new TableRow({
+        children: [
+          new TableCell({
+            children: [new Paragraph(membros[0])],
+            width: {
+              size: 25,
+              type: WidthType.PERCENTAGE,
+            },
+            margins: { top: 100, bottom: 100, left: 100, right: 100 },
+            borders: { top: { style: BorderStyle.SINGLE }, bottom: { style: BorderStyle.SINGLE } },
+          }),
+          new TableCell({
+            children: [new Paragraph(membros[1])],
+            width: {
+              size: 25,
+              type: WidthType.PERCENTAGE,
+            },
+            margins: { top: 100, bottom: 100, left: 100, right: 100 },
+            borders: { top: { style: BorderStyle.SINGLE }, bottom: { style: BorderStyle.SINGLE } },
+          }),
+          new TableCell({
+            children: [new Paragraph(membros[2])],
+            width: {
+              size: 25,
+              type: WidthType.PERCENTAGE,
+            },
+            margins: { top: 100, bottom: 100, left: 100, right: 100 },
+            borders: { top: { style: BorderStyle.SINGLE }, bottom: { style: BorderStyle.SINGLE } },
+          }),
+          new TableCell({
+            children: [new Paragraph('')],
+            width: {
+              size: 25,
+              type: WidthType.PERCENTAGE,
+            },
+            margins: { top: 100, bottom: 100, left: 100, right: 100 },
+            borders: { top: { style: BorderStyle.SINGLE }, bottom: { style: BorderStyle.SINGLE } },
+          }),
+        ],
+      });
+    });
+
+    return membersTableRows
+  }
+
+  async gerarAtaDocx() {
+  
+      const doc = new Document({
+        creator: "JP",
+        title: "Ata de Presença",
+        description: "Ata da reunião de " + this.dataAtual,
+        sections: [
+          {
+            children: [
+              new Paragraph({
+                children: [new TextRun('ATA DE PRESENÇA')],
+                heading: HeadingLevel.HEADING_1,
+                alignment: AlignmentType.CENTER,
+              }),
+              new Paragraph({
+                children: [new TextRun('Assembléia IBC')],
+                heading: HeadingLevel.HEADING_2,
+                alignment: AlignmentType.CENTER,
+              }),
+              new Paragraph({
+                children: [new TextRun('Data: ' + this.dataAtual)],
+                alignment: AlignmentType.LEFT,
+              }),
+              new Paragraph({
+                children: [new TextRun('Membros presentes')],
+                heading: HeadingLevel.HEADING_2,
+                alignment: AlignmentType.LEFT,
+              }),
+              new Paragraph({
+                spacing: {
+                  after: 100, // 100 twips (1/20 of a point) ~= 5 points ~= 100/72*5 pixels
+                },
+              }),
+              new Table({
+                rows: [
+                  // Header row
+                  new TableRow({
+                    children: [
+                      new TableCell({
+                        children: [new Paragraph("Nome")],
+                        width: {
+                          size: 25,
+                          type: WidthType.PERCENTAGE,
+                        },
+                      }),
+                      new TableCell({
+                        children: [new Paragraph("CPF")],
+                        width: {
+                          size: 25,
+                          type: WidthType.PERCENTAGE,
+                        },
+                      }),
+                      new TableCell({
+                        children: [new Paragraph("RG")],
+                        width: {
+                          size: 25,
+                          type: WidthType.PERCENTAGE,
+                        },
+                      }),
+                      new TableCell({
+                        children: [new Paragraph("Assinatura")],
+                        width: {
+                          size: 25,
+                          type: WidthType.PERCENTAGE,
+                        },
+                      }),
+                    ],
+                  }),
+                  // Member rows
+                  ...this.membersRows(),
+                ],
+              }),
+              new Paragraph({
+                spacing: {
+                  after: 300, // 100 twips (1/20 of a point) ~= 5 points ~= 100/72*5 pixels
+                },
+              }),
+              // Line for the signature
+              new Paragraph({
+                children: [new TextRun("_____________________________")],
+                alignment: AlignmentType.CENTER,
+                
+              }),
+              // Text for the signature
+              new Paragraph({
+                children: [new TextRun("Assinatura do Pastor Presidente")],
+                alignment: AlignmentType.CENTER,
+              }),
+            ],
+          },
+        ],
+      });
+  
+  
+      Packer.toBlob(doc).then((blob) => {
+        saveAs(blob, "ata-de-presenca.docx");
+      });
+  }
+
+
 }

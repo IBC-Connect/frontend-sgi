@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Novidades</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/cadastro-novidade']">Cadastrar Novidade</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" size-md="6" size-lg="3" *ngFor="let novidade of novidades">
+        <ion-card (click)="abrirModal(novidade)">
+          <img [src]="novidade.imagemUrl" alt="Imagem da Novidade"/>
+          <ion-card-header>
+            <ion-card-title>{{ novidade.titulo }}</ion-card-title>
+            <ion-card-subtitle>{{ novidade.dataCriacao | date: 'd \'de\' MMMM \'de\' y, HH:mm' }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            {{ novidade.descricao | slice:0:100 }}...
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

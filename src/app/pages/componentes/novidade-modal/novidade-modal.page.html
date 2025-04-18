@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="fecharModal()">Fechar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img [src]="novidade?.imagemUrl" style="width: 100%; height: auto;"></ion-img>
+  <ion-text>
+    <h2 style="margin: 16px 0;">{{ novidade?.titulo }}</h2>
+    <p style="color: gray; margin-bottom: 16px;">{{ novidade?.dataCriacao | date: 'short' }}</p>
+    <p style="text-indent: 20px;">{{ novidade?.descricao }}</p>
+  </ion-text>
+</ion-content>

@@ -32,9 +32,10 @@ export class AniversarioDoMesPage {
     this.membroService.listar().subscribe((response) => {
       if (response) {
         this.membros = response;
-        this.membrosFiltrados = this.exibirAniversariantes(response);
+        this.membrosFiltrados = this.filtrarMembros(this.membros);
+        this.membrosFiltrados = this.exibirAniversariantes(this.membrosFiltrados);
         this.membrosFiltrados = this.ordernarDataAniversario(this.membrosFiltrados);
-        this.totalAniversariantes = this.membros.length;
+        this.totalAniversariantes = this.membrosFiltrados.length;
       } else {
         this.membros = [];
         this.membrosFiltrados = [];
@@ -43,10 +44,9 @@ export class AniversarioDoMesPage {
     });
   }
 
-  private filtrarMembrosAtivos(membrosFiltrados): Membro[] {
+  private filtrarMembros(membrosFiltrados): Membro[] {
     return membrosFiltrados.filter(
-      (m) =>
-        m.situacao === "Ativo" && m.classificacao != undefined
+      (m) => m.classificacao == "Membro" || m.classificacao == "Congregado"
     );
   }
 

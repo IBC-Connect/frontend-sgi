@@ -281,7 +281,15 @@ const routes: Routes = [
   {
     path: 'parceiro',
     loadChildren: () => import('./pages/parceiro/parceiro.module').then( m => m.ParceiroPageModule)
+  },
+  {
+    path: 'listagem/novidades',
+    loadChildren: () => import('./pages/listagem/novidade/novidade.module').then( m => m.NovidadePageModule)
+  },  {
+    path: 'novidade-modal',
+    loadChildren: () => import('./pages/componentes/novidade-modal/novidade-modal.module').then( m => m.NovidadeModalPageModule)
   }
+
 
 ];
 
