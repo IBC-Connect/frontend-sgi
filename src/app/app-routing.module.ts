@@ -223,6 +223,7 @@ const routes: Routes = [
       import("./pages/consultorio/consultorio.module").then(
         (m) => m.ConsultorioPageModule
       ),
+      canActivateChild: [AutenticacaoGuard]
   },
   {
     path: "registro-consultorio-modal",
@@ -272,7 +273,8 @@ const routes: Routes = [
   },
   {
     path: 'cadastro/parceiro',
-    loadChildren: () => import('./pages/cadastro/parceiro/parceiro.module').then( m => m.ParceiroPageModule)
+    loadChildren: () => import('./pages/cadastro/parceiro/parceiro.module').then( m => m.ParceiroPageModule),
+    canActivateChild: [AutenticacaoGuard]
   },
   {
     path: 'lista/parceiro',
@@ -285,12 +287,16 @@ const routes: Routes = [
   {
     path: 'listagem/novidades',
     loadChildren: () => import('./pages/listagem/novidade/novidade.module').then( m => m.NovidadePageModule)
-  },  {
+  },
+  {
     path: 'novidade-modal',
     loadChildren: () => import('./pages/componentes/novidade-modal/novidade-modal.module').then( m => m.NovidadeModalPageModule)
+  },
+  {
+    path: 'registro-download-modal',
+    loadChildren: () => import('./pages/componentes/registro-download-modal/registro-download-modal.module').then( m => m.RegistroDownloadModalPageModule),
+    canActivateChild: [AutenticacaoGuard]
   }
-
-
 ];
 
 @NgModule({

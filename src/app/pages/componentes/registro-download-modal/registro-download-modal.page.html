@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Download de Registros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar (ionChange)="onSearchTerm($event)" 
+  placeholder="Digite o nome do paciente" 
+  color="tertiary"
+  [(ngModel)]="termoPesquisa"></ion-searchbar>
+  <div style="inline-size: 100%; block-size: auto;">
+    <ion-virtual-scroll [items]="listaDiariosFiltrados">
+      <ion-item *virtualItem="let item" (click)="diarioSelecionado(item)"> {{ item.nomePaciente }} </ion-item>
+    </ion-virtual-scroll>
+  </div>
+  <br />
+  <div style="margin-inline-start: 62.5%">
+    <ion-button (click)="gerarAtaDocx()">Baixar Registros</ion-button>
+    <ion-button (click)="fecharModal()">Cancelar</ion-button>
+  </div>
+</ion-content>

@@ -1,17 +1,15 @@
-import { AutenticacaoService } from "src/app/servicos/Autenticacao";
 import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
-import { Observable } from "rxjs/internal/Observable";
 import { Membro } from "src/app/modelo/Membro";
+import { AutenticacaoService } from "src/app/servicos/Autenticacao";
 import { MembroService } from "src/app/servicos/Membro";
 import { DateUtil } from "src/app/util/DateUtil";
-import { DadosUsuarioUtil } from "./../../../util/DadosUsuarioUtil";
 
+import { Assistido } from "src/app/modelo/Assistido";
+import { AssistidoService } from "src/app/servicos/Assistido";
 import { Diario } from "./../../../modelo/Diario";
 import { Usuario } from "./../../../modelo/Usuario";
 import { DiarioService } from "./../../../servicos/Diario";
-import { AssistidoService } from "src/app/servicos/Assistido";
-import { Assistido } from "src/app/modelo/Assistido";
 
 @Component({
   selector: "app-registro-consultorio-modal",
