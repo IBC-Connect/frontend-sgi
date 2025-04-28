@@ -47,11 +47,13 @@ export class EventoPage implements OnInit {
   }
 
   public inicializar(): void {
+    const dataAtual = moment(this.dataSelecionada).format("MM/YYYY");
+
     this.mensagens = new MensagensUtil(this.aviso);
     this.eventoService.listar().subscribe((response) => {
       // Definindo valores padrões para evitar verificação redundante
       this.listaEventos = response || [];
-      const dataAtual = moment().format("MM/YYYY"); // Calcula apenas uma vez
+       // Calcula apenas uma vez
 
       this.listaEventosFiltrados = this.listaEventos.filter((evento) => {
         // Simplifica a comparação das datas

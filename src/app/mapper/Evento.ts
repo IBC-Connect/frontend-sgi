@@ -7,10 +7,10 @@ export class EventoMapper {
 
     public static formularioToEvento(form: any): Evento {
         let evento = new Evento();
-
+        
         evento.key = form.key;
         evento.nome = form.nome.toString().toUpperCase();
-        evento.data = moment(form.data).format("DD/MM/YYYY");
+        evento.data = form.data;
         evento.horarioInicio = form.horarioInicio;
         evento.horarioFim = form.horarioFim;
         evento.observacoes = form.observacoes ? form.observacoes.toUpperCase() : "";
