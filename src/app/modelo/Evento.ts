@@ -6,6 +6,7 @@ export class Evento {
   data: string;
   horarioInicio: string;
   horarioFim: string;
+  origem: string;
   local: Endereco;
   observacoes: string;
   responsavel: string;

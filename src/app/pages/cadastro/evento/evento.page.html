@@ -25,6 +25,16 @@
                         <ion-input mode="md" formControlName="data" type="text" placeholder="dd/mm/yyyy" maxlength="10" (ionInput)="formatarData($event)"></ion-input>
                     </ion-item>
                 </ion-col>
+                <ion-col>
+                    <ion-label mode="md" class="titulo-dado-select-acesso" position="stacked">Origem
+                        <span>*</span></ion-label>
+                    <ion-select [(ngModel)]="evento.origem" formControlName="origem" class="horario"
+                        placeholder="Selecione uma origem" multiple="false" interface="action-sheet">
+                        <ion-select-option *ngFor="let item of origens" [value]="item">
+                            {{item}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-col>
             </ion-row>
             <h2>Local e Horário</h2>
             <ion-row>

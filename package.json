@@ -27,6 +27,8 @@
     "docx": "^7.8.2",
     "file-saver": "^2.0.5",
     "firebase": "^8.10.1",
+    "jspdf": "^3.0.1",
+    "jspdf-autotable": "^5.0.2",
     "moment": "^2.29.1",
     "ngx-cookie-service": "12.0.3",
     "ngx-currency": "^3.0.0",

@@ -1,9 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import {
   AlertController,
   NavController,
   ToastController,
 } from "@ionic/angular";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 import * as moment from "moment";
 import "moment/locale/pt-br";
 import { Observable } from "rxjs";
@@ -22,11 +24,13 @@ import { RedirecionadorUtil } from "src/app/util/RedirecionadorUtil";
 export class EventoPage implements OnInit {
   listaEventos: Array<Evento>;
   listaEventosFiltrados: Evento[];
+  listaEventosAmbientes: Evento[];
   numTotalEventos: number;
   listaEventosObservable: Observable<any[]>;
   mensagens: MensagensUtil;
   redirecionador: RedirecionadorUtil;
 
+  ambienteSelecionado: string = "IBC";
   dataSelecionada: any = moment().format("YYYY-MM-DD");
   usuarioLogado: Usuario;
 
@@ -35,7 +39,6 @@ export class EventoPage implements OnInit {
     private aviso: ToastController,
     private navCtrl: NavController,
     public alertController: AlertController,
-    private mudancas: ChangeDetectorRef,
     private autenticacaoService: AutenticacaoService
   ) {
     moment.locale('pt-br');
@@ -51,19 +54,26 @@ export class EventoPage implements OnInit {
     this.eventoService.listar().subscribe((response) => {
       // Definindo valores padrões para evitar verificação redundante
       this.listaEventos = response || [];
-      const dataAtual = moment().format("MM/YYYY"); // Calcula apenas uma vez
-
-      this.listaEventosFiltrados = this.listaEventos.filter((evento) => {
-        // Simplifica a comparação das datas
-        return this.transformaData(evento.data) === dataAtual;
-      });
-
-      // Ordena os eventos filtrados por data corretamente
-      this.ordenaInformacoes()
-
-      // Atualiza a contagem
-      this.numTotalEventos = this.listaEventosFiltrados.length;
+      this.listarEventosOrdenados();
     });
+  }
+
+  listarEventosOrdenados(dataSelecionada?: any, ambienteSelecionado?: any) {
+    const dataAtual = dataSelecionada !== undefined ? moment(dataSelecionada).format("MM/YYYY") : moment().format("MM/YYYY"); // Calcula apenas uma vez
+    const ambienteAtual = ambienteSelecionado !== undefined ? ambienteSelecionado : "IBC";
+
+    this.listaEventosFiltrados = this.listaEventos?.filter((evento) => { return this.transformaData(evento.data) === dataAtual; });
+
+    this.listaEventosFiltrados?.sort((a, b) => {
+      // Converte as datas para um formato comparável antes da ordenação
+      const dataA = moment(this.transformaDataBRToEn(a.data));
+      const dataB = moment(this.transformaDataBRToEn(b.data));
+      return dataB.diff(dataA);
+    });
+
+    this.listaEventosFiltrados = this.listaEventosFiltrados.filter((evento) => evento.nome.includes(ambienteAtual));
+
+    this.numTotalEventos = this.listaEventosFiltrados.length;
   }
 
   transformaData(data: string) {
@@ -107,6 +117,29 @@ export class EventoPage implements OnInit {
     return this.usuarioLogado.perfil === 'MEM' ? false : true;
   }
 
+  imprimirEventos() {
+    //impressao em word de uma lista de eventos em uma tabela
+    const doc = new jsPDF("p", "pt", "a4");
+    autoTable(doc, {
+      head: [["Nome", "Data", "Início", "Fim", "Origem", "Local", "Observações", "Responsável"]],
+      body: this.listaEventosFiltrados.map((evento) => [
+        evento.nome,
+        evento.data,
+        evento.horarioInicio,
+        evento.horarioFim,
+        evento.origem,
+        evento.local.logradouro + ", " + evento.local.numero + ", " + evento.local.bairro + ", " + evento.local.cidade + ", " + evento.local.estado,
+        evento.observacoes,
+        evento.responsavel,
+      ]),
+    });
+    doc.save("eventos.pdf");
+  }
+
+  selecionarAmbiente(event: any) {
+    this.listarEventosOrdenados(this.dataSelecionada, event.target.value);
+  }
+
   private excluirEvento(evento: Evento): void {
     this.eventoService.deletar(evento.key);
     this.mensagens.mensagemSucesso("Evento excluído com sucesso!");
@@ -148,22 +181,22 @@ export class EventoPage implements OnInit {
   }
 
   dataMudando(event: any) {
-    this.listaEventosFiltrados = this.listaEventos?.filter((evento) => {
+    this.listarEventosOrdenados(this.dataSelecionada, this.ambienteSelecionado);
+  }
+
+  transformaDataBRToEn(data: string) {
+    const partesData = data.split('/')
+    return partesData[2] + '-' + partesData[1] + '-' + partesData[0]
+  }
+
+  filtarPeloMesEAno() {
+    this.listaEventosFiltrados = this.listaEventosAmbientes.filter((evento) => {
       let novaDataEvento = this.transformaData(evento.data);
       let novaDataSelecionada = moment(this.dataSelecionada).format("MM/YYYY");
 
       return novaDataEvento === novaDataSelecionada ? true : false;
     });
-
-    this.ordenaInformacoes()
-
-    this.numTotalEventos = this.listaEventosFiltrados?.length;
-
-    this.mudancas.detectChanges();
-  }
-
-  transformaDataBRToEn(data : string){
-    const partesData = data.split('/')
-    return partesData[2] + '-' + partesData[1] + '-' + partesData[0]
+    this.ordenaInformacoes();
+    this.numTotalEventos = this.listaEventosFiltrados.length;
   }
 }

@@ -11,6 +11,7 @@ export class EventoMapper {
         evento.key = form.key;
         evento.nome = form.nome.toString().toUpperCase();
         evento.data = moment(form.data).format("DD/MM/YYYY");
+        evento.origem = form.origem.toUpperCase();
         evento.horarioInicio = form.horarioInicio;
         evento.horarioFim = form.horarioFim;
         evento.observacoes = form.observacoes ? form.observacoes.toUpperCase() : "";

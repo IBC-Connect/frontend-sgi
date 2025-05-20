@@ -23,6 +23,7 @@ export class EventoPage {
   evento: Evento;
   mensagens: MensagensUtil;
   horarios: any;
+  origens : any;
   membrosAtivos: Membro[];
   listaMembrosObservable: Observable<any[]>;
 
@@ -41,6 +42,7 @@ export class EventoPage {
     this.evento = new Evento();
     this.evento.local = new Endereco();
     this.horarios = DiaDaSemanaEHorarioUtil.horarios();
+    this.origens = ["IBC", "TRANSFORMAR"];
     this.membroService.listar().subscribe((response) => {
       this.membrosAtivos = response;
       this.membrosAtivos = this.membrosAtivos.filter(
@@ -63,6 +65,7 @@ export class EventoPage {
       data: [this.evento.data, [Validators.required, this.validarData]],
       horarioInicio: [this.evento.horarioInicio, Validators.required],
       horarioFim: [this.evento.horarioFim, Validators.required],
+      origem: [this.evento.origem, Validators.required],
       nome: [this.evento.nome, Validators.required],
       observacoes: [this.evento.observacoes],
       responsavel: [this.evento.responsavel, Validators.required],

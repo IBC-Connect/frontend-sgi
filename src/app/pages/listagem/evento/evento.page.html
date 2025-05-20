@@ -5,14 +5,20 @@
     </ion-buttons>
     <ion-title>Total de eventos: {{numTotalEventos}}</ion-title>
 
-    <div slot="end" style="margin-right: 16px;">
+    <ion-buttons slot="end">
+      <ion-button (click)="imprimirEventos()">IMPRIMIR</ion-button>
+      <ion-select placeholder="Selecione a Origem" interface="action-sheet" value="IBC"
+        (ionChange)="selecionarAmbiente($event)" [(ngModel)]="ambienteSelecionado">
+        <ion-select-option value="IBC">IBC</ion-select-option>
+        <ion-select-option value="TRANSFORMAR">Transformar</ion-select-option>
+      </ion-select>
       <ion-datetime locale="pt-BR" displayFormat="MMM YYYY" pickerFormat="MMM YYYY" [(ngModel)]="dataSelecionada"
         min="2020"
         max="2030"
         monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
         monthShortNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
         (ionChange)="dataMudando($event)"></ion-datetime>
-    </div>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
