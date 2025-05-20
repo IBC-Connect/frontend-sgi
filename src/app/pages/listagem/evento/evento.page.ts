@@ -50,6 +50,8 @@ export class EventoPage implements OnInit {
   }
 
   public inicializar(): void {
+    const dataAtual = moment(this.dataSelecionada).format("MM/YYYY");
+
     this.mensagens = new MensagensUtil(this.aviso);
     this.eventoService.listar().subscribe((response) => {
       // Definindo valores padrões para evitar verificação redundante

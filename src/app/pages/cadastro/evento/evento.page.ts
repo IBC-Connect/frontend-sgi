@@ -108,12 +108,6 @@ export class EventoPage {
           );
         }
       );
-    } else {
-      this.formulario.controls['bairro'].setValue(null);
-      this.formulario.controls['cidade'].setValue(null);
-      this.formulario.controls['estado'].setValue(null);
-      this.formulario.controls['logradouro'].setValue(null);
-      this.disableEndereco(false);
     }
   }
 
@@ -163,7 +157,6 @@ export class EventoPage {
         this.evento = EventoMapper.formularioToEvento(this.formulario.value);
         this.eventoService.adicionarOuAtualizar(this.evento);
         this.mensagens.mensagemSucesso('Cadastro realizado com sucesso!');
-        this.disableEndereco(true);
         this.inicializar();
       }
     }
