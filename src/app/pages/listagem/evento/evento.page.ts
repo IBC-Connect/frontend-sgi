@@ -50,8 +50,6 @@ export class EventoPage implements OnInit {
   }
 
   public inicializar(): void {
-    const dataAtual = moment(this.dataSelecionada).format("MM/YYYY");
-
     this.mensagens = new MensagensUtil(this.aviso);
     this.eventoService.listar().subscribe((response) => {
       // Definindo valores padrões para evitar verificação redundante
@@ -60,22 +58,41 @@ export class EventoPage implements OnInit {
     });
   }
 
+  /**
+   * Retorna true se a data do evento (formato DD/MM/YYYY) pertence ao mês/ano selecionado (formato MM/YYYY)
+   * @param dataEvento string no formato DD/MM/YYYY
+   * @param mesAnoSelecionado string no formato MM/YYYY
+   */
+  pertenceAoMesAno(dataEvento: string, mesAnoSelecionado: string): boolean {
+    if (!dataEvento) return false;
+    const partes = dataEvento.split('/');
+    if (partes.length !== 3) return false;
+    const mesAnoEvento = partes[1] + '/' + partes[2];
+    return mesAnoEvento === mesAnoSelecionado;
+  }
+
   listarEventosOrdenados(dataSelecionada?: any, ambienteSelecionado?: any) {
-    const dataAtual = dataSelecionada !== undefined ? moment(dataSelecionada).format("MM/YYYY") : moment().format("MM/YYYY"); // Calcula apenas uma vez
+    // Usa sempre o valor mais atualizado de dataSelecionada
+    const dataAtual = dataSelecionada
+      ? moment(dataSelecionada).format("MM/YYYY")
+      : moment(this.dataSelecionada).format("MM/YYYY");
     const ambienteAtual = ambienteSelecionado !== undefined ? ambienteSelecionado : "IBC";
 
-    this.listaEventosFiltrados = this.listaEventos?.filter((evento) => { return this.transformaData(evento.data) === dataAtual; });
+    this.listaEventosFiltrados = (this.listaEventos || []).filter(
+      (evento) => this.pertenceAoMesAno(evento.data, dataAtual)
+    );
 
-    this.listaEventosFiltrados?.sort((a, b) => {
-      // Converte as datas para um formato comparável antes da ordenação
-      const dataA = moment(this.transformaDataBRToEn(a.data));
-      const dataB = moment(this.transformaDataBRToEn(b.data));
+    this.listaEventosFiltrados = (this.listaEventosFiltrados || []).sort((a, b) => {
+      const dataA = moment(a.data, "DD/MM/YYYY");
+      const dataB = moment(b.data, "DD/MM/YYYY");
       return dataB.diff(dataA);
     });
 
-    this.listaEventosFiltrados = this.listaEventosFiltrados.filter((evento) => evento.nome.includes(ambienteAtual));
+    this.listaEventosFiltrados = (this.listaEventosFiltrados || []).filter(
+      (evento) => evento.nome.includes(ambienteAtual)
+    );
 
-    this.numTotalEventos = this.listaEventosFiltrados.length;
+    this.numTotalEventos = (this.listaEventosFiltrados || []).length;
   }
 
   transformaData(data: string) {
@@ -93,7 +110,7 @@ export class EventoPage implements OnInit {
     });
   }
 
-  public async confirmarExclusao(evento: Evento) {
+  async confirmarExclusao(evento: Evento) {
     const alert = await this.alertController.create({
       header: "Confirmação de exclusão",
       message: "Tem certeza que deseja excluir o evento selecionado?",
@@ -183,6 +200,7 @@ export class EventoPage implements OnInit {
   }
 
   dataMudando(event: any) {
+    this.dataSelecionada = event.detail.value;
     this.listarEventosOrdenados(this.dataSelecionada, this.ambienteSelecionado);
   }
 
